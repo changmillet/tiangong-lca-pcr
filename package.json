@@ -1,0 +1,12 @@
+{
+  "name": "@tiangong-lca/pcr-library",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node builder/scripts/validate-pcr-library.mjs",
+    "catalog:build": "node builder/scripts/build-catalog.mjs",
+    "pcr:scaffold:cpc": "node builder/scripts/scaffold-leaf-pcrs.mjs"
+  }
+}
+

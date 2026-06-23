@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TianGong PCR frontmatter",
+  "type": "object",
+  "required": ["id", "title", "status", "pcr_kind", "content_maturity"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^pcr\\." },
+    "title": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["scaffold", "draft", "reviewed", "deprecated"]
+    },
+    "pcr_kind": { "type": "string" },
+    "content_maturity": { "type": "string" }
+  },
+  "additionalProperties": true
+}
+

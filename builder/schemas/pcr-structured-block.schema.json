@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TianGong PCR structured block",
+  "type": "object",
+  "properties": {
+    "reference_flows": { "type": "array" },
+    "inventory_patterns": { "type": "array" },
+    "qa_rules": { "type": "array" }
+  },
+  "additionalProperties": true
+}
+
