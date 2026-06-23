@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.yarn-and-thread-woven-and-tufted-textile-fabrics.raw-silk-not-thrown
 title:
-  en: "Raw silk (not thrown)"
+  en-US: "Raw silk (not thrown)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

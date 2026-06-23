@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.support-services.permanent-placement-services-other-than-executive-search-services
 title:
-  en: "Permanent placement services, other than executive search services"
+  en-US: "Permanent placement services, other than executive search services"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

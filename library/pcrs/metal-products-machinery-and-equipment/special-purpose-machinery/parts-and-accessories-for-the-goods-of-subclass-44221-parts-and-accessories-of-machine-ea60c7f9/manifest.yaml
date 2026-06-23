@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.parts-and-accessories-for-the-goods-of-subclass-44221-parts-and-accessories-of-machine-ea60c7f9
 title:
-  en: "Parts and accessories for the goods of subclass 44221; parts and accessories of machine tools for working wood, bone, hard plastics and the like"
+  en-US: "Parts and accessories for the goods of subclass 44221; parts and accessories of machine tools for working wood, bone, hard plastics and the like"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

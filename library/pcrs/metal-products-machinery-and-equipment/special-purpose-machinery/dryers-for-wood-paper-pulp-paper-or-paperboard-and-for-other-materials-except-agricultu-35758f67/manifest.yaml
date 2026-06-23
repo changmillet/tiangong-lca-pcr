@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.dryers-for-wood-paper-pulp-paper-or-paperboard-and-for-other-materials-except-agricultu-35758f67
 title:
-  en: "Dryers for wood, paper pulp, paper or paperboard and for other materials except agriculture products"
+  en-US: "Dryers for wood, paper pulp, paper or paperboard and for other materials except agriculture products"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

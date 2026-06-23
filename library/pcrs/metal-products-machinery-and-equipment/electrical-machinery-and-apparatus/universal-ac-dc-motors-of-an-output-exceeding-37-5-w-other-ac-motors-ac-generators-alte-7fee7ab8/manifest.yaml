@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.universal-ac-dc-motors-of-an-output-exceeding-37-5-w-other-ac-motors-ac-generators-alte-7fee7ab8
 title:
-  en: "Universal AC/DC motors of an output exceeding 37.5 W; other AC motors; AC generators (alternators) other than photovoltaic generators"
+  en-US: "Universal AC/DC motors of an output exceeding 37.5 W; other AC motors; AC generators (alternators) other than photovoltaic generators"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

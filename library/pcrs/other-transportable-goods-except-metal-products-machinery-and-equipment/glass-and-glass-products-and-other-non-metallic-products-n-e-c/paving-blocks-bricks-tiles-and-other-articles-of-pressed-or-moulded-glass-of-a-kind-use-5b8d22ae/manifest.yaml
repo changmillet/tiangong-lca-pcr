@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.glass-and-glass-products-and-other-non-metallic-products-n-e-c.paving-blocks-bricks-tiles-and-other-articles-of-pressed-or-moulded-glass-of-a-kind-use-5b8d22ae
 title:
-  en: "Paving blocks, bricks, tiles and other articles of pressed or moulded glass, of a kind used for building or construction purposes; leaded lights and the like; multicellular or foam glass in blocks, plates or similar forms"
+  en-US: "Paving blocks, bricks, tiles and other articles of pressed or moulded glass, of a kind used for building or construction purposes; leaded lights and the like; multicellular or foam glass in blocks, plates or similar forms"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

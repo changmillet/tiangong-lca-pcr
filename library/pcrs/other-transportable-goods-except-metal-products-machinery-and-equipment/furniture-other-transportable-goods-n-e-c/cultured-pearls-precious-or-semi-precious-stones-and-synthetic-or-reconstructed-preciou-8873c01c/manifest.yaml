@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.furniture-other-transportable-goods-n-e-c.cultured-pearls-precious-or-semi-precious-stones-and-synthetic-or-reconstructed-preciou-8873c01c
 title:
-  en: "Cultured pearls, precious or semi-precious stones, and synthetic or reconstructed precious or semi-precious stones (except industrial diamonds and piezo-electric quartz), worked (except simply sawn, cleaved, bruted or roughly shaped), but not strung, mounted or set"
+  en-US: "Cultured pearls, precious or semi-precious stones, and synthetic or reconstructed precious or semi-precious stones (except industrial diamonds and piezo-electric quartz), worked (except simply sawn, cleaved, bruted or roughly shaped), but not strung, mounted or set"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

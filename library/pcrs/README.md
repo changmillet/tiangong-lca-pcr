@@ -5,7 +5,7 @@ Each canonical PCR is represented as a directory:
 ```text
 library/pcrs/<domain>/<subdomain>/<pcr-slug>/
   manifest.yaml
-  pcr.en.md
+  pcr.en-US.md
   pcr.zh-CN.md
   structured.yaml
 ```

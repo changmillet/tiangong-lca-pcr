@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.knitted-or-crocheted-fabrics-wearing-apparel.clothing-accessories-of-leather-or-of-composition-leather-except-sports-gloves
 title:
-  en: "Clothing accessories of leather or of composition leather, except sports gloves"
+  en-US: "Clothing accessories of leather or of composition leather, except sports gloves"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

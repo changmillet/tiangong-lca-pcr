@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.community-social-and-personal-services.public-administration-and-other-services-provided-to-the-community-as-a-01837dcb.services-related-to-foreign-military-aid
 title:
-  en: "Services related to foreign military aid"
+  en-US: "Services related to foreign military aid"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

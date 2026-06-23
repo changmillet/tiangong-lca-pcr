@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.beverages.spirits-liqueurs-and-other-spirituous-beverages-of-an-alcoholic-strength-by-volume-of-a-33de9cd9
 title:
-  en: "Spirits, liqueurs and other spirituous beverages of an alcoholic strength by volume of about 40% vol"
+  en-US: "Spirits, liqueurs and other spirituous beverages of an alcoholic strength by volume of about 40% vol"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

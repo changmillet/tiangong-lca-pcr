@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.furniture-other-transportable-goods-n-e-c.prefabricated-buildings-of-metal
 title:
-  en: "Prefabricated buildings, of metal"
+  en-US: "Prefabricated buildings, of metal"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -21,7 +21,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: edd52008c4e9be4c9e6e2bdcd53b0f9dd7f8e99d
+lastReviewedCommit: 26a32107ce1df0d3f3c17da22d8702968ce6cc7f
 ---
 
 # Authoring Guide
@@ -37,12 +37,12 @@ Each material PCR should be a directory:
 ```text
 library/pcrs/<domain>/<subdomain>/<pcr-slug>/
   manifest.yaml
-  pcr.en.md
+  pcr.en-US.md
   pcr.zh-CN.md
   structured.yaml
 ```
 
-Keep language-independent identity and lifecycle state in `manifest.yaml`. Keep machine-oriented rules in `structured.yaml`. Keep human-readable English and Chinese text in `pcr.en.md` and `pcr.zh-CN.md`.
+Keep language-independent identity and lifecycle state in `manifest.yaml`. Keep machine-oriented rules in `structured.yaml`. Keep human-readable English and Chinese text in `pcr.en-US.md` and `pcr.zh-CN.md`.
 
 Use semantic PCR slugs. Do not prefix or suffix PCR directories with CPC, HS, ISIC, NAICS, or other external classification codes. Classification codes belong in mapping files and `classification_refs`.
 
@@ -51,6 +51,6 @@ Use semantic PCR slugs. Do not prefix or suffix PCR directories with CPC, HS, IS
 CPC-generated PCR directories are placeholders until reviewed PCR content is written. When filling one of these records:
 
 - keep the existing `classification_refs` and CPC-to-PCR mapping unless the classification match is wrong
-- update both `pcr.en.md` and `pcr.zh-CN.md` as paired renderings of the same rule
+- update both `pcr.en-US.md` and `pcr.zh-CN.md` as paired renderings of the same rule
 - put machine-checkable reference-flow, inventory-flow, boundary, allocation, and QA patterns in `structured.yaml`
 - move `status` and `content_maturity` forward only after the PCR has been reviewed for methodology quality

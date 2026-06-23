@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.basic-chemicals.phosphates-of-triammonium-salts-and-peroxysalts-of-inorganic-acids-and-metals-n-e-c
 title:
-  en: "Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c."
+  en-US: "Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c."
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

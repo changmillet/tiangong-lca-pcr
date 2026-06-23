@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.motor-cars-and-other-motor-vehicles-principally-designed-for-the-transport-of-persons-e-731dcc23
 title:
-  en: "Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport type vehicles, vehicles specially designed for travelling on snow, and golf cars and similar vehicles)"
+  en-US: "Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport type vehicles, vehicles specially designed for travelling on snow, and golf cars and similar vehicles)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

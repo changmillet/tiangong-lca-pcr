@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.motor-vehicles-for-the-transport-of-persons-specially-designed-for-travelling-on-snow-g-b18ae2c6
 title:
-  en: "Motor vehicles, for the transport of persons, specially designed for travelling on snow; golf cars and similar vehicles"
+  en-US: "Motor vehicles, for the transport of persons, specially designed for travelling on snow; golf cars and similar vehicles"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.ballasts-for-discharge-lamps-or-tubes-static-converters-other-inductors
 title:
-  en: "Ballasts for discharge lamps or tubes; static converters; other inductors"
+  en-US: "Ballasts for discharge lamps or tubes; static converters; other inductors"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

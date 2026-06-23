@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.ores-and-minerals-electricity-gas-and-water.stone-sand-and-clay.gypsum-anhydrite-limestone-flux-limestone-and-other-calcareous-stone-of-a-kind-used-for-cb4995bb
 title:
-  en: "Gypsum; anhydrite; limestone flux; limestone and other calcareous stone, of a kind used for the manufacture of lime or cement"
+  en-US: "Gypsum; anhydrite; limestone flux; limestone and other calcareous stone, of a kind used for the manufacture of lime or cement"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

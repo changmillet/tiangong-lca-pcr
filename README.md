@@ -22,7 +22,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: edd52008c4e9be4c9e6e2bdcd53b0f9dd7f8e99d
+lastReviewedCommit: 26a32107ce1df0d3f3c17da22d8702968ce6cc7f
 ---
 
 # TianGong LCA PCR Library
@@ -48,7 +48,7 @@ Each material PCR should use one directory with shared metadata, bilingual Markd
 ```text
 library/pcrs/<domain>/<subdomain>/<pcr-slug>/
   manifest.yaml
-  pcr.en.md
+  pcr.en-US.md
   pcr.zh-CN.md
   structured.yaml
 ```

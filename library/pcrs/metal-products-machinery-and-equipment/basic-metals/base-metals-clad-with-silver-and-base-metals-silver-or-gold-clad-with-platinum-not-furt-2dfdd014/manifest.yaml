@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.basic-metals.base-metals-clad-with-silver-and-base-metals-silver-or-gold-clad-with-platinum-not-furt-2dfdd014
 title:
-  en: "Base metals clad with silver, and base metals, silver or gold clad with platinum, not further worked than semi-manufactured"
+  en-US: "Base metals clad with silver, and base metals, silver or gold clad with platinum, not further worked than semi-manufactured"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

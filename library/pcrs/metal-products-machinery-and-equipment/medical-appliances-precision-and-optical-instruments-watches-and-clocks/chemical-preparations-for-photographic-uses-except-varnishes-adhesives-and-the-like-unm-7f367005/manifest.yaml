@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.medical-appliances-precision-and-optical-instruments-watches-and-clocks.chemical-preparations-for-photographic-uses-except-varnishes-adhesives-and-the-like-unm-7f367005
 title:
-  en: "Chemical preparations for photographic uses, except varnishes, adhesives and the like; unmixed products for photographic uses, put up in measured portions or put up for retail sale in a form ready for use"
+  en-US: "Chemical preparations for photographic uses, except varnishes, adhesives and the like; unmixed products for photographic uses, put up in measured portions or put up for retail sale in a form ready for use"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

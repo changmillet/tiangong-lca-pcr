@@ -29,6 +29,11 @@ const REQUIRED_DIRS = [
   "docs",
 ];
 
+const PCR_EN_FILE = "pcr.en-US.md";
+const PCR_ZH_FILE = "pcr.zh-CN.md";
+const MODULE_EN_FILE = "module.en-US.md";
+const MODULE_ZH_FILE = "module.zh-CN.md";
+
 function parseArgs(argv) {
   const [command, ...rest] = argv;
   const options = { _: [] };
@@ -80,21 +85,21 @@ function normalizeSlug(value) {
 
 function pcrManifest(options) {
   const pcrId = String(options["pcr-id"] ?? "pcr.sample.placeholder");
-  const titleEn = String(options["title-en"] ?? "Sample PCR Placeholder");
+  const titleEn = String(options["title-en-US"] ?? options["title-en"] ?? "Sample PCR Placeholder");
   const titleZh = String(options["title-zh-CN"] ?? "PCR 样例占位");
 
   return `schema_version: 1
 id: ${pcrId}
 title:
-  en: ${JSON.stringify(titleEn)}
+  en-US: ${JSON.stringify(titleEn)}
   zh-CN: ${JSON.stringify(titleZh)}
 status: scaffold
 pcr_kind: product_category_rule
 content_maturity: empty_scaffold
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold
@@ -110,7 +115,7 @@ function pcrMarkdown(options, language) {
   const title =
     language === "zh-CN"
       ? String(options["title-zh-CN"] ?? "PCR 样例占位")
-      : String(options["title-en"] ?? "Sample PCR Placeholder");
+      : String(options["title-en-US"] ?? options["title-en"] ?? "Sample PCR Placeholder");
   const sections =
     language === "zh-CN"
       ? [
@@ -142,7 +147,7 @@ function pcrMarkdown(options, language) {
 pcr_id: ${pcrId}
 language: ${language}
 status: scaffold
-sync_with: ${language === "zh-CN" ? "pcr.en.md" : "pcr.zh-CN.md"}
+sync_with: ${language === "zh-CN" ? PCR_EN_FILE : PCR_ZH_FILE}
 ---
 
 # ${title}
@@ -353,7 +358,7 @@ function cpcLeafManifest(leaf, classificationVersion) {
   return `schema_version: 1
 id: ${pcrId}
 title:
-  en: ${yamlString(leaf.title)}
+  en-US: ${yamlString(leaf.title)}
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -375,9 +380,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation
@@ -397,7 +402,7 @@ function cpcLeafMarkdown(leaf, language) {
 pcr_id: ${pcrId}
 language: ${language}
 status: scaffold
-sync_with: ${language === "zh-CN" ? "pcr.en.md" : "pcr.zh-CN.md"}
+sync_with: ${language === "zh-CN" ? PCR_EN_FILE : PCR_ZH_FILE}
 ---
 
 # ${title}
@@ -542,8 +547,8 @@ retrieved_at_utc: ${yamlString(new Date().toISOString())}
   for (const leaf of pcrLeaves) {
     const pcrRoot = path.join("library/pcrs", leaf.pcr_directory);
     writeIfMissing(root, path.join(pcrRoot, "manifest.yaml"), cpcLeafManifest(leaf, classificationVersion));
-    writeIfMissing(root, path.join(pcrRoot, "pcr.en.md"), cpcLeafMarkdown(leaf, "en"));
-    writeIfMissing(root, path.join(pcrRoot, "pcr.zh-CN.md"), cpcLeafMarkdown(leaf, "zh-CN"));
+    writeIfMissing(root, path.join(pcrRoot, PCR_EN_FILE), cpcLeafMarkdown(leaf, "en-US"));
+    writeIfMissing(root, path.join(pcrRoot, PCR_ZH_FILE), cpcLeafMarkdown(leaf, "zh-CN"));
     writeIfMissing(root, path.join(pcrRoot, "structured.yaml"), cpcStructuredYaml(leaf, classificationVersion));
   }
 
@@ -566,8 +571,8 @@ Each canonical PCR is represented as a directory:
 \`\`\`text
 library/pcrs/<domain>/<subdomain>/<pcr-slug>/
   manifest.yaml
-  pcr.en.md
-  pcr.zh-CN.md
+  ${PCR_EN_FILE}
+  ${PCR_ZH_FILE}
   structured.yaml
 \`\`\`
 
@@ -585,8 +590,8 @@ Reusable modules use the same directory pattern when localized:
 \`\`\`text
 library/modules/<group>/<module-slug>/
   manifest.yaml
-  module.en.md
-  module.zh-CN.md
+  ${MODULE_EN_FILE}
+  ${MODULE_ZH_FILE}
   structured.yaml
 \`\`\`
 `,
@@ -612,8 +617,8 @@ node builder/cli/index.mjs lint
     const sampleSlug = normalizeSlug(options["sample-pcr"]);
     const sampleRoot = path.join("library/pcrs", sampleSlug);
     writeIfMissing(root, path.join(sampleRoot, "manifest.yaml"), pcrManifest(options));
-    writeIfMissing(root, path.join(sampleRoot, "pcr.en.md"), pcrMarkdown(options, "en"));
-    writeIfMissing(root, path.join(sampleRoot, "pcr.zh-CN.md"), pcrMarkdown(options, "zh-CN"));
+    writeIfMissing(root, path.join(sampleRoot, PCR_EN_FILE), pcrMarkdown(options, "en-US"));
+    writeIfMissing(root, path.join(sampleRoot, PCR_ZH_FILE), pcrMarkdown(options, "zh-CN"));
     writeIfMissing(root, path.join(sampleRoot, "structured.yaml"), structuredYaml());
   }
 
@@ -659,7 +664,7 @@ function lint(options) {
     if (!existsSync(manifest)) {
       continue;
     }
-    for (const fileName of ["pcr.en.md", "pcr.zh-CN.md", "structured.yaml"]) {
+    for (const fileName of [PCR_EN_FILE, PCR_ZH_FILE, "structured.yaml"]) {
       const candidate = path.join(directory, fileName);
       if (!existsSync(candidate)) {
         problems.push(`Missing PCR file: ${toRepoRelative(root, candidate)}`);

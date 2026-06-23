@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.support-services.intermediation-services-for-the-distribution-of-steam-hot-water-and-air-conditioning-su-1caced84
 title:
-  en: "Intermediation services for the distribution of steam, hot water and air-conditioning supply through mains"
+  en-US: "Intermediation services for the distribution of steam, hot water and air-conditioning supply through mains"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

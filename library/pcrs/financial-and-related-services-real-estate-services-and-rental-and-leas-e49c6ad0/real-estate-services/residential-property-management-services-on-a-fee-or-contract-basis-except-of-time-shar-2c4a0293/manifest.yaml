@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.financial-and-related-services-real-estate-services-and-rental-and-leas-e49c6ad0.real-estate-services.residential-property-management-services-on-a-fee-or-contract-basis-except-of-time-shar-2c4a0293
 title:
-  en: "Residential property management services on a fee or contract basis except of time-share ownership properties"
+  en-US: "Residential property management services on a fee or contract basis except of time-share ownership properties"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

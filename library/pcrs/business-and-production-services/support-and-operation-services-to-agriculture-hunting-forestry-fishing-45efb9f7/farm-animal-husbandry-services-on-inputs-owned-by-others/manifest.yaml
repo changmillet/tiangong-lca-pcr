@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.support-and-operation-services-to-agriculture-hunting-forestry-fishing-45efb9f7.farm-animal-husbandry-services-on-inputs-owned-by-others
 title:
-  en: "Farm animal husbandry services on inputs owned by others"
+  en-US: "Farm animal husbandry services on inputs owned by others"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

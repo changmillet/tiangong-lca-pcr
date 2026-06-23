@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.agriculture-forestry-and-fishery-products.products-of-agriculture-horticulture-and-market-gardening.cereal-straw-husks-unprepared-ground-pressed-or-in-the-form-of-pellets
 title:
-  en: "Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets"
+  en-US: "Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

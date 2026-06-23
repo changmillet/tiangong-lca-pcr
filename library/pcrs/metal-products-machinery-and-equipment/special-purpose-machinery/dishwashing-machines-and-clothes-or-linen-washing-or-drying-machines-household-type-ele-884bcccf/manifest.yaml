@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.dishwashing-machines-and-clothes-or-linen-washing-or-drying-machines-household-type-ele-884bcccf
 title:
-  en: "Dishwashing machines and clothes or linen washing or drying machines, household type, electric or non-electric"
+  en-US: "Dishwashing machines and clothes or linen washing or drying machines, household type, electric or non-electric"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

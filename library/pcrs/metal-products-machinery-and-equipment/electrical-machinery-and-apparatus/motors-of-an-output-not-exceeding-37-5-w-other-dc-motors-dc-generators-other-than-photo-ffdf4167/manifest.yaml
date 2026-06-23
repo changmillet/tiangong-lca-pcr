@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.motors-of-an-output-not-exceeding-37-5-w-other-dc-motors-dc-generators-other-than-photo-ffdf4167
 title:
-  en: "Motors of an output not exceeding 37.5 W; other DC motors; DC generators other than photovoltaic generators"
+  en-US: "Motors of an output not exceeding 37.5 W; other DC motors; DC generators other than photovoltaic generators"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

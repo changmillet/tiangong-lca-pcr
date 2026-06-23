@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.other-small-electric-domestic-appliances-including-vacuum-cleaners-kitchen-waste-dispos-90985e05
 title:
-  en: "Other small electric domestic appliances (including vacuum cleaners, kitchen waste disposers, food mixers, shavers, hair dryers, smoothing irons, coffee makers and toasters)"
+  en-US: "Other small electric domestic appliances (including vacuum cleaners, kitchen waste disposers, food mixers, shavers, hair dryers, smoothing irons, coffee makers and toasters)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

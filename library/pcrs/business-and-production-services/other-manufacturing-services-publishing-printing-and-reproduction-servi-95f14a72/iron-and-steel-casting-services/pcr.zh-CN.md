@@ -2,7 +2,7 @@
 pcr_id: pcr.business-and-production-services.other-manufacturing-services-publishing-printing-and-reproduction-servi-95f14a72.iron-and-steel-casting-services
 language: zh-CN
 status: scaffold
-sync_with: pcr.en.md
+sync_with: pcr.en-US.md
 ---
 
 # 待补充

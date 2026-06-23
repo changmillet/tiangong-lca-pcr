@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.sinks-wash-basins-baths-and-other-sanitary-ware-and-parts-thereof-of-iron-steel-copper-0ba60283
 title:
-  en: "Sinks, wash-basins, baths and other sanitary ware and parts thereof, of iron, steel, copper or aluminium"
+  en-US: "Sinks, wash-basins, baths and other sanitary ware and parts thereof, of iron, steel, copper or aluminium"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

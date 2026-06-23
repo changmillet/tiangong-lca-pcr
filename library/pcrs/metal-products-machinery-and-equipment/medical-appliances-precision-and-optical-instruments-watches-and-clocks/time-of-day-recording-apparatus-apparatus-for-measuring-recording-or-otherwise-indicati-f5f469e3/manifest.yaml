@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.medical-appliances-precision-and-optical-instruments-watches-and-clocks.time-of-day-recording-apparatus-apparatus-for-measuring-recording-or-otherwise-indicati-f5f469e3
 title:
-  en: "Time of day recording apparatus, apparatus for measuring, recording or otherwise indicating intervals of time, and time switches, with clock or watch movement or with synchronous motor"
+  en-US: "Time of day recording apparatus, apparatus for measuring, recording or otherwise indicating intervals of time, and time switches, with clock or watch movement or with synchronous motor"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.community-social-and-personal-services.sewage-and-waste-collection-treatment-and-disposal-and-other-environmen-da21c207.site-remediation-and-clean-up-services-surface-water
 title:
-  en: "Site remediation and clean-up services, surface water"
+  en-US: "Site remediation and clean-up services, surface water"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

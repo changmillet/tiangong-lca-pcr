@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.financial-and-related-services-real-estate-services-and-rental-and-leas-e49c6ad0.leasing-or-rental-services-without-operator.leasing-or-rental-services-concerning-computers-without-operator
 title:
-  en: "Leasing or rental services concerning computers without operator"
+  en-US: "Leasing or rental services concerning computers without operator"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

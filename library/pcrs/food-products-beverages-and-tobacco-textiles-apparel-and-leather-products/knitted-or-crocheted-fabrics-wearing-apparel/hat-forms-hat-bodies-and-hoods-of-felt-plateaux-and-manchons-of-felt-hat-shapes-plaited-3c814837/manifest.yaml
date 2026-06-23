@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.knitted-or-crocheted-fabrics-wearing-apparel.hat-forms-hat-bodies-and-hoods-of-felt-plateaux-and-manchons-of-felt-hat-shapes-plaited-3c814837
 title:
-  en: "Hat-forms, hat bodies and hoods of felt; plateaux and manchons of felt; hat-shapes, plaited or made by assembling strips of any material"
+  en-US: "Hat-forms, hat bodies and hoods of felt; plateaux and manchons of felt; hat-shapes, plaited or made by assembling strips of any material"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

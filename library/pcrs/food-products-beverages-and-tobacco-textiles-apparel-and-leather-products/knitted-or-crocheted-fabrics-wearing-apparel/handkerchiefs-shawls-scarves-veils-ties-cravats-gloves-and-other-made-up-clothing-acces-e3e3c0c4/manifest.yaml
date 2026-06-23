@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.knitted-or-crocheted-fabrics-wearing-apparel.handkerchiefs-shawls-scarves-veils-ties-cravats-gloves-and-other-made-up-clothing-acces-e3e3c0c4
 title:
-  en: "Handkerchiefs, shawls, scarves, veils, ties, cravats, gloves and other made-up clothing accessories, of textile fabric, not knitted or crocheted; parts of garments or of clothing accessories, of textile fabric, not knitted or crocheted n.e.c."
+  en-US: "Handkerchiefs, shawls, scarves, veils, ties, cravats, gloves and other made-up clothing accessories, of textile fabric, not knitted or crocheted; parts of garments or of clothing accessories, of textile fabric, not knitted or crocheted n.e.c."
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

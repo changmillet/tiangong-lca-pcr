@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.parts-n-e-c-of-boring-or-sinking-machinery-and-of-derricks-cranes-mobile-lifting-frames-4e0ab78b
 title:
-  en: "Parts n.e.c. of boring or sinking machinery and of derricks, cranes, mobile lifting frames, straddle carriers and works trucks fitted with a crane; parts n.e.c. of moving, grading, levelling, scraping, excavating, tamping, compacting, extracting or boring machinery for earth, minerals or ores; parts of pile-drivers and pile-extractors; parts of snow-ploughs and snow-blowers"
+  en-US: "Parts n.e.c. of boring or sinking machinery and of derricks, cranes, mobile lifting frames, straddle carriers and works trucks fitted with a crane; parts n.e.c. of moving, grading, levelling, scraping, excavating, tamping, compacting, extracting or boring machinery for earth, minerals or ores; parts of pile-drivers and pile-extractors; parts of snow-ploughs and snow-blowers"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.community-social-and-personal-services.public-administration-and-other-services-provided-to-the-community-as-a-01837dcb.public-administrative-services-related-to-multipurpose-development-projects
 title:
-  en: "Public administrative services related to multipurpose development projects"
+  en-US: "Public administrative services related to multipurpose development projects"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

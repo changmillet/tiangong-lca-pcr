@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.mechanical-shovels-excavators-and-shovel-loaders-except-front-end-shovel-loaders-and-ma-fe67c3bb
 title:
-  en: "Mechanical shovels, excavators and shovel loaders, except front-end shovel loaders and machinery with a 360-degree revolving superstructure; moving, grading, levelling, scraping, excavating, tamping, compacting, extracting or boring machinery n.e.c., self-propelled, for earth, minerals or ores"
+  en-US: "Mechanical shovels, excavators and shovel loaders, except front-end shovel loaders and machinery with a 360-degree revolving superstructure; moving, grading, levelling, scraping, excavating, tamping, compacting, extracting or boring machinery n.e.c., self-propelled, for earth, minerals or ores"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

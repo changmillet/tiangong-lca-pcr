@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.glass-and-glass-products-and-other-non-metallic-products-n-e-c.electrical-insulators-of-ceramics-insulating-fittings-for-electrical-machines-appliance-5a5a34e3
 title:
-  en: "Electrical insulators of ceramics; insulating fittings, for electrical machines, appliances or equipment, of ceramics"
+  en-US: "Electrical insulators of ceramics; insulating fittings, for electrical machines, appliances or equipment, of ceramics"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

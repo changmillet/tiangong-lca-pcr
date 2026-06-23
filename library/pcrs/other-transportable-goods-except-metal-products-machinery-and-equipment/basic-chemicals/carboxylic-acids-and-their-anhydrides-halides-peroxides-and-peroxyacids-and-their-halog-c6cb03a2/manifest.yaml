@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.basic-chemicals.carboxylic-acids-and-their-anhydrides-halides-peroxides-and-peroxyacids-and-their-halog-c6cb03a2
 title:
-  en: "Carboxylic acids and their anhydrides, halides, peroxides and peroxyacids and their halogenated, sulphonated, nitrated or nitrosated derivatives, except salicylic acid and its salts and esters and their salts"
+  en-US: "Carboxylic acids and their anhydrides, halides, peroxides and peroxyacids and their halogenated, sulphonated, nitrated or nitrosated derivatives, except salicylic acid and its salts and esters and their salts"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

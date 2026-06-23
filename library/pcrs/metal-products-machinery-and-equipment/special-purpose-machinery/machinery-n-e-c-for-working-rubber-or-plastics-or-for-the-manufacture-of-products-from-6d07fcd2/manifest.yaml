@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.machinery-n-e-c-for-working-rubber-or-plastics-or-for-the-manufacture-of-products-from-6d07fcd2
 title:
-  en: "Machinery n.e.c. for working rubber or plastics or for the manufacture of products from these materials"
+  en-US: "Machinery n.e.c. for working rubber or plastics or for the manufacture of products from these materials"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.other-vessels-including-light-vessels-fire-floats-dredgers-floating-cranes-floating-doc-9ba25013
 title:
-  en: "Other vessels (including light-vessels, fire-floats, dredgers, floating cranes, floating docks, warships and lifeboats other than rowing boats), except floating or submersible drilling or production platforms"
+  en-US: "Other vessels (including light-vessels, fire-floats, dredgers, floating cranes, floating docks, warships and lifeboats other than rowing boats), except floating or submersible drilling or production platforms"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

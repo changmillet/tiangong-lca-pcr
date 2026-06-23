@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.other-chemical-products-man-made-fibres.soap-organic-surface-active-products-and-preparations-for-use-as-soap-paper-wadding-fel-e7939ea3
 title:
-  en: "Soap; organic surface-active products and preparations for use as soap; paper, wadding, felt and nonwovens, impregnated, coated or covered with soap or detergent"
+  en-US: "Soap; organic surface-active products and preparations for use as soap; paper, wadding, felt and nonwovens, impregnated, coated or covered with soap or detergent"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

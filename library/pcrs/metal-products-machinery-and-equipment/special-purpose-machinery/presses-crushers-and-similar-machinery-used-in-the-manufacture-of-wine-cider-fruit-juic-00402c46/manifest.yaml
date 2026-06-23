@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.presses-crushers-and-similar-machinery-used-in-the-manufacture-of-wine-cider-fruit-juic-00402c46
 title:
-  en: "Presses, crushers and similar machinery used in the manufacture of wine, cider, fruit juices or similar beverages"
+  en-US: "Presses, crushers and similar machinery used in the manufacture of wine, cider, fruit juices or similar beverages"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

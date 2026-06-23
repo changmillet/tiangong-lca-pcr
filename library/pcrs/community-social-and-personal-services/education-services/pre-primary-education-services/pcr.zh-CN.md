@@ -2,7 +2,7 @@
 pcr_id: pcr.community-social-and-personal-services.education-services.pre-primary-education-services
 language: zh-CN
 status: scaffold
-sync_with: pcr.en.md
+sync_with: pcr.en-US.md
 ---
 
 # 待补充

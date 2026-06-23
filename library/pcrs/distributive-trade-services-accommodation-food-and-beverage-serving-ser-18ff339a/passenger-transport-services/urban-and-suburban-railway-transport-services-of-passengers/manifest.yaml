@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.distributive-trade-services-accommodation-food-and-beverage-serving-ser-18ff339a.passenger-transport-services.urban-and-suburban-railway-transport-services-of-passengers
 title:
-  en: "Urban and suburban railway transport services of passengers"
+  en-US: "Urban and suburban railway transport services of passengers"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

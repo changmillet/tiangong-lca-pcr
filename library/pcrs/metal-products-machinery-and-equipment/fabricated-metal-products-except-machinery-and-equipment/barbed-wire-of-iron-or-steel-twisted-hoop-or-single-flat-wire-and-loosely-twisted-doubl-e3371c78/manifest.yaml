@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.barbed-wire-of-iron-or-steel-twisted-hoop-or-single-flat-wire-and-loosely-twisted-doubl-e3371c78
 title:
-  en: "Barbed wire of iron or steel; twisted hoop or single flat wire, and loosely twisted double wire, of a kind used for fencing, of iron or steel"
+  en-US: "Barbed wire of iron or steel; twisted hoop or single flat wire, and loosely twisted double wire, of a kind used for fencing, of iron or steel"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

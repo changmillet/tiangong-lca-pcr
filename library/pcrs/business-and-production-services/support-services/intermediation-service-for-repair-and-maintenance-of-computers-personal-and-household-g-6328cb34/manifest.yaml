@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.support-services.intermediation-service-for-repair-and-maintenance-of-computers-personal-and-household-g-6328cb34
 title:
-  en: "Intermediation service for repair and maintenance of computers, personal and household goods, and motor vehicles and motorcycles"
+  en-US: "Intermediation service for repair and maintenance of computers, personal and household goods, and motor vehicles and motorcycles"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

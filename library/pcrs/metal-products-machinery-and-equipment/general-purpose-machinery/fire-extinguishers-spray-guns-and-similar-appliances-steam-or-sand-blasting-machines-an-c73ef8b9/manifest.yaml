@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.fire-extinguishers-spray-guns-and-similar-appliances-steam-or-sand-blasting-machines-an-c73ef8b9
 title:
-  en: "Fire extinguishers; spray guns and similar appliances; steam or sand blasting machines and similar jet projecting machines; mechanical appliances for projecting, dispersing or spraying liquids or powders, except agricultural or horticultural appliances"
+  en-US: "Fire extinguishers; spray guns and similar appliances; steam or sand blasting machines and similar jet projecting machines; mechanical appliances for projecting, dispersing or spraying liquids or powders, except agricultural or horticultural appliances"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

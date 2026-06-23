@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.motorcycles-and-cycles-fitted-with-an-auxiliary-motor-with-reciprocating-internal-combu-74010651
 title:
-  en: "Motorcycles and cycles fitted with an auxiliary motor, with reciprocating internal combustion piston engine of a cylinder capacity exceeding 50 cc"
+  en-US: "Motorcycles and cycles fitted with an auxiliary motor, with reciprocating internal combustion piston engine of a cylinder capacity exceeding 50 cc"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

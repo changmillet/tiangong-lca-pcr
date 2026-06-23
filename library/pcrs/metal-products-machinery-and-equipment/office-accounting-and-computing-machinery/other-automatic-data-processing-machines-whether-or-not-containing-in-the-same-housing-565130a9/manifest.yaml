@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.office-accounting-and-computing-machinery.other-automatic-data-processing-machines-whether-or-not-containing-in-the-same-housing-565130a9
 title:
-  en: "Other automatic data processing machines whether or not containing in the same housing one or two of the following types of units: storage units, input units, output units"
+  en-US: "Other automatic data processing machines whether or not containing in the same housing one or two of the following types of units: storage units, input units, output units"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

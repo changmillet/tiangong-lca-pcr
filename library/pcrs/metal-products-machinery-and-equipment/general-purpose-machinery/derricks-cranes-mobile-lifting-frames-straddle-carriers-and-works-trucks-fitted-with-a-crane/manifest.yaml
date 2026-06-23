@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.derricks-cranes-mobile-lifting-frames-straddle-carriers-and-works-trucks-fitted-with-a-crane
 title:
-  en: "Derricks; cranes; mobile lifting frames, straddle carriers and works trucks fitted with a crane"
+  en-US: "Derricks; cranes; mobile lifting frames, straddle carriers and works trucks fitted with a crane"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

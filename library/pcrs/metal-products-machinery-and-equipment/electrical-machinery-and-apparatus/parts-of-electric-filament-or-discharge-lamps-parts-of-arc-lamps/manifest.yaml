@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.parts-of-electric-filament-or-discharge-lamps-parts-of-arc-lamps
 title:
-  en: "Parts of electric filament or discharge lamps; parts of arc lamps"
+  en-US: "Parts of electric filament or discharge lamps; parts of arc lamps"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

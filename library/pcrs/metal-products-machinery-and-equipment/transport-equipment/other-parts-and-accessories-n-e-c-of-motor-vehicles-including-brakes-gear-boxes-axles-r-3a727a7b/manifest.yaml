@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.other-parts-and-accessories-n-e-c-of-motor-vehicles-including-brakes-gear-boxes-axles-r-3a727a7b
 title:
-  en: "Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes, axles, road wheels, suspension shock absorbers, radiators, silencers, exhaust pipes, clutches, steering wheels, steering columns, steering boxes, and parts thereof)"
+  en-US: "Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes, axles, road wheels, suspension shock absorbers, radiators, silencers, exhaust pipes, clutches, steering wheels, steering columns, steering boxes, and parts thereof)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

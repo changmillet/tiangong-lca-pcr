@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.textile-articles-other-than-apparel.other-made-up-textile-articles-including-floor-cloths-dish-cloths-dusters-and-similar-c-051e1b3f
 title:
-  en: "Other made-up textile articles (including floor-cloths, dish-cloths, dusters and similar cleaning cloths, life-jackets and life-belts)"
+  en-US: "Other made-up textile articles (including floor-cloths, dish-cloths, dusters and similar cleaning cloths, life-jackets and life-belts)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

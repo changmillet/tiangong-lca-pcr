@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: edd52008c4e9be4c9e6e2bdcd53b0f9dd7f8e99d
+lastReviewedCommit: 26a32107ce1df0d3f3c17da22d8702968ce6cc7f
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -45,7 +45,7 @@ Canonical PCR identity is directory-based. Each PCR record must use one director
 ```text
 library/pcrs/<domain>/<subdomain>/<pcr-slug>/
   manifest.yaml
-  pcr.en.md
+  pcr.en-US.md
   pcr.zh-CN.md
   structured.yaml
 ```
@@ -53,7 +53,7 @@ library/pcrs/<domain>/<subdomain>/<pcr-slug>/
 Rules:
 
 - `manifest.yaml` owns language-independent PCR identity, title map, lifecycle status, content maturity, target entities, module references, and available languages.
-- `pcr.en.md` and `pcr.zh-CN.md` are two language renderings of the same PCR record, not separate PCR records.
+- `pcr.en-US.md` and `pcr.zh-CN.md` are two language renderings of the same PCR record, not separate PCR records.
 - `structured.yaml` owns machine-oriented PCR rules such as reference flow patterns, inventory flow patterns, and QA rules.
 - Do not create parallel `pcrs/en/` and `pcrs/zh-CN/` directory trees.
 - Do not use CPC, HS, ISIC, NAICS, or another external classification system as the canonical PCR directory tree.
@@ -65,7 +65,7 @@ Reusable modules may use the same localized directory pattern:
 ```text
 library/modules/<group>/<module-slug>/
   manifest.yaml
-  module.en.md
+  module.en-US.md
   module.zh-CN.md
   structured.yaml
 ```
@@ -99,7 +99,7 @@ npm run validate
 Command meanings:
 
 - `init`: create required scaffold directories and repository guide files. It can also create a sample PCR directory with `node builder/cli/index.mjs init --sample-pcr <domain/path/slug> --pcr-id <id>`.
-- `lint`: validate required directories and enforce that every PCR directory with `manifest.yaml` also has `pcr.en.md`, `pcr.zh-CN.md`, and `structured.yaml`.
+- `lint`: validate required directories and enforce that every PCR directory with `manifest.yaml` also has `pcr.en-US.md`, `pcr.zh-CN.md`, and `structured.yaml`.
 - `pcr:scaffold:cpc`: import an official CPC structure CSV, normalize hierarchy files under `classifications/systems/cpc/<version>/`, create `classifications/mappings/cpc-<version>-to-pcr.yaml`, and create empty bilingual PCR directories for CPC leaf classes only. Generated PCR directories use semantic slugs and do not include CPC codes.
 - `validate`: run `lint` and the builder CLI tests.
 

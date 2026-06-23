@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.basic-metals.other-bars-and-rods-of-iron-or-non-alloy-steel-not-further-worked-than-forged-hot-rolle-f7af5b63
 title:
-  en: "Other bars and rods of iron or non-alloy steel, not further worked than forged, hot-rolled, hot-drawn or extruded, but including those twisted after rolling"
+  en-US: "Other bars and rods of iron or non-alloy steel, not further worked than forged, hot-rolled, hot-drawn or extruded, but including those twisted after rolling"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.cruise-ships-excursion-boats-and-similar-vessels-principally-designed-for-the-transport-bd804461
 title:
-  en: "Cruise ships, excursion boats and similar vessels, principally designed for the transport of persons; ferry boats of all kinds"
+  en-US: "Cruise ships, excursion boats and similar vessels, principally designed for the transport of persons; ferry boats of all kinds"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

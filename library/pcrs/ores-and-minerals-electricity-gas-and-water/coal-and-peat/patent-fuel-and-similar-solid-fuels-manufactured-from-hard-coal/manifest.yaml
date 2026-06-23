@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.ores-and-minerals-electricity-gas-and-water.coal-and-peat.patent-fuel-and-similar-solid-fuels-manufactured-from-hard-coal
 title:
-  en: "Patent fuel and similar solid fuels manufactured from hard coal"
+  en-US: "Patent fuel and similar solid fuels manufactured from hard coal"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

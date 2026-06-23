@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.machining-centres-unit-construction-machines-single-station-and-multi-station-transfer-cef062e7
 title:
-  en: "Machining centres, unit construction machines (single station) and multi-station transfer machines, for working metal"
+  en-US: "Machining centres, unit construction machines (single station) and multi-station transfer machines, for working metal"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

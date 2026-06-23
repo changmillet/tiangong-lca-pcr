@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.office-accounting-and-computing-machinery.point-of-sale-terminals-atms-and-similar-machines
 title:
-  en: "Point-of-sale terminals, ATMs and similar machines"
+  en-US: "Point-of-sale terminals, ATMs and similar machines"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

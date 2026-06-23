@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.other-trailers-and-semi-trailers-including-trailers-and-semi-trailers-for-the-transport-4869a59e
 title:
-  en: "Other trailers and semi-trailers (including trailers and semi-trailers for the transport of goods), except self-loading or self-unloading trailers or semi-trailers for agricultural purposes"
+  en-US: "Other trailers and semi-trailers (including trailers and semi-trailers for the transport of goods), except self-loading or self-unloading trailers or semi-trailers for agricultural purposes"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

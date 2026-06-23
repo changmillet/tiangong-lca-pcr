@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.basic-metals.bars-and-rods-cold-formed-or-cold-finished-of-alloy-steel-except-bars-or-rods-of-high-s-e7244d5a
 title:
-  en: "Bars and rods, cold-formed or cold-finished, of alloy steel (except bars or rods of high-speed steel or silico-manganese steel)"
+  en-US: "Bars and rods, cold-formed or cold-finished, of alloy steel (except bars or rods of high-speed steel or silico-manganese steel)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

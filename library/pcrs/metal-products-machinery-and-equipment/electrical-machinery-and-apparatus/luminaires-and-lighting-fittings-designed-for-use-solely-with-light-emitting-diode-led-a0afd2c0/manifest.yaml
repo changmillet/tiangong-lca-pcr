@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.luminaires-and-lighting-fittings-designed-for-use-solely-with-light-emitting-diode-led-a0afd2c0
 title:
-  en: "Luminaires and lighting fittings, designed for use solely with light-emitting diode (LED) light sources"
+  en-US: "Luminaires and lighting fittings, designed for use solely with light-emitting diode (LED) light sources"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

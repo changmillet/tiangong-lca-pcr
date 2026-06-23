@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.basic-chemicals.synthetic-rubber-and-factice-derived-from-oils-and-mixtures-thereof-with-natural-rubber-663bb534
 title:
-  en: "Synthetic rubber and factice derived from oils, and mixtures thereof with natural rubber and similar natural gums, in primary forms or in plates, sheets or strip"
+  en-US: "Synthetic rubber and factice derived from oils, and mixtures thereof with natural rubber and similar natural gums, in primary forms or in plates, sheets or strip"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

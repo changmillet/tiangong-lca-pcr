@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.coke-oven-products-refined-petroleum-products-nuclear-fuel.uranium-depleted-in-u235-and-its-compounds-thorium-and-its-compounds-alloys-dispersions-6acad6e6
 title:
-  en: "Uranium depleted in U235 and its compounds; thorium and its compounds; alloys, dispersions, ceramic products and mixtures containing uranium depleted in U235, thorium or compounds of these products"
+  en-US: "Uranium depleted in U235 and its compounds; thorium and its compounds; alloys, dispersions, ceramic products and mixtures containing uranium depleted in U235, thorium or compounds of these products"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

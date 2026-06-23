@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.office-accounting-and-computing-machinery.automatic-data-processing-machines-comprising-in-the-same-housing-at-least-a-central-pr-d2ad0c9a
 title:
-  en: "Automatic data processing machines, comprising in the same housing at least a central processing unit and an input and output unit, whether or not combined"
+  en-US: "Automatic data processing machines, comprising in the same housing at least a central processing unit and an input and output unit, whether or not combined"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

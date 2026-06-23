@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.machinery-for-cleaning-or-drying-bottles-or-other-containers-machinery-for-filling-clos-026d3f73
 title:
-  en: "Machinery for cleaning or drying bottles or other containers; machinery for filling, closing, sealing, capsuling or labelling bottles, cans, boxes, bags or other containers; machinery for aerating beverages; other packing or wrapping machinery"
+  en-US: "Machinery for cleaning or drying bottles or other containers; machinery for filling, closing, sealing, capsuling or labelling bottles, cans, boxes, bags or other containers; machinery for aerating beverages; other packing or wrapping machinery"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

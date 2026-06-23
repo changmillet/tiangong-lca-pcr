@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.pulp-paper-and-paper-products-printed-matter-and-related-articles.composed-type-prepared-printing-plates-or-cylinders-impressed-lithographic-stones-or-ot-c23e340e
 title:
-  en: "Composed type, prepared printing plates or cylinders, impressed lithographic stones or other impressed media for use in printing"
+  en-US: "Composed type, prepared printing plates or cylinders, impressed lithographic stones or other impressed media for use in printing"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

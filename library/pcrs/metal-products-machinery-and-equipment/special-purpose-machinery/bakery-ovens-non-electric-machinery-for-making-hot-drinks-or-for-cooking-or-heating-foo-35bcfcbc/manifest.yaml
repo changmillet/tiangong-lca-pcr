@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.bakery-ovens-non-electric-machinery-for-making-hot-drinks-or-for-cooking-or-heating-foo-35bcfcbc
 title:
-  en: "Bakery ovens, non-electric; machinery for making hot drinks or for cooking or heating food, except domestic type machines"
+  en-US: "Bakery ovens, non-electric; machinery for making hot drinks or for cooking or heating food, except domestic type machines"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

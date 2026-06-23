@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.revolvers-pistols-other-firearms-and-similar-devices-other-arms
 title:
-  en: "Revolvers, pistols, other firearms and similar devices; other arms"
+  en-US: "Revolvers, pistols, other firearms and similar devices; other arms"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

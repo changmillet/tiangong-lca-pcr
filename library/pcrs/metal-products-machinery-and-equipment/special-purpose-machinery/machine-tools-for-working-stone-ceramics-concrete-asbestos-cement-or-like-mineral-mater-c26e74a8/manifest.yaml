@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.machine-tools-for-working-stone-ceramics-concrete-asbestos-cement-or-like-mineral-mater-c26e74a8
 title:
-  en: "Machine-tools for working stone, ceramics, concrete, asbestos-cement or like mineral materials or for cold working glass"
+  en-US: "Machine-tools for working stone, ceramics, concrete, asbestos-cement or like mineral materials or for cold working glass"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

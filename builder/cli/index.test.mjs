@@ -36,11 +36,11 @@ test("init creates the bilingual PCR repository scaffold", () => {
     assert.match(output, /initialized PCR library scaffold/i);
     assert.match(
       readFileSync(path.join(root, "library/pcrs/README.md"), "utf8"),
-      /manifest.yaml/,
+      /pcr.en-US.md/,
     );
     assert.match(
       readFileSync(path.join(root, "library/modules/README.md"), "utf8"),
-      /module.en.md/,
+      /module.en-US.md/,
     );
     assert.match(
       readFileSync(path.join(root, "builder/README.md"), "utf8"),
@@ -81,12 +81,12 @@ test("lint rejects PCR directories missing the Chinese markdown file", () => {
       "--title-zh-CN",
       "小麦种子生产",
     ]);
-    unlinkSync(path.join(pcrDir, "pcr.zh-CN.md"));
+    unlinkSync(path.join(pcrDir, "pcr.en-US.md"));
 
     assert.throws(
       () => runCli(["lint", "--root", root]),
       (error) =>
-        String(error.stderr).includes("library/pcrs/agriculture/crops/wheat-seed/pcr.zh-CN.md"),
+        String(error.stderr).includes("library/pcrs/agriculture/crops/wheat-seed/pcr.en-US.md"),
     );
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -123,7 +123,7 @@ test("scaffold-cpc creates PCR directories only for CPC leaf classes", () => {
     );
 
     assert.equal(existsSync(path.join(wheatSeedDir, "manifest.yaml")), true);
-    assert.equal(existsSync(path.join(wheatSeedDir, "pcr.en.md")), true);
+    assert.equal(existsSync(path.join(wheatSeedDir, "pcr.en-US.md")), true);
     assert.equal(existsSync(path.join(wheatSeedDir, "pcr.zh-CN.md")), true);
     assert.equal(existsSync(path.join(wheatSeedDir, "structured.yaml")), true);
     assert.equal(existsSync(codedWheatSeedDir), false);

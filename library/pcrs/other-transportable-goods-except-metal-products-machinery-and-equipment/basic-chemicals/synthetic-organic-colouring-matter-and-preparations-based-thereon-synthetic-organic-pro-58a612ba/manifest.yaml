@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.basic-chemicals.synthetic-organic-colouring-matter-and-preparations-based-thereon-synthetic-organic-pro-58a612ba
 title:
-  en: "Synthetic organic colouring matter and preparations based thereon; synthetic organic products of a kind used as fluorescent brightening agents or as luminophores; colour lakes and preparations based thereon"
+  en-US: "Synthetic organic colouring matter and preparations based thereon; synthetic organic products of a kind used as fluorescent brightening agents or as luminophores; colour lakes and preparations based thereon"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

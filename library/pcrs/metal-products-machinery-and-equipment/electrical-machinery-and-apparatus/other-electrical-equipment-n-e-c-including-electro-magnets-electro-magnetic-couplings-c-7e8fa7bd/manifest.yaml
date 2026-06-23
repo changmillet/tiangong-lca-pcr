@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.other-electrical-equipment-n-e-c-including-electro-magnets-electro-magnetic-couplings-c-7e8fa7bd
 title:
-  en: "Other electrical equipment n.e.c. (including electro-magnets; electro-magnetic couplings; clutches and brakes; electro-magnetic lifting heads; electrical particle accelerators; electrical signal generators and apparatus for electro-plating, electrolysis or electrophoresis)"
+  en-US: "Other electrical equipment n.e.c. (including electro-magnets; electro-magnetic couplings; clutches and brakes; electro-magnetic lifting heads; electrical particle accelerators; electrical signal generators and apparatus for electro-plating, electrolysis or electrophoresis)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

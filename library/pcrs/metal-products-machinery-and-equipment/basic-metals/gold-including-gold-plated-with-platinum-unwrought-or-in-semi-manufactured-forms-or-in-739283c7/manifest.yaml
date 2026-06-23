@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.basic-metals.gold-including-gold-plated-with-platinum-unwrought-or-in-semi-manufactured-forms-or-in-739283c7
 title:
-  en: "Gold (including gold plated with platinum), unwrought or in semi-manufactured forms, or in powder form"
+  en-US: "Gold (including gold plated with platinum), unwrought or in semi-manufactured forms, or in powder form"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

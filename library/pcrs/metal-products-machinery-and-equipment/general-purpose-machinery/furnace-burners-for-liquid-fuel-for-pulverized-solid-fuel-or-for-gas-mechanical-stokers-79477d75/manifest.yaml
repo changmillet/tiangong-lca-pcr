@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.furnace-burners-for-liquid-fuel-for-pulverized-solid-fuel-or-for-gas-mechanical-stokers-79477d75
 title:
-  en: "Furnace burners for liquid fuel, for pulverized solid fuel or for gas; mechanical stokers, mechanical grates, mechanical ash dischargers and similar appliances"
+  en-US: "Furnace burners for liquid fuel, for pulverized solid fuel or for gas; mechanical stokers, mechanical grates, mechanical ash dischargers and similar appliances"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

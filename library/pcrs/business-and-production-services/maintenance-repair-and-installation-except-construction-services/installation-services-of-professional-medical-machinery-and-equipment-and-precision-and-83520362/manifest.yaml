@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.maintenance-repair-and-installation-except-construction-services.installation-services-of-professional-medical-machinery-and-equipment-and-precision-and-83520362
 title:
-  en: "Installation services of professional medical machinery and equipment, and precision and optical instruments"
+  en-US: "Installation services of professional medical machinery and equipment, and precision and optical instruments"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.office-accounting-and-computing-machinery.accounting-machines-cash-registers-postage-franking-machines-ticket-issuing-machines-an-3d465500
 title:
-  en: "Accounting machines, cash registers, postage-franking machines, ticket-issuing machines and similar machines, incorporating a calculating device (except point-of-sale terminals, ATMs and similar machines)"
+  en-US: "Accounting machines, cash registers, postage-franking machines, ticket-issuing machines and similar machines, incorporating a calculating device (except point-of-sale terminals, ATMs and similar machines)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

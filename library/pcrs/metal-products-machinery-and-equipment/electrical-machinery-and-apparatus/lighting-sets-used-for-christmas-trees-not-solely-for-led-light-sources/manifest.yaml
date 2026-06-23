@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.lighting-sets-used-for-christmas-trees-not-solely-for-led-light-sources
 title:
-  en: "Lighting sets used for Christmas trees, not solely for LED light sources"
+  en-US: "Lighting sets used for Christmas trees, not solely for LED light sources"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

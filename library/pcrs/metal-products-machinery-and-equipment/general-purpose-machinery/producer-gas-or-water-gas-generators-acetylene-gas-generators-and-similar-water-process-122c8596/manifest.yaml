@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.producer-gas-or-water-gas-generators-acetylene-gas-generators-and-similar-water-process-122c8596
 title:
-  en: "Producer gas or water gas generators; acetylene gas generators and similar water process gas generators; distilling or rectifying plant; heat exchange units; machinery for liquefying air or gas"
+  en-US: "Producer gas or water gas generators; acetylene gas generators and similar water process gas generators; distilling or rectifying plant; heat exchange units; machinery for liquefying air or gas"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

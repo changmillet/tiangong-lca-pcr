@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.agriculture-forestry-and-fishery-products.products-of-agriculture-horticulture-and-market-gardening.wheat-seed
 title:
-  en: "Wheat seed for sowing"
+  en-US: "Wheat seed for sowing"
   zh-CN: "小麦种子"
 status: draft
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: example_aligned

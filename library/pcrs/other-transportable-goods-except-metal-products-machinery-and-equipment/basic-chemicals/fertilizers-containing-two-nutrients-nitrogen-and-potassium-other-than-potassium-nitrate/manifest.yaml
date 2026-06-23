@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.basic-chemicals.fertilizers-containing-two-nutrients-nitrogen-and-potassium-other-than-potassium-nitrate
 title:
-  en: "Fertilizers containing two nutrients: nitrogen and potassium; other than potassium nitrate"
+  en-US: "Fertilizers containing two nutrients: nitrogen and potassium; other than potassium nitrate"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

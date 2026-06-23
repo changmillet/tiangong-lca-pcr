@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.textile-articles-other-than-apparel.textile-products-and-articles-for-technical-uses-including-wicks-gas-mantles-hosepiping-1a1ed96f
 title:
-  en: "Textile products and articles for technical uses (including wicks, gas mantles, hosepiping, transmission or conveyor belts, bolting cloth and straining cloth)"
+  en-US: "Textile products and articles for technical uses (including wicks, gas mantles, hosepiping, transmission or conveyor belts, bolting cloth and straining cloth)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

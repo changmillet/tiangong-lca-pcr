@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.agriculture-forestry-and-fishery-products.fish-crustaceans-molluscs-and-other-aquatic-invertebrates-products.wild-seaweeds-and-other-algae-fresh-frozen-or-dried-whether-or-not-ground-unfit-for-hum-5976e69b
 title:
-  en: "Wild seaweeds and other algae, fresh, frozen or dried, whether or not ground, unfit for human consumption"
+  en-US: "Wild seaweeds and other algae, fresh, frozen or dried, whether or not ground, unfit for human consumption"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

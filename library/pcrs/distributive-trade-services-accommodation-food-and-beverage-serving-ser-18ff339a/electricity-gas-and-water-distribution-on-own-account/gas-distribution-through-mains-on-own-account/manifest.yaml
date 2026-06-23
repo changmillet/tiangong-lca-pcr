@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.distributive-trade-services-accommodation-food-and-beverage-serving-ser-18ff339a.electricity-gas-and-water-distribution-on-own-account.gas-distribution-through-mains-on-own-account
 title:
-  en: "Gas distribution through mains (on own account)"
+  en-US: "Gas distribution through mains (on own account)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

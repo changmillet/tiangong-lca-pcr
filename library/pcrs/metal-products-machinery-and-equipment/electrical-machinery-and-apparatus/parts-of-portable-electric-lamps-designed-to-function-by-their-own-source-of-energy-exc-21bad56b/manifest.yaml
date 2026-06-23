@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.parts-of-portable-electric-lamps-designed-to-function-by-their-own-source-of-energy-exc-21bad56b
 title:
-  en: "Parts of portable electric lamps designed to function by their own source of energy (except those of cycles or motor vehicles); parts n.e.c. of lamps and lighting fittings; parts n.e.c. of illuminated signs, illuminated name-plates and the like"
+  en-US: "Parts of portable electric lamps designed to function by their own source of energy (except those of cycles or motor vehicles); parts n.e.c. of lamps and lighting fittings; parts n.e.c. of illuminated signs, illuminated name-plates and the like"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.textile-articles-other-than-apparel.knotted-netting-of-twine-cordage-or-rope-made-up-nets-of-textile-materials-articles-of-264039fb
 title:
-  en: "Knotted netting of twine, cordage or rope; made up nets of textile materials; articles of yarn, strip, twine, cordage, rope or cables n.e.c."
+  en-US: "Knotted netting of twine, cordage or rope; made up nets of textile materials; articles of yarn, strip, twine, cordage, rope or cables n.e.c."
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

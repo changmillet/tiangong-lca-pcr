@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.furniture-other-transportable-goods-n-e-c.photographic-plates-and-film-exposed-and-developed-other-than-cinematographic-film
 title:
-  en: "Photographic plates and film, exposed and developed, other than cinematographic film"
+  en-US: "Photographic plates and film, exposed and developed, other than cinematographic film"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

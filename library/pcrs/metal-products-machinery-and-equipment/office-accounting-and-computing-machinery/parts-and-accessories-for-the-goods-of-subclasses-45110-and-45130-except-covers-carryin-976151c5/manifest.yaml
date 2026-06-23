@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.office-accounting-and-computing-machinery.parts-and-accessories-for-the-goods-of-subclasses-45110-and-45130-except-covers-carryin-976151c5
 title:
-  en: "Parts and accessories for the goods of subclasses 45110 and 45130 (except covers, carrying cases and the like)"
+  en-US: "Parts and accessories for the goods of subclasses 45110 and 45130 (except covers, carrying cases and the like)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -2,7 +2,7 @@
 pcr_id: pcr.agriculture-forestry-and-fishery-products.products-of-agriculture-horticulture-and-market-gardening.wheat-seed
 language: zh-CN
 status: draft
-sync_with: pcr.en.md
+sync_with: pcr.en-US.md
 ---
 
 # 小麦种子

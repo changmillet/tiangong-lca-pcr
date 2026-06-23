@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.pulley-tackle-and-hoists-other-than-skip-hoists-winches-and-capstans-jacks
 title:
-  en: "Pulley tackle and hoists other than skip hoists; winches and capstans; jacks"
+  en-US: "Pulley tackle and hoists other than skip hoists; winches and capstans; jacks"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.agriculture-forestry-and-fishery-products.forestry-and-logging-products.other-parts-of-plants-without-flowers-or-flower-buds-and-grasses-mosses-and-lichens-sui-ae228e3b
 title:
-  en: "Other parts of plants, without flowers or flower buds, and grasses, mosses and lichens, suitable for ornamental purposes"
+  en-US: "Other parts of plants, without flowers or flower buds, and grasses, mosses and lichens, suitable for ornamental purposes"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

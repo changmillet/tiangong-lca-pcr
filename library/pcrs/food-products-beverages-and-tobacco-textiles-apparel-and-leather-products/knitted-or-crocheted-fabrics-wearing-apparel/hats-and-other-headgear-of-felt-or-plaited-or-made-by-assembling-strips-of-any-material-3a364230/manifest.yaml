@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.knitted-or-crocheted-fabrics-wearing-apparel.hats-and-other-headgear-of-felt-or-plaited-or-made-by-assembling-strips-of-any-material-3a364230
 title:
-  en: "Hats and other headgear, of felt, or plaited or made by assembling strips of any material, or knitted or crocheted or made up from lace or other textile fabric in the piece; hair-nets"
+  en-US: "Hats and other headgear, of felt, or plaited or made by assembling strips of any material, or knitted or crocheted or made up from lace or other textile fabric in the piece; hair-nets"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

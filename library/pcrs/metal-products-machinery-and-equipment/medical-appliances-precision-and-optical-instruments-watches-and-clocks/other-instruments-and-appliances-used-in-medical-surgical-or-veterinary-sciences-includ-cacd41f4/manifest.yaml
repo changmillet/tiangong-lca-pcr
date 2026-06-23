@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.medical-appliances-precision-and-optical-instruments-watches-and-clocks.other-instruments-and-appliances-used-in-medical-surgical-or-veterinary-sciences-includ-cacd41f4
 title:
-  en: "Other instruments and appliances used in medical, surgical or veterinary sciences (including syringes, needles, catheters, cannulae, ophthalmic instruments and appliances n.e.c. and electro-medical apparatus n.e.c.)"
+  en-US: "Other instruments and appliances used in medical, surgical or veterinary sciences (including syringes, needles, catheters, cannulae, ophthalmic instruments and appliances n.e.c. and electro-medical apparatus n.e.c.)"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

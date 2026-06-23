@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.machinery-for-making-pulp-of-fibrous-cellulosic-material-or-for-making-or-finishing-pap-79fe0566
 title:
-  en: "Machinery for making pulp of fibrous cellulosic material or for making or finishing paper or paperboard; machinery (except bookbinding machinery) for making up paper pulp, paper or paperboard"
+  en-US: "Machinery for making pulp of fibrous cellulosic material or for making or finishing paper or paperboard; machinery (except bookbinding machinery) for making up paper pulp, paper or paperboard"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

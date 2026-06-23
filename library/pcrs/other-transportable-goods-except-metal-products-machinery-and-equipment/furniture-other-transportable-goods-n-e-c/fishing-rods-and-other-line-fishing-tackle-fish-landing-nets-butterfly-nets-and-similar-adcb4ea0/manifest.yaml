@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.furniture-other-transportable-goods-n-e-c.fishing-rods-and-other-line-fishing-tackle-fish-landing-nets-butterfly-nets-and-similar-adcb4ea0
 title:
-  en: "Fishing rods and other line fishing tackle; fish landing nets, butterfly nets and similar nets; decoy \"birds\" and similar hunting or shooting requisites"
+  en-US: "Fishing rods and other line fishing tackle; fish landing nets, butterfly nets and similar nets; decoy \"birds\" and similar hunting or shooting requisites"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

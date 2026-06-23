@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.research-and-development-services.research-and-development-services-in-biological-sciences
 title:
-  en: "Research and development services in biological sciences"
+  en-US: "Research and development services in biological sciences"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

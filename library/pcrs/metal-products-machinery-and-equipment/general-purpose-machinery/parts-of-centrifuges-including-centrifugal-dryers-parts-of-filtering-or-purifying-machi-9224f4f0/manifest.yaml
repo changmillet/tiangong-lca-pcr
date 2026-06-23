@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.general-purpose-machinery.parts-of-centrifuges-including-centrifugal-dryers-parts-of-filtering-or-purifying-machi-9224f4f0
 title:
-  en: "Parts of centrifuges, including centrifugal dryers; parts of filtering or purifying machinery and apparatus for liquids or gases"
+  en-US: "Parts of centrifuges, including centrifugal dryers; parts of filtering or purifying machinery and apparatus for liquids or gases"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

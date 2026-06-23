@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.glass-and-glass-products-and-other-non-metallic-products-n-e-c.other-worked-monumental-or-building-stone-and-articles-thereof-other-artificially-colou-30628d6c
 title:
-  en: "Other worked monumental or building stone and articles thereof; other artificially coloured granules, chippings and powder of natural stone; articles of agglomerated slate"
+  en-US: "Other worked monumental or building stone and articles thereof; other artificially coloured granules, chippings and powder of natural stone; articles of agglomerated slate"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

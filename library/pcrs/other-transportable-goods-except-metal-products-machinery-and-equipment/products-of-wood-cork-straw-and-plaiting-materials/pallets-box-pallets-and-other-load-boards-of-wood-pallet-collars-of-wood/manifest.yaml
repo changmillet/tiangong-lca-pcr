@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.other-transportable-goods-except-metal-products-machinery-and-equipment.products-of-wood-cork-straw-and-plaiting-materials.pallets-box-pallets-and-other-load-boards-of-wood-pallet-collars-of-wood
 title:
-  en: "Pallets, box pallets and other load boards, of wood; pallet collars of wood"
+  en-US: "Pallets, box pallets and other load boards, of wood; pallet collars of wood"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

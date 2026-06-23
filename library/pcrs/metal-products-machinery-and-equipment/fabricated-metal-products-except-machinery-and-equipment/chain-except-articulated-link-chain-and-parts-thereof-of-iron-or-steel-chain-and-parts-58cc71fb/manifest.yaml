@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.chain-except-articulated-link-chain-and-parts-thereof-of-iron-or-steel-chain-and-parts-58cc71fb
 title:
-  en: "Chain (except articulated link chain) and parts thereof, of iron or steel; chain and parts thereof, of copper"
+  en-US: "Chain (except articulated link chain) and parts thereof, of iron or steel; chain and parts thereof, of copper"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

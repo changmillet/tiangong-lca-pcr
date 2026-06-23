@@ -2,7 +2,7 @@
 pcr_id: pcr.agriculture-forestry-and-fishery-products.live-animals-and-animal-products-excluding-meat.raw-furskins
 language: zh-CN
 status: scaffold
-sync_with: pcr.en.md
+sync_with: pcr.en-US.md
 ---
 
 # 待补充

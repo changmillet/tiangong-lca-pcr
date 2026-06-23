@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.nails-tacks-staples-except-staples-in-strips-screws-bolts-nuts-screw-hooks-rivets-cotte-257c78a0
 title:
-  en: "Nails, tacks, staples (except staples in strips), screws, bolts, nuts, screw hooks, rivets, cotters, cotter-pins, washers and similar articles, of iron, steel, copper or aluminium"
+  en-US: "Nails, tacks, staples (except staples in strips), screws, bolts, nuts, screw hooks, rivets, cotters, cotter-pins, washers and similar articles, of iron, steel, copper or aluminium"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

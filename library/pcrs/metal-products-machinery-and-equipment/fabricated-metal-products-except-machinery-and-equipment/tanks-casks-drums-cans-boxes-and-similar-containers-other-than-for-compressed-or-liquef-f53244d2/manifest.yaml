@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.tanks-casks-drums-cans-boxes-and-similar-containers-other-than-for-compressed-or-liquef-f53244d2
 title:
-  en: "Tanks, casks, drums, cans, boxes and similar containers (other than for compressed or liquefied gas) of iron, steel or aluminium, of a capacity not exceeding 300 litres, not fitted with mechanical or thermal equipment"
+  en-US: "Tanks, casks, drums, cans, boxes and similar containers (other than for compressed or liquefied gas) of iron, steel or aluminium, of a capacity not exceeding 300 litres, not fitted with mechanical or thermal equipment"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.padlocks-and-locks-of-base-metal-clasps-and-frames-with-clasps-incorporating-locks-of-b-058f6573
 title:
-  en: "Padlocks and locks, of base metal; clasps and frames with clasps, incorporating locks, of base metal; keys and parts thereof, of base metal; base metal fittings for furniture, doors, saddlery and the like"
+  en-US: "Padlocks and locks, of base metal; clasps and frames with clasps, incorporating locks, of base metal; keys and parts thereof, of base metal; base metal fittings for furniture, doors, saddlery and the like"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

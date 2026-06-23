@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.fabricated-metal-products-except-machinery-and-equipment.fittings-for-loose-leaf-binders-or-files-letter-clips-letter-corners-paper-clips-indexi-7878e38f
 title:
-  en: "Fittings for loose-leaf binders or files; letter clips, letter corners, paper clips, indexing tags and similar office articles, of base metal; staples in strips, of base metal"
+  en-US: "Fittings for loose-leaf binders or files; letter clips, letter corners, paper clips, indexing tags and similar office articles, of base metal; staples in strips, of base metal"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

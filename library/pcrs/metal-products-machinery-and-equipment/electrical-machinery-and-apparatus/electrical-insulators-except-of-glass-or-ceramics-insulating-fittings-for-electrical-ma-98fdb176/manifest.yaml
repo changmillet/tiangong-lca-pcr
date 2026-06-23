@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.electrical-machinery-and-apparatus.electrical-insulators-except-of-glass-or-ceramics-insulating-fittings-for-electrical-ma-98fdb176
 title:
-  en: "Electrical insulators, except of glass or ceramics; insulating fittings for electrical machines or equipment, except of ceramics or plastics; electrical conduit tubing and joints therefor, of base metal lined with insulating material"
+  en-US: "Electrical insulators, except of glass or ceramics; insulating fittings for electrical machines or equipment, except of ceramics or plastics; electrical conduit tubing and joints therefor, of base metal lined with insulating material"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

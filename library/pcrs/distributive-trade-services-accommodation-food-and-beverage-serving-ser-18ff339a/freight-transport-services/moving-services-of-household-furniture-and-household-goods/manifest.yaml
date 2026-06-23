@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.distributive-trade-services-accommodation-food-and-beverage-serving-ser-18ff339a.freight-transport-services.moving-services-of-household-furniture-and-household-goods
 title:
-  en: "Moving services of household furniture and household goods"
+  en-US: "Moving services of household furniture and household goods"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

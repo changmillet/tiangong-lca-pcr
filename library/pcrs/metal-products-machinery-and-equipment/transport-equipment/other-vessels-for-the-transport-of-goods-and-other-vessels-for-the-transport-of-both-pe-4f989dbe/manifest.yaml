@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.other-vessels-for-the-transport-of-goods-and-other-vessels-for-the-transport-of-both-pe-4f989dbe
 title:
-  en: "Other vessels for the transport of goods and other vessels for the transport of both persons and goods"
+  en-US: "Other vessels for the transport of goods and other vessels for the transport of both persons and goods"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.office-accounting-and-computing-machinery.units-performing-two-or-more-of-the-following-functions-printing-scanning-copying-faxing
 title:
-  en: "Units performing two or more of the following functions: printing, scanning, copying, faxing"
+  en-US: "Units performing two or more of the following functions: printing, scanning, copying, faxing"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

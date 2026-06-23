@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.fishing-vessels-factory-ships-and-other-vessels-for-processing-or-preserving-fishery-products
 title:
-  en: "Fishing vessels; factory ships and other vessels for processing or preserving fishery products"
+  en-US: "Fishing vessels; factory ships and other vessels for processing or preserving fishery products"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

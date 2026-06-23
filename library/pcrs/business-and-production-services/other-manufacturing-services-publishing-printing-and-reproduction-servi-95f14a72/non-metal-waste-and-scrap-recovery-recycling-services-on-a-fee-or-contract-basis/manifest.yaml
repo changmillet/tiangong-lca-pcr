@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.business-and-production-services.other-manufacturing-services-publishing-printing-and-reproduction-servi-95f14a72.non-metal-waste-and-scrap-recovery-recycling-services-on-a-fee-or-contract-basis
 title:
-  en: "Non-metal waste and scrap recovery (recycling) services, on a fee or contract basis"
+  en-US: "Non-metal waste and scrap recovery (recycling) services, on a fee or contract basis"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

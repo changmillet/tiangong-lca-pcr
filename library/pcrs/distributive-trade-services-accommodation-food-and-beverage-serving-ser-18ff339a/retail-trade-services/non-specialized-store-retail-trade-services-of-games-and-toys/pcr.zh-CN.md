@@ -2,7 +2,7 @@
 pcr_id: pcr.distributive-trade-services-accommodation-food-and-beverage-serving-ser-18ff339a.retail-trade-services.non-specialized-store-retail-trade-services-of-games-and-toys
 language: zh-CN
 status: scaffold
-sync_with: pcr.en.md
+sync_with: pcr.en-US.md
 ---
 
 # 待补充

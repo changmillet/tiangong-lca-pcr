@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.special-purpose-machinery.swords-cutlasses-bayonets-lances-and-similar-arms-and-parts-thereof-and-scabbards-and-s-f6604690
 title:
-  en: "Swords, cutlasses, bayonets, lances and similar arms and parts thereof and scabbards and sheaths therefor"
+  en-US: "Swords, cutlasses, bayonets, lances and similar arms and parts thereof and scabbards and sheaths therefor"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

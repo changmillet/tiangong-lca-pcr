@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.transport-equipment.parts-of-railway-or-tramway-locomotives-or-rolling-stock-railway-or-tramway-track-fixtu-9417bb27
 title:
-  en: "Parts of railway or tramway locomotives or rolling stock; railway or tramway track fixtures and fittings, and parts thereof; mechanical (including electromechanical) signalling, safety or traffic control equipment for railways, tramways, roads, inland waterways, parking facilities, port installations or airfields, and parts thereof"
+  en-US: "Parts of railway or tramway locomotives or rolling stock; railway or tramway track fixtures and fittings, and parts thereof; mechanical (including electromechanical) signalling, safety or traffic control equipment for railways, tramways, roads, inland waterways, parking facilities, port installations or airfields, and parts thereof"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

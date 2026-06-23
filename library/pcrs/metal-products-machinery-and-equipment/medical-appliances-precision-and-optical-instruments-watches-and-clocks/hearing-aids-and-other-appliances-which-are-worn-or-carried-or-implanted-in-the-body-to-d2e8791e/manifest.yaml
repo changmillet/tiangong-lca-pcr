@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.metal-products-machinery-and-equipment.medical-appliances-precision-and-optical-instruments-watches-and-clocks.hearing-aids-and-other-appliances-which-are-worn-or-carried-or-implanted-in-the-body-to-d2e8791e
 title:
-  en: "Hearing aids and other appliances which are worn or carried, or implanted in the body, to compensate for a defect or disability"
+  en-US: "Hearing aids and other appliances which are worn or carried, or implanted in the body, to compensate for a defect or disability"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

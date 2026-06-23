@@ -1,7 +1,7 @@
 schema_version: 1
 id: pcr.food-products-beverages-and-tobacco-textiles-apparel-and-leather-products.beverages.vermouth-and-other-wine-of-fresh-grapes-flavoured-with-plats-or-aromatic-substances
 title:
-  en: "Vermouth and other wine of fresh grapes flavoured with plats or aromatic substances"
+  en-US: "Vermouth and other wine of fresh grapes flavoured with plats or aromatic substances"
   zh-CN: null
 status: scaffold
 pcr_kind: product_category_rule
@@ -23,9 +23,9 @@ target_entities:
   - process
   - lifecyclemodel
 languages:
-  canonical: en
+  canonical: en-US
   available:
-    - en
+    - en-US
     - zh-CN
 translation_status:
   zh-CN: scaffold_pending_translation

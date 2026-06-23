@@ -2,7 +2,7 @@
 pcr_id: pcr.constructions-and-construction-services.construction-services.other-electrical-installation-services
 language: zh-CN
 status: scaffold
-sync_with: pcr.en.md
+sync_with: pcr.en-US.md
 ---
 
 # 待补充
