@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44252"
+  title: "Parts and accessories for the goods of subclass 44221; parts and accessories of machine tools for working wood, bone, hard plastics and the like"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

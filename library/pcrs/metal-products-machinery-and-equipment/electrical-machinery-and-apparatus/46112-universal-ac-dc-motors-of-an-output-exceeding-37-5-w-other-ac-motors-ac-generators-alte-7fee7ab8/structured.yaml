@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "46112"
+  title: "Universal AC/DC motors of an output exceeding 37.5 W; other AC motors; AC generators (alternators) other than photovoltaic generators"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

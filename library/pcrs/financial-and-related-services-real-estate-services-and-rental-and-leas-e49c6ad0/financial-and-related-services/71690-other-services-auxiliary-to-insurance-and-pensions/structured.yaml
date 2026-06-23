@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "71690"
+  title: "Other services auxiliary to insurance and pensions"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

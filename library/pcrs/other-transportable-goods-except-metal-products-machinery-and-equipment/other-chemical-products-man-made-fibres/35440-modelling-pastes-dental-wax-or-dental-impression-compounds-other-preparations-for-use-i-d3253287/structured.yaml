@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35440"
+  title: "Modelling pastes; \"dental wax\" or \"dental impression compounds\"; other preparations for use in dentistry with a basis of plaster; preparations and charges for fire-extinguishers; charged fire-extinguishing grenades; prepared culture media for development and maintenance of micro-organisms and plant, human or animal cells; composite diagnostic or laboratory reagents n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

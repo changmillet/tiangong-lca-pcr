@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35520"
+  title: "Synthetic filament yarn (except sewing thread and multiple or cabled yarn), not put up for retail sale"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

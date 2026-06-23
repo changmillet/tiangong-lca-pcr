@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "23914"
+  title: "Extracts, essences and concentrates of tea or maté, and preparations with a basis thereof or with a basis of tea or maté"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

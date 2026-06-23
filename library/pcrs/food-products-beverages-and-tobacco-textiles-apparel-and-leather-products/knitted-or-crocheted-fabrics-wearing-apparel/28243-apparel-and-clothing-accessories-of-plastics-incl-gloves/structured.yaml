@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28243"
+  title: "Apparel and clothing accessories of plastics (incl. gloves)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

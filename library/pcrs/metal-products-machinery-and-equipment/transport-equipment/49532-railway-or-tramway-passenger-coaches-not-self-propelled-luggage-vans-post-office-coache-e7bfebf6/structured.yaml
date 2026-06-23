@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49532"
+  title: "Railway or tramway passenger coaches, not self-propelled; luggage vans, post office coaches and other special-purpose railway or tramway coaches, not self-propelled (except maintenance or service vehicles)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

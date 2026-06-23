@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "31512"
+  title: "Veneer sheets and sheets for plywood and other wood sawn lengthwise, sliced or peeled, of a thickness not exceeding 6 mm, of tropical non-coniferous wood"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

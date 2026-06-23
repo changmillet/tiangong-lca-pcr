@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48264"
+  title: "Revolution counters, production counters, taximeters, mileometers, pedometers and the like; speed indicators and tachometers, except hydrographic and meteorological instruments; stroboscopes"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

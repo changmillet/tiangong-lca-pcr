@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "27320"
+  title: "Knotted netting of twine, cordage or rope; made up nets of textile materials; articles of yarn, strip, twine, cordage, rope or cables n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "01922"
+  title: "Jute, kenaf, and other textile bast fibres, raw or retted, except flax, true hemp and ramie"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

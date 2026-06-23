@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44427"
+  title: "Mechanical shovels, excavators and shovel loaders, except front-end shovel loaders and machinery with a 360-degree revolving superstructure; moving, grading, levelling, scraping, excavating, tamping, compacting, extracting or boring machinery n.e.c., self-propelled, for earth, minerals or ores"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

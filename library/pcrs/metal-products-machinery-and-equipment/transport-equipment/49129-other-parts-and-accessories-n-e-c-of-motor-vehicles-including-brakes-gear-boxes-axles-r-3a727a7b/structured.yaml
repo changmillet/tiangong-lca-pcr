@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49129"
+  title: "Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes, axles, road wheels, suspension shock absorbers, radiators, silencers, exhaust pipes, clutches, steering wheels, steering columns, steering boxes, and parts thereof)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

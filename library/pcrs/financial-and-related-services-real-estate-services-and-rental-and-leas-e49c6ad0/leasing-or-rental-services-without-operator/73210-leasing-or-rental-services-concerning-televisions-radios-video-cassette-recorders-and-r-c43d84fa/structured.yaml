@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "73210"
+  title: "Leasing or rental services concerning televisions, radios, video cassette recorders and related equipment and accessories"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

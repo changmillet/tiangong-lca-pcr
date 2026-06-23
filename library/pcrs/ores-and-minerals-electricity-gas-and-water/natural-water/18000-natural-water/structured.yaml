@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "18000"
+  title: "Natural water"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

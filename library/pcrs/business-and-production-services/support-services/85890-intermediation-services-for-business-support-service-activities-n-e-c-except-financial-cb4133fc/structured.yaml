@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "85890"
+  title: "Intermediation services for business support service activities n.e.c., except financial intermediation"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

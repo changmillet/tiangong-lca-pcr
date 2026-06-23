@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "47150"
+  title: "Diodes, transistors and similar semi-conductor devices; photosensitive semi-conductor devices; light emitting diodes; mounted piezo-electric crystals"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

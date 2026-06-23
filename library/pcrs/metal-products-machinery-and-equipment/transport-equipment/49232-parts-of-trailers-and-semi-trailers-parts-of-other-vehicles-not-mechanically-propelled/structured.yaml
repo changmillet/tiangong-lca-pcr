@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49232"
+  title: "Parts of trailers and semi-trailers; parts of other vehicles, not mechanically propelled"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28221"
+  title: "Men's or boys' suits, coats, jackets, trousers, shorts and the like, knitted or crocheted"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

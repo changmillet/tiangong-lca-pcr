@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44720"
+  title: "Military weapons, other than revolvers, pistols and swords and the like"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

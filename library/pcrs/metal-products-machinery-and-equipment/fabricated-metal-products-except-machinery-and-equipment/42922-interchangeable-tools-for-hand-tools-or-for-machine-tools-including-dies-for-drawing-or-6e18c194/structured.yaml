@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42922"
+  title: "Interchangeable tools for hand tools or for machine tools, including dies for drawing or extruding metal, and rock drilling or earth boring tools; knives for machines; plates, sticks, tips and the like for tools, unmounted, of sintered metal carbides or cermets"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

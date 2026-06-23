@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34170"
+  title: "Ethers, alcohol peroxides, ether peroxides, epoxides, acetals and hemiacetals, and their halogenated, sulphonated, nitrated or nitrosated derivatives; aldehyde-function compounds; ketone-function compounds and quinone-function compounds; enzymes; prepared enzymes n.e.c.; organic compounds n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "43430"
+  title: "Parts for the goods of subclasses 43410 and 43420; parts of non-electric bakery ovens"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

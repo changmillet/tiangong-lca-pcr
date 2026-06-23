@@ -6,6 +6,24 @@ status: draft
 authoritative: true
 owner: tiangong-lca-pcr
 language: en
+whenToUse:
+  - when working in the PCR library repository
+  - when changing PCR identity, classification mapping, builder, or validation contracts
+whenToUpdate:
+  - when PCR directory contracts change
+  - when classification mapping or builder CLI behavior changes
+  - when repository validation expectations change
+checkPaths:
+  - AGENTS.md
+  - README.md
+  - .docpact/config.yaml
+  - package.json
+  - builder/**
+  - classifications/**
+  - library/modules/**
+  - docs/**
+lastReviewedAt: 2026-06-23
+lastReviewedCommit: c9d9ff61cb5485fc9d90c0ee3d970d4df8ad3dbf
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -73,6 +91,7 @@ Use:
 ```bash
 npm run init
 npm run lint
+npm run pcr:scaffold:cpc -- --source <cpc-structure.csv> --classification-version 3.0 --source-url <official-source-url>
 npm run validate
 ```
 
@@ -80,7 +99,10 @@ Command meanings:
 
 - `init`: create required scaffold directories and repository guide files. It can also create a sample PCR directory with `node builder/cli/index.mjs init --sample-pcr <domain/path/slug> --pcr-id <id>`.
 - `lint`: validate required directories and enforce that every PCR directory with `manifest.yaml` also has `pcr.en.md`, `pcr.zh-CN.md`, and `structured.yaml`.
+- `pcr:scaffold:cpc`: import an official CPC structure CSV, normalize hierarchy files under `classifications/systems/cpc/<version>/`, create `classifications/mappings/cpc-<version>-to-pcr.yaml`, and create empty bilingual PCR directories for CPC leaf classes only.
 - `validate`: run `lint` and the builder CLI tests.
+
+Generated PCR leaf scaffolds under `library/pcrs/**` are intentionally excluded from docpact coverage. The builder, classification sources, mappings, schemas, modules, and project documents remain governed.
 
 ## Default Load Order
 

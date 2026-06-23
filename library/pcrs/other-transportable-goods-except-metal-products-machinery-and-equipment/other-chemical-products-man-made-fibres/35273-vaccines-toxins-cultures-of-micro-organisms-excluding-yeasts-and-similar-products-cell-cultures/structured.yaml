@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35273"
+  title: "Vaccines, toxins, cultures of micro-organisms (excluding yeasts) and similar products; cell cultures"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

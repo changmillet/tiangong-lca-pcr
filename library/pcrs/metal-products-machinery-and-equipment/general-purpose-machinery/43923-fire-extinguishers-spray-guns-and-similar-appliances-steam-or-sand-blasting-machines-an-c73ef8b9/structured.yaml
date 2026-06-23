@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "43923"
+  title: "Fire extinguishers; spray guns and similar appliances; steam or sand blasting machines and similar jet projecting machines; mechanical appliances for projecting, dispersing or spraying liquids or powders, except agricultural or horticultural appliances"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

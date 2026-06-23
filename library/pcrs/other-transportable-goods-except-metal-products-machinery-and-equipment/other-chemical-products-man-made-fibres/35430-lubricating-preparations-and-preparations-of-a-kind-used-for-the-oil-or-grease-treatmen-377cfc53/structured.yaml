@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35430"
+  title: "Lubricating preparations and preparations of a kind used for the oil or grease treatment of materials, except of petroleum; prepared additives for mineral oils; prepared liquids for hydraulic transmission, except of petroleum; anti-freezing preparations and prepared de-icing fluids"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

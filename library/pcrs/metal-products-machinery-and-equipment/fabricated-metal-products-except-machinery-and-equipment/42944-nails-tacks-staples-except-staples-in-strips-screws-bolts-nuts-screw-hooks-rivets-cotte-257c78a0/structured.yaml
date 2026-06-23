@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42944"
+  title: "Nails, tacks, staples (except staples in strips), screws, bolts, nuts, screw hooks, rivets, cotters, cotter-pins, washers and similar articles, of iron, steel, copper or aluminium"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

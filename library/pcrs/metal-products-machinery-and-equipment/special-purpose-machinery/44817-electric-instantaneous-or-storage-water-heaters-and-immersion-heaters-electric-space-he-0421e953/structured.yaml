@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44817"
+  title: "Electric instantaneous or storage water heaters and immersion heaters; electric space heating apparatus and soil heating apparatus; ovens; cookers, cooking plates, boiling rings, grillers and roasters"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

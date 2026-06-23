@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32800"
+  title: "Composed type, prepared printing plates or cylinders, impressed lithographic stones or other impressed media for use in printing"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

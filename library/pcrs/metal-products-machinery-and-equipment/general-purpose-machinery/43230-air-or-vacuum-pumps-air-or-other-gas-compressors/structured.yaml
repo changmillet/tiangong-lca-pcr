@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "43230"
+  title: "Air or vacuum pumps; air or other gas compressors"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

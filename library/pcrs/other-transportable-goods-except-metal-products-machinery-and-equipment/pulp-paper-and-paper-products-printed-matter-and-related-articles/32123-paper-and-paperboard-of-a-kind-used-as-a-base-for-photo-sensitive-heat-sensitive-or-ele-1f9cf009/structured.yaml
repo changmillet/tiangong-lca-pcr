@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32123"
+  title: "Paper and paperboard of a kind used as a base for photo-sensitive, heat-sensitive or electro-sensitive paper or paperboard"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

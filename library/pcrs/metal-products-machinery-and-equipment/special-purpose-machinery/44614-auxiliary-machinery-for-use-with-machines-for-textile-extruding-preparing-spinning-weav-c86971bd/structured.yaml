@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44614"
+  title: "Auxiliary machinery for use with machines for textile extruding, preparing, spinning, weaving, knitting or the like"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

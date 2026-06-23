@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "43944"
+  title: "Parts n.e.c. of dish washing machines; parts of machinery for cleaning or drying bottles or other containers; parts of machinery for filling, closing, sealing, capsuling or labelling bottles, cans, boxes, bags or other containers and of machinery for aerating beverages; parts of other packing or wrapping machinery"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

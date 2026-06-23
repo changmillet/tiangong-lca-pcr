@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "53111"
+  title: "One- and two-dwelling residential buildings"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41116"
+  title: "Ferrous products obtained by direct reduction of iron ore and other spongy ferrous products, in lumps, pellets or similar forms; iron having a minimum purity by weight of 99.94%, in lumps, pellets or similar forms"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

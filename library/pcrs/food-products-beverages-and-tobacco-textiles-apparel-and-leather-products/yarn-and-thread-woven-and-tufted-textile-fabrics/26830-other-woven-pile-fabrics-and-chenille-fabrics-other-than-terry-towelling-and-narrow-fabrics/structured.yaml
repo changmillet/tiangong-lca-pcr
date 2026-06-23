@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26830"
+  title: "Other woven pile fabrics and chenille fabrics (other than terry towelling and narrow fabrics)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

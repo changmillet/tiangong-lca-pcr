@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28261"
+  title: "Hat-forms, hat bodies and hoods of felt; plateaux and manchons of felt; hat-shapes, plaited or made by assembling strips of any material"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

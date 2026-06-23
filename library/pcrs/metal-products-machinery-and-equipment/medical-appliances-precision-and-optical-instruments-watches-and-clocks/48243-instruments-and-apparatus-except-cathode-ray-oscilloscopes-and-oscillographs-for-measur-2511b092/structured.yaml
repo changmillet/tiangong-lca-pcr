@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48243"
+  title: "Instruments and apparatus (except cathode-ray oscilloscopes and oscillographs) for measuring or checking voltage, current, resistance or power, without a recording device (except electricity production or supply meters)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38993"
+  title: "Brooms, brushes, hand-operated mechanical floor sweepers (not motorized), mops and feather dusters; prepared knots and tufts for broom or brush making; paint pads and rollers; squeegees (other than roller squeegees)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

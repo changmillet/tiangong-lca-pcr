@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "21494"
+  title: "Jams, fruit jellies, marmalades, fruit or nut purree and fruit or nut pastes"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26380"
+  title: "Yarn of vegetable textile fibres other than cotton (including flax, jute, coir and true hemp); paper yarn"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

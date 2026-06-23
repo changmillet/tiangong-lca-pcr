@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37430"
+  title: "Cement clinkers"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

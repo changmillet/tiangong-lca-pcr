@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32550"
+  title: "Plans and drawings for architectural, engineering, industrial, commercial, topographical or similar purposes, being originals drawn by hand; hand-written texts; photographic reproductions and carbon copies of the foregoing"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

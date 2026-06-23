@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44831"
+  title: "Parts of the following appliances: electromechanical domestic appliances, shavers and hairclippers, with self-contained electric motor; electric instantaneous or storage water heaters, immersion heaters, space heating apparatus and soil heating apparatus; electro-thermic hair-dressing apparatus and hand dryers; electric smoothing irons; other electro-thermic appliances of a kind used for domestic purposes"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

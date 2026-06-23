@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "64113"
+  title: "Mixed mode urban and suburban transportation services of passengers"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

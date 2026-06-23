@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26530"
+  title: "Woven fabrics of combed wool or of combed fine animal hair, containing 85% or more by weight of wool or fine animal hair"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

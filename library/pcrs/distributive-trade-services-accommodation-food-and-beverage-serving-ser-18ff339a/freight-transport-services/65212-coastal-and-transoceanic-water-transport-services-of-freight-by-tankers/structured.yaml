@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "65212"
+  title: "Coastal and transoceanic water transport services of freight by tankers"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

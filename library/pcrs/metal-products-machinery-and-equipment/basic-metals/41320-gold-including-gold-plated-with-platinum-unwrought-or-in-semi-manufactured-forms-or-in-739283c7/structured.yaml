@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41320"
+  title: "Gold (including gold plated with platinum), unwrought or in semi-manufactured forms, or in powder form"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

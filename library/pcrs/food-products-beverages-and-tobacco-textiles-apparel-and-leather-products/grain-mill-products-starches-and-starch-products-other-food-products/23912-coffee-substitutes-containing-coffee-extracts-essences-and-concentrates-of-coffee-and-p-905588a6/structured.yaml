@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "23912"
+  title: "Coffee substitutes containing coffee; extracts, essences and concentrates of coffee, and preparations with a basis thereof or with a basis of coffee; roasted chicory and other roasted coffee substitutes, and extracts, essences and concentrates thereof"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

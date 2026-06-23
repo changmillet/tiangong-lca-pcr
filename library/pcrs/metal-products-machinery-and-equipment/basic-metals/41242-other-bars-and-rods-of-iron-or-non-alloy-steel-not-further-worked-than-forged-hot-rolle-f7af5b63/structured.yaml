@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41242"
+  title: "Other bars and rods of iron or non-alloy steel, not further worked than forged, hot-rolled, hot-drawn or extruded, but including those twisted after rolling"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

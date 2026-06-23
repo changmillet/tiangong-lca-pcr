@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "83815"
+  title: "Restoration and retouching services of photography"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

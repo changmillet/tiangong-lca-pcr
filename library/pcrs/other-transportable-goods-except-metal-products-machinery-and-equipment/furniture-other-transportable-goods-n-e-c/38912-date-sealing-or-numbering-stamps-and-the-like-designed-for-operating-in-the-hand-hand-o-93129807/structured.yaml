@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38912"
+  title: "Date, sealing or numbering stamps, and the like, designed for operating in the hand; hand-operated composing sticks and hand printing sets incorporating such sticks; typewriter or similar ribbons, prepared for giving impressions; ink-pads"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

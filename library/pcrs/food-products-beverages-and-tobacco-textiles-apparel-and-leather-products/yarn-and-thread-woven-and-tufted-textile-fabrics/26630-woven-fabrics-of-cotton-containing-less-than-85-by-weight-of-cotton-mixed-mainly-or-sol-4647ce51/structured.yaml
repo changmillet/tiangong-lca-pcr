@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26630"
+  title: "Woven fabrics of cotton, containing less than 85% by weight of cotton, mixed mainly or solely with man-made fibres"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

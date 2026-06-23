@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "62354"
+  title: "Mail order or Internet retail trade services, of watches, clocks and jewellery"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "23230"
+  title: "Tapioca and substitutes therefor prepared from starch, in the form of flakes, grains, siftings or similar forms"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

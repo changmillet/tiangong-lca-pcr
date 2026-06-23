@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42950"
+  title: "Wire, rods, tubes, plates, electrodes and similar products, of base metal or of metal carbides, coated or cored with flux material, of a kind used for soldering, brazing, welding or deposition of metal or of metal carbides; wire and rods, of agglomerated base metal powder, used for metal spraying"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

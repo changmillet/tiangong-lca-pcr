@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48253"
+  title: "Instruments and apparatus for physical or chemical analysis, for measuring or checking viscosity, porosity, expansion, surface tension or the like, or for measuring or checking quantities of heat, sound or light"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "33500"
+  title: "Petroleum jelly; paraffin wax, micro- crystalline petroleum wax, slack wax, ozokerite, lignite wax, peat wax, other mineral waxes, and similar products; petroleum coke, petroleum bitumen and other residues of petroleum oils or of oils obtained from bituminous materials"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

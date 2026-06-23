@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "46940"
+  title: "Electrical insulators, except of glass or ceramics; insulating fittings for electrical machines or equipment, except of ceramics or plastics; electrical conduit tubing and joints therefor, of base metal lined with insulating material"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

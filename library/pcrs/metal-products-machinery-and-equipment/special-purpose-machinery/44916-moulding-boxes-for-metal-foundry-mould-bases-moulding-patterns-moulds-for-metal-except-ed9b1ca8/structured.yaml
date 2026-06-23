@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44916"
+  title: "Moulding boxes for metal foundry; mould bases; moulding patterns; moulds for metal (except ingot moulds), metal carbides, glass, mineral materials, rubber or plastics"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

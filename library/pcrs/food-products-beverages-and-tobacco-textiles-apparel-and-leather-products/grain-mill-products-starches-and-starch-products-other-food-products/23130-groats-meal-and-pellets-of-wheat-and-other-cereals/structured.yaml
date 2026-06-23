@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "23130"
+  title: "Groats, meal and pellets of wheat and other cereals"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

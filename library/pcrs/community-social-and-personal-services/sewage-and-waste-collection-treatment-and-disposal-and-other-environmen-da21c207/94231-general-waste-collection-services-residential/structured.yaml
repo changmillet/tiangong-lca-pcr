@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "94231"
+  title: "General waste collection services, residential"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

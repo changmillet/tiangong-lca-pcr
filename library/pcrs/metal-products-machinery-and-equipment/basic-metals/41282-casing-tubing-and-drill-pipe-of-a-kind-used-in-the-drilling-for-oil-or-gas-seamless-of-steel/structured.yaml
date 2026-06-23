@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41282"
+  title: "Casing, tubing and drill pipe, of a kind used in the drilling for oil or gas, seamless, of steel"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

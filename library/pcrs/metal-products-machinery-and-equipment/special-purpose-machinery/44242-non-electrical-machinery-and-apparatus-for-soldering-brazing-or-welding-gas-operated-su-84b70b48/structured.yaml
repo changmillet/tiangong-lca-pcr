@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44242"
+  title: "Non-electrical machinery and apparatus for soldering, brazing or welding; gas-operated surface tempering machines and appliances"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41281"
+  title: "Line pipe of a kind used for oil or gas pipelines, seamless, of steel"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

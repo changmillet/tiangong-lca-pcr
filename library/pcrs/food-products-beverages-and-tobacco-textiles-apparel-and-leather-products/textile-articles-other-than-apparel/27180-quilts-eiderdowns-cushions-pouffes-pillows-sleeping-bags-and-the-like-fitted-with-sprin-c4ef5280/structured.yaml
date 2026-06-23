@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "27180"
+  title: "Quilts, eiderdowns, cushions, pouffes, pillows, sleeping bags and the like, fitted with springs or stuffed or internally fitted with any material or of cellular rubber or plastics"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

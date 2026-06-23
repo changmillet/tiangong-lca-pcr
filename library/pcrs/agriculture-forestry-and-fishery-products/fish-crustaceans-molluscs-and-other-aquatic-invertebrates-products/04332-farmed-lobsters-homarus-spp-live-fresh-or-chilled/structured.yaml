@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "04332"
+  title: "Farmed lobsters (Homarus spp.), live, fresh or chilled"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

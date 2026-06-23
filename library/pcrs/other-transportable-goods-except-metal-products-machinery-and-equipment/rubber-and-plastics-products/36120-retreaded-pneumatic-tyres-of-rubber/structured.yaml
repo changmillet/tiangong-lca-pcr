@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "36120"
+  title: "Retreaded pneumatic tyres, of rubber"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

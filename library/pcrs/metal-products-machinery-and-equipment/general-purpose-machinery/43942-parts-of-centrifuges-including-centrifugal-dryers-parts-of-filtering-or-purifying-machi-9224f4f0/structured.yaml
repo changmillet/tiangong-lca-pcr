@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "43942"
+  title: "Parts of centrifuges, including centrifugal dryers; parts of filtering or purifying machinery and apparatus for liquids or gases"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

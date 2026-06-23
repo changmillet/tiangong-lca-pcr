@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "87310"
+  title: "Installation services of fabricated metal products, except machinery and equipment"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

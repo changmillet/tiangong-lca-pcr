@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "29290"
+  title: "Other articles of leather or composition leather (including articles of a kind used in machinery or mechanical appliances or for other technical uses) n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37112"
+  title: "Unworked cast, rolled, drawn or blown glass, in sheets"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

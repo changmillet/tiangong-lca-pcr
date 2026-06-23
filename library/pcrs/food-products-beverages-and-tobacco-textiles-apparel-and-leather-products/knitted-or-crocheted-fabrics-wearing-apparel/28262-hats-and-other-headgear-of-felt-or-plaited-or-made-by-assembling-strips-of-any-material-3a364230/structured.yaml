@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28262"
+  title: "Hats and other headgear, of felt, or plaited or made by assembling strips of any material, or knitted or crocheted or made up from lace or other textile fabric in the piece; hair-nets"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

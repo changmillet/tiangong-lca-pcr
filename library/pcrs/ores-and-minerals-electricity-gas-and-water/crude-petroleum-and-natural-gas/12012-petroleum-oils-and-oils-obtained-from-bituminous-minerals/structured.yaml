@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "12012"
+  title: "Petroleum oils and oils obtained from bituminous minerals"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

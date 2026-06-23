@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "31702"
+  title: "Pallets, box pallets and other load boards, of wood; pallet collars of wood"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

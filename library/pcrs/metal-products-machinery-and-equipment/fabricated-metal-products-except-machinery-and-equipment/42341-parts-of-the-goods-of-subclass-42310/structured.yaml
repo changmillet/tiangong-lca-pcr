@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42341"
+  title: "Parts of the goods of subclass 42310"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

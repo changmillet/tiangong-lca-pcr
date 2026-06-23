@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49319"
+  title: "Other vessels (including light-vessels, fire-floats, dredgers, floating cranes, floating docks, warships and lifeboats other than rowing boats), except floating or submersible drilling or production platforms"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

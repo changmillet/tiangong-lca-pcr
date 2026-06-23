@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "71593"
+  title: "Financial transactions processing and clearinghouse services, excluding mobile money operators and digital wallets"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

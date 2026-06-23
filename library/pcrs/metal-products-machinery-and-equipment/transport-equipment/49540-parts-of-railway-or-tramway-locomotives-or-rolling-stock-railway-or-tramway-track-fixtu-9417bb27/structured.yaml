@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49540"
+  title: "Parts of railway or tramway locomotives or rolling stock; railway or tramway track fixtures and fittings, and parts thereof; mechanical (including electromechanical) signalling, safety or traffic control equipment for railways, tramways, roads, inland waterways, parking facilities, port installations or airfields, and parts thereof"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "01961"
+  title: "Live plants; bulbs, tubers and roots; cuttings and slips; mushroom spawn"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

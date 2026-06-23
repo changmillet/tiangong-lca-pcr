@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28250"
+  title: "Garments made up of felt or nonwovens; garments made up of textile fabrics impregnated or coated with plastics, rubber or other materials"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

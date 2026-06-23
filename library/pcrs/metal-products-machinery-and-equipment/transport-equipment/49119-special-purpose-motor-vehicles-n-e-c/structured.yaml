@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49119"
+  title: "Special-purpose motor vehicles n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "62487"
+  title: "Other non-store retail trade services, of mining, construction and civil engineering machinery and equipment"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

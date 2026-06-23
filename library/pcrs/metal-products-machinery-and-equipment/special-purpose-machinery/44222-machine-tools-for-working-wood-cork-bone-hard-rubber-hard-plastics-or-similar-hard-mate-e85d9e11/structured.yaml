@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44222"
+  title: "Machine-tools for working wood, cork, bone, hard rubber, hard plastics or similar hard materials; presses for the manufacture of particle board or fibre building board of wood or other ligneous materials and other machinery for treating wood or cork"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

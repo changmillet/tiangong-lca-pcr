@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37117"
+  title: "Paving blocks, bricks, tiles and other articles of pressed or moulded glass, of a kind used for building or construction purposes; leaded lights and the like; multicellular or foam glass in blocks, plates or similar forms"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

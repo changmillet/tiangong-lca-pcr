@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "65115"
+  title: "Moving services of household furniture and household goods"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

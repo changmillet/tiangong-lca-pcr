@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "46330"
+  title: "Ignition wiring sets and other wiring sets of a kind used in vehicles, aircraft or ships"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

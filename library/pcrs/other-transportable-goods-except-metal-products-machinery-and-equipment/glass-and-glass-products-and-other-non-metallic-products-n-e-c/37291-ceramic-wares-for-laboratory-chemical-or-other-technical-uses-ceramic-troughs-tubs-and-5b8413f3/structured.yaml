@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37291"
+  title: "Ceramic wares for laboratory, chemical or other technical uses; ceramic troughs, tubs and similar receptacles of a kind used in agriculture; ceramic pots, jars and similar articles of a kind used for the conveyance or packing of goods"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

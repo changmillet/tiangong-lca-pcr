@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37440"
+  title: "Portland cement, aluminous cement, slag cement and similar hydraulic cements, except in the form of clinkers"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

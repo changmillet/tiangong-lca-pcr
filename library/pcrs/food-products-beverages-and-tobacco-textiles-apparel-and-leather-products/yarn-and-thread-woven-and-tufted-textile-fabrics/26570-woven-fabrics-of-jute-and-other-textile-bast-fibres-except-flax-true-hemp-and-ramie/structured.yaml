@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26570"
+  title: "Woven fabrics of jute and other textile bast fibres (except flax, true hemp and ramie)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

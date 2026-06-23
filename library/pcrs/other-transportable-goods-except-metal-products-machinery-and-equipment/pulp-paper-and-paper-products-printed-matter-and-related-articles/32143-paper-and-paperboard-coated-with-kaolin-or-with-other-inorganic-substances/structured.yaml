@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32143"
+  title: "Paper and paperboard coated with kaolin or with other inorganic substances"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

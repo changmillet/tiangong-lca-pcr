@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "27140"
+  title: "Other furnishing articles n.e.c.; sets of woven fabric and yarn for making up into rugs, tapestries, embroidered table cloths or serviettes, or similar textile articles, put up in packings for retail sale"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

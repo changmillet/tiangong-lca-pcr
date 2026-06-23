@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28242"
+  title: "Clothing accessories of leather or of composition leather, except sports gloves"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

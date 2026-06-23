@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "36230"
+  title: "Tubes, pipes and hoses of vulcanized rubber other than hard rubber"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

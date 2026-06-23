@@ -1,0 +1,7 @@
+schema_version: 1
+classification_system: CPC
+classification_version: "3.0"
+source_file: "CPC_Ver_3.0_Structure_30Jun2025.csv"
+source_url: "https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_Ver_3.0_Structure_30Jun2025.csv"
+sha256: "5cd2c1c4890dd6be16af48e9bb940fed48efff9865f39ff15edaa921da25fb7c"
+retrieved_at_utc: "2026-06-23T08:55:39.235Z"

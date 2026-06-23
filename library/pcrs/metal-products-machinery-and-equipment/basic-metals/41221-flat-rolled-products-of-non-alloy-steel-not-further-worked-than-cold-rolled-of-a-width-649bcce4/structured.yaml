@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41221"
+  title: "Flat-rolled products of non-alloy steel, not further worked than cold-rolled, of a width of 600 mm or more"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

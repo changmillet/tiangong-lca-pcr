@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34180"
+  title: "Phosphoric esters and their salts or esters of other inorganic acids (excluding esters of hydrogen halides) and their salts; and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

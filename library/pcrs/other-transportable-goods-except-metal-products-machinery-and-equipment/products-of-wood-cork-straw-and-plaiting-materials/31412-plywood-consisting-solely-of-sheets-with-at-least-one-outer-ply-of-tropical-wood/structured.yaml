@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "31412"
+  title: "Plywood consisting solely of sheets, with at least one outer ply of tropical wood"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

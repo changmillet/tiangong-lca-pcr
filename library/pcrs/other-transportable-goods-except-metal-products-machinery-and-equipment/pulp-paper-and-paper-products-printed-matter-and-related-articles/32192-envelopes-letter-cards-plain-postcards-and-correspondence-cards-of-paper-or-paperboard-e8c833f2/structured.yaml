@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32192"
+  title: "Envelopes, letter cards, plain postcards and correspondence cards of paper or paperboard; boxes, pouches, wallets and writing compendiums, of paper or paperboard, containing paper stationery"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

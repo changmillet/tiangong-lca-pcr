@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "29220"
+  title: "Luggage, handbags and the like, of leather, composition leather, plastic sheeting, textile materials, vulcanized fibre or paperboard; travel sets for personal toilet, sewing or shoe or clothes cleaning"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

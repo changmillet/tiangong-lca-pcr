@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34280"
+  title: "Hydrogen peroxide; phosphides; carbides; hydrides, nitrides, azides, silicides and borides"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

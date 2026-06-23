@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34270"
+  title: "Cyanides, cyanide oxides and complex cyanides; fulminates, cyanates and thiocyanates; silicates; borates; perborates"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

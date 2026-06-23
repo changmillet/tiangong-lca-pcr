@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "36220"
+  title: "Unvulcanized compounded rubber, in primary forms or in plates, sheets or strip; unvulcanized rubber in forms other than primary forms or plates, sheets or strip (except \"camel-back\" strips for retreading rubber tyres); articles of unvulcanized rubber; thread, cord, plates, sheets, strip, rods and profile shapes, of vulcanized rubber other than hard rubber"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

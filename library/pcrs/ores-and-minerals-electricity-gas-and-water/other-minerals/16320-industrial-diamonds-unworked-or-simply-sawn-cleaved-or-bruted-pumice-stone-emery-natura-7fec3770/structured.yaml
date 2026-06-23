@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "16320"
+  title: "Industrial diamonds, unworked or simply sawn, cleaved or bruted; pumice stone; emery; natural corundum, natural garnet and other natural abrasives"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

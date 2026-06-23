@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49315"
+  title: "Fishing vessels; factory ships and other vessels for processing or preserving fishery products"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

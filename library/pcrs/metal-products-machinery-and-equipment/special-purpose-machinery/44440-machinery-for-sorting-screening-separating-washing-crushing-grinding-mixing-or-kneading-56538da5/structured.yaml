@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44440"
+  title: "Machinery for sorting, screening, separating, washing, crushing, grinding, mixing or kneading earth, stone, ores or other mineral substances, in solid form; machinery for agglomerating, shaping or moulding solid mineral fuels, ceramic paste, unhardened cements, plastering materials or other mineral products in powder or paste form; machines for forming foundry moulds of sand"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

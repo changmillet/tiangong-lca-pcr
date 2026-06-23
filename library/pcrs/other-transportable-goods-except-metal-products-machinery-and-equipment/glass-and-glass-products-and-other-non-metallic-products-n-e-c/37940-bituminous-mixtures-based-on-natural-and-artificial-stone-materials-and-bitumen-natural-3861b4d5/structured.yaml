@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37940"
+  title: "Bituminous mixtures based on natural and artificial stone materials and bitumen, natural asphalt or related substances as a binder"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

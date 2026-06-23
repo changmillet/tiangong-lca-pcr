@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37510"
+  title: "Non-refractory mortars and concretes"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

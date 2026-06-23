@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44212"
+  title: "Machining centres, unit construction machines (single station) and multi-station transfer machines, for working metal"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

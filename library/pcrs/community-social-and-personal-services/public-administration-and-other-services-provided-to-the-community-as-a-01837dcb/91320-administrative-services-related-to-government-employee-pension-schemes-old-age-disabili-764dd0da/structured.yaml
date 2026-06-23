@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "91320"
+  title: "Administrative services related to government employee pension schemes; old-age disability or survivors' benefit schemes, other than for government employees"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

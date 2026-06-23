@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44251"
+  title: "Tool holders, self-opening dieheads, work holders, dividing heads and other special attachments for machine-tools; tool-holders for any type of tool for working in the hand; other parts and accessories for the goods of class 4421"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

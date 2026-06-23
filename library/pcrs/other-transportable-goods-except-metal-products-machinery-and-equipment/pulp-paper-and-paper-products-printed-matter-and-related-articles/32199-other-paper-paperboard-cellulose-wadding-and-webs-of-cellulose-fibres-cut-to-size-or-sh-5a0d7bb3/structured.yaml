@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32199"
+  title: "Other paper, paperboard, cellulose wadding and webs of cellulose fibres, cut to size or shape; cigarette paper, in booklets or tubes, or in rolls of a width not exceeding 5 cm; other articles of paper pulp, paper, paperboard, cellulose wadding or webs of cellulose fibres"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

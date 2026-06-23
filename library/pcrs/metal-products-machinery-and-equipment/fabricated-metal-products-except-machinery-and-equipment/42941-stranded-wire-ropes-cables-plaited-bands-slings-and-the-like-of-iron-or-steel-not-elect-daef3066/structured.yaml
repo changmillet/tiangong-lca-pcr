@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42941"
+  title: "Stranded wire, ropes, cables, plaited bands, slings and the like, of iron or steel, not electrically insulated"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

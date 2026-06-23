@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "61045"
+  title: "Wholesale trade services, not on a fee or contract basis, of miscellaneous household utensils, cutlery, crockery, glassware, china and pottery"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

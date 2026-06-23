@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "36490"
+  title: "Other articles for the conveyance or packing of goods, of plastics; stoppers, lids, caps and other closures, of plastics"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

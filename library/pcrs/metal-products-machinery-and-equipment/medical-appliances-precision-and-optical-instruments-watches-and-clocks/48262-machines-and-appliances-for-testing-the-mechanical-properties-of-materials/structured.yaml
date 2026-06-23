@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48262"
+  title: "Machines and appliances for testing the mechanical properties of materials"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

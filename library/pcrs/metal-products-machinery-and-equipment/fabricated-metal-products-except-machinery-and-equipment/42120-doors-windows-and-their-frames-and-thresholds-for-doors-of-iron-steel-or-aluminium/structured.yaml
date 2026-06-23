@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42120"
+  title: "Doors, windows and their frames and thresholds for doors, of iron, steel or aluminium"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

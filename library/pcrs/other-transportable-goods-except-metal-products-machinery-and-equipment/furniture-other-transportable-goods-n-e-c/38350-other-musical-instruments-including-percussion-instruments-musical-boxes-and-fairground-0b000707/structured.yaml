@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38350"
+  title: "Other musical instruments (including percussion instruments, musical boxes and fairground organs); decoy calls; whistles, call horns and other mouth-blown sound signalling instruments"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

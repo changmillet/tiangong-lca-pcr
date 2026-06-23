@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42996"
+  title: "Statuettes and other ornaments of base metal; photograph, picture or similar frames of base metal; mirrors of base metal"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

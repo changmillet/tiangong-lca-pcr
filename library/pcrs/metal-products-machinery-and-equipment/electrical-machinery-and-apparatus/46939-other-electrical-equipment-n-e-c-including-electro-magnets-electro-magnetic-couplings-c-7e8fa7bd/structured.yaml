@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "46939"
+  title: "Other electrical equipment n.e.c. (including electro-magnets; electro-magnetic couplings; clutches and brakes; electro-magnetic lifting heads; electrical particle accelerators; electrical signal generators and apparatus for electro-plating, electrolysis or electrophoresis)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

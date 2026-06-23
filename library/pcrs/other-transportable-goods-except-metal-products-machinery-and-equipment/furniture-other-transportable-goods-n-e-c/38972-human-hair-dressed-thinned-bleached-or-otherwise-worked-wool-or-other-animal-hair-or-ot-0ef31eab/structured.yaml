@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38972"
+  title: "Human hair, dressed, thinned, bleached or otherwise worked; wool or other animal hair or other textile materials, prepared for use in making wigs or the like; wigs, false beards, eyebrows and eyelashes, switches and the like, of human or animal hair or of textile materials; articles of human hair n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

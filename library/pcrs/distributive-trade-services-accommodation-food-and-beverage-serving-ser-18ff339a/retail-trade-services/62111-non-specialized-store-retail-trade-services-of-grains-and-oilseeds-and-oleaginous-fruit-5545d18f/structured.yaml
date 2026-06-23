@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "62111"
+  title: "Non-specialized store retail trade services, of grains and oilseeds and oleaginous fruits, seeds and animal feed"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

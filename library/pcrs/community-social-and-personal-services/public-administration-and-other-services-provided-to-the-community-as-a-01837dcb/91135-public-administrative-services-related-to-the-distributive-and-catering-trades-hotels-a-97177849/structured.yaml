@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "91135"
+  title: "Public administrative services related to the distributive and catering trades, hotels and restaurants"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

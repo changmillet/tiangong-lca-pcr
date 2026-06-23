@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44640"
+  title: "Parts for the goods of class 4461; parts for the goods of subclass 44621 (including sewing machine needles and furniture, bases and covers for sewing machines); parts for the goods of subclass 44622; parts for the goods of subclass 44629, except parts of machinery for the manufacture or finishing of felt or nonwovens and blocks for making hats; parts for the goods of subclass 44630; parts of household or laundry-type washing machines and textile drying machines, each of a dry linen capacity not exceeding 10 kg"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

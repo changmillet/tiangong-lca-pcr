@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "65213"
+  title: "Coastal and transoceanic water transport services of intermodal containers by container ships"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "27998"
+  title: "Textile products and articles for technical uses (including wicks, gas mantles, hosepiping, transmission or conveyor belts, bolting cloth and straining cloth)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

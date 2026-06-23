@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "24230"
+  title: "Cider, perry, mead and other fermented beverages, except wine of fresh grapes and beer made from malt"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

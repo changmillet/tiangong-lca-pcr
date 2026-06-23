@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42190"
+  title: "Other structures (except prefabricated buildings) and parts of structures, of iron, steel or aluminium; plates, rods, angles, shapes, sections, profiles, tubes and the like, prepared for use in structures, of iron, steel or aluminium; props and similar equipment for scaffolding, shuttering or pitpropping"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

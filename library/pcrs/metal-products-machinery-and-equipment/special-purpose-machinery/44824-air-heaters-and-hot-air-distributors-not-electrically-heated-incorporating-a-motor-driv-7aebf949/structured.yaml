@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44824"
+  title: "Air heaters and hot air distributors, not electrically heated, incorporating a motor-driven fan or blower, of iron or steel"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

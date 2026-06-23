@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48353"
+  title: "Parts and accessories for the goods of subclass 48322; parts and accessories of cinematographic projectors; parts and accessories of photographic flashlight apparatus; parts and accessories of image projectors (except cinematographic) and photographic (except cinematographic) enlargers and reducers; parts and accessories n.e.c. of apparatus and equipment for photographic laboratories; parts and accessories of negatoscopes and projection screens"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

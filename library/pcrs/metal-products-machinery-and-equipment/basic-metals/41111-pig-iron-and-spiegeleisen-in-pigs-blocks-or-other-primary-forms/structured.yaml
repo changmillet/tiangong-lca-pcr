@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "41111"
+  title: "Pig iron and spiegeleisen in pigs, blocks or other primary forms"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

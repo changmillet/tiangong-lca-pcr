@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42946"
+  title: "Barbed wire of iron or steel; twisted hoop or single flat wire, and loosely twisted double wire, of a kind used for fencing, of iron or steel"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

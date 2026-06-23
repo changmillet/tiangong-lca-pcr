@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "31413"
+  title: "Plywood consisting solely of sheets, with at least one outer ply of non-coniferous wood other than tropical"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

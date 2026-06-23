@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "47403"
+  title: "Parts for the goods of subclasses 47211 to 47213, 47311 to 47315 and 48220"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

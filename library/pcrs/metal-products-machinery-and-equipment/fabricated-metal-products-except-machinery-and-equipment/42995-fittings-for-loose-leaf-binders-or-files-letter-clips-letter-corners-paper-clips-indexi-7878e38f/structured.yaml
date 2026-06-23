@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42995"
+  title: "Fittings for loose-leaf binders or files; letter clips, letter corners, paper clips, indexing tags and similar office articles, of base metal; staples in strips, of base metal"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "29310"
+  title: "Waterproof footwear, with outer soles and uppers of rubber or plastics, other than footwear incorporating a protective metal toe-cap"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

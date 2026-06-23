@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "39320"
+  title: "Ash and residue (except from the manufacture of iron or steel), containing metals or metallic compounds, except precious metals"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

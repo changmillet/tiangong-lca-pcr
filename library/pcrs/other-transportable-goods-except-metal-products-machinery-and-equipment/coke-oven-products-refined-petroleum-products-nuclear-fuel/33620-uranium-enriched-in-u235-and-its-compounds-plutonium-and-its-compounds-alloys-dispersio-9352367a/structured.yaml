@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "33620"
+  title: "Uranium enriched in U235 and its compounds; plutonium and its compounds; alloys, dispersions, ceramic products and mixtures containing uranium enriched in U235, plutonium or compounds of these products"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

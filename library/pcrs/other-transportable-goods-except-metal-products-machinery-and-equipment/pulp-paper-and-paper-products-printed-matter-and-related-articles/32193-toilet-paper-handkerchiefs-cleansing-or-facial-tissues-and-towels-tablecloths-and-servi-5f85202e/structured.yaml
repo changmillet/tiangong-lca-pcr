@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32193"
+  title: "Toilet paper; handkerchiefs, cleansing or facial tissues and towels; tablecloths and serviettes, articles of apparel and clothing accessories, of paper pulp, paper, cellulose wadding or webs of cellulose fibres"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

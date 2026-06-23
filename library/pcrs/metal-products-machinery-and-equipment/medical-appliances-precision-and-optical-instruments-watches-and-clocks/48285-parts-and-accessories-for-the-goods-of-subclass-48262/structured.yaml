@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48285"
+  title: "Parts and accessories for the goods of subclass 48262"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

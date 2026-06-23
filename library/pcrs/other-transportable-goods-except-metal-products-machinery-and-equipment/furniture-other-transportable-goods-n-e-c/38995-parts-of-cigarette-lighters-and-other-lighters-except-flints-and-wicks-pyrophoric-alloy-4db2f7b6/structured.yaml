@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38995"
+  title: "Parts of cigarette lighters and other lighters (except flints and wicks); pyrophoric alloys; articles of combustible materials n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34560"
+  title: "Synthetic or reconstructed precious or semi-precious stones, unworked"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

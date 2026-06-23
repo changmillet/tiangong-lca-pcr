@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "29510"
+  title: "Footwear incorporating a protective metal toe-cap, except those covered in subclass 29320"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

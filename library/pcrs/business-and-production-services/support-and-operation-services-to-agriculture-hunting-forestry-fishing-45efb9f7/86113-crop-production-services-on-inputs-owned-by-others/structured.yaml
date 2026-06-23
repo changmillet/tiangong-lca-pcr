@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "86113"
+  title: "Crop production services on inputs owned by others"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

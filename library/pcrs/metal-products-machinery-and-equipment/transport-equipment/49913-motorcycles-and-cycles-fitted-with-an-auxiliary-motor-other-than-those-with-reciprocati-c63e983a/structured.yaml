@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49913"
+  title: "Motorcycles and cycles fitted with an auxiliary motor, other than those with reciprocating internal combustion piston engines; side-cars"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

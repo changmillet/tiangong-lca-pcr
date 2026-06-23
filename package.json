@@ -9,6 +9,6 @@
     "test": "node --test builder/cli/*.test.mjs",
     "validate": "npm run lint && npm test",
     "catalog:build": "node builder/scripts/build-catalog.mjs",
-    "pcr:scaffold:cpc": "node builder/scripts/scaffold-leaf-pcrs.mjs"
+    "pcr:scaffold:cpc": "node builder/cli/index.mjs scaffold-cpc"
   }
 }

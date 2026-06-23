@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32133"
+  title: "Other uncoated kraft paper and paperboard; sack kraft paper, creped or crinkled"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "32114"
+  title: "Pulps of fibres derived from recovered (waste and scrap) paper or paperboard or of other fibrous cellulosic material"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

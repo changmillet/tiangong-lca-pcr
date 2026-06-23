@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "28234"
+  title: "Women's or girls' blouses, shirts, singlets, petticoats, panties, nightdresses, dressing gowns and similar articles, of textile fabric, not knitted or crocheted"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

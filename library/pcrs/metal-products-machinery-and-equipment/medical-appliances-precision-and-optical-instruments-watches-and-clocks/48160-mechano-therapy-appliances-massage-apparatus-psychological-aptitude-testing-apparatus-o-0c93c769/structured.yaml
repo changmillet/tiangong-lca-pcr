@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48160"
+  title: "Mechano-therapy appliances; massage apparatus; psychological aptitude-testing apparatus; ozone therapy, oxygen therapy, aerosol therapy, artificial respiration or other therapeutic respiration apparatus; other breathing appliances and gas masks (excluding protective masks having neither mechanical parts nor replaceable filters)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

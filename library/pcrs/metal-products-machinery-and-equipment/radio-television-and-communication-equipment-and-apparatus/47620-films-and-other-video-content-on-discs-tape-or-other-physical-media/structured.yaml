@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "47620"
+  title: "Films and other video content on discs, tape or other physical media"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44217"
+  title: "Machine-tools for working metal by forging, hammering or die-stamping; machine-tools for working metal by bending, folding, straightening, flattening, shearing, punching or notching; other presses for working metal or metal carbides"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

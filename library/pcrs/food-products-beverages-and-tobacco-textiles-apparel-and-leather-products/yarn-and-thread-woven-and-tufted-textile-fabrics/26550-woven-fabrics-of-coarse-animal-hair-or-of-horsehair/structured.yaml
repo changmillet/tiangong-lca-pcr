@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26550"
+  title: "Woven fabrics of coarse animal hair or of horsehair"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

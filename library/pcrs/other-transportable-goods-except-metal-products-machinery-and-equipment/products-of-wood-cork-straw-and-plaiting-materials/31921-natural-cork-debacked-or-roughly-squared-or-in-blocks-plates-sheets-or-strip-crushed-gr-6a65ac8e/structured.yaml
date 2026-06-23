@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "31921"
+  title: "Natural cork, debacked or roughly squared, or in blocks, plates, sheets or strip; crushed, granulated or ground cork; waste cork"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

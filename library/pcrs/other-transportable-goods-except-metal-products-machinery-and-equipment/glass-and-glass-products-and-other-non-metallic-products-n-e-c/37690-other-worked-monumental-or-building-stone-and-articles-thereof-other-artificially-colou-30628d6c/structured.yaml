@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37690"
+  title: "Other worked monumental or building stone and articles thereof; other artificially coloured granules, chippings and powder of natural stone; articles of agglomerated slate"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

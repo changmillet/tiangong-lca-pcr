@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "39380"
+  title: "Waste and scrap of primary cells, primary batteries and electric accumulators; spent primary cells, primary batteries and electric accumulators"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

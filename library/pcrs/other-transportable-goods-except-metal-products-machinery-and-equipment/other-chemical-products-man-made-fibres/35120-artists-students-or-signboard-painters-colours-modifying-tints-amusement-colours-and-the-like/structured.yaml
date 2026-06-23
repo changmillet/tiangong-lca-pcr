@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35120"
+  title: "Artists', students' or signboard painters' colours, modifying tints, amusement colours and the like"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

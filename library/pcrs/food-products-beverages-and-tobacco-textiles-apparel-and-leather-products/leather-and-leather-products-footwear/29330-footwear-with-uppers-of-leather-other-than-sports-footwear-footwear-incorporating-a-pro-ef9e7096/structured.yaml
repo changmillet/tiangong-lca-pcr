@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "29330"
+  title: "Footwear with uppers of leather, other than sports footwear, footwear incorporating a protective metal toe-cap and miscellaneous special footwear"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

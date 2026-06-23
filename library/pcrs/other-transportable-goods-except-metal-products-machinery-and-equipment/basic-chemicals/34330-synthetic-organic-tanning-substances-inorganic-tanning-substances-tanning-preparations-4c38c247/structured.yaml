@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34330"
+  title: "Synthetic organic tanning substances; inorganic tanning substances; tanning preparations; enzymatic preparations for pre-tanning"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

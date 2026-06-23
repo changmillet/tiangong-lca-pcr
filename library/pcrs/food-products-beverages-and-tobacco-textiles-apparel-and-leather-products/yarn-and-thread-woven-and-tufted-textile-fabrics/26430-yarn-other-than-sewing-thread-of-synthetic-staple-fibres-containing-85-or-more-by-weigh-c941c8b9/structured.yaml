@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "26430"
+  title: "Yarn (other than sewing thread) of synthetic staple fibres, containing 85% or more by weight of such fibres"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

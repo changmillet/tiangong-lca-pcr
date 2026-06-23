@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37292"
+  title: "Electrical insulators of ceramics; insulating fittings, for electrical machines, appliances or equipment, of ceramics"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

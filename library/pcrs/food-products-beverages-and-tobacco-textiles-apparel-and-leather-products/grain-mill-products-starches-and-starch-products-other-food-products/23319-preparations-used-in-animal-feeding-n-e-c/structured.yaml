@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "23319"
+  title: "Preparations used in animal feeding n.e.c."
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

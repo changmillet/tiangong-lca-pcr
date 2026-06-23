@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49941"
+  title: "Parts and accessories of motorcycles and side-cars"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

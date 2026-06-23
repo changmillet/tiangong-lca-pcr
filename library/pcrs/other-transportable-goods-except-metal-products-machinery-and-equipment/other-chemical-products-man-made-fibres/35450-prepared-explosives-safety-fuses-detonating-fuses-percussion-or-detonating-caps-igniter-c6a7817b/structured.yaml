@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35450"
+  title: "Prepared explosives; safety fuses; detonating fuses; percussion or detonating caps; igniters; electric detonators"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

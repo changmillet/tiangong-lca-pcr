@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49311"
+  title: "Cruise ships, excursion boats and similar vessels, principally designed for the transport of persons; ferry boats of all kinds"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

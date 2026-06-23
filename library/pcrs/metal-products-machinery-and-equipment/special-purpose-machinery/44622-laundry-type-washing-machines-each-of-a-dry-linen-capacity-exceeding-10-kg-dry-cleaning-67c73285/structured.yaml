@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44622"
+  title: "Laundry-type washing machines, each of a dry linen capacity exceeding 10 kg; dry-cleaning machines; drying machines for textile fabrics or articles, each of a dry linen capacity exceeding 10 kg"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

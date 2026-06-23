@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "46929"
+  title: "Other electric sound or visual signalling apparatus, except for cycles or motor vehicles, and except electromechanical traffic control equipment for transport facilities"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

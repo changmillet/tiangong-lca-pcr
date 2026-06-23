@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "46950"
+  title: "Carbon electrodes, carbon brushes, lamp carbons, battery carbons and other articles of graphite or other carbon of a kind used for electrical purposes"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

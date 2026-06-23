@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37910"
+  title: "Millstones, grindstones, grinding wheels and the like, without frameworks, for working stones, and parts thereof, of natural stone, of agglomerated natural or artificial abrasives, or of ceramics; natural or artificial abrasive powder or grain, on a base of textile, paper or other material"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

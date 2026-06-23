@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38240"
+  title: "Jewellery and other articles of precious metal or of metal clad with precious metal; articles of natural or cultured pearls or precious or semi-precious stones (natural, synthetic or reconstructed)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

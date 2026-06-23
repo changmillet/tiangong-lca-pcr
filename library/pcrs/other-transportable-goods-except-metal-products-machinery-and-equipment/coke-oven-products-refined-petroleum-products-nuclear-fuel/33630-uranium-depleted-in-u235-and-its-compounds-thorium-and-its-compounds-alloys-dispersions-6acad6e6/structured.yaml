@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "33630"
+  title: "Uranium depleted in U235 and its compounds; thorium and its compounds; alloys, dispersions, ceramic products and mixtures containing uranium depleted in U235, thorium or compounds of these products"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

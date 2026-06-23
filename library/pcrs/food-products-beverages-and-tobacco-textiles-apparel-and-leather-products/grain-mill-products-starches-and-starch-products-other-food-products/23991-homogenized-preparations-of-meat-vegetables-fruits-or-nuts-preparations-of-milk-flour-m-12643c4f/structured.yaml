@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "23991"
+  title: "Homogenized preparations of meat, vegetables, fruits or nuts; preparations of milk, flour, meal, starch or malt extract, for infant use n.e.c.; homogenized composite food preparations"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

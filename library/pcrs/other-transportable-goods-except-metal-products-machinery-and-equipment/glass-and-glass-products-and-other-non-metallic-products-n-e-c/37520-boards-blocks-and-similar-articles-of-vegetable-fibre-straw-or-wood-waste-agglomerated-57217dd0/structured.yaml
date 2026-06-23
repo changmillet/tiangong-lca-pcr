@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "37520"
+  title: "Boards, blocks and similar articles of vegetable fibre, straw or wood waste agglomerated with mineral binders"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

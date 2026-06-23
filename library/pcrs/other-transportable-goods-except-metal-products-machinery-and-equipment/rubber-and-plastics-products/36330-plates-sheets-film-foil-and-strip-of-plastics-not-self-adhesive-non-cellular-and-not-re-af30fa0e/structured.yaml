@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "36330"
+  title: "Plates, sheets, film, foil and strip, of plastics, not self-adhesive, non-cellular and not reinforced, laminated, supported or similarly combined with other materials"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

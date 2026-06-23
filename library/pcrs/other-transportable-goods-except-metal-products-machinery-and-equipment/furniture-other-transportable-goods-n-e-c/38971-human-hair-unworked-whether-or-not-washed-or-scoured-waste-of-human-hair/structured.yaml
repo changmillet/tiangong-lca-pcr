@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "38971"
+  title: "Human hair, unworked, whether or not washed or scoured; waste of human hair"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

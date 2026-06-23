@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "34150"
+  title: "Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and glutamic acid and its salts; ureines and their derivatives and salts thereof; carboxyimide-function compounds and imine-compounds; nitrile-function compounds; diazo-, azo- or azoxy-compounds; organic derivatives of hydrazine or of hydroxylamine; compounds with other nitrogen function"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

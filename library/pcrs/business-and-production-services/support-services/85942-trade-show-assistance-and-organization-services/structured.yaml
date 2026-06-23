@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "85942"
+  title: "Trade show assistance and organization services"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

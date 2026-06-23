@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44613"
+  title: "Knitting machines, stitch-bonding machines, machines for making gimped yarn, tulle, lace, embroidery, trimmings, braid or net and machines for tufting"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

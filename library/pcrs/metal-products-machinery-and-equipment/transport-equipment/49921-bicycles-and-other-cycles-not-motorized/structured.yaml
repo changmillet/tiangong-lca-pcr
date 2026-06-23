@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "49921"
+  title: "Bicycles and other cycles, not motorized"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

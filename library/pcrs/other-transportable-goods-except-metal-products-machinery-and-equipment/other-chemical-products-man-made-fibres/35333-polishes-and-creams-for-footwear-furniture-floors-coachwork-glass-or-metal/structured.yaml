@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "35333"
+  title: "Polishes and creams, for footwear, furniture, floors, coachwork, glass or metal"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

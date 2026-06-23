@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "43253"
+  title: "Parts for the goods of subclass 43230; parts of fans and ventilating or recycling hoods incorporating a fan"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "45220"
+  title: "Portable automatic data processing machines weighing not more than 10 kg, such as laptops, notebooks and sub-notebooks"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

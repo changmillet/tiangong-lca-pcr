@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "44825"
+  title: "Central heating boilers, for producing hot water or low pressure steam"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

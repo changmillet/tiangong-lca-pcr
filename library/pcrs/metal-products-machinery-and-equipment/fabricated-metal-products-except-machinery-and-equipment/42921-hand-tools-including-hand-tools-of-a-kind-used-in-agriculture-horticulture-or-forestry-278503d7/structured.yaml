@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "42921"
+  title: "Hand tools (including hand tools of a kind used in agriculture, horticulture or forestry, hand saws, files, pliers and metal cutting shears, hand-operated spanners, blow-lamps and clamps)"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []

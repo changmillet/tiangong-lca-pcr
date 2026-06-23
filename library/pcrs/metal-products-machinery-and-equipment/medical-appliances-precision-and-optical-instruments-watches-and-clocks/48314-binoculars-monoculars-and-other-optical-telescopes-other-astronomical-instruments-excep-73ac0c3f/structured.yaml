@@ -1,0 +1,10 @@
+schema_version: 1
+status: scaffold
+classification_seed:
+  system: CPC
+  version: "3.0"
+  code: "48314"
+  title: "Binoculars, monoculars and other optical telescopes; other astronomical instruments, except instruments for radio-astronomy; compound optical microscopes"
+reference_flows: []
+inventory_patterns: []
+qa_rules: []
