@@ -160,6 +160,8 @@ function enPcrBody() {
 | Reference unit |  |
 | Required qualifiers |  |
 
+When constructing a \`process\` or \`lifecyclemodel\`, the items listed in \`Required qualifiers\` must be declared in the process description, lifecycle model metadata, reference flow comment, product description, or an equivalent model field. If an item is not applicable, state why; if it is missing, treat the reference flow definition as incomplete.
+
 ## 4. Measurement and Unit Rules
 
 | rule_id | Applies to | Required property | Required unit | Rule |
@@ -212,6 +214,8 @@ function zhPcrBody() {
 | Reference unit group |  |
 | Reference unit |  |
 | Required qualifiers |  |
+
+建模时，\`Required qualifiers\` 中列出的信息应在 \`process\` 说明、\`lifecyclemodel\` metadata、reference flow comment、产品说明或等效模型字段中明确声明。若某一项不适用，应说明原因；若缺失，应视为参考流定义不完整。
 
 ## 4. 计量与单位规则
 

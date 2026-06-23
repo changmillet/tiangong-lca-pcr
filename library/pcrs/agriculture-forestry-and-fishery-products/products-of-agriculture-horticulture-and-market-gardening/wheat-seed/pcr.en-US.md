@@ -34,6 +34,8 @@ The PCR identity is independent of CPC. CPC provides a mapping entry only; the s
 | Reference unit | kg |
 | Required qualifiers | seed class or certification class; treatment status; moisture basis; physical purity; germination rate; geography and declared gate; packaging state |
 
+When constructing a `process` or `lifecyclemodel`, the items listed in `Required qualifiers` must be declared in the process description, lifecycle model metadata, reference flow comment, product description, or an equivalent model field. If an item is not applicable, state why; if it is missing, treat the reference flow definition as incomplete.
+
 Avoid seed-count reference flows unless the study goal is agronomic performance. If seed count is used, also provide thousand-kernel weight or another conversion to mass.
 
 ## 4. Measurement and Unit Rules

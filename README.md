@@ -22,7 +22,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 99a9eff17e8358086a62c3eeeb8d0bd88a7589ff
+lastReviewedCommit: e432aaf9394e89251a62dfd654d36c3d39edd3c0
 ---
 
 # TianGong LCA PCR Library

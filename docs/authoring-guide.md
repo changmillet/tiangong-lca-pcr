@@ -21,7 +21,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 99a9eff17e8358086a62c3eeeb8d0bd88a7589ff
+lastReviewedCommit: e432aaf9394e89251a62dfd654d36c3d39edd3c0
 ---
 
 # Authoring Guide
@@ -68,6 +68,8 @@ The process inventory section should decompose the category into common modellin
 - elementary flows
 
 The reference flow section should define one declared reference object. Use a `Field` / `Value` table with `Reference amount`, `Reference product flow`, `Reference flow property`, `Reference unit group`, `Reference unit`, and category-specific `Required qualifiers`. Do not add a second free-text "preferred reference flow" that repeats the same information.
+
+When constructing a `process` or `lifecyclemodel`, the items listed in `Required qualifiers` must be declared in the process description, lifecycle model metadata, reference flow comment, product description, or an equivalent model field. If an item is not applicable, state why; if it is missing, treat the reference flow definition as incomplete.
 
 The measurement and unit rules section is not a catalog of every flow property or unit that may appear later. It should contain only rules that affect modelling consistency, conversion, or validation, such as reference mass basis, seed-count conversion, nitrogen fertilizer product/N basis, energy unit handling, or count-to-mass packaging conversion.
 
