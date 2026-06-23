@@ -9,6 +9,9 @@
     "test": "node --test builder/cli/*.test.mjs",
     "validate": "npm run lint && npm test",
     "catalog:build": "node builder/scripts/build-catalog.mjs",
-    "pcr:scaffold:cpc": "node builder/cli/index.mjs scaffold-cpc"
+    "pcr:scaffold:cpc": "node builder/cli/index.mjs scaffold-cpc",
+    "pcr:sync-structured": "node builder/cli/index.mjs sync-structured",
+    "pcr:bump": "node builder/cli/index.mjs bump",
+    "pcr:publish": "node builder/cli/index.mjs publish"
   }
 }

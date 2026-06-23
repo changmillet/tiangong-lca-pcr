@@ -1,12 +1,12 @@
 ---
-id: pcr.sample.placeholder
-title: Sample PCR Placeholder
+id: pcr.placeholder
+title: PCR Placeholder
 status: scaffold
 pcr_kind: product_category_rule
 content_maturity: empty_scaffold
 ---
 
-# Sample PCR Placeholder
+# PCR Placeholder
 
 ## Scope and Applicability
 
@@ -15,4 +15,3 @@ content_maturity: empty_scaffold
 ## Reference Flow Patterns
 
 ## Inventory Flow Patterns
-

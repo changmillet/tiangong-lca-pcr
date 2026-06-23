@@ -1,11 +1,13 @@
 schema_version: 1
 id: pcr.agriculture-forestry-and-fishery-products.products-of-agriculture-horticulture-and-market-gardening.wheat-seed
+version: "0.1.0"
+updated_at_utc: "2026-06-23T00:00:00Z"
 title:
   en-US: "Wheat seed for sowing"
-  zh-CN: "小麦种子"
-status: draft
+  zh-CN: "小麦播种种子"
+status: candidate
 pcr_kind: product_category_rule
-content_maturity: example_draft
+content_maturity: authored_methodology
 domains:
   - "agriculture-forestry-and-fishery-products"
 modules:
@@ -28,13 +30,10 @@ languages:
     - en-US
     - zh-CN
 translation_status:
-  zh-CN: example_aligned
+  zh-CN: aligned
 classification_refs:
   - system: CPC
     version: "3.0"
     code: "01111"
     title: "Wheat, seed"
     mapping_type: exact
-review:
-  status: example_only
-  note: "Demonstration PCR content for evaluating the Markdown structure; methodology values require expert review before operational use."

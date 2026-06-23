@@ -9,18 +9,24 @@ The builder treats classification systems as inputs and mappings. It does not ma
 ```bash
 npm run init
 npm run lint
+npm run pcr:sync-structured -- --pcr <library/pcrs/...>
+npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
+npm run pcr:publish -- --pcr <library/pcrs/...> --version <semver>
 npm run validate
 ```
 
 - `init` creates required scaffold directories and guide files.
 - `lint` checks required repository paths and bilingual PCR directory completeness.
+- `pcr:sync-structured` regenerates `structured.yaml` from canonical PCR Markdown tables.
+- `pcr:bump` updates manifest version lifecycle fields.
+- `pcr:publish` syncs structured output and marks the manifest publication state.
 - `validate` runs lint plus tests.
 
-Generated sample PCRs use the current authoring skeleton:
+Generated PCR scaffolds use the current authoring skeleton:
 
 - process inventory organized by process, then inputs/outputs, then product/waste/elementary flows
-- data sources for database rows, literature, and review evidence
-- CLI lookup trace for Tiangong database searches and selected UUID/version references
+- UUID-only Tiangong references in PCR Markdown
+- external data sources for literature, standards, official guidance, and non-default range evidence
 
 The direct CLI entry point is:
 

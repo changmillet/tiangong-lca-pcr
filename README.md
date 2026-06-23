@@ -22,7 +22,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 101edae81bc0c765f5a47803abf75bf421f2368d
+lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
 ---
 
 # TianGong LCA PCR Library
@@ -59,7 +59,8 @@ Material PCR content should use this authoring shape:
 - system boundary and allocation rules
 - process inventory organized by process, then inputs/outputs, then product/waste/elementary flows
 - data quality and validation rules
-- data sources and CLI lookup trace for database UUIDs, range evidence, and review status
+- selected Tiangong UUIDs without dataset versions
+- external data sources for ranges, factors, official guidance, and non-default evidence
 
 ## Builder CLI
 
@@ -67,12 +68,17 @@ Material PCR content should use this authoring shape:
 npm run init
 npm run lint
 npm run pcr:scaffold:cpc -- --source <cpc-structure.csv> --classification-version 3.0 --source-url <official-source-url>
+npm run pcr:sync-structured -- --pcr <library/pcrs/...>
+npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
+npm run pcr:publish -- --pcr <library/pcrs/...> --version <semver>
 npm run validate
 ```
 
 `pcr:scaffold:cpc` imports a CPC structure CSV, stores the raw and normalized classification data under `classifications/systems/cpc/<version>/`, writes a CPC-to-PCR mapping file, and creates empty bilingual PCR directories for leaf classes only. PCR directory names are semantic slugs, not CPC codes; the CPC code remains in the mapping layer and PCR metadata.
 
-PCR authors may use `tiangong-lca-cli` to search Tiangong database flow/process/lifecyclemodel records and copy selected UUID/version references into PCR content. The CLI is an authoring evidence tool, not a runtime dependency of this repository.
+`pcr:sync-structured` regenerates `structured.yaml` from canonical Markdown. `pcr:bump` updates the manifest version lifecycle. `pcr:publish` syncs `structured.yaml` and marks the manifest publication state.
+
+PCR authors may use `tiangong-lca-cli` to search Tiangong database flow/process/lifecyclemodel records and copy selected UUID references into PCR content. The CLI is an authoring evidence tool, not a runtime dependency of this repository.
 
 ## Initial Status
 

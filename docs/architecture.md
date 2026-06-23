@@ -22,7 +22,7 @@ checkPaths:
   - classifications/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 101edae81bc0c765f5a47803abf75bf421f2368d
+lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
 ---
 
 # Architecture
@@ -53,6 +53,6 @@ This keeps one PCR identity while allowing English and Chinese markdown renderin
 
 Within one PCR identity, inventory rules are process-oriented. A PCR describes common modelling processes, then each process separates `inputs` and `outputs`, then separates `product`, `waste`, and `elementary` flows. This structure is used in Markdown and mirrored in `structured.yaml` as `process_inventory`.
 
-Database-backed references are evidence, not identity. Flow UUIDs, flow property UUIDs, unit group UUIDs, process examples, source rows, and command traces belong inside PCR content or `structured.yaml`; external classification codes still belong in the mapping layer.
+Database-backed references are not classification identity. PCR Markdown records selected Tiangong UUIDs without dataset versions, and `structured.yaml` is regenerated as the machine projection of those Markdown tables. CLI command traces and lookup logs are authoring-time evidence and do not belong in PCR content. External classification codes still belong in the mapping layer.
 
 Generated leaf PCR scaffolds may remain empty until reviewed methodology content is authored. Governance and docpact checks cover the builder, mappings, modules, and project contracts; generated `library/pcrs/**` content is excluded until those PCR files become material authored records.

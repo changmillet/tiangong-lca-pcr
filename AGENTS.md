@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 101edae81bc0c765f5a47803abf75bf421f2368d
+lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -54,7 +54,7 @@ Rules:
 
 - `manifest.yaml` owns language-independent PCR identity, title map, lifecycle status, content maturity, target entities, module references, and available languages.
 - `pcr.en-US.md` and `pcr.zh-CN.md` are two language renderings of the same PCR record, not separate PCR records.
-- `structured.yaml` owns machine-oriented PCR rules such as reference flows, flow properties, unit conventions, process inventories, validation rules, data sources, and CLI lookup traces.
+- `structured.yaml` is the machine-oriented projection of the canonical Markdown PCR. It carries reference flows, process inventories, validation-facing fields, and external data sources without authoring trace logs.
 - Do not create parallel `pcrs/en/` and `pcrs/zh-CN/` directory trees.
 - Do not use CPC, HS, ISIC, NAICS, or another external classification system as the canonical PCR directory tree.
 - Do not include external classification codes in PCR directory names. Use semantic PCR slugs such as `wheat-seed`; keep CPC, HS, ISIC, NAICS, and similar codes in mappings and `classification_refs`.
@@ -93,14 +93,20 @@ Use:
 npm run init
 npm run lint
 npm run pcr:scaffold:cpc -- --source <cpc-structure.csv> --classification-version 3.0 --source-url <official-source-url>
+npm run pcr:sync-structured -- --pcr <library/pcrs/...>
+npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
+npm run pcr:publish -- --pcr <library/pcrs/...> --version <semver>
 npm run validate
 ```
 
 Command meanings:
 
-- `init`: create required scaffold directories and repository guide files. It can also create a sample PCR directory with `node builder/cli/index.mjs init --sample-pcr <domain/path/slug> --pcr-id <id>`.
+- `init`: create required scaffold directories and repository guide files. It can also create an optional PCR scaffold directory with `node builder/cli/index.mjs init --sample-pcr <domain/path/slug> --pcr-id <id>`.
 - `lint`: validate required directories and enforce that every PCR directory with `manifest.yaml` also has `pcr.en-US.md`, `pcr.zh-CN.md`, and `structured.yaml`.
 - `pcr:scaffold:cpc`: import an official CPC structure CSV, normalize hierarchy files under `classifications/systems/cpc/<version>/`, create `classifications/mappings/cpc-<version>-to-pcr.yaml`, and create empty bilingual PCR directories for CPC leaf classes only. Generated PCR directories use semantic slugs and do not include CPC codes.
+- `pcr:sync-structured`: parse canonical `pcr.en-US.md` tables and regenerate `structured.yaml` as a UUID-only projection.
+- `pcr:bump`: update the PCR manifest version and `updated_at_utc` lifecycle field.
+- `pcr:publish`: run `pcr:sync-structured`, mark the PCR manifest as published, and set manifest version and publication timestamps.
 - `validate`: run `lint` and the builder CLI tests.
 
 Generated PCR leaf scaffolds under `library/pcrs/**` are intentionally excluded from docpact coverage. The builder, classification sources, mappings, schemas, modules, and project documents remain governed.
@@ -114,10 +120,10 @@ When Tiangong database references are used, prefer the `tiangong-lca` CLI as the
 ```bash
 tiangong-lca search flow --input ./search-flow.request.json --json
 tiangong-lca search process --input ./search-process.request.json --json
-tiangong-lca flow get --id <flow-id> --version <version> --json
+tiangong-lca flow get --id <flow-id> --json
 ```
 
-Record selected flow, flow property, unit group, process, and source evidence in both Markdown and `structured.yaml`. Keep API keys, session files, and other private runtime details out of PCR files.
+PCR content stores selected Tiangong UUIDs without dataset versions. Do not include CLI command traces, search logs, API keys, session files, or private runtime details in PCR Markdown or `structured.yaml`. The Tiangong database is the default source for UUID-bearing references, so list only external literature, standards, official guidance, or other non-default evidence in `Data Sources`.
 
 ## Default Load Order
 

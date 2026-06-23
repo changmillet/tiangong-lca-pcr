@@ -93,7 +93,7 @@ test("lint rejects PCR directories missing the Chinese markdown file", () => {
   }
 });
 
-test("sample PCR scaffold uses process inventory and evidence-backed lookup sections", () => {
+test("optional PCR scaffold uses process inventory without construction trace sections", () => {
   const root = makeTempRoot();
   try {
     runCli(["init", "--root", root]);
@@ -124,8 +124,7 @@ test("sample PCR scaffold uses process inventory and evidence-backed lookup sect
     assert.match(enMarkdown, /##### Elementary flows/);
     assert.match(enMarkdown, /#### Outputs/);
     assert.match(enMarkdown, /## 10\. Data Sources/);
-    assert.match(enMarkdown, /## 11\. CLI Lookup Trace/);
-    assert.doesNotMatch(enMarkdown, /Agent Modelling Instructions|Open Questions/);
+    assert.doesNotMatch(enMarkdown, /CLI Lookup Trace|Agent Modelling Instructions|Open Questions|Review Status/);
 
     assert.match(zhMarkdown, /## 6\. 过程清单结构/);
     assert.match(zhMarkdown, /### 过程：<过程名称>/);
@@ -135,12 +134,147 @@ test("sample PCR scaffold uses process inventory and evidence-backed lookup sect
     assert.match(zhMarkdown, /##### 基本流/);
     assert.match(zhMarkdown, /#### 输出/);
     assert.match(zhMarkdown, /## 10\. 数据源/);
-    assert.match(zhMarkdown, /## 11\. CLI 查询记录/);
-    assert.doesNotMatch(zhMarkdown, /Agent 建模指令|待复核问题/);
+    assert.doesNotMatch(zhMarkdown, /CLI 查询记录|Agent 建模指令|待复核问题|审核状态/);
 
     assert.match(structured, /process_inventory: \[\]/);
     assert.match(structured, /data_sources: \[\]/);
-    assert.match(structured, /cli_lookup_trace: \[\]/);
+    assert.doesNotMatch(structured, /cli_lookup_trace/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("sync-structured projects normative markdown tables to UUID-only structured YAML", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `---
+pcr_id: pcr.agriculture.crops.wheat-seed
+language: en-US
+status: active
+sync_with: pcr.zh-CN.md
+---
+
+# Wheat Seed Production
+
+## 3. Reference Flow
+
+| Role | Tiangong flow | Flow type | UUID | Flow property | Unit group | Preferred unit |
+| --- | --- | --- | --- | --- | --- | --- |
+| Reference product | Wheat | Product flow | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` | Units of mass \`93a60a57-a4c8-11da-a746-0800200c9a66\` | kg |
+
+## 6. Process Inventory Structure
+
+### Process: Field Seed Multiplication
+
+#### Inputs
+
+##### Product flows
+
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Typical range | Range basis | Range sources | Range type |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Previous-generation wheat seed | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | 25-70 kg | per 1,000 kg harvested seed crop | \`unl-wheat-seeding-rate\` | external_source |
+
+#### Outputs
+
+##### Product flows
+
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Typical range | Range basis | Range sources | Range type |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Harvested wheat seed crop | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | 1,000 kg | process reference | \`tg-flow-wheat-seed\` | observed_dataset |
+
+## 10. Data Sources
+
+| Source id | Type | Reference | Used for |
+| --- | --- | --- | --- |
+| \`unl-wheat-seeding-rate\` | extension-guidance | https://cropwatch.unl.edu/determining-seeding-rate-your-winter-wheat/ | seeding rate background |
+`,
+    );
+
+    const output = runCli([
+      "sync-structured",
+      "--root",
+      root,
+      "--pcr",
+      "library/pcrs/agriculture/crops/wheat-seed",
+    ]);
+    const structured = readFileSync(path.join(pcrDir, "structured.yaml"), "utf8");
+
+    assert.match(output, /synced structured PCR/i);
+    assert.match(structured, /source_markdown: pcr\.en-US\.md/);
+    assert.match(structured, /uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"/);
+    assert.match(structured, /process_inventory:/);
+    assert.match(structured, /id: field_seed_multiplication/);
+    assert.match(structured, /range_type: "external_source"/);
+    assert.match(structured, /source_ids:/);
+    assert.match(structured, /- unl-wheat-seeding-rate/);
+    assert.doesNotMatch(structured, /01\.01\.002|@01|version: "01|cli_lookup_trace|review_status/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("bump and publish update PCR manifest lifecycle fields", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+
+    runCli([
+      "bump",
+      "--root",
+      root,
+      "--pcr",
+      "library/pcrs/agriculture/crops/wheat-seed",
+      "--level",
+      "minor",
+    ]);
+    let manifest = readFileSync(path.join(pcrDir, "manifest.yaml"), "utf8");
+    assert.match(manifest, /version: "0\.1\.0"/);
+    assert.match(manifest, /updated_at_utc:/);
+
+    runCli([
+      "publish",
+      "--root",
+      root,
+      "--pcr",
+      "library/pcrs/agriculture/crops/wheat-seed",
+      "--version",
+      "1.0.0",
+    ]);
+    manifest = readFileSync(path.join(pcrDir, "manifest.yaml"), "utf8");
+    assert.match(manifest, /status: published/);
+    assert.match(manifest, /version: "1\.0\.0"/);
+    assert.match(manifest, /published_at_utc:/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

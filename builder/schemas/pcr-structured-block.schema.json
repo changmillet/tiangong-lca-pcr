@@ -12,7 +12,6 @@
     "data_quality_rules": { "type": "array" },
     "validation_rules": { "type": "array" },
     "data_sources": { "type": "array" },
-    "cli_lookup_trace": { "type": "array" },
     "inventory_patterns": {
       "type": "array",
       "deprecated": true,

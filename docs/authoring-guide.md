@@ -21,7 +21,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 101edae81bc0c765f5a47803abf75bf421f2368d
+lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
 ---
 
 # Authoring Guide
@@ -60,7 +60,6 @@ Author material PCRs with this default Markdown structure:
 8. data quality and evidence rules
 9. validation rules
 10. data sources
-11. CLI lookup trace
 
 The process inventory section should decompose the category into common modelling processes. For each process, split rows by `inputs` and `outputs`, then by flow type:
 
@@ -68,7 +67,7 @@ The process inventory section should decompose the category into common modellin
 - waste flows
 - elementary flows
 
-Each flow row should carry the selected flow UUID/version when available, the flow property and unit group references, reference unit, typical range, range basis, range quality, and source ids.
+Each flow row should carry the selected flow UUID when available, the flow property and unit group references, reference unit, typical range, range basis, range type, and source ids.
 
 ## Tiangong CLI Evidence
 
@@ -78,19 +77,19 @@ Use `tiangong-lca-cli` as the preferred authoring evidence tool when PCR content
 cd ../tiangong-lca-cli
 node ./bin/tiangong-lca.js search flow --input ./search-flow.request.json --json
 node ./bin/tiangong-lca.js search process --input ./search-process.request.json --json
-node ./bin/tiangong-lca.js flow get --id <flow-id> --version <version> --json
+node ./bin/tiangong-lca.js flow get --id <flow-id> --json
 ```
 
-`search flow` should be used for product, waste, and elementary flow candidates. `flow get` should be used to confirm the selected row and copy its referenced flow property UUID/version. Unit group UUIDs are resolved from the referenced flow property support row. Until the CLI exposes direct support-row search, do not invent unit group UUIDs; record the support-row lookup method in `CLI Lookup Trace`.
+`search flow` should be used for product, waste, and elementary flow candidates. `flow get` should be used to confirm the selected row and copy its referenced flow property UUID. Unit group UUIDs are resolved from the referenced flow property support row. Until the CLI exposes direct support-row search, do not invent unit group UUIDs.
 
-Every database-backed selection should record:
+Every database-backed selection should record in the PCR content:
 
-- command and query intent
-- selected row id and version
-- reviewer rationale
-- whether the selected record supports flow identity, process decomposition, range evidence, or validation
+- selected row UUID without dataset version
+- selected flow property UUID and unit group UUID when applicable
+- modelling role and whether the selected record supports flow identity, process decomposition, range evidence, or validation
+- external source ids when the quantity range, factor, or boundary rule comes from literature, official guidance, standards, or another non-default source
 
-Do not write API keys, access tokens, session paths, or other private runtime details into PCR files.
+Do not write CLI lookup traces, command history, API keys, access tokens, session paths, or other private runtime details into PCR files. The Tiangong database is the default source for UUID-bearing rows and does not need to be repeated in `Data Sources`.
 
 ## Data Sources and Ranges
 
@@ -98,12 +97,12 @@ Every material PCR should include `Data Sources`. Use stable source ids and refe
 
 For ranges, distinguish:
 
-- `observed-row`: range derived from a Tiangong process row or another explicit dataset row
-- `literature`: range derived from an external source
-- `draft-prior`: early authoring prior that still needs review
-- `pending-review`: placeholder that should not be used as a validation gate
+- `observed_dataset`: range derived from an explicit dataset row
+- `external_source`: range derived from literature, official guidance, standards, or comparable source material
+- `method_formula`: range or factor calculated by a PCR method rule
+- `site_specific`: value must be provided by the foreground model
 
-Flow identity sources and range sources can differ. A flow UUID may come from a CLI flow search while its amount range comes from a process row, literature source, or reviewer prior.
+Flow identity sources and range sources can differ. A flow UUID may come from a CLI flow search while its amount range comes from a process row, literature source, method formula, or foreground site data.
 
 ## CPC Scaffolded PCRs
 
@@ -111,5 +110,5 @@ CPC-generated PCR directories are placeholders until reviewed PCR content is wri
 
 - keep the existing `classification_refs` and CPC-to-PCR mapping unless the classification match is wrong
 - update both `pcr.en-US.md` and `pcr.zh-CN.md` as paired renderings of the same rule
-- put machine-checkable reference-flow, flow-property, unit, process-inventory, boundary, allocation, validation, data-source, and lookup-trace fields in `structured.yaml`
+- run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>` after editing canonical Markdown so `structured.yaml` stays aligned
 - move `status` and `content_maturity` forward only after the PCR has been reviewed for methodology quality
