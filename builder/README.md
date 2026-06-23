@@ -16,6 +16,12 @@ npm run validate
 - `lint` checks required repository paths and bilingual PCR directory completeness.
 - `validate` runs lint plus tests.
 
+Generated sample PCRs use the current authoring skeleton:
+
+- process inventory organized by process, then inputs/outputs, then product/waste/elementary flows
+- data sources for database rows, literature, and review evidence
+- CLI lookup trace for Tiangong database searches and selected UUID/version references
+
 The direct CLI entry point is:
 
 ```bash

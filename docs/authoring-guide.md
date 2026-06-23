@@ -21,7 +21,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 26a32107ce1df0d3f3c17da22d8702968ce6cc7f
+lastReviewedCommit: 101edae81bc0c765f5a47803abf75bf421f2368d
 ---
 
 # Authoring Guide
@@ -46,11 +46,70 @@ Keep language-independent identity and lifecycle state in `manifest.yaml`. Keep 
 
 Use semantic PCR slugs. Do not prefix or suffix PCR directories with CPC, HS, ISIC, NAICS, or other external classification codes. Classification codes belong in mapping files and `classification_refs`.
 
+## Content Structure
+
+Author material PCRs with this default Markdown structure:
+
+1. scope and applicability
+2. product category identity
+3. reference flow
+4. flow properties and unit conventions
+5. system boundary
+6. process inventory structure
+7. allocation and co-product handling
+8. data quality and evidence rules
+9. validation rules
+10. data sources
+11. CLI lookup trace
+
+The process inventory section should decompose the category into common modelling processes. For each process, split rows by `inputs` and `outputs`, then by flow type:
+
+- product flows
+- waste flows
+- elementary flows
+
+Each flow row should carry the selected flow UUID/version when available, the flow property and unit group references, reference unit, typical range, range basis, range quality, and source ids.
+
+## Tiangong CLI Evidence
+
+Use `tiangong-lca-cli` as the preferred authoring evidence tool when PCR content refers to Tiangong database rows. From the workspace, either use an installed `tiangong-lca` binary or the sibling CLI repo:
+
+```bash
+cd ../tiangong-lca-cli
+node ./bin/tiangong-lca.js search flow --input ./search-flow.request.json --json
+node ./bin/tiangong-lca.js search process --input ./search-process.request.json --json
+node ./bin/tiangong-lca.js flow get --id <flow-id> --version <version> --json
+```
+
+`search flow` should be used for product, waste, and elementary flow candidates. `flow get` should be used to confirm the selected row and copy its referenced flow property UUID/version. Unit group UUIDs are resolved from the referenced flow property support row. Until the CLI exposes direct support-row search, do not invent unit group UUIDs; record the support-row lookup method in `CLI Lookup Trace`.
+
+Every database-backed selection should record:
+
+- command and query intent
+- selected row id and version
+- reviewer rationale
+- whether the selected record supports flow identity, process decomposition, range evidence, or validation
+
+Do not write API keys, access tokens, session paths, or other private runtime details into PCR files.
+
+## Data Sources and Ranges
+
+Every material PCR should include `Data Sources`. Use stable source ids and reference them from inventory rows.
+
+For ranges, distinguish:
+
+- `observed-row`: range derived from a Tiangong process row or another explicit dataset row
+- `literature`: range derived from an external source
+- `draft-prior`: early authoring prior that still needs review
+- `pending-review`: placeholder that should not be used as a validation gate
+
+Flow identity sources and range sources can differ. A flow UUID may come from a CLI flow search while its amount range comes from a process row, literature source, or reviewer prior.
+
 ## CPC Scaffolded PCRs
 
 CPC-generated PCR directories are placeholders until reviewed PCR content is written. When filling one of these records:
 
 - keep the existing `classification_refs` and CPC-to-PCR mapping unless the classification match is wrong
 - update both `pcr.en-US.md` and `pcr.zh-CN.md` as paired renderings of the same rule
-- put machine-checkable reference-flow, inventory-flow, boundary, allocation, and QA patterns in `structured.yaml`
+- put machine-checkable reference-flow, flow-property, unit, process-inventory, boundary, allocation, validation, data-source, and lookup-trace fields in `structured.yaml`
 - move `status` and `content_maturity` forward only after the PCR has been reviewed for methodology quality

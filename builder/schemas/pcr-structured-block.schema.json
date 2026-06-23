@@ -4,9 +4,25 @@
   "type": "object",
   "properties": {
     "reference_flows": { "type": "array" },
-    "inventory_patterns": { "type": "array" },
-    "qa_rules": { "type": "array" }
+    "flow_properties": { "type": "array" },
+    "unit_conventions": { "type": "array" },
+    "system_boundary": { "type": "object" },
+    "process_inventory": { "type": "array" },
+    "allocation_rules": { "type": "array" },
+    "data_quality_rules": { "type": "array" },
+    "validation_rules": { "type": "array" },
+    "data_sources": { "type": "array" },
+    "cli_lookup_trace": { "type": "array" },
+    "inventory_patterns": {
+      "type": "array",
+      "deprecated": true,
+      "description": "Legacy field. Use process_inventory with per-process input/output groups."
+    },
+    "qa_rules": {
+      "type": "array",
+      "deprecated": true,
+      "description": "Legacy field. Use validation_rules."
+    }
   },
   "additionalProperties": true
 }
-

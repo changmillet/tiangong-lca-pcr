@@ -116,32 +116,6 @@ function pcrMarkdown(options, language) {
     language === "zh-CN"
       ? String(options["title-zh-CN"] ?? "PCR 样例占位")
       : String(options["title-en-US"] ?? options["title-en"] ?? "Sample PCR Placeholder");
-  const sections =
-    language === "zh-CN"
-      ? [
-          "范围与适用性",
-          "分析单位",
-          "参考流模式",
-          "清单流模式",
-          "系统边界",
-          "分配与计算规则",
-          "数据质量与证据规则",
-          "生命周期模型指导",
-          "校验规则",
-          "开放问题",
-        ]
-      : [
-          "Scope and Applicability",
-          "Unit of Analysis",
-          "Reference Flow Patterns",
-          "Inventory Flow Patterns",
-          "System Boundary",
-          "Allocation and Calculation Rules",
-          "Data Quality and Evidence Rules",
-          "Lifecycle Model Guidance",
-          "Validation Rules",
-          "Open Questions",
-        ];
 
   return `---
 pcr_id: ${pcrId}
@@ -152,15 +126,108 @@ sync_with: ${language === "zh-CN" ? PCR_EN_FILE : PCR_ZH_FILE}
 
 # ${title}
 
-${sections.map((section) => `## ${section}\n`).join("\n")}`;
+${language === "zh-CN" ? zhPcrBody() : enPcrBody()}`;
 }
 
 function structuredYaml() {
   return `schema_version: 1
 status: scaffold
 reference_flows: []
-inventory_patterns: []
-qa_rules: []
+flow_properties: []
+unit_conventions: []
+system_boundary: {}
+process_inventory: []
+allocation_rules: []
+data_quality_rules: []
+validation_rules: []
+data_sources: []
+cli_lookup_trace: []
+`;
+}
+
+function enPcrBody() {
+  return `## 1. Scope and Applicability
+
+## 2. Product Category Identity
+
+## 3. Reference Flow
+
+## 4. Flow Properties and Unit Conventions
+
+## 5. System Boundary
+
+## 6. Process Inventory Structure
+
+### Process: <process name>
+
+#### Inputs
+
+##### Product flows
+
+##### Waste flows
+
+##### Elementary flows
+
+#### Outputs
+
+##### Product flows
+
+##### Waste flows
+
+##### Elementary flows
+
+## 7. Allocation and Co-product Handling
+
+## 8. Data Quality and Evidence Rules
+
+## 9. Validation Rules
+
+## 10. Data Sources
+
+## 11. CLI Lookup Trace
+`;
+}
+
+function zhPcrBody() {
+  return `## 1. 范围与适用性
+
+## 2. 产品类别识别
+
+## 3. 参考流
+
+## 4. 流属性与单位约定
+
+## 5. 系统边界
+
+## 6. 过程清单结构
+
+### 过程：<过程名称>
+
+#### 输入
+
+##### 产品流
+
+##### 废物流
+
+##### 基本流
+
+#### 输出
+
+##### 产品流
+
+##### 废物流
+
+##### 基本流
+
+## 7. 分配与共产品处理
+
+## 8. 数据质量与证据规则
+
+## 9. 校验规则
+
+## 10. 数据源
+
+## 11. CLI 查询记录
 `;
 }
 
@@ -406,7 +473,8 @@ sync_with: ${language === "zh-CN" ? PCR_EN_FILE : PCR_ZH_FILE}
 ---
 
 # ${title}
-`;
+
+${language === "zh-CN" ? zhPcrBody() : enPcrBody()}`;
 }
 
 function cpcStructuredYaml(leaf, classificationVersion) {
@@ -418,8 +486,15 @@ classification_seed:
   code: ${yamlString(leaf.code)}
   title: ${yamlString(leaf.title)}
 reference_flows: []
-inventory_patterns: []
-qa_rules: []
+flow_properties: []
+unit_conventions: []
+system_boundary: {}
+process_inventory: []
+allocation_rules: []
+data_quality_rules: []
+validation_rules: []
+data_sources: []
+cli_lookup_trace: []
 `;
 }
 

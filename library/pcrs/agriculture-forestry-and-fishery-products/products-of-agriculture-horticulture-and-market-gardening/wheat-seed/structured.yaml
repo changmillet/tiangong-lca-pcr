@@ -6,53 +6,757 @@ classification_seed:
   code: "01111"
   title: "Wheat, seed"
 reference_flows:
-  - id: wheat_seed_farm_gate_mass
-    label: "Wheat seed for sowing, cleaned and treated where applicable, at farm or seed plant gate"
+  - id: wheat_seed_seed_plant_gate_mass
+    label: "1 kg wheat seed for sowing, cleaned and graded, at seed plant gate"
     flow_type: product
+    tiangong_flow_ref:
+      id: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+      version: "01.01.002"
+      name: "Wheat"
+      selection_source: tg-flow-wheat-seed
+    preferred_flow_property_ref:
+      id: "93a60a56-a3c8-11da-a746-0800200b9a66"
+      version: "03.00.003"
+      name: "Mass"
+    preferred_unit_group_ref:
+      id: "93a60a57-a4c8-11da-a746-0800200c9a66"
+      version: "03.00.003"
+      name: "Units of mass"
     preferred_unit: kg
-    flow_properties:
-      - mass
-      - seed_count
+    required_qualifiers:
+      - seed_class
+      - treatment_status
+      - moisture_basis
+      - purity
       - germination_rate
-      - moisture_content
+      - geography
+      - gate
+flow_properties:
+  - id: mass
+    tiangong_ref:
+      id: "93a60a56-a3c8-11da-a746-0800200b9a66"
+      version: "03.00.003"
+    unit_group_ref:
+      id: "93a60a57-a4c8-11da-a746-0800200c9a66"
+      version: "03.00.003"
     common_units:
       - kg
-      - tonne
-      - seed
-inventory_patterns:
-  - id: field_seed_production
-    process_scope: "field cultivation for seed multiplication"
-    required_product_inputs:
-      - breeder_or_foundation_seed
-      - fertilizers
-      - crop_protection_products
-      - diesel_or_field_energy
-    required_product_outputs:
-      - cleaned_wheat_seed
-      - rejected_seed_or_screenings
-    required_elementary_outputs:
-      - dinitrogen_monoxide_to_air
-      - ammonia_to_air
-      - nitrate_to_water
-      - carbon_dioxide_fossil_to_air
-  - id: post_harvest_seed_conditioning
-    process_scope: "drying, cleaning, grading, treatment, packaging, and storage"
-    required_product_inputs:
-      - electricity
-      - heat_or_fuel
-      - packaging
+      - t
+      - g
+  - id: net_calorific_value
+    tiangong_ref:
+      id: "93a60a56-a3c8-11da-a746-0800200c9a66"
+      version: "03.00.003"
+    unit_group_ref:
+      id: "93a60a57-a3c8-11da-a746-0800200c9a66"
+      version: "03.00.003"
+    common_units:
+      - MJ
+      - kWh
+  - id: number_of_items
+    tiangong_ref:
+      id: "01846770-4cfe-4a25-8ad9-919d8d378345"
+      version: "03.00.004"
+    unit_group_ref:
+      id: "5beb6eed-33a9-47b8-9ede-1dfe8f679159"
+      version: "03.00.003"
+    common_units:
+      - item
+      - dozen
+unit_conventions:
+  - id: product_and_waste_mass
+    preferred_property: mass
+    preferred_unit: kg
+  - id: electricity_and_energy
+    preferred_property: net_calorific_value
+    preferred_units:
+      - MJ
+      - kWh
+  - id: packaging_count
+    preferred_property: number_of_items
+    preferred_unit: item
+system_boundary:
+  default_boundary: cradle_to_gate
+  included_processes:
+    - upstream_inputs
+    - field_seed_multiplication
+    - seed_conditioning_treatment_packaging
+    - storage_and_gate_delivery_when_declared
+  excluded_by_default:
+    - downstream_crop_production_using_seed
+    - capital_goods
+  conditional_inclusions:
+    - land_use_when_required_by_method_or_goal
+    - delivery_transport_when_reference_flow_is_delivered_seed
+process_inventory:
+  - id: field_seed_multiplication
+    label:
+      en-US: "Field Seed Multiplication"
+      zh-CN: "田间繁种"
+    inputs:
+      product:
+        - role: previous_generation_wheat_seed
+          selected_flow:
+            id: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+            version: "01.01.002"
+            name: "Wheat"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 25
+            upper: 70
+            unit: kg
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - tg-process-wheat-cultivation
+              - unl-wheat-seeding-rate
+              - umn-small-grain-seeding-rate
+            quality: draft-prior
+        - role: nitrogen_fertilizer_carrier
+          selected_flow:
+            id: "3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e"
+            version: "01.01.001"
+            name: "Urea"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: "record as kg product and kg N; no fixed PCR limit"
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+              - ipcc-2019-managed-soils-n2o
+            quality: pending-review
+        - role: phosphate_fertilizer
+          selected_flow:
+            id: "9c196b01-6aad-4252-a6e8-f853853a830c"
+            version: "01.01.002"
+            name: "Phosphate fertilizer"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: site-specific
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: potassium_fertilizer
+          selected_flow:
+            id: "dd008d87-16e4-4e85-a048-b9949f6fbca6"
+            version: "01.01.001"
+            name: "Potassium fertilizer"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: site-specific
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: irrigation_water_product
+          selected_flow:
+            id: "4ad684b1-8e85-4dee-8d9c-55d1fa2d4432"
+            version: "01.01.002"
+            name: "Irrigation water"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 5000
+            unit: kg
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - tg-process-wheat-cultivation
+            quality: observed-row
+        - role: machinery_fuel
+          selected_flow:
+            id: "57e0b1a3-2d05-46b2-b61b-cf7b5b167c6f"
+            version: "01.01.000"
+            name: "Diesel, burned in agricultural machinery"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 5
+            upper: 40
+            unit: kg
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: draft-prior
+        - role: herbicide_proxy
+          selected_flow:
+            id: "c1370404-9e2b-4ed6-ba96-c094f74e0f2d"
+            version: "01.01.001"
+            name: "Herbicide"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 5
+            unit: "kg active ingredient"
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: fungicide_proxy
+          selected_flow:
+            id: "8a1f4968-6428-413f-a50b-b413bf9190cf"
+            version: "01.01.001"
+            name: "Azoxystrobin"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 5
+            unit: "kg active ingredient"
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: insecticide_proxy
+          selected_flow:
+            id: "ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b"
+            version: "01.01.002"
+            name: "Insecticide"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 5
+            unit: "kg active ingredient"
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+      waste: []
+      elementary:
+        - role: water_withdrawal
+          selected_flow:
+            id: "419682fe-60fb-4b43-be89-bf2824b51104"
+            version: "00.00.002"
+            name: "water"
+            flow_type: elementary
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: "align with irrigation water input"
+            source_ids:
+              - tg-process-wheat-cultivation
+            quality: observed-row
+    outputs:
+      product:
+        - role: harvested_wheat_seed_crop
+          selected_flow:
+            id: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+            version: "01.01.002"
+            name: "Wheat"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            value: 1000
+            unit: kg
+            basis: "field subprocess quantitative reference"
+            source_ids:
+              - tg-flow-wheat-seed
+            quality: observed-row
+        - role: straw_or_field_residue
+          selected_flow:
+            id: "bcaf0254-cdd3-43d1-823a-2f69df3801d8"
+            version: "01.01.001"
+            name: "Wheat straw"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 2000
+            unit: kg
+            basis: "per 1,000 kg harvested seed crop"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: draft-prior
+      waste: []
+      elementary:
+        - role: direct_soil_n2o_reported_to_air
+          selected_flow:
+            id: "08a91e70-3ddc-11dd-94c3-0050c2490048"
+            version: "03.00.004"
+            name: "nitrous oxide"
+            flow_type: elementary
+            compartment: "emissions to air, unspecified"
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: "calculate from nitrogen inputs; IPCC EF1 default is 1 percent of N applied as N2O-N"
+            source_ids:
+              - ipcc-2019-managed-soils-n2o
+            quality: literature
+        - role: ammonia_volatilization
+          selected_flow:
+            id: "08a91e70-3ddc-11dd-a2a9-0050c2490048"
+            version: "03.00.004"
+            name: "ammonia"
+            flow_type: elementary
+            compartment: "emissions to air, unspecified"
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: site-specific
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: nitrate_leaching
+          selected_flow:
+            id: "4d9a8790-3ddd-11dd-8d68-0050c2490048"
+            version: "03.00.004"
+            name: "nitrate"
+            flow_type: elementary
+            compartment: "emissions to fresh water"
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: site-specific
+            source_ids:
+              - ipcc-2019-managed-soils-n2o
+            quality: pending-review
+        - role: fossil_carbon_dioxide
+          selected_flow:
+            id: "08a91e70-3ddc-11dd-923d-0050c2490048"
+            version: "03.00.004"
+            name: "carbon dioxide (fossil)"
+            flow_type: elementary
+            compartment: "emissions to air, unspecified"
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: "derived from fuel and energy datasets"
+            source_ids:
+              - tg-cli-flow-search-2026-06-23
+            quality: derived
+  - id: seed_conditioning_treatment_packaging
+    label:
+      en-US: "Seed Conditioning, Treatment, and Packaging"
+      zh-CN: "种子清选、处理与包装"
+    inputs:
+      product:
+        - role: harvested_seed_crop_input
+          selected_flow:
+            id: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+            version: "01.01.002"
+            name: "Wheat"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 1000
+            upper: 1250
+            unit: kg
+            basis: "per 1,000 kg cleaned seed output"
+            source_ids:
+              - usda-seed-cleaning-handling
+              - authoring-prior-wheat-seed
+            quality: draft-prior
+        - role: cleaning_and_conditioning_electricity
+          selected_flow:
+            id: "4d0361a3-56cc-45f9-aa42-bb9103285bf9"
+            version: "01.01.001"
+            name: "alternating current"
+            flow_type: product
+          property: net_calorific_value
+          preferred_units:
+            - MJ
+            - kWh
+          typical_range:
+            lower: 18
+            upper: 288
+            unit: MJ
+            basis: "per 1,000 kg cleaned seed output"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: draft-prior
+        - role: seed_treatment_fungicide_proxy
+          selected_flow:
+            id: "8a1f4968-6428-413f-a50b-b413bf9190cf"
+            version: "01.01.001"
+            name: "Azoxystrobin"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 10
+            unit: "g active ingredient/kg seed"
+            basis: "per kg treated seed"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: seed_treatment_insecticide_proxy
+          selected_flow:
+            id: "ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b"
+            version: "01.01.002"
+            name: "Insecticide"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 10
+            unit: "g active ingredient/kg seed"
+            basis: "per kg treated seed"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: woven_polypropylene_bag
+          selected_flow:
+            id: "9bfaad07-355e-467a-9bab-f95094e7c869"
+            version: "01.01.000"
+            name: "Woven polypropylene bag"
+            flow_type: product
+          property: number_of_items
+          preferred_unit: item
+          typical_range:
+            lower: 20
+            upper: 50
+            unit: bags
+            basis: "per 1,000 kg packaged seed, depending on bag size"
+            source_ids:
+              - tg-cli-flow-search-2026-06-23
+            quality: draft-prior
+      waste: []
+      elementary: []
+    outputs:
+      product:
+        - role: cleaned_wheat_seed_for_sowing
+          selected_flow:
+            id: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+            version: "01.01.002"
+            name: "Wheat"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            value: 1000
+            unit: kg
+            basis: "PCR reference output"
+            source_ids:
+              - tg-flow-wheat-seed
+            quality: observed-row
+      waste:
+        - role: screenings_rejected_seed_dust_offgrade
+          selected_flow:
+            id: "e6d6aa78-105e-4acc-a84b-46f68765a1cc"
+            version: "00.00.004"
+            name: "Rejects"
+            flow_type: waste
+            relation: proxy
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 10
+            upper: 200
+            unit: kg
+            basis: "per 1,000 kg cleaned seed output"
+            source_ids:
+              - usda-seed-cleaning-handling
+              - tg-cli-flow-search-2026-06-23
+            quality: proxy
+      elementary:
+        - role: dust_to_air_from_cleaning
+          selected_flow:
+            id: pending-db-match
+            name: "dust to air"
+            flow_type: elementary
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: site-specific
+            source_ids:
+              - usda-seed-cleaning-handling
+            quality: pending-review
+        - role: fossil_carbon_dioxide_from_conditioning_energy
+          selected_flow:
+            id: "08a91e70-3ddc-11dd-923d-0050c2490048"
+            version: "03.00.004"
+            name: "carbon dioxide (fossil)"
+            flow_type: elementary
+            compartment: "emissions to air, unspecified"
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: "derived from energy datasets"
+            source_ids:
+              - tg-cli-flow-search-2026-06-23
+            quality: derived
+  - id: storage_and_gate_delivery
+    label:
+      en-US: "Storage and Gate Delivery"
+      zh-CN: "储存与交付边界运输"
+    conditional: true
+    inputs:
+      product:
+        - role: storage_electricity
+          selected_flow:
+            id: "4d0361a3-56cc-45f9-aa42-bb9103285bf9"
+            version: "01.01.001"
+            name: "alternating current"
+            flow_type: product
+          property: net_calorific_value
+          typical_range:
+            expression: site-specific
+            basis: "per storage duration"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: pending-review
+        - role: delivery_fuel
+          selected_flow:
+            id: "9d258d75-6792-4f1c-9856-81602ed8f816"
+            version: "01.01.001"
+            name: "Diesel oil"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: route-specific
+            basis: "per tonne-km"
+            source_ids:
+              - tg-cli-flow-search-2026-06-23
+            quality: pending-review
+      waste: []
+      elementary: []
+    outputs:
+      product:
+        - role: declared_gate_product
+          selected_flow:
+            id: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+            version: "01.01.002"
+            name: "Wheat"
+            flow_type: product
+          property: mass
+          preferred_unit: kg
+      waste:
+        - role: storage_losses_or_damaged_seed
+          selected_flow:
+            id: "e6d6aa78-105e-4acc-a84b-46f68765a1cc"
+            version: "00.00.004"
+            name: "Rejects"
+            flow_type: waste
+            relation: proxy
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            lower: 0
+            upper: 20
+            unit: kg
+            basis: "per 1,000 kg stored seed"
+            source_ids:
+              - authoring-prior-wheat-seed
+            quality: draft-prior
+      elementary:
+        - role: fossil_carbon_dioxide_from_storage_or_delivery_energy
+          selected_flow:
+            id: "08a91e70-3ddc-11dd-923d-0050c2490048"
+            version: "03.00.004"
+            name: "carbon dioxide (fossil)"
+            flow_type: elementary
+            compartment: "emissions to air, unspecified"
+          property: mass
+          preferred_unit: kg
+          typical_range:
+            expression: "derived from fuel and energy datasets"
+            source_ids:
+              - tg-cli-flow-search-2026-06-23
+            quality: derived
+allocation_rules:
+  - id: avoid_allocation_by_subdivision
+    priority: 1
+    description: "Subdivide seed product, screenings, straw management, and reject treatment where possible."
+  - id: substitution_when_market_documented
+    priority: 2
+    description: "Apply substitution only with documented displaced product and market."
+  - id: economic_allocation_for_marketed_coproducts
+    priority: 3
+    description: "Use economic allocation when seed, screenings, and straw are marketed products and price data are reliable."
+  - id: mass_allocation_fallback
+    priority: 4
+    description: "Use mass allocation only as fallback and flag for review."
+data_quality_rules:
+  - id: required_foreground_data
+    required_fields:
+      - geography
+      - production_year_or_average
+      - seed_class
+      - seed_lot_quality
+      - field_yield
+      - cleaned_seed_yield
+      - seed_rate
+      - fertilizer_application_rates
+      - irrigation_status
+      - field_fuel_or_operations
+      - conditioning_energy
       - seed_treatment_active_ingredients
-    required_product_outputs:
-      - certified_wheat_seed
-      - screenings
-      - packaging_waste
-qa_rules:
+      - coproduct_and_waste_fates
+validation_rules:
   - id: reference_flow_has_seed_quality
     severity: warning
-    description: "Reference flow should state moisture content basis, purity class, germination rate, and treatment status when known."
-  - id: inventory_has_agronomic_basis
+    description: "Reference flow should state mass, gate, treatment status, moisture basis, purity, and germination rate when known."
+  - id: process_inventory_is_directional
     severity: error
-    description: "Field production inventory must state yield, seed rate, fertilizer rates, irrigation status, and cultivation geography."
-  - id: coproduct_allocation_declared
+    description: "Each process inventory must separate inputs and outputs, then product, waste, and elementary flows."
+  - id: range_sources_declared
+    severity: warning
+    description: "Typical ranges must cite source ids and range quality."
+  - id: coproduct_fate_declared
     severity: error
-    description: "Screenings, rejected seed, grain, and straw handling must declare cut-off, substitution, mass allocation, or economic allocation."
+    description: "Screenings, rejected seed, straw, and packaging waste must have a declared fate."
+data_sources:
+  - id: tg-flow-wheat-seed
+    type: tiangong-db-row
+    reference: "flow 12da5e7d-9b93-4404-8c7d-08f98bec6238@01.01.002"
+    used_for:
+      - reference_flow_identity
+      - product_flow_reuse
+    review_status: selected
+  - id: tg-cli-flow-search-2026-06-23
+    type: tiangong-cli-search
+    reference: "tiangong-lca search flow --json"
+    used_for:
+      - flow_uuid_candidate_selection
+    review_status: selected
+  - id: tg-cli-support-read-2026-06-23
+    type: tiangong-db-row
+    reference: "flowproperty and unitgroup support rows referenced by selected flows"
+    used_for:
+      - flow_property_uuid
+      - unit_group_uuid
+    review_status: selected
+  - id: tg-process-wheat-cultivation
+    type: tiangong-db-row
+    reference: "process d145ea84-0aa6-4fca-a8f8-99ef3684d016@01.01.000"
+    used_for:
+      - field_inventory_comparator
+      - water_input_range
+    review_status: comparator_only
+  - id: fao-wheat-seed-production
+    type: official-guidance
+    reference: "https://www.fao.org/4/y4011e/y4011e0v.htm"
+    used_for:
+      - process_boundary
+      - seed_quality_context
+    review_status: background
+  - id: unl-wheat-seeding-rate
+    type: extension-guidance
+    reference: "https://cropwatch.unl.edu/determining-seeding-rate-your-winter-wheat/"
+    used_for:
+      - seeding_rate_background
+    review_status: background
+  - id: umn-small-grain-seeding-rate
+    type: extension-guidance
+    reference: "https://extension.umn.edu/planting-small-grains/seeding-rate-small-grains"
+    used_for:
+      - seeding_rate_formula
+      - stand_loss_context
+    review_status: background
+  - id: usda-seed-cleaning-handling
+    type: official-handbook
+    reference: "https://www.govinfo.gov/content/pkg/GOVPUB-A-PURL-gpo20323/pdf/GOVPUB-A-PURL-gpo20323.pdf"
+    used_for:
+      - conditioning_process_decomposition
+      - rejects_and_screenings_context
+    review_status: background
+  - id: ipcc-2019-managed-soils-n2o
+    type: official-method-guidance
+    reference: "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf"
+    used_for:
+      - n2o_emission_factor
+      - nitrogen_emission_modelling
+    review_status: background
+  - id: authoring-prior-wheat-seed
+    type: reviewer-prior
+    reference: "this draft PCR"
+    used_for:
+      - placeholder_ranges_pending_review
+    review_status: pending-review
+cli_lookup_trace:
+  - id: cli-flow-wheat-seed
+    tool: tiangong-lca-cli
+    command: "search flow --json"
+    query:
+      query: "wheat seed"
+      filter:
+        flowType: "Product flow"
+    selected_refs:
+      - "flow:12da5e7d-9b93-4404-8c7d-08f98bec6238@01.01.002"
+    rationale: "classification leaf is Wheat, seed"
+  - id: cli-flow-field-inputs
+    tool: tiangong-lca-cli
+    command: "search flow --json"
+    query_terms:
+      - diesel
+      - electricity
+      - nitrogen fertilizer
+      - phosphate fertilizer
+      - potassium fertilizer
+      - water irrigation
+    selected_refs:
+      - "flow:57e0b1a3-2d05-46b2-b61b-cf7b5b167c6f@01.01.000"
+      - "flow:4d0361a3-56cc-45f9-aa42-bb9103285bf9@01.01.001"
+      - "flow:3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e@01.01.001"
+      - "flow:9c196b01-6aad-4252-a6e8-f853853a830c@01.01.002"
+      - "flow:dd008d87-16e4-4e85-a048-b9949f6fbca6@01.01.001"
+      - "flow:4ad684b1-8e85-4dee-8d9c-55d1fa2d4432@01.01.002"
+  - id: cli-flow-crop-protection
+    tool: tiangong-lca-cli
+    command: "search flow --json"
+    query_terms:
+      - herbicide
+      - fungicide
+      - insecticide
+      - seed treatment
+    selected_refs:
+      - "flow:c1370404-9e2b-4ed6-ba96-c094f74e0f2d@01.01.001"
+      - "flow:8a1f4968-6428-413f-a50b-b413bf9190cf@01.01.001"
+      - "flow:ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b@01.01.002"
+    rationale: "proxy product flows; crop-specific prescriptions remain pending review"
+  - id: cli-flow-elementary
+    tool: tiangong-lca-cli
+    command: "search flow --json"
+    query_terms:
+      - "nitrous oxide air"
+      - "ammonia air"
+      - "nitrate water"
+      - "carbon dioxide fossil air"
+      - "water resource"
+    selected_refs:
+      - "flow:08a91e70-3ddc-11dd-94c3-0050c2490048@03.00.004"
+      - "flow:08a91e70-3ddc-11dd-a2a9-0050c2490048@03.00.004"
+      - "flow:4d9a8790-3ddd-11dd-8d68-0050c2490048@03.00.004"
+      - "flow:08a91e70-3ddc-11dd-923d-0050c2490048@03.00.004"
+      - "flow:419682fe-60fb-4b43-be89-bf2824b51104@00.00.002"
+    rationale: "selected by compartment where available"
+  - id: cli-process-wheat-cultivation
+    tool: tiangong-lca-cli
+    commands:
+      - "search process --json"
+      - "process get --id d145ea84-0aa6-4fca-a8f8-99ef3684d016 --version 01.01.000 --json"
+    selected_refs:
+      - "process:d145ea84-0aa6-4fca-a8f8-99ef3684d016@01.01.000"
+    rationale: "used as wheat cultivation comparator, not final wheat-seed process"
+  - id: support-flowproperty-unitgroup
+    tool: tiangong-db-support-lookup
+    selected_refs:
+      - "flowproperty:93a60a56-a3c8-11da-a746-0800200b9a66@03.00.003"
+      - "flowproperty:93a60a56-a3c8-11da-a746-0800200c9a66@03.00.003"
+      - "flowproperty:01846770-4cfe-4a25-8ad9-919d8d378345@03.00.004"
+      - "unitgroup:93a60a57-a4c8-11da-a746-0800200c9a66@03.00.003"
+      - "unitgroup:93a60a57-a3c8-11da-a746-0800200c9a66@03.00.003"
+      - "unitgroup:5beb6eed-33a9-47b8-9ede-1dfe8f679159@03.00.003"
+    rationale: "support rows resolved from selected flow references; direct support search is not exposed by CLI yet"

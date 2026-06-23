@@ -93,6 +93,59 @@ test("lint rejects PCR directories missing the Chinese markdown file", () => {
   }
 });
 
+test("sample PCR scaffold uses process inventory and evidence-backed lookup sections", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+
+    const enMarkdown = readFileSync(path.join(pcrDir, "pcr.en-US.md"), "utf8");
+    const zhMarkdown = readFileSync(path.join(pcrDir, "pcr.zh-CN.md"), "utf8");
+    const structured = readFileSync(path.join(pcrDir, "structured.yaml"), "utf8");
+
+    assert.match(enMarkdown, /## 6\. Process Inventory Structure/);
+    assert.match(enMarkdown, /### Process: <process name>/);
+    assert.match(enMarkdown, /#### Inputs/);
+    assert.match(enMarkdown, /##### Product flows/);
+    assert.match(enMarkdown, /##### Waste flows/);
+    assert.match(enMarkdown, /##### Elementary flows/);
+    assert.match(enMarkdown, /#### Outputs/);
+    assert.match(enMarkdown, /## 10\. Data Sources/);
+    assert.match(enMarkdown, /## 11\. CLI Lookup Trace/);
+    assert.doesNotMatch(enMarkdown, /Agent Modelling Instructions|Open Questions/);
+
+    assert.match(zhMarkdown, /## 6\. 过程清单结构/);
+    assert.match(zhMarkdown, /### 过程：<过程名称>/);
+    assert.match(zhMarkdown, /#### 输入/);
+    assert.match(zhMarkdown, /##### 产品流/);
+    assert.match(zhMarkdown, /##### 废物流/);
+    assert.match(zhMarkdown, /##### 基本流/);
+    assert.match(zhMarkdown, /#### 输出/);
+    assert.match(zhMarkdown, /## 10\. 数据源/);
+    assert.match(zhMarkdown, /## 11\. CLI 查询记录/);
+    assert.doesNotMatch(zhMarkdown, /Agent 建模指令|待复核问题/);
+
+    assert.match(structured, /process_inventory: \[\]/);
+    assert.match(structured, /data_sources: \[\]/);
+    assert.match(structured, /cli_lookup_trace: \[\]/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("scaffold-cpc creates PCR directories only for CPC leaf classes", () => {
   const root = makeTempRoot();
   try {

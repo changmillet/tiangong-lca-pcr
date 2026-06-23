@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 26a32107ce1df0d3f3c17da22d8702968ce6cc7f
+lastReviewedCommit: 101edae81bc0c765f5a47803abf75bf421f2368d
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -54,7 +54,7 @@ Rules:
 
 - `manifest.yaml` owns language-independent PCR identity, title map, lifecycle status, content maturity, target entities, module references, and available languages.
 - `pcr.en-US.md` and `pcr.zh-CN.md` are two language renderings of the same PCR record, not separate PCR records.
-- `structured.yaml` owns machine-oriented PCR rules such as reference flow patterns, inventory flow patterns, and QA rules.
+- `structured.yaml` owns machine-oriented PCR rules such as reference flows, flow properties, unit conventions, process inventories, validation rules, data sources, and CLI lookup traces.
 - Do not create parallel `pcrs/en/` and `pcrs/zh-CN/` directory trees.
 - Do not use CPC, HS, ISIC, NAICS, or another external classification system as the canonical PCR directory tree.
 - Do not include external classification codes in PCR directory names. Use semantic PCR slugs such as `wheat-seed`; keep CPC, HS, ISIC, NAICS, and similar codes in mappings and `classification_refs`.
@@ -104,6 +104,20 @@ Command meanings:
 - `validate`: run `lint` and the builder CLI tests.
 
 Generated PCR leaf scaffolds under `library/pcrs/**` are intentionally excluded from docpact coverage. The builder, classification sources, mappings, schemas, modules, and project documents remain governed.
+
+## PCR Authoring Evidence
+
+Material PCR Markdown should organize inventories by common process first, then by input/output direction, then by flow type (`product`, `waste`, `elementary`), and finally by individual flow rows.
+
+When Tiangong database references are used, prefer the `tiangong-lca` CLI as the authoring evidence tool:
+
+```bash
+tiangong-lca search flow --input ./search-flow.request.json --json
+tiangong-lca search process --input ./search-process.request.json --json
+tiangong-lca flow get --id <flow-id> --version <version> --json
+```
+
+Record selected flow, flow property, unit group, process, and source evidence in both Markdown and `structured.yaml`. Keep API keys, session files, and other private runtime details out of PCR files.
 
 ## Default Load Order
 
