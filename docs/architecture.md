@@ -22,7 +22,7 @@ checkPaths:
   - classifications/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: f2383cbcc512f42291b6d8e2d575a378fd00fc78
+lastReviewedCommit: 9354cd26a4873d72a4377f043f5152c3fbfa395a
 ---
 
 # Architecture
@@ -35,7 +35,7 @@ classification code -> mapping -> canonical PCR -> modules -> rendered PCR
 
 Canonical PCR records live under `library/pcrs/`. Classification source data and mappings live under `classifications/`.
 
-Builder assets under `builder/` define the agent authoring system: workflows describe PCR production steps, tool notes explain Tiangong CLI and evidence-source use, contracts define required artifact shapes, vocabularies provide controlled values for future linting, and prompts provide thin entrypoints for agent tools.
+Builder assets under `builder/` separate implementation from documentation. CLI, scripts, schemas, templates, fixtures, and vocabularies stay directly under `builder/`; human and agent documentation lives under `builder/docs/`. `builder/AGENTS.md` provides task routing, while `builder/docs/index.md` maps workflows, contracts, methods, tools, and prompts.
 
 For CPC-backed bootstrapping, the builder stores the official source file and normalized hierarchy under `classifications/systems/cpc/<version>/`, then writes an explicit mapping file under `classifications/mappings/`. The CPC hierarchy seeds the initial PCR scaffold, but the generated PCR directory remains the canonical PCR identity.
 

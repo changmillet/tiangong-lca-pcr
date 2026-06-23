@@ -5,9 +5,10 @@ Review the target PCR for compliance with TianGong PCR authoring contracts.
 Read:
 
 - `builder/AGENTS.md`
-- `builder/agent-workflows/review-pcr.md`
-- `builder/contracts/*.md`
-- `builder/vocab/*.yaml`
+- `builder/docs/index.md`
+- `builder/docs/workflows/review-pcr.md`
+
+Then read only the contracts, methods, and vocab files needed to review the affected PCR surface.
 
 Report findings in this order:
 

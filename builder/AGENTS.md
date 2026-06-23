@@ -2,17 +2,6 @@
 
 This directory defines how agents construct, update, validate, and publish PCR records.
 
-## Load Order
-
-1. `builder/AGENTS.md`
-2. `builder/agent-workflows/<task>.md`
-3. `builder/tools/tiangong-lca-cli.md`
-4. `builder/tools/data-sources-and-tools.md`
-5. `builder/contracts/*.md`
-6. `builder/vocab/*.yaml`
-7. relevant `builder/method/*.md`
-8. target PCR directory under `library/pcrs/**`
-
 ## Non-Negotiable Rules
 
 - Treat `pcr.en-US.md` as the canonical authored source.
@@ -26,6 +15,35 @@ This directory defines how agents construct, update, validate, and publish PCR r
 - Keep classification codes in `classifications/mappings/**` and `classification_refs`, not in canonical PCR directory names.
 - During create workflows, common sense may initialize candidate processes, qualifiers, and likely flows, but UUIDs and quantitative ranges must be evidence-backed before they are treated as final PCR content.
 - During update workflows, identify the driving input first, such as a user requirement, source document, data file, reviewer request, or Tiangong database alignment change.
+
+## Context Routing
+
+Read only the route needed for the task. Do not load every builder document by default.
+
+For create PCR work:
+
+- read `builder/docs/workflows/create-pcr.md`
+- read `builder/docs/tools/tiangong-lca-cli.md` when UUID lookup is needed
+- read `builder/docs/tools/data-sources-and-tools.md` when choosing source evidence
+- read `builder/docs/contracts/pcr-markdown-contract.md` and `builder/docs/contracts/evidence-and-source-contract.md`
+- read specific `builder/docs/methods/**` files only when the workflow references that method topic
+
+For update PCR work:
+
+- read `builder/docs/workflows/update-pcr.md`
+- inspect the source/input that drives the update before editing
+- read only contracts for the changed surface, such as manifest, Markdown, structured projection, evidence, or UUID references
+
+For translation, review, or publish work:
+
+- read the matching file under `builder/docs/workflows/`
+- read only the contracts named by that workflow
+
+For CLI, schema, template, or scaffold behavior changes:
+
+- read `builder/README.md`
+- inspect the affected files under `builder/cli/`, `builder/scripts/`, `builder/schemas/`, `builder/templates/`, or `builder/vocab/`
+- update `builder/docs/**` only when behavior changes the authoring contract
 
 ## Required Commands
 

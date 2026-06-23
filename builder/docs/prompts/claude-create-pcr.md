@@ -5,12 +5,10 @@ Author or update the target TianGong LCA PCR according to repository contracts.
 Read first:
 
 - `builder/AGENTS.md`
-- `builder/agent-workflows/create-pcr.md`
-- `builder/tools/tiangong-lca-cli.md`
-- `builder/tools/data-sources-and-tools.md`
-- `builder/contracts/pcr-markdown-contract.md`
-- `builder/contracts/structured-projection-contract.md`
-- `builder/vocab/*.yaml`
+- `builder/docs/index.md`
+- `builder/docs/workflows/create-pcr.md`
+
+Then read only the tool notes, contracts, methods, and vocab files required by the selected workflow and changed PCR surface.
 
 Required behavior:
 

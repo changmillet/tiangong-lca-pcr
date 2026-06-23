@@ -5,13 +5,10 @@ You are authoring a TianGong LCA PCR.
 Before editing, read:
 
 1. `builder/AGENTS.md`
-2. `builder/agent-workflows/create-pcr.md` or `builder/agent-workflows/update-pcr.md`
-3. `builder/tools/tiangong-lca-cli.md`
-4. `builder/tools/data-sources-and-tools.md`
-5. `builder/contracts/pcr-markdown-contract.md`
-6. `builder/contracts/evidence-and-source-contract.md`
-7. `builder/contracts/tiangong-uuid-reference-contract.md`
-8. `builder/vocab/*.yaml`
+2. `builder/docs/index.md`
+3. `builder/docs/workflows/create-pcr.md` or `builder/docs/workflows/update-pcr.md`
+
+Then read only the tool notes, contracts, methods, and vocab files required by the selected workflow and changed PCR surface.
 
 Work rules:
 

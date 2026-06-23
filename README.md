@@ -22,7 +22,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: f2383cbcc512f42291b6d8e2d575a378fd00fc78
+lastReviewedCommit: 9354cd26a4873d72a4377f043f5152c3fbfa395a
 ---
 
 # TianGong LCA PCR Library
@@ -38,7 +38,7 @@ PCR records are canonical methodology documents. Classification systems such as 
 - `library/indexes/`: generated and maintained PCR indexes.
 - `classifications/systems/`: source and normalized classification-system data.
 - `classifications/mappings/`: mappings from external classification codes to canonical PCR ids.
-- `builder/`: agent workflows, authoring tools, authoring contracts, controlled vocabularies, prompts, templates, schemas, scripts, and construction method documents for building the PCR library.
+- `builder/`: CLI, scripts, schemas, templates, controlled vocabularies, and builder documentation for constructing and validating the PCR library.
 - `docs/`: project-level architecture and authoring notes.
 
 ## PCR Record Shape
@@ -81,7 +81,7 @@ npm run validate
 
 PCR authors may use `tiangong-lca-cli` to search Tiangong database flow/process/lifecyclemodel records and copy selected UUID references into PCR content. The CLI is an authoring evidence tool, not a runtime dependency of this repository.
 
-Builder tool notes under `builder/tools/` explain how to use Tiangong CLI lookup and which external sources are appropriate for ranges, factors, process decomposition, boundary rules, and allocation rules. Create workflows may use common sense to initialize candidates; update workflows should start from a specific input such as a user instruction, source file, reviewer comment, dataset, or database alignment change.
+Builder authoring docs live under `builder/docs/`. Start with `builder/AGENTS.md` for task routing and `builder/docs/index.md` for the compact documentation map.
 
 ## Initial Status
 

@@ -17,7 +17,7 @@ An update may be driven by:
 
 ## Steps
 
-1. Read `builder/AGENTS.md`, `builder/tools/tiangong-lca-cli.md`, `builder/tools/data-sources-and-tools.md`, and the relevant contracts.
+1. Read `builder/AGENTS.md`, `builder/docs/tools/tiangong-lca-cli.md`, `builder/docs/tools/data-sources-and-tools.md`, and the relevant contracts.
 2. Read the target PCR's `manifest.yaml`, `pcr.en-US.md`, `pcr.zh-CN.md`, and `structured.yaml`.
 3. Identify the driving input and whether it changes identity, reference flow, measurement rules, process inventory, evidence, translation, classification refs, or lifecycle status.
 4. If the input is a document, file, or dataset, extract only the PCR-relevant claims and create or update stable source ids.

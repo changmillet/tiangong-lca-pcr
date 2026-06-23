@@ -21,14 +21,14 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: f2383cbcc512f42291b6d8e2d575a378fd00fc78
+lastReviewedCommit: 9354cd26a4873d72a4377f043f5152c3fbfa395a
 ---
 
 # Authoring Guide
 
 Author PCR content in canonical PCR files under `library/pcrs/`.
 
-Agents should start from `builder/AGENTS.md`, then follow the appropriate runbook under `builder/agent-workflows/`, the tool notes under `builder/tools/`, and the contracts under `builder/contracts/`.
+Agents should start from `builder/AGENTS.md`, then use `builder/docs/index.md` to choose the smallest relevant workflow, tool note, contract, or method note.
 
 Use mapping files under `classifications/mappings/` to connect external classification codes to canonical PCR ids.
 
@@ -79,7 +79,7 @@ Each inventory flow row should carry the selected flow UUID when available, the 
 
 ## Tiangong CLI Evidence
 
-Use `tiangong-lca-cli` as the preferred authoring evidence tool when PCR content refers to Tiangong database rows. See `builder/tools/tiangong-lca-cli.md` for the compact operational contract. From the workspace, either use an installed `tiangong-lca` binary or the sibling CLI repo:
+Use `tiangong-lca-cli` as the preferred authoring evidence tool when PCR content refers to Tiangong database rows. See `builder/docs/tools/tiangong-lca-cli.md` for the compact operational contract. From the workspace, either use an installed `tiangong-lca` binary or the sibling CLI repo:
 
 ```bash
 cd ../tiangong-lca-cli

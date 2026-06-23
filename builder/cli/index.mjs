@@ -22,7 +22,12 @@ const REQUIRED_DIRS = [
   "classifications/systems",
   "classifications/mappings",
   "builder/cli",
-  "builder/method",
+  "builder/docs",
+  "builder/docs/contracts",
+  "builder/docs/methods",
+  "builder/docs/prompts",
+  "builder/docs/tools",
+  "builder/docs/workflows",
   "builder/templates",
   "builder/schemas",
   "builder/scripts",
@@ -1255,6 +1260,8 @@ library/modules/<group>/<module-slug>/
     "builder/README.md",
     `# PCR Library Builder
 
+Human and agent documentation lives under \`builder/docs/\`. Machine-facing builder assets such as CLI, scripts, schemas, templates, and vocabularies stay directly under \`builder/\`.
+
 ## Builder CLI
 
 \`\`\`bash
@@ -1263,6 +1270,21 @@ node builder/cli/index.mjs lint
 \`\`\`
 
 \`init\` creates the expected scaffold directories and optional PCR scaffold records. \`lint\` validates the repository structure.
+`,
+  );
+
+  writeIfMissing(
+    root,
+    "builder/docs/index.md",
+    `# Builder Documentation Index
+
+Use this index to route to the smallest relevant builder documentation for the current task.
+
+- \`workflows/\`: PCR create, update, translate, review, and publish workflows.
+- \`contracts/\`: Markdown, manifest, structured projection, evidence, and UUID contracts.
+- \`methods/\`: reusable modelling method notes.
+- \`tools/\`: authoring-time tool and source guidance.
+- \`prompts/\`: thin agent prompt entrypoints.
 `,
   );
 

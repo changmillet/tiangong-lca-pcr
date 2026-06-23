@@ -46,6 +46,15 @@ test("init creates the bilingual PCR repository scaffold", () => {
       readFileSync(path.join(root, "builder/README.md"), "utf8"),
       /Builder CLI/,
     );
+    assert.match(
+      readFileSync(path.join(root, "builder/docs/index.md"), "utf8"),
+      /Builder Documentation Index/,
+    );
+    assert.ok(existsSync(path.join(root, "builder/docs/workflows")));
+    assert.ok(existsSync(path.join(root, "builder/docs/contracts")));
+    assert.ok(existsSync(path.join(root, "builder/docs/methods")));
+    assert.ok(existsSync(path.join(root, "builder/docs/tools")));
+    assert.ok(existsSync(path.join(root, "builder/docs/prompts")));
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

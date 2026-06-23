@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: f2383cbcc512f42291b6d8e2d575a378fd00fc78
+lastReviewedCommit: 9354cd26a4873d72a4377f043f5152c3fbfa395a
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -83,11 +83,11 @@ classifications/mappings/<system>-<version>-to-pcr.yaml
 
 Mapping files are the authoritative link from external classification codes to canonical PCR ids. Mapping relation types should include `exact`, `broader`, `narrower`, `proxy`, and `manual_review`.
 
-## Builder CLI
+## Builder CLI and Authoring Docs
 
 The builder CLI lives under `builder/cli/`.
 
-Agent-facing PCR production guidance lives under `builder/`. Read `builder/AGENTS.md` before using `builder/agent-workflows/**`, `builder/tools/**`, `builder/contracts/**`, `builder/vocab/**`, or `builder/prompts/**`.
+Agent-facing PCR production guidance lives under `builder/`. Use `builder/AGENTS.md` for task routing and hard rules, then use `builder/docs/index.md` to choose the smallest relevant workflow, contract, tool note, method note, or prompt.
 
 Use:
 
@@ -113,29 +113,14 @@ Command meanings:
 
 Generated PCR leaf scaffolds under `library/pcrs/**` are intentionally excluded from docpact coverage. The builder, classification sources, mappings, schemas, modules, and project documents remain governed.
 
-## PCR Authoring Evidence
+## Context Routing
 
-Material PCR Markdown should organize inventories by common process first, then by input/output direction, then by flow type (`product`, `waste`, `elementary`), and finally by individual flow rows.
+Read only the context needed for the current task.
 
-When Tiangong database references are used, prefer the `tiangong-lca` CLI as the authoring evidence tool:
-
-```bash
-tiangong-lca search flow --input ./search-flow.request.json --json
-tiangong-lca search process --input ./search-process.request.json --json
-tiangong-lca flow get --id <flow-id> --json
-```
-
-PCR content stores selected Tiangong UUIDs without dataset versions. Do not include CLI command traces, search logs, API keys, session files, or private runtime details in PCR Markdown or `structured.yaml`. The Tiangong database is the default source for UUID-bearing references, so list only external literature, standards, official guidance, or other non-default evidence in `Data Sources`.
-
-For create workflows, common sense may initialize candidate processes, likely flows, qualifiers, and search terms, but UUIDs and quantitative constraints require Tiangong lookup or external evidence before they are final. For update workflows, identify the driving input first, then update only the affected PCR files, source ids, structured projection, and manifest lifecycle metadata.
-
-## Default Load Order
-
-1. `AGENTS.md`
-2. `README.md`
-3. `docs/architecture.md`
-4. `docs/authoring-guide.md`
-5. target PCR, module, schema, or mapping file
+- For repo structure, PCR identity, classification mapping, or governance changes, use `AGENTS.md`, `README.md`, `docs/architecture.md`, and the target files.
+- For PCR content authoring, use `docs/authoring-guide.md`, then route through `builder/AGENTS.md`.
+- For builder CLI, schema, script, template, or vocab changes, use `builder/README.md`, then inspect only the affected implementation files.
+- For create, update, translate, review, or publish PCR workflows, start at `builder/AGENTS.md` and `builder/docs/index.md`.
 
 ## Validation
 

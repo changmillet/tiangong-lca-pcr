@@ -1,30 +1,38 @@
 # PCR Library Builder
 
-This directory contains construction methods, templates, schemas, fixtures, and CLI tools for maintaining the PCR library.
+This directory contains CLI tools, schemas, templates, fixtures, controlled vocabularies, and authoring documentation for maintaining the PCR library.
 
 The builder treats classification systems as inputs and mappings. It does not make PCR records subordinate to any one classification system.
 
-## Agent Authoring System
+## Directory Shape
 
-Agent-facing PCR production assets are organized as:
+Machine-facing and execution-facing assets stay directly under `builder/`. Human and agent documentation lives under `builder/docs/`.
 
 ```text
 builder/AGENTS.md
-builder/agent-workflows/
-builder/contracts/
+builder/cli/
+builder/scripts/
+builder/schemas/
+builder/templates/
+builder/fixtures/
 builder/vocab/
-builder/method/
-builder/tools/
-builder/prompts/
+builder/docs/
+  index.md
+  workflows/
+  contracts/
+  methods/
+  tools/
+  prompts/
 ```
 
-- `builder/AGENTS.md` is the local agent entrypoint and hard-rule layer.
-- `agent-workflows/` contains task runbooks for creating, updating, translating, reviewing, and publishing PCRs.
-- `contracts/` defines durable authoring contracts for Markdown, manifest, structured projection, evidence, and UUID references.
-- `vocab/` contains controlled vocabularies intended for future lint enforcement.
-- `method/` contains reusable modelling method notes that support the contracts.
-- `tools/` explains authoring-time tools, Tiangong CLI lookup, and usable evidence sources.
-- `prompts/` contains thin entry prompts for Codex, Claude Code, and PCR reviewers.
+- `builder/AGENTS.md` is the local agent routing and hard-rule entrypoint.
+- `builder/docs/index.md` is the human-readable builder documentation map.
+- `builder/docs/workflows/` contains task runbooks for creating, updating, translating, reviewing, and publishing PCRs.
+- `builder/docs/contracts/` defines durable authoring contracts for Markdown, manifest, structured projection, evidence, and UUID references.
+- `builder/docs/methods/` contains reusable modelling method notes that support the contracts.
+- `builder/docs/tools/` explains authoring-time tools, Tiangong CLI lookup, and usable evidence sources.
+- `builder/docs/prompts/` contains thin entry prompts for Codex, Claude Code, and PCR reviewers.
+- `builder/vocab/` contains controlled vocabularies intended for lint and CLI consumption.
 
 ## Builder CLI
 

@@ -14,7 +14,7 @@ Create is an initialization workflow. The agent may use domain common sense to d
 
 ## Steps
 
-1. Read `builder/AGENTS.md`, `builder/tools/tiangong-lca-cli.md`, `builder/tools/data-sources-and-tools.md`, `builder/contracts/pcr-markdown-contract.md`, `builder/contracts/evidence-and-source-contract.md`, and `builder/vocab/*.yaml`.
+1. Read `builder/AGENTS.md`, `builder/docs/tools/tiangong-lca-cli.md`, `builder/docs/tools/data-sources-and-tools.md`, `builder/docs/contracts/pcr-markdown-contract.md`, `builder/docs/contracts/evidence-and-source-contract.md`, and `builder/vocab/*.yaml`.
 2. Inspect `manifest.yaml`, classification refs, and mapping entries.
 3. Confirm whether an existing PCR already covers the same product category. If yes, update mappings instead of duplicating the PCR.
 4. Draft scope, exclusions, product category identity, typical market state, candidate processes, and likely flows. Common sense is allowed here, but keep weak assumptions out of final quantitative constraints.
