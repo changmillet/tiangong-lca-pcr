@@ -21,7 +21,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 9354cd26a4873d72a4377f043f5152c3fbfa395a
+lastReviewedCommit: 4a4bf1b408328fc309b181e962c2ae5df0e2d4ce
 ---
 
 # Authoring Guide

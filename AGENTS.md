@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 9354cd26a4873d72a4377f043f5152c3fbfa395a
+lastReviewedCommit: 4a4bf1b408328fc309b181e962c2ae5df0e2d4ce
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -89,27 +89,7 @@ The builder CLI lives under `builder/cli/`.
 
 Agent-facing PCR production guidance lives under `builder/`. Use `builder/AGENTS.md` for task routing and hard rules, then use `builder/docs/index.md` to choose the smallest relevant workflow, contract, tool note, method note, or prompt.
 
-Use:
-
-```bash
-npm run init
-npm run lint
-npm run pcr:scaffold:cpc -- --source <cpc-structure.csv> --classification-version 3.0 --source-url <official-source-url>
-npm run pcr:sync-structured -- --pcr <library/pcrs/...>
-npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
-npm run pcr:publish -- --pcr <library/pcrs/...> --version <semver>
-npm run validate
-```
-
-Command meanings:
-
-- `init`: create required scaffold directories and repository guide files. It can also create an optional PCR scaffold directory with `node builder/cli/index.mjs init --sample-pcr <domain/path/slug> --pcr-id <id>`.
-- `lint`: validate required directories and enforce that every PCR directory with `manifest.yaml` also has `pcr.en-US.md`, `pcr.zh-CN.md`, and `structured.yaml`.
-- `pcr:scaffold:cpc`: import an official CPC structure CSV, normalize hierarchy files under `classifications/systems/cpc/<version>/`, create `classifications/mappings/cpc-<version>-to-pcr.yaml`, and create empty bilingual PCR directories for CPC leaf classes only. Generated PCR directories use semantic slugs and do not include CPC codes.
-- `pcr:sync-structured`: parse canonical `pcr.en-US.md` tables and regenerate `structured.yaml` as a UUID-only projection.
-- `pcr:bump`: update the PCR manifest version and `updated_at_utc` lifecycle field.
-- `pcr:publish`: run `pcr:sync-structured`, mark the PCR manifest as published, and set manifest version and publication timestamps.
-- `validate`: run `lint` and the builder CLI tests.
+CLI commands and command meanings are documented in `builder/README.md`. Keep detailed CLI usage there instead of duplicating it in this repo-level contract.
 
 Generated PCR leaf scaffolds under `library/pcrs/**` are intentionally excluded from docpact coverage. The builder, classification sources, mappings, schemas, modules, and project documents remain governed.
 

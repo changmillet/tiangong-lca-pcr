@@ -39,6 +39,13 @@ For translation, review, or publish work:
 - read the matching file under `builder/docs/workflows/`
 - read only the contracts named by that workflow
 
+For classification scaffold or mapping work:
+
+- read `docs/classification-policy.md`
+- inspect the affected files under `classifications/systems/**` or `classifications/mappings/**`
+- inspect `builder/schemas/classification-mapping.schema.json` when mapping shape changes
+- inspect `builder/cli/`, `builder/scripts/`, or `builder/templates/` only when scaffold generation behavior changes
+
 For CLI, schema, template, or scaffold behavior changes:
 
 - read `builder/README.md`
@@ -47,14 +54,20 @@ For CLI, schema, template, or scaffold behavior changes:
 
 ## Required Commands
 
-Run before handoff:
+For PCR content changes, run before handoff:
 
 ```bash
 npm run pcr:sync-structured -- --pcr <library/pcrs/...>
 npm run validate
 ```
 
-Run before publication or version lifecycle updates:
+For builder CLI, schema, template, vocab, docs, classification, or mapping changes, run before handoff:
+
+```bash
+npm run validate
+```
+
+For publication or version lifecycle updates, run the relevant lifecycle command:
 
 ```bash
 npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
