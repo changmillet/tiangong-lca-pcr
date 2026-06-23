@@ -138,8 +138,11 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.doesNotMatch(enMarkdown, /CLI Lookup Trace|Agent Modelling Instructions|Open Questions|Review Status/);
 
     assert.match(zhMarkdown, /## 6\. 过程清单结构/);
+    assert.match(zhMarkdown, /\| 字段 \| 值 \|/);
+    assert.match(zhMarkdown, /\| rule_id \| 适用对象 \| 必需流属性 \| 必需单位 \| 规则 \|/);
     assert.match(zhMarkdown, /### 过程图/);
     assert.match(zhMarkdown, /process_id/);
+    assert.match(zhMarkdown, /过程名称/);
     assert.match(zhMarkdown, /### 过程：<process_id>/);
     assert.match(zhMarkdown, /#### 输入/);
     assert.match(zhMarkdown, /##### 产品流/);
@@ -147,6 +150,10 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.match(zhMarkdown, /##### 基本流/);
     assert.match(zhMarkdown, /#### 输出/);
     assert.match(zhMarkdown, /## 10\. 数据源/);
+    assert.doesNotMatch(
+      zhMarkdown,
+      /\| Field \| Value \||\| Reference amount|### Process Map|\| process_id \| process_name/,
+    );
     assert.doesNotMatch(zhMarkdown, /CLI 查询记录|Agent 建模指令|待复核问题|审核状态/);
 
     assert.match(structured, /process_inventory: \[\]/);

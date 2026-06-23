@@ -243,20 +243,20 @@ function zhPcrBody() {
 
 ## 3. 参考流
 
-| Field | Value |
+| 字段 | 值 |
 | --- | --- |
-| Reference amount |  |
-| Reference product flow |  |
-| Reference flow property |  |
-| Reference unit group |  |
-| Reference unit |  |
-| Required qualifiers |  |
+| 参考数量 |  |
+| 参考产品流 |  |
+| 参考流属性 |  |
+| 参考单位组 |  |
+| 参考单位 |  |
+| 必需限定信息 |  |
 
-建模时，\`Required qualifiers\` 中列出的信息应在 \`process\` 说明、\`lifecyclemodel\` metadata、reference flow comment、产品说明或等效模型字段中明确声明。若某一项不适用，应说明原因；若缺失，应视为参考流定义不完整。
+建模时，\`必需限定信息\` 中列出的信息应在 \`process\` 说明、\`lifecyclemodel\` 元数据、参考流备注、产品说明或等效模型字段中明确声明。若某一项不适用，应说明原因；若缺失，应视为参考流定义不完整。
 
 ## 4. 计量与单位规则
 
-| rule_id | Applies to | Required property | Required unit | Rule |
+| rule_id | 适用对象 | 必需流属性 | 必需单位 | 规则 |
 | --- | --- | --- | --- | --- |
 
 ## 5. 系统边界
@@ -265,7 +265,7 @@ function zhPcrBody() {
 
 ### 过程图
 
-| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| process_id | 过程名称 | 纳入状态 | 纳入条件 | 建模角色 | 定量参考 |
 | --- | --- | --- | --- | --- | --- |
 
 ### 过程：<process_id>

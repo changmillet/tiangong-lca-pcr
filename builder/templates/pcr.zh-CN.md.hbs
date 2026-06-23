@@ -1,0 +1,81 @@
+---
+id: "{{pcr_id}}"
+title: "{{title}}"
+status: scaffold
+pcr_kind: product_category_rule
+domains: []
+modules:
+  core:
+    - pcr-minimum-content
+    - unit-of-analysis
+    - reference-flow
+    - inventory-flow-taxonomy
+    - system-boundary
+    - allocation
+    - data-quality
+    - validation-rules
+target_entities:
+  - flow
+  - process
+  - lifecyclemodel
+content_maturity: empty_scaffold
+---
+
+# {{title}}
+
+## 1. 范围与适用性
+
+## 2. 产品类别识别
+
+## 3. 参考流
+
+| 字段 | 值 |
+| --- | --- |
+| 参考数量 |  |
+| 参考产品流 |  |
+| 参考流属性 |  |
+| 参考单位组 |  |
+| 参考单位 |  |
+| 必需限定信息 |  |
+
+建模时，`必需限定信息` 中列出的信息应在 `process` 说明、`lifecyclemodel` 元数据、参考流备注、产品说明或等效模型字段中明确声明。若某一项不适用，应说明原因；若缺失，应视为参考流定义不完整。
+
+## 4. 计量与单位规则
+
+| rule_id | 适用对象 | 必需流属性 | 必需单位 | 规则 |
+| --- | --- | --- | --- | --- |
+
+## 5. 系统边界
+
+## 6. 过程清单结构
+
+### 过程图
+
+| process_id | 过程名称 | 纳入状态 | 纳入条件 | 建模角色 | 定量参考 |
+| --- | --- | --- | --- | --- | --- |
+
+### 过程：<process_id>
+
+#### 输入
+
+##### 产品流
+
+##### 废物流
+
+##### 基本流
+
+#### 输出
+
+##### 产品流
+
+##### 废物流
+
+##### 基本流
+
+## 7. 分配与共产品处理
+
+## 8. 数据质量与证据规则
+
+## 9. 校验规则
+
+## 10. 数据源

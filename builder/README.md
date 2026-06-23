@@ -54,6 +54,7 @@ npm run validate
 
 Generated PCR scaffolds use the current authoring skeleton:
 
+- language-specific Markdown templates: `builder/templates/pcr.en-US.md.hbs` and `builder/templates/pcr.zh-CN.md.hbs`
 - process inventory organized by process, then inputs/outputs, then product/waste/elementary flows
 - UUID-only Tiangong references in PCR Markdown
 - external data sources for literature, standards, official guidance, and non-default range evidence
