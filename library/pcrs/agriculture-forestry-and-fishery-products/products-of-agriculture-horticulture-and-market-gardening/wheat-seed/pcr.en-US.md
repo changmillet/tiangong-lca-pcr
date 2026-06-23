@@ -25,34 +25,26 @@ The PCR identity is independent of CPC. CPC provides a mapping entry only; the s
 
 ## 3. Reference Flow
 
-Preferred reference flow:
-
-```text
-1 kg wheat seed for sowing, cleaned and graded, at seed plant gate
-```
-
-| Role | Tiangong flow | Flow type | UUID | Flow property | Unit group | Preferred unit |
-| --- | --- | --- | --- | --- | --- | --- |
-| Reference product | Wheat | Product flow | `12da5e7d-9b93-4404-8c7d-08f98bec6238` | Mass `93a60a56-a3c8-11da-a746-0800200b9a66` | Units of mass `93a60a57-a4c8-11da-a746-0800200c9a66` | kg |
-
-Required qualifiers:
-
-- seed class or certification class
-- treated or untreated status
-- moisture basis
-- physical purity and germination rate when known
-- geography and gate
-- packaging state for packaged seed
+| Field | Value |
+| --- | --- |
+| Reference amount | 1 kg |
+| Reference product flow | Wheat `12da5e7d-9b93-4404-8c7d-08f98bec6238` |
+| Reference flow property | Mass `93a60a56-a3c8-11da-a746-0800200b9a66` |
+| Reference unit group | Units of mass `93a60a57-a4c8-11da-a746-0800200c9a66` |
+| Reference unit | kg |
+| Required qualifiers | seed class or certification class; treatment status; moisture basis; physical purity; germination rate; geography and declared gate; packaging state |
 
 Avoid seed-count reference flows unless the study goal is agronomic performance. If seed count is used, also provide thousand-kernel weight or another conversion to mass.
 
-## 4. Flow Properties and Unit Conventions
+## 4. Measurement and Unit Rules
 
-| Flow property | UUID | Unit group | Unit group UUID | Common units | Use |
-| --- | --- | --- | --- | --- | --- |
-| Mass | `93a60a56-a3c8-11da-a746-0800200b9a66` | Units of mass | `93a60a57-a4c8-11da-a746-0800200c9a66` | kg, t, g | product, waste, and mass-based emissions |
-| Net calorific value | `93a60a56-a3c8-11da-a746-0800200c9a66` | Units of energy | `93a60a57-a3c8-11da-a746-0800200c9a66` | MJ, kWh | electricity and energy inputs |
-| Number of items | `01846770-4cfe-4a25-8ad9-919d8d378345` | Units of items | `5beb6eed-33a9-47b8-9ede-1dfe8f679159` | item, dozen | bag count or package count |
+| rule_id | Applies to | Required property | Required unit | Rule |
+| --- | --- | --- | --- | --- |
+| `reference_mass` | reference product | Mass `93a60a56-a3c8-11da-a746-0800200b9a66` | kg | The reference flow must be expressed as kg cleaned wheat seed for sowing. |
+| `seed_count_conversion` | optional seed-count data | Mass `93a60a56-a3c8-11da-a746-0800200b9a66` | kg | Seed count data may be used only when thousand-kernel weight or another transparent conversion to mass is provided. |
+| `fertilizer_n_basis` | nitrogen fertilizer inputs and nitrogen emissions | Mass `93a60a56-a3c8-11da-a746-0800200b9a66` | kg | Record nitrogen fertilizer as kg product and kg N when nitrogen emissions are modelled. |
+| `energy_inventory` | electricity, fuel, and drying energy | Net calorific value `93a60a56-a3c8-11da-a746-0800200c9a66` | MJ or kWh | State the energy unit used in each inventory row and preserve enough information for conversion. |
+| `packaging_count` | count-based packaging data | Number of items `01846770-4cfe-4a25-8ad9-919d8d378345` | item | Count-based packaging data must also state bag capacity or mass when packaging material burdens are modelled by mass. |
 
 Seed quality properties are foreground attributes, not replacement flow properties:
 

@@ -1,17 +1,62 @@
 schema_version: 1
 generated_from: markdown
 source_markdown: pcr.en-US.md
-reference_flows:
-  - role: "Reference product"
+reference_flow_definition:
+  reference_amount: "1 kg"
+  product_flow_ref:
     name: "Wheat"
-    flow_type: "Product flow"
-    flow_ref:
-      uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
-    flow_property_ref:
+    uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
+  flow_property_ref:
+    uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+  unit_group_ref:
+    uuid: "93a60a57-a4c8-11da-a746-0800200c9a66"
+  reference_unit: "kg"
+  required_qualifiers:
+    - "seed class or certification class"
+    - "treatment status"
+    - "moisture basis"
+    - "physical purity"
+    - "germination rate"
+    - "geography and declared gate"
+    - "packaging state"
+reference_flows:
+  []
+measurement_rules:
+  - id: reference_mass
+    applies_to: "reference product"
+    required_property_ref:
+      name: "Mass"
       uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
-    unit_group_ref:
-      uuid: "93a60a57-a4c8-11da-a746-0800200c9a66"
-    preferred_unit: "kg"
+    required_unit: "kg"
+    rule: "The reference flow must be expressed as kg cleaned wheat seed for sowing."
+  - id: seed_count_conversion
+    applies_to: "optional seed-count data"
+    required_property_ref:
+      name: "Mass"
+      uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+    required_unit: "kg"
+    rule: "Seed count data may be used only when thousand-kernel weight or another transparent conversion to mass is provided."
+  - id: fertilizer_n_basis
+    applies_to: "nitrogen fertilizer inputs and nitrogen emissions"
+    required_property_ref:
+      name: "Mass"
+      uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+    required_unit: "kg"
+    rule: "Record nitrogen fertilizer as kg product and kg N when nitrogen emissions are modelled."
+  - id: energy_inventory
+    applies_to: "electricity, fuel, and drying energy"
+    required_property_ref:
+      name: "Net calorific value"
+      uuid: "93a60a56-a3c8-11da-a746-0800200c9a66"
+    required_unit: "MJ or kWh"
+    rule: "State the energy unit used in each inventory row and preserve enough information for conversion."
+  - id: packaging_count
+    applies_to: "count-based packaging data"
+    required_property_ref:
+      name: "Number of items"
+      uuid: "01846770-4cfe-4a25-8ad9-919d8d378345"
+    required_unit: "item"
+    rule: "Count-based packaging data must also state bag capacity or mass when packaging material burdens are modelled by mass."
 process_inventory:
   - id: field_seed_multiplication
     label: "Field Seed Multiplication"

@@ -22,7 +22,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
+lastReviewedCommit: 99a9eff17e8358086a62c3eeeb8d0bd88a7589ff
 ---
 
 # TianGong LCA PCR Library
@@ -55,7 +55,8 @@ library/pcrs/<domain>/<subdomain>/<pcr-slug>/
 
 Material PCR content should use this authoring shape:
 
-- reference flow, flow property, and unit conventions
+- reference flow definition with UUID-bearing product flow and category-specific required qualifiers
+- measurement and unit rules for modelling consistency, conversion, and validation
 - system boundary and allocation rules
 - process inventory organized by process, then inputs/outputs, then product/waste/elementary flows
 - data quality and validation rules

@@ -151,7 +151,19 @@ function enPcrBody() {
 
 ## 3. Reference Flow
 
-## 4. Flow Properties and Unit Conventions
+| Field | Value |
+| --- | --- |
+| Reference amount |  |
+| Reference product flow |  |
+| Reference flow property |  |
+| Reference unit group |  |
+| Reference unit |  |
+| Required qualifiers |  |
+
+## 4. Measurement and Unit Rules
+
+| rule_id | Applies to | Required property | Required unit | Rule |
+| --- | --- | --- | --- | --- |
 
 ## 5. System Boundary
 
@@ -192,7 +204,19 @@ function zhPcrBody() {
 
 ## 3. 参考流
 
-## 4. 流属性与单位约定
+| Field | Value |
+| --- | --- |
+| Reference amount |  |
+| Reference product flow |  |
+| Reference flow property |  |
+| Reference unit group |  |
+| Reference unit |  |
+| Required qualifiers |  |
+
+## 4. 计量与单位规则
+
+| rule_id | Applies to | Required property | Required unit | Rule |
+| --- | --- | --- | --- | --- |
 
 ## 5. 系统边界
 
@@ -528,6 +552,20 @@ function extractSourceIds(value) {
     .filter(Boolean);
 }
 
+function splitListValue(value) {
+  return stripInlineCode(value)
+    .split(/[;,]/u)
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
+function labelWithoutUuid(value) {
+  return stripInlineCode(value)
+    .replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/giu, "")
+    .replace(/\s{2,}/gu, " ")
+    .trim();
+}
+
 function normalizeHeader(value) {
   return stripInlineCode(value)
     .toLowerCase()
@@ -638,6 +676,61 @@ function parseReferenceFlowTable(table) {
     .filter((row) => row.uuid);
 }
 
+function parseReferenceFlowDefinitionTable(table) {
+  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
+  if (!headerIndex.has("field") || !headerIndex.has("value")) {
+    return null;
+  }
+  const fields = new Map();
+  for (const row of table.rows) {
+    const key = normalizeHeader(tableCell(row, headerIndex, ["field"]));
+    const value = tableCell(row, headerIndex, ["value"]);
+    if (key) {
+      fields.set(key, value);
+    }
+  }
+  const productValue = fields.get("reference_product_flow") ?? fields.get("product_flow") ?? "";
+  const propertyValue = fields.get("reference_flow_property") ?? fields.get("flow_property") ?? "";
+  const unitGroupValue = fields.get("reference_unit_group") ?? fields.get("unit_group") ?? "";
+  const referenceUnit = fields.get("reference_unit") ?? fields.get("preferred_unit") ?? "";
+  const referenceAmount = fields.get("reference_amount") ?? fields.get("declared_unit") ?? "";
+  const qualifiers = fields.get("required_qualifiers") ?? fields.get("qualifiers") ?? "";
+  const productUuid = extractFirstUuid(productValue);
+
+  if (!referenceAmount && !productUuid && !referenceUnit && !qualifiers) {
+    return null;
+  }
+
+  return {
+    reference_amount: stripInlineCode(referenceAmount),
+    product_flow: {
+      name: labelWithoutUuid(productValue),
+      uuid: productUuid,
+    },
+    flow_property_uuid: extractFirstUuid(propertyValue),
+    unit_group_uuid: extractFirstUuid(unitGroupValue),
+    reference_unit: stripInlineCode(referenceUnit),
+    required_qualifiers: splitListValue(qualifiers),
+  };
+}
+
+function parseMeasurementRuleRows(table) {
+  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
+  return table.rows
+    .map((row) => {
+      const requiredProperty = tableCell(row, headerIndex, ["required_property", "flow_property"]);
+      return {
+        id: normalizeStructuredId(tableCell(row, headerIndex, ["rule_id", "id"])),
+        applies_to: stripInlineCode(tableCell(row, headerIndex, ["applies_to", "scope"])),
+        required_property: labelWithoutUuid(requiredProperty),
+        required_property_uuid: extractFirstUuid(requiredProperty),
+        required_unit: stripInlineCode(tableCell(row, headerIndex, ["required_unit", "unit"])),
+        rule: stripInlineCode(tableCell(row, headerIndex, ["rule", "description"])),
+      };
+    })
+    .filter((row) => row.id || row.applies_to || row.rule);
+}
+
 function parseInventoryRows(table, flowType) {
   const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
   return table.rows
@@ -673,6 +766,8 @@ function parseDataSourceRows(table) {
 function parsePcrMarkdownToStructured(markdown) {
   const lines = markdown.split(/\r?\n/u);
   const referenceFlows = [];
+  let referenceFlowDefinition = null;
+  const measurementRules = [];
   const processInventory = [];
   const dataSources = [];
   let section = "";
@@ -687,6 +782,13 @@ function parsePcrMarkdownToStructured(markdown) {
       const title = h2[1].toLowerCase();
       if (title.includes("reference flow") || title.includes("参考流")) {
         section = "reference_flow";
+      } else if (
+        title.includes("measurement and unit rules") ||
+        title.includes("计量与单位规则") ||
+        title.includes("flow properties and unit conventions") ||
+        title.includes("流属性与单位约定")
+      ) {
+        section = "measurement_rules";
       } else if (title.includes("process inventory") || title.includes("过程清单")) {
         section = "process_inventory";
       } else if (title.includes("data sources") || title.includes("数据源")) {
@@ -741,7 +843,14 @@ function parsePcrMarkdownToStructured(markdown) {
       const { table, nextIndex } = parseTable(lines, index);
       if (table) {
         if (section === "reference_flow") {
-          referenceFlows.push(...parseReferenceFlowTable(table));
+          const definition = parseReferenceFlowDefinitionTable(table);
+          if (definition) {
+            referenceFlowDefinition = definition;
+          } else {
+            referenceFlows.push(...parseReferenceFlowTable(table));
+          }
+        } else if (section === "measurement_rules") {
+          measurementRules.push(...parseMeasurementRuleRows(table));
         } else if (section === "process_inventory" && currentProcess && direction && flowType) {
           currentProcess[direction][flowType].push(...parseInventoryRows(table, flowType));
         } else if (section === "data_sources") {
@@ -752,7 +861,7 @@ function parsePcrMarkdownToStructured(markdown) {
     }
   }
 
-  return { referenceFlows, processInventory, dataSources };
+  return { referenceFlowDefinition, referenceFlows, measurementRules, processInventory, dataSources };
 }
 
 function structuredProjectionYaml(projection) {
@@ -760,8 +869,26 @@ function structuredProjectionYaml(projection) {
     "schema_version: 1",
     "generated_from: markdown",
     `source_markdown: ${PCR_EN_FILE}`,
-    "reference_flows:",
   ];
+
+  lines.push("reference_flow_definition:");
+  if (projection.referenceFlowDefinition) {
+    const definition = projection.referenceFlowDefinition;
+    yamlKeyValue(lines, 2, "reference_amount", definition.reference_amount);
+    lines.push("  product_flow_ref:");
+    yamlKeyValue(lines, 4, "name", definition.product_flow.name);
+    yamlKeyValue(lines, 4, "uuid", definition.product_flow.uuid);
+    lines.push("  flow_property_ref:");
+    yamlKeyValue(lines, 4, "uuid", definition.flow_property_uuid);
+    lines.push("  unit_group_ref:");
+    yamlKeyValue(lines, 4, "uuid", definition.unit_group_uuid);
+    yamlKeyValue(lines, 2, "reference_unit", definition.reference_unit);
+    yamlStringArray(lines, 2, "required_qualifiers", definition.required_qualifiers);
+  } else {
+    lines.push("  {}");
+  }
+
+  lines.push("reference_flows:");
   if (projection.referenceFlows.length === 0) {
     lines.push("  []");
   } else {
@@ -776,6 +903,21 @@ function structuredProjectionYaml(projection) {
       lines.push("    unit_group_ref:");
       yamlKeyValue(lines, 6, "uuid", flow.unit_group_uuid);
       yamlKeyValue(lines, 4, "preferred_unit", flow.preferred_unit);
+    }
+  }
+
+  lines.push("measurement_rules:");
+  if (projection.measurementRules.length === 0) {
+    lines.push("  []");
+  } else {
+    for (const rule of projection.measurementRules) {
+      lines.push("  - id: " + yamlPlainOrQuoted(rule.id));
+      yamlKeyValue(lines, 4, "applies_to", rule.applies_to);
+      lines.push("    required_property_ref:");
+      yamlKeyValue(lines, 6, "name", rule.required_property);
+      yamlKeyValue(lines, 6, "uuid", rule.required_property_uuid);
+      yamlKeyValue(lines, 4, "required_unit", rule.required_unit);
+      yamlKeyValue(lines, 4, "rule", rule.rule);
     }
   }
 

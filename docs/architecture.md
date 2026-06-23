@@ -22,7 +22,7 @@ checkPaths:
   - classifications/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
+lastReviewedCommit: 99a9eff17e8358086a62c3eeeb8d0bd88a7589ff
 ---
 
 # Architecture
@@ -51,7 +51,7 @@ library/pcrs/<domain>/<subdomain>/<pcr-slug>/
 
 This keeps one PCR identity while allowing English and Chinese markdown renderings to coexist.
 
-Within one PCR identity, inventory rules are process-oriented. A PCR describes common modelling processes, then each process separates `inputs` and `outputs`, then separates `product`, `waste`, and `elementary` flows. This structure is used in Markdown and mirrored in `structured.yaml` as `process_inventory`.
+Within one PCR identity, machine-facing rules are projected from canonical Markdown into `structured.yaml`. The projection carries the reference flow definition, measurement and unit rules, and process inventory. Inventory rules are process-oriented: a PCR describes common modelling processes, then each process separates `inputs` and `outputs`, then separates `product`, `waste`, and `elementary` flows.
 
 Database-backed references are not classification identity. PCR Markdown records selected Tiangong UUIDs without dataset versions, and `structured.yaml` is regenerated as the machine projection of those Markdown tables. CLI command traces and lookup logs are authoring-time evidence and do not belong in PCR content. External classification codes still belong in the mapping layer.
 

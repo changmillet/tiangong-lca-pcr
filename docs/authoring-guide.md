@@ -21,7 +21,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
+lastReviewedCommit: 99a9eff17e8358086a62c3eeeb8d0bd88a7589ff
 ---
 
 # Authoring Guide
@@ -53,7 +53,7 @@ Author material PCRs with this default Markdown structure:
 1. scope and applicability
 2. product category identity
 3. reference flow
-4. flow properties and unit conventions
+4. measurement and unit rules
 5. system boundary
 6. process inventory structure
 7. allocation and co-product handling
@@ -67,7 +67,11 @@ The process inventory section should decompose the category into common modellin
 - waste flows
 - elementary flows
 
-Each flow row should carry the selected flow UUID when available, the flow property and unit group references, reference unit, typical range, range basis, range type, and source ids.
+The reference flow section should define one declared reference object. Use a `Field` / `Value` table with `Reference amount`, `Reference product flow`, `Reference flow property`, `Reference unit group`, `Reference unit`, and category-specific `Required qualifiers`. Do not add a second free-text "preferred reference flow" that repeats the same information.
+
+The measurement and unit rules section is not a catalog of every flow property or unit that may appear later. It should contain only rules that affect modelling consistency, conversion, or validation, such as reference mass basis, seed-count conversion, nitrogen fertilizer product/N basis, energy unit handling, or count-to-mass packaging conversion.
+
+Each inventory flow row should carry the selected flow UUID when available, the flow property/unit used in that row, typical range, range basis, range type, and source ids.
 
 ## Tiangong CLI Evidence
 

@@ -175,9 +175,21 @@ sync_with: pcr.zh-CN.md
 
 ## 3. Reference Flow
 
-| Role | Tiangong flow | Flow type | UUID | Flow property | Unit group | Preferred unit |
-| --- | --- | --- | --- | --- | --- | --- |
-| Reference product | Wheat | Product flow | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` | Units of mass \`93a60a57-a4c8-11da-a746-0800200c9a66\` | kg |
+| Field | Value |
+| --- | --- |
+| Reference amount | 1 kg |
+| Reference product flow | Wheat \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` |
+| Reference flow property | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` |
+| Reference unit group | Units of mass \`93a60a57-a4c8-11da-a746-0800200c9a66\` |
+| Reference unit | kg |
+| Required qualifiers | seed class; treatment status; moisture basis; purity; germination rate; declared gate |
+
+## 4. Measurement and Unit Rules
+
+| rule_id | Applies to | Required property | Required unit | Rule |
+| --- | --- | --- | --- | --- |
+| \`reference_mass\` | reference product | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` | kg | Reference flow must be expressed as kg cleaned wheat seed. |
+| \`seed_count_conversion\` | optional seed-count data | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` | kg | Seed count data must include thousand-kernel weight for conversion to mass. |
 
 ## 6. Process Inventory Structure
 
@@ -218,7 +230,14 @@ sync_with: pcr.zh-CN.md
 
     assert.match(output, /synced structured PCR/i);
     assert.match(structured, /source_markdown: pcr\.en-US\.md/);
+    assert.match(structured, /reference_flow_definition:/);
+    assert.match(structured, /reference_amount: "1 kg"/);
+    assert.match(structured, /required_qualifiers:/);
+    assert.match(structured, /- "seed class"/);
     assert.match(structured, /uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"/);
+    assert.match(structured, /measurement_rules:/);
+    assert.match(structured, /id: reference_mass/);
+    assert.match(structured, /required_unit: "kg"/);
     assert.match(structured, /process_inventory:/);
     assert.match(structured, /id: field_seed_multiplication/);
     assert.match(structured, /range_type: "external_source"/);

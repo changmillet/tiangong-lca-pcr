@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 839db92417f09a1c8c6757e505933d333461bdb9
+lastReviewedCommit: 99a9eff17e8358086a62c3eeeb8d0bd88a7589ff
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -54,7 +54,7 @@ Rules:
 
 - `manifest.yaml` owns language-independent PCR identity, title map, lifecycle status, content maturity, target entities, module references, and available languages.
 - `pcr.en-US.md` and `pcr.zh-CN.md` are two language renderings of the same PCR record, not separate PCR records.
-- `structured.yaml` is the machine-oriented projection of the canonical Markdown PCR. It carries reference flows, process inventories, validation-facing fields, and external data sources without authoring trace logs.
+- `structured.yaml` is the machine-oriented projection of the canonical Markdown PCR. It carries reference flow definitions, measurement rules, process inventories, validation-facing fields, and external data sources without authoring trace logs.
 - Do not create parallel `pcrs/en/` and `pcrs/zh-CN/` directory trees.
 - Do not use CPC, HS, ISIC, NAICS, or another external classification system as the canonical PCR directory tree.
 - Do not include external classification codes in PCR directory names. Use semantic PCR slugs such as `wheat-seed`; keep CPC, HS, ISIC, NAICS, and similar codes in mappings and `classification_refs`.

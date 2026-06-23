@@ -3,7 +3,9 @@
   "title": "TianGong PCR structured block",
   "type": "object",
   "properties": {
+    "reference_flow_definition": { "type": "object" },
     "reference_flows": { "type": "array" },
+    "measurement_rules": { "type": "array" },
     "flow_properties": { "type": "array" },
     "unit_conventions": { "type": "array" },
     "system_boundary": { "type": "object" },
