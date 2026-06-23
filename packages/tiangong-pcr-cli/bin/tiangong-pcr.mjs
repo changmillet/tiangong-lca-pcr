@@ -20,8 +20,12 @@ function main() {
     const root = path.resolve(String(options.root ?? defaultRoot));
     const format = String(options.format ?? "table");
 
+    if (options.help || command === "help") {
+      process.stdout.write(helpText());
+      return;
+    }
     if (command === "list") {
-      writeOutput(filterPcrs(listPcrs({ root }), options), format, formatListTable);
+      writeOutput(paginateList(filterPcrs(listPcrs({ root }), options), options), format, formatListTable);
       return;
     }
     if (command === "tree") {
@@ -136,18 +140,84 @@ function filterPcrs(pcrs, options) {
   if (options["content-maturity"]) {
     result = result.filter((entry) => entry.content_maturity === String(options["content-maturity"]));
   }
-  if (options.limit) {
-    result = result.slice(0, Number(options.limit));
-  }
   return result;
 }
 
-function formatListTable(pcrs) {
+function paginateList(pcrs, options) {
+  const pageSize = positiveInteger(options["page-size"] ?? options.limit, 10);
+  const page = positiveInteger(options.page, 1);
+  const totalCount = pcrs.length;
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+  const boundedPage = Math.min(page, totalPages);
+  const startIndex = (boundedPage - 1) * pageSize;
+  const items = pcrs.slice(startIndex, startIndex + pageSize);
+  const nextPage = boundedPage < totalPages ? boundedPage + 1 : null;
+  const previousPage = boundedPage > 1 ? boundedPage - 1 : null;
+
+  return {
+    page: boundedPage,
+    page_size: pageSize,
+    total_count: totalCount,
+    total_pages: totalPages,
+    items,
+    previous_command: previousPage ? buildListCommand({ ...options, page: previousPage }) : null,
+    next_command: nextPage ? buildListCommand({ ...options, page: nextPage }) : null,
+    next_steps: [
+      "If you have a classification code, prefer resolve --classification <system>:<version>:<code>.",
+      "If the correct PCR is unclear, inspect tree --depth 3 and then open candidate guidance.",
+      "After selecting a PCR, run guidance --pcr <pcr-id> --format json.",
+    ],
+  };
+}
+
+function formatListTable(page) {
   const lines = ["PCR id | Status | Title", "--- | --- | ---"];
-  for (const pcr of pcrs) {
+  for (const pcr of page.items) {
     lines.push(`${pcr.id} | ${pcr.status} | ${pcr.title["en-US"] ?? ""}`);
   }
+  const start = page.total_count === 0 ? 0 : (page.page - 1) * page.page_size + 1;
+  const end = Math.min(page.page * page.page_size, page.total_count);
+  lines.push("");
+  lines.push(`Showing ${start}-${end} of ${page.total_count} PCR records. Page ${page.page} of ${page.total_pages}.`);
+  if (page.previous_command) {
+    lines.push(`Previous page: ${page.previous_command}`);
+  }
+  if (page.next_command) {
+    lines.push(`Next page: ${page.next_command}`);
+  }
+  lines.push("Next step: use `resolve` when you have a classification code, otherwise open candidate PCRs with `guidance --pcr <pcr-id> --format json`.");
   return lines.join("\n");
+}
+
+function positiveInteger(value, fallback) {
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed <= 0) {
+    return fallback;
+  }
+  return parsed;
+}
+
+function buildListCommand(options) {
+  const parts = ["tiangong-pcr", "list"];
+  if (options.status) {
+    parts.push("--status", shellToken(String(options.status)));
+  }
+  if (options["content-maturity"]) {
+    parts.push("--content-maturity", shellToken(String(options["content-maturity"])));
+  }
+  if (options["page-size"]) {
+    parts.push("--page-size", shellToken(String(options["page-size"])));
+  } else if (options.limit) {
+    parts.push("--page-size", shellToken(String(options.limit)));
+  }
+  if (options.page) {
+    parts.push("--page", shellToken(String(options.page)));
+  }
+  return parts.join(" ");
+}
+
+function shellToken(value) {
+  return /^[A-Za-z0-9._:-]+$/u.test(value) ? value : JSON.stringify(value);
 }
 
 function formatTreeMarkdown(tree) {
@@ -176,13 +246,20 @@ function helpText() {
   return `tiangong-pcr
 
 Commands:
-  list [--status <status>] [--content-maturity <state>] [--limit <n>] [--format json|markdown|table]
+  list [--status <status>] [--content-maturity <state>] [--page <n>] [--page-size <n>] [--format json|markdown|table]
   tree [--depth <n>] [--format json|markdown]
   resolve --classification <system>:<version>:<code> [--format json]
   show --pcr <pcr-id> [--lang en-US|zh-CN]
   guidance --pcr <pcr-id> [--format json]
   validate-model --pcr <pcr-id> --input <file> [--format json]
   feedback draft --pcr <pcr-id> --type <type> [--summary <text>]
+
+Agent workflow:
+  1. If a classification code is available, run resolve --classification <system>:<version>:<code> --format json.
+  2. If no code is available, use tree/list to browse explicit PCR hierarchy. list defaults to 10 records per page.
+  3. After choosing a PCR, run guidance --pcr <pcr-id> --format json.
+  4. Build the process or lifecyclemodel, then run validate-model.
+  5. If PCR guidance is missing or ambiguous, run feedback draft instead of inventing local rules.
 `;
 }
 

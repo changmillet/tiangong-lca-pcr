@@ -8,7 +8,7 @@ Use this workflow after a PCR feedback issue has passed intake.
 2. Reproduce the current guidance when relevant:
 
    ```bash
-   npm run tiangong-pcr -- guidance --pcr <pcr-id> --format json
+   npm --silent run tiangong-pcr -- guidance --pcr <pcr-id> --format json
    ```
 
 3. Apply the smallest PCR change that addresses the accepted feedback.

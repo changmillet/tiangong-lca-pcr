@@ -96,16 +96,17 @@ Builder authoring docs live under `builder/docs/`. Start with `builder/AGENTS.md
 Use `tiangong-pcr` when consuming PCRs to guide LCA `process` or `lifecyclemodel` construction:
 
 ```bash
-npm run tiangong-pcr -- tree --depth 3 --format markdown
-npm run tiangong-pcr -- list --status candidate --format json
-npm run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
-npm run tiangong-pcr -- show --pcr <pcr-id> --lang zh-CN
-npm run tiangong-pcr -- guidance --pcr <pcr-id> --format json
-npm run tiangong-pcr -- validate-model --pcr <pcr-id> --input <model-file> --format json
-npm run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
+npm --silent run tiangong-pcr -- tree --depth 3 --format markdown
+npm --silent run tiangong-pcr -- list --status candidate --format json
+npm --silent run tiangong-pcr -- list --page 2 --page-size 10
+npm --silent run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
+npm --silent run tiangong-pcr -- show --pcr <pcr-id> --lang zh-CN
+npm --silent run tiangong-pcr -- guidance --pcr <pcr-id> --format json
+npm --silent run tiangong-pcr -- validate-model --pcr <pcr-id> --input <model-file> --format json
+npm --silent run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
 ```
 
-The public CLI intentionally does not provide fuzzy search in the first version. Agents should use deterministic classification `resolve` when a code is available, otherwise use `tree` and `list` to inspect PCR hierarchy and choose a candidate from product meaning and modelling boundary.
+The public CLI intentionally does not provide fuzzy search in the first version. Agents should use deterministic classification `resolve` when a code is available, otherwise use `tree` and paginated `list` output to inspect PCR hierarchy and choose a candidate from product meaning and modelling boundary. `list` defaults to 10 records per page and prints next-page guidance in human-readable output.
 
 ## Initial Status
 

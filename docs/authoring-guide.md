@@ -25,7 +25,7 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: 4b4fb01e69672a05ce3e63d7c8a31a263551a353
+lastReviewedCommit: e1baf3b3de02e808d35a8b13fd7614c20aac7b2a
 ---
 
 # Authoring Guide
@@ -122,7 +122,7 @@ Flow identity sources and range sources can differ. A flow UUID may come from a 
 
 Create workflows may use common sense to initialize candidate processes, likely input/output flows, and search terms. Update workflows are input-driven: begin from the specific user request, document, file, dataset, reviewer feedback, or database alignment change, then update only the affected PCR sections and lifecycle metadata.
 
-Public `tiangong-pcr` guidance is a consumption view over PCR content. If Agent use of `guidance` reveals missing or ambiguous instructions, capture that through feedback issue templates or `npm run tiangong-pcr -- feedback draft` rather than adding ad-hoc local modelling rules.
+Public `tiangong-pcr` guidance is a consumption view over PCR content. If Agent use of `guidance` reveals missing or ambiguous instructions, capture that through feedback issue templates or `npm --silent run tiangong-pcr -- feedback draft` rather than adding ad-hoc local modelling rules.
 
 ## CPC Scaffolded PCRs
 

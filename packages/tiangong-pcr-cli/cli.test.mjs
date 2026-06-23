@@ -18,9 +18,28 @@ function runCli(args) {
 
 test("list prints PCR records as JSON", () => {
   const output = runCli(["list", "--status", "candidate", "--format", "json"]);
-  const pcrs = JSON.parse(output);
+  const page = JSON.parse(output);
 
-  assert.ok(pcrs.some((entry) => entry.id === wheatSeedPcrId));
+  assert.equal(page.page, 1);
+  assert.equal(page.page_size, 10);
+  assert.ok(page.items.some((entry) => entry.id === wheatSeedPcrId));
+});
+
+test("list paginates to 10 records by default and suggests the next page", () => {
+  const output = runCli(["list"]);
+
+  assert.match(output, /Showing 1-10 of /);
+  assert.match(output, /Next page:/);
+  assert.match(output, /tiangong-pcr list --page 2/);
+});
+
+test("help explains the Agent selection workflow", () => {
+  const output = runCli(["--help"]);
+
+  assert.match(output, /Agent workflow/);
+  assert.match(output, /resolve --classification/);
+  assert.match(output, /tree\/list/);
+  assert.match(output, /guidance --pcr/);
 });
 
 test("resolve prints deterministic classification mapping as JSON", () => {

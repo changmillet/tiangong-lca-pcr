@@ -105,16 +105,18 @@ The public Agent-facing CLI lives under `packages/tiangong-pcr-cli/` and uses sh
 Use this CLI to consume PCRs while constructing LCA `process` or `lifecyclemodel` data:
 
 ```bash
-npm run tiangong-pcr -- tree --depth 3 --format markdown
-npm run tiangong-pcr -- list --status candidate --format json
-npm run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
-npm run tiangong-pcr -- guidance --pcr <pcr-id> --format json
-npm run tiangong-pcr -- feedback draft --pcr <pcr-id> --type <feedback-type>
+npm --silent run tiangong-pcr -- tree --depth 3 --format markdown
+npm --silent run tiangong-pcr -- list --status candidate --format json
+npm --silent run tiangong-pcr -- list --page 2 --page-size 10
+npm --silent run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
+npm --silent run tiangong-pcr -- guidance --pcr <pcr-id> --format json
+npm --silent run tiangong-pcr -- feedback draft --pcr <pcr-id> --type <feedback-type>
 ```
 
 Rules:
 
 - `tree` and `list` are explicit catalog-browsing tools, not fuzzy search.
+- `list` is paginated by default with 10 records per page. Human-readable output must tell agents how to request the next page and what next command to run.
 - `resolve` must use deterministic mapping files under `classifications/mappings/**`.
 - `guidance` must consume `structured.yaml` and present Agent-facing rules without mutating PCR content.
 - `feedback draft` creates issue-ready candidate evidence; it does not update PCR truth.

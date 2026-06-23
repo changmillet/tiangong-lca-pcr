@@ -12,22 +12,23 @@ Use the checked-in PCR library through `tiangong-pcr`. Do not select PCR rules f
 1. If the user provides an external classification code, resolve it deterministically:
 
    ```bash
-   npm run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
+   npm --silent run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
    ```
 
 2. If no classification code is available, inspect the catalog explicitly:
 
    ```bash
-   npm run tiangong-pcr -- tree --depth 3 --format markdown
-   npm run tiangong-pcr -- list --status candidate --format json
+   npm --silent run tiangong-pcr -- tree --depth 3 --format markdown
+   npm --silent run tiangong-pcr -- list --status candidate --format json
+   npm --silent run tiangong-pcr -- list --page 2 --page-size 10
    ```
 
-   Choose a PCR from product meaning, declared gate, reference flow, and process boundary. Do not treat catalog browsing as fuzzy search.
+   `list` defaults to 10 records per page. Follow `next_command` in JSON output or the "Next page" line in human-readable output. Choose a PCR from product meaning, declared gate, reference flow, and process boundary. Do not treat catalog browsing as fuzzy search.
 
 3. Read Agent-facing modelling guidance:
 
    ```bash
-   npm run tiangong-pcr -- guidance --pcr <pcr-id> --format json
+   npm --silent run tiangong-pcr -- guidance --pcr <pcr-id> --format json
    ```
 
 4. Build the `process` or `lifecyclemodel` from `reference_flow`, `measurement_rules`, `process_map`, and `process_inventory`.
@@ -35,13 +36,13 @@ Use the checked-in PCR library through `tiangong-pcr`. Do not select PCR rules f
 5. Validate the model draft:
 
    ```bash
-   npm run tiangong-pcr -- validate-model --pcr <pcr-id> --input <model-file> --format json
+   npm --silent run tiangong-pcr -- validate-model --pcr <pcr-id> --input <model-file> --format json
    ```
 
 6. If the PCR is missing, ambiguous, outdated, mistranslated, or has weak evidence, draft feedback instead of silently patching around it:
 
    ```bash
-   npm run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
+   npm --silent run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
    ```
 
 ## Boundaries
