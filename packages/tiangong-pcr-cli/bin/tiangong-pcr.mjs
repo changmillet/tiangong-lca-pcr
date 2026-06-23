@@ -9,6 +9,7 @@ import {
   listPcrs,
   readPcrMarkdown,
   resolveClassification,
+  validateDatasetAgainstGuidance,
   validateModelAgainstGuidance,
 } from "../../pcr-core/src/index.mjs";
 
@@ -59,6 +60,17 @@ function main() {
       const modelText = readFileSync(path.resolve(String(options.input)), "utf8");
       writeOutput(
         validateModelAgainstGuidance({ root, pcrId: String(options.pcr), model: modelText }),
+        format,
+        JSON.stringify,
+      );
+      return;
+    }
+    if (command === "validate-dataset") {
+      requireOption(options, "pcr");
+      requireOption(options, "input");
+      const datasetText = readFileSync(path.resolve(String(options.input)), "utf8");
+      writeOutput(
+        validateDatasetAgainstGuidance({ root, pcrId: String(options.pcr), dataset: parseDatasetInput(datasetText) }),
         format,
         JSON.stringify,
       );
@@ -130,6 +142,14 @@ function writeOutput(value, format, tableFormatter) {
     return;
   }
   process.stdout.write(`${tableFormatter(value)}\n`);
+}
+
+function parseDatasetInput(text) {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
 }
 
 function filterPcrs(pcrs, options) {
@@ -251,15 +271,15 @@ Commands:
   resolve --classification <system>:<version>:<code> [--format json]
   show --pcr <pcr-id> [--lang en-US|zh-CN]
   guidance --pcr <pcr-id> [--format json]
-  validate-model --pcr <pcr-id> --input <file> [--format json]
+  validate-dataset --pcr <pcr-id> --input <file> [--format json]
   feedback draft --pcr <pcr-id> --type <type> [--summary <text>]
 
 Agent workflow:
   1. If a classification code is available, run resolve --classification <system>:<version>:<code> --format json.
   2. If no code is available, use tree/list to browse explicit PCR hierarchy. list defaults to 10 records per page.
   3. After choosing a PCR, run guidance --pcr <pcr-id> --format json.
-  4. Build the process or lifecyclemodel, then run validate-model.
-  5. If PCR guidance is missing or ambiguous, run feedback draft instead of inventing local rules.
+  4. Build the foreground data collection package, then run validate-dataset.
+  5. If PCR guidance is missing or ambiguous, run feedback draft with the observed gap.
 `;
 }
 

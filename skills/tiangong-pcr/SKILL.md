@@ -1,11 +1,11 @@
 ---
 name: tiangong-pcr
-description: Use when selecting a TianGong PCR, reading PCR modelling guidance, validating an LCA process/lifecyclemodel against PCR rules, or drafting PCR feedback for maintainers.
+description: Use when selecting a TianGong PCR, reading PCR data-production guidance, validating a foreground data package against PCR rules, or drafting PCR feedback for maintainers.
 ---
 
 # TianGong PCR
 
-Use the checked-in PCR library through `tiangong-pcr`. Do not select PCR rules from memory when the CLI is available.
+Use the checked-in PCR library through `tiangong-pcr`. Treat CLI guidance as the source of PCR rules for data production.
 
 ## Workflow
 
@@ -23,23 +23,23 @@ Use the checked-in PCR library through `tiangong-pcr`. Do not select PCR rules f
    npm --silent run tiangong-pcr -- list --page 2 --page-size 10
    ```
 
-   `list` defaults to 10 records per page. Follow `next_command` in JSON output or the "Next page" line in human-readable output. Choose a PCR from product meaning, declared gate, reference flow, and process boundary. Do not treat catalog browsing as fuzzy search.
+   `list` defaults to 10 records per page. Follow `next_command` in JSON output or the "Next page" line in human-readable output. Choose a PCR from product meaning, declared gate, reference flow, and process boundary.
 
-3. Read Agent-facing modelling guidance:
+3. Read Agent-facing data-production guidance:
 
    ```bash
    npm --silent run tiangong-pcr -- guidance --pcr <pcr-id> --format json
    ```
 
-4. Build the `process` or `lifecyclemodel` from `reference_flow`, `measurement_rules`, `process_map`, and `process_inventory`.
+4. Build the foreground data package from `reference_flow`, `boundary_abstraction`, `measurement_rules`, `process_map`, `process_inventory`, `production_guidance`, and `published_dataset_profile`.
 
-5. Validate the model draft:
+5. Validate the foreground data package:
 
    ```bash
-   npm --silent run tiangong-pcr -- validate-model --pcr <pcr-id> --input <model-file> --format json
+   npm --silent run tiangong-pcr -- validate-dataset --pcr <pcr-id> --input <dataset-file> --format json
    ```
 
-6. If the PCR is missing, ambiguous, outdated, mistranslated, or has weak evidence, draft feedback instead of silently patching around it:
+6. Draft feedback when the PCR is missing, ambiguous, outdated, mistranslated, or has weak evidence:
 
    ```bash
    npm --silent run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
@@ -50,5 +50,5 @@ Use the checked-in PCR library through `tiangong-pcr`. Do not select PCR rules f
 - `pcr.en-US.md` remains the canonical authored PCR source.
 - `structured.yaml` is generated and consumed by `tiangong-pcr guidance`.
 - Tiangong UUIDs from PCR guidance must be copied without dataset versions.
-- Feedback issues are candidate evidence for maintainers. They are not accepted PCR truth until reviewed and merged.
+- Feedback issues are candidate evidence for maintainers before review and merge.
 - Use `missing_pcr` feedback only after checking `tree`, `list`, and any relevant classification mapping.

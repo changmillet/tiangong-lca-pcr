@@ -10,6 +10,7 @@ required_columns:
   - Basis
   - basis_kind
   - evidence_kind
+  - collection_protocol_id
   - source_ids
 flow_types:
   product:

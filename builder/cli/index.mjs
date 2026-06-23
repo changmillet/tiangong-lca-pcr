@@ -67,7 +67,21 @@ const EVIDENCE_KIND_VALUES = new Set([
   "method_formula",
   "foreground_data",
   "tiangong_default",
+  "collected_record",
+  "calculated_from_collection",
+  "identity_reference",
+  "source_rule",
 ]);
+const BOUNDARY_ABSTRACTION_REQUIRED_FIELDS = [
+  "declared_starting_condition",
+  "starting_condition_role",
+  "product_classification_scope",
+  "recursive_input_rule",
+  "upstream_dataset_requirement",
+  "disclosure",
+];
+const RECURSIVE_ORIGIN_TERM_PATTERN =
+  /\b(first[- ]generation|previous[- ]generation)\b|第一代|上一代/giu;
 
 function parseArgs(argv) {
   const [command, ...rest] = argv;
@@ -141,7 +155,7 @@ translation_status:
 target_entities:
   - flow
   - process
-  - lifecyclemodel
+  - dataset
 `;
 }
 
@@ -167,12 +181,20 @@ ${language === "zh-CN" ? zhPcrBody() : enPcrBody()}`;
 function structuredYaml() {
   return `schema_version: 1
 status: scaffold
+product_category_identity: {}
+functional_unit: {}
 reference_flows: []
 flow_properties: []
 unit_conventions: []
 system_boundary: {}
+boundary_abstraction: {}
 process_map: []
 process_inventory: []
+dataset_production:
+  collection_protocols: []
+  calculation_rules: []
+  data_quality_requirements: []
+published_dataset_profile: {}
 allocation_rules: []
 data_quality_rules: []
 validation_rules: []
@@ -185,7 +207,25 @@ function enPcrBody() {
 
 ## 2. Product Category Identity
 
+| Field | Value |
+| --- | --- |
+| canonical_pcr_id |  |
+| classification_refs |  |
+| covered_products |  |
+| excluded_products |  |
+| representative_product |  |
+| production_route |  |
+| market_state |  |
+
 ## 3. Reference Flow
+
+| Field | Value |
+| --- | --- |
+| What |  |
+| How much |  |
+| How well |  |
+| How long or cycle |  |
+| reference_flow_link |  |
 
 | Field | Value |
 | --- | --- |
@@ -196,7 +236,7 @@ function enPcrBody() {
 | Reference unit |  |
 | Required qualifiers |  |
 
-When constructing a \`process\` or \`lifecyclemodel\`, the items listed in \`Required qualifiers\` must be declared in the process description, lifecycle model metadata, reference flow comment, product description, or an equivalent model field. If an item is not applicable, state why; if it is missing, treat the reference flow definition as incomplete.
+When constructing a foreground data package, the items listed in \`Required qualifiers\` must be declared in dataset metadata, process notes, reference flow comment, product description, or an equivalent data package field. Missing required qualifiers make the reference flow definition incomplete for that data package.
 
 ## 4. Measurement and Unit Rules
 
@@ -204,6 +244,17 @@ When constructing a \`process\` or \`lifecyclemodel\`, the items listed in \`Req
 | --- | --- | --- | --- | --- |
 
 ## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition |  |
+| starting_condition_role |  |
+| product_classification_scope |  |
+| recursive_input_rule |  |
+| upstream_dataset_requirement |  |
+| disclosure |  |
 
 ## 6. Process Inventory Structure
 
@@ -217,6 +268,9 @@ When constructing a \`process\` or \`lifecyclemodel\`, the items listed in \`Req
 #### Inputs
 
 ##### Product flows
+
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ##### Waste flows
 
@@ -232,11 +286,38 @@ When constructing a \`process\` or \`lifecyclemodel\`, the items listed in \`Req
 
 ## 7. Allocation and Co-product Handling
 
-## 8. Data Quality and Evidence Rules
+## 8. Foreground Data Collection, Calculation, and Quality Rules
+
+### Data Collection Protocols
+
+| protocol_id | process_id | flow_role | record_type | raw_fields | collection_method | unit | frequency | temporal_coverage | site_scope | aggregation_rule | quality_evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+### Calculation Rules
+
+| rule_id | Applies to | Formula or rule | Inputs | Output | source_ids |
+| --- | --- | --- | --- | --- | --- |
+
+### Data Quality Requirements
+
+| requirement_id | Applies to | Requirement | Evidence |
+| --- | --- | --- | --- |
 
 ## 9. Validation Rules
 
-## 10. Data Sources
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role |  |
+| downstream_use |  |
+| allowed_use |  |
+| excluded_use |  |
+| required_metadata |  |
+| required_quality_disclosure |  |
+| update_trigger |  |
+
+## 11. Data Sources
 `;
 }
 
@@ -245,7 +326,25 @@ function zhPcrBody() {
 
 ## 2. 产品类别识别
 
+| 字段 | 值 |
+| --- | --- |
+| canonical_pcr_id |  |
+| classification_refs |  |
+| covered_products |  |
+| excluded_products |  |
+| representative_product |  |
+| production_route |  |
+| market_state |  |
+
 ## 3. 参考流
+
+| 字段 | 值 |
+| --- | --- |
+| What |  |
+| How much |  |
+| How well |  |
+| How long or cycle |  |
+| reference_flow_link |  |
 
 | 字段 | 值 |
 | --- | --- |
@@ -256,7 +355,7 @@ function zhPcrBody() {
 | 参考单位 |  |
 | 必需限定信息 |  |
 
-建模时，\`必需限定信息\` 中列出的信息应在 \`process\` 说明、\`lifecyclemodel\` 元数据、参考流备注、产品说明或等效模型字段中明确声明。若某一项不适用，应说明原因；若缺失，应视为参考流定义不完整。
+构建前景数据包时，\`必需限定信息\` 中列出的信息应在数据集元数据、过程说明、参考流备注、产品说明或等效数据包字段中明确声明。缺失必需限定信息的数据包视为参考流定义不完整。
 
 ## 4. 计量与单位规则
 
@@ -264,6 +363,17 @@ function zhPcrBody() {
 | --- | --- | --- | --- | --- |
 
 ## 5. 系统边界
+
+### 边界概化
+
+| 字段 | 值 |
+| --- | --- |
+| declared_starting_condition |  |
+| starting_condition_role |  |
+| product_classification_scope |  |
+| recursive_input_rule |  |
+| upstream_dataset_requirement |  |
+| disclosure |  |
 
 ## 6. 过程清单结构
 
@@ -277,6 +387,9 @@ function zhPcrBody() {
 #### 输入
 
 ##### 产品流
+
+| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ##### 废物流
 
@@ -292,11 +405,38 @@ function zhPcrBody() {
 
 ## 7. 分配与共产品处理
 
-## 8. 数据质量与证据规则
+## 8. 前景数据采集、计算与质量规则
+
+### 数据采集协议
+
+| protocol_id | process_id | flow_role | record_type | raw_fields | collection_method | unit | frequency | temporal_coverage | site_scope | aggregation_rule | quality_evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+### 计算规则
+
+| rule_id | Applies to | Formula or rule | Inputs | Output | source_ids |
+| --- | --- | --- | --- | --- | --- |
+
+### 数据质量要求
+
+| requirement_id | Applies to | Requirement | Evidence |
+| --- | --- | --- | --- |
 
 ## 9. 校验规则
 
-## 10. 数据源
+## 10. 发布数据集画像
+
+| 字段 | 值 |
+| --- | --- |
+| dataset_role |  |
+| downstream_use |  |
+| allowed_use |  |
+| excluded_use |  |
+| required_metadata |  |
+| required_quality_disclosure |  |
+| update_trigger |  |
+
+## 11. 数据源
 `;
 }
 
@@ -514,7 +654,7 @@ modules:
 target_entities:
   - flow
   - process
-  - lifecyclemodel
+  - dataset
 languages:
   canonical: en-US
   available:
@@ -558,8 +698,14 @@ reference_flows: []
 flow_properties: []
 unit_conventions: []
 system_boundary: {}
+boundary_abstraction: {}
 process_map: []
 process_inventory: []
+dataset_production:
+  collection_protocols: []
+  calculation_rules: []
+  data_quality_requirements: []
+published_dataset_profile: {}
 allocation_rules: []
 data_quality_rules: []
 validation_rules: []
@@ -703,6 +849,17 @@ function yamlStringArray(lines, indent, key, values) {
   }
 }
 
+function yamlFlatObject(lines, indent, object) {
+  const entries = Object.entries(object ?? {}).filter(([, value]) => value !== "");
+  if (entries.length === 0) {
+    lines.push(`${" ".repeat(indent)}{}`);
+    return;
+  }
+  for (const [key, value] of entries) {
+    yamlKeyValue(lines, indent, key, value);
+  }
+}
+
 function normalizeStructuredId(value) {
   return normalizeAsciiSlug(value).replaceAll("-", "_");
 }
@@ -765,6 +922,40 @@ function parseReferenceFlowDefinitionTable(table) {
   };
 }
 
+function parseFieldValueTable(table) {
+  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
+  if (!headerIndex.has("field") && !headerIndex.has("字段")) {
+    return null;
+  }
+  if (!headerIndex.has("value") && !headerIndex.has("值")) {
+    return null;
+  }
+  const result = {};
+  for (const row of table.rows) {
+    const key = normalizeStructuredId(tableCell(row, headerIndex, ["field", "字段"]));
+    const value = stripInlineCode(tableCell(row, headerIndex, ["value", "值"]));
+    if (key) {
+      result[key] = value;
+    }
+  }
+  return Object.keys(result).length > 0 ? result : null;
+}
+
+function parseFunctionalUnitTable(table) {
+  const fields = parseFieldValueTable(table);
+  if (!fields) {
+    return null;
+  }
+  const hasFunctionalUnitField =
+    fields.what ||
+    fields.how_much ||
+    fields.how_well ||
+    fields.how_long ||
+    fields.how_long_or_cycle ||
+    fields.reference_flow_link;
+  return hasFunctionalUnitField ? fields : null;
+}
+
 function parseMeasurementRuleRows(table) {
   const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
   return table.rows
@@ -798,6 +989,9 @@ function parseInventoryRows(table, flowType) {
         basis: stripInlineCode(tableCell(row, headerIndex, ["basis", "range_basis"])),
         basis_kind: stripInlineCode(tableCell(row, headerIndex, ["basis_kind"])),
         evidence_kind: stripInlineCode(tableCell(row, headerIndex, ["evidence_kind", "range_type"])),
+        collection_protocol_id: normalizeStructuredId(
+          tableCell(row, headerIndex, ["collection_protocol_id", "protocol_id"]),
+        ),
         source_ids: extractSourceIds(tableCell(row, headerIndex, ["source_ids", "range_sources", "sources"])),
       };
     })
@@ -835,15 +1029,78 @@ function parseDataSourceRows(table) {
     .filter((row) => row.id && !/^tg-/u.test(row.id));
 }
 
+function parseCollectionProtocolRows(table) {
+  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
+  if (!headerIndex.has("protocol_id")) {
+    return [];
+  }
+  return table.rows
+    .map((row) => ({
+      protocol_id: normalizeStructuredId(tableCell(row, headerIndex, ["protocol_id"])),
+      process_id: normalizeStructuredId(tableCell(row, headerIndex, ["process_id"])),
+      flow_role: stripInlineCode(tableCell(row, headerIndex, ["flow_role"])),
+      record_type: stripInlineCode(tableCell(row, headerIndex, ["record_type"])),
+      raw_fields: stripInlineCode(tableCell(row, headerIndex, ["raw_fields"])),
+      collection_method: stripInlineCode(tableCell(row, headerIndex, ["collection_method"])),
+      unit: stripInlineCode(tableCell(row, headerIndex, ["unit"])),
+      frequency: stripInlineCode(tableCell(row, headerIndex, ["frequency"])),
+      temporal_coverage: stripInlineCode(tableCell(row, headerIndex, ["temporal_coverage"])),
+      site_scope: stripInlineCode(tableCell(row, headerIndex, ["site_scope"])),
+      aggregation_rule: stripInlineCode(tableCell(row, headerIndex, ["aggregation_rule"])),
+      quality_evidence: stripInlineCode(tableCell(row, headerIndex, ["quality_evidence"])),
+    }))
+    .filter((row) => row.protocol_id);
+}
+
+function parseCalculationRuleRows(table) {
+  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
+  if (!headerIndex.has("rule_id")) {
+    return [];
+  }
+  return table.rows
+    .map((row) => ({
+      id: normalizeStructuredId(tableCell(row, headerIndex, ["rule_id", "id"])),
+      applies_to: stripInlineCode(tableCell(row, headerIndex, ["applies_to"])),
+      rule: stripInlineCode(tableCell(row, headerIndex, ["formula_or_rule", "rule", "formula"])),
+      inputs: splitListValue(tableCell(row, headerIndex, ["inputs"])),
+      output: stripInlineCode(tableCell(row, headerIndex, ["output"])),
+      source_ids: extractSourceIds(tableCell(row, headerIndex, ["source_ids", "sources"])),
+    }))
+    .filter((row) => row.id);
+}
+
+function parseDataQualityRequirementRows(table) {
+  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
+  if (!headerIndex.has("requirement_id")) {
+    return [];
+  }
+  return table.rows
+    .map((row) => ({
+      id: normalizeStructuredId(tableCell(row, headerIndex, ["requirement_id", "id"])),
+      applies_to: stripInlineCode(tableCell(row, headerIndex, ["applies_to"])),
+      requirement: stripInlineCode(tableCell(row, headerIndex, ["requirement"])),
+      evidence: stripInlineCode(tableCell(row, headerIndex, ["evidence"])),
+    }))
+    .filter((row) => row.id);
+}
+
 function parsePcrMarkdownToStructured(markdown) {
   const lines = markdown.split(/\r?\n/u);
+  let productCategoryIdentity = null;
+  let functionalUnit = null;
+  let boundaryAbstraction = null;
   const referenceFlows = [];
   let referenceFlowDefinition = null;
   const measurementRules = [];
   const processMap = [];
   const processInventory = [];
+  const collectionProtocols = [];
+  const calculationRules = [];
+  const dataQualityRequirements = [];
+  let publishedDatasetProfile = null;
   const dataSources = [];
   let section = "";
+  let subSection = "";
   let currentProcess = null;
   let direction = null;
   let flowType = null;
@@ -853,8 +1110,12 @@ function parsePcrMarkdownToStructured(markdown) {
     const h2 = line.match(/^##\s+(?:\d+\.\s*)?(.+)$/u);
     if (h2) {
       const title = h2[1].toLowerCase();
-      if (title.includes("reference flow") || title.includes("参考流")) {
+      if (title.includes("product category identity") || title.includes("产品类别识别")) {
+        section = "product_category_identity";
+      } else if (title.includes("reference flow") || title.includes("参考流")) {
         section = "reference_flow";
+      } else if (title.includes("system boundary") || title.includes("系统边界")) {
+        section = "system_boundary";
       } else if (
         title.includes("measurement and unit rules") ||
         title.includes("计量与单位规则") ||
@@ -862,15 +1123,51 @@ function parsePcrMarkdownToStructured(markdown) {
         title.includes("流属性与单位约定")
       ) {
         section = "measurement_rules";
+      } else if (
+        title.includes("foreground data collection") ||
+        title.includes("data quality and evidence rules") ||
+        title.includes("前景数据采集") ||
+        title.includes("数据质量与证据规则")
+      ) {
+        section = "dataset_production";
       } else if (title.includes("process inventory") || title.includes("过程清单")) {
         section = "process_inventory";
+      } else if (title.includes("published dataset profile") || title.includes("发布数据集画像")) {
+        section = "published_dataset_profile";
       } else if (title.includes("data sources") || title.includes("数据源")) {
         section = "data_sources";
       } else {
         section = "";
       }
+      subSection = "";
       direction = null;
       flowType = null;
+      continue;
+    }
+
+    const h3Boundary = line.match(/^###\s+(.+)$/u);
+    if (h3Boundary && section === "system_boundary") {
+      const title = h3Boundary[1].toLowerCase();
+      if (title.includes("boundary abstraction") || title.includes("边界概化")) {
+        subSection = "boundary_abstraction";
+      } else {
+        subSection = "";
+      }
+      continue;
+    }
+
+    const h3 = line.match(/^###\s+(.+)$/u);
+    if (h3 && section === "dataset_production") {
+      const title = h3[1].toLowerCase();
+      if (title.includes("data collection protocols") || title.includes("数据采集协议")) {
+        subSection = "collection_protocols";
+      } else if (title.includes("calculation rules") || title.includes("计算规则")) {
+        subSection = "calculation_rules";
+      } else if (title.includes("data quality requirements") || title.includes("数据质量要求")) {
+        subSection = "data_quality_requirements";
+      } else {
+        subSection = "";
+      }
       continue;
     }
 
@@ -920,14 +1217,40 @@ function parsePcrMarkdownToStructured(markdown) {
           if (definition) {
             referenceFlowDefinition = definition;
           } else {
-            referenceFlows.push(...parseReferenceFlowTable(table));
+            const parsedFunctionalUnit = parseFunctionalUnitTable(table);
+            if (parsedFunctionalUnit) {
+              functionalUnit = parsedFunctionalUnit;
+            } else {
+              referenceFlows.push(...parseReferenceFlowTable(table));
+            }
+          }
+        } else if (section === "product_category_identity") {
+          const identity = parseFieldValueTable(table);
+          if (identity) {
+            productCategoryIdentity = identity;
           }
         } else if (section === "measurement_rules") {
           measurementRules.push(...parseMeasurementRuleRows(table));
+        } else if (section === "system_boundary" && subSection === "boundary_abstraction") {
+          const abstraction = parseFieldValueTable(table);
+          if (abstraction) {
+            boundaryAbstraction = abstraction;
+          }
         } else if (section === "process_inventory" && !currentProcess) {
           processMap.push(...parseProcessMapRows(table));
         } else if (section === "process_inventory" && currentProcess && direction && flowType) {
           currentProcess[direction][flowType].push(...parseInventoryRows(table, flowType));
+        } else if (section === "dataset_production" && subSection === "collection_protocols") {
+          collectionProtocols.push(...parseCollectionProtocolRows(table));
+        } else if (section === "dataset_production" && subSection === "calculation_rules") {
+          calculationRules.push(...parseCalculationRuleRows(table));
+        } else if (section === "dataset_production" && subSection === "data_quality_requirements") {
+          dataQualityRequirements.push(...parseDataQualityRequirementRows(table));
+        } else if (section === "published_dataset_profile") {
+          const profile = parseFieldValueTable(table);
+          if (profile) {
+            publishedDatasetProfile = profile;
+          }
         } else if (section === "data_sources") {
           dataSources.push(...parseDataSourceRows(table));
         }
@@ -944,7 +1267,21 @@ function parsePcrMarkdownToStructured(markdown) {
     }
   }
 
-  return { referenceFlowDefinition, referenceFlows, measurementRules, processMap, processInventory, dataSources };
+  return {
+    productCategoryIdentity,
+    functionalUnit,
+    boundaryAbstraction,
+    referenceFlowDefinition,
+    referenceFlows,
+    measurementRules,
+    processMap,
+    processInventory,
+    collectionProtocols,
+    calculationRules,
+    dataQualityRequirements,
+    publishedDatasetProfile,
+    dataSources,
+  };
 }
 
 function structuredProjectionYaml(projection) {
@@ -953,6 +1290,15 @@ function structuredProjectionYaml(projection) {
     "generated_from: markdown",
     `source_markdown: ${PCR_EN_FILE}`,
   ];
+
+  lines.push("product_category_identity:");
+  yamlFlatObject(lines, 2, projection.productCategoryIdentity);
+
+  lines.push("functional_unit:");
+  yamlFlatObject(lines, 2, projection.functionalUnit);
+
+  lines.push("boundary_abstraction:");
+  yamlFlatObject(lines, 2, projection.boundaryAbstraction);
 
   lines.push("reference_flow_definition:");
   if (projection.referenceFlowDefinition) {
@@ -1048,12 +1394,63 @@ function structuredProjectionYaml(projection) {
             yamlKeyValue(lines, 10, "basis", row.basis);
             yamlKeyValue(lines, 10, "basis_kind", row.basis_kind);
             yamlKeyValue(lines, 10, "evidence_kind", row.evidence_kind);
+            if (row.collection_protocol_id) {
+              lines.push("          collection_protocol_id: " + yamlPlainOrQuoted(row.collection_protocol_id));
+            }
             yamlStringArray(lines, 10, "source_ids", row.source_ids);
           }
         }
       }
     }
   }
+
+  lines.push("dataset_production:");
+  lines.push("  collection_protocols:");
+  if (projection.collectionProtocols.length === 0) {
+    lines.push("    []");
+  } else {
+    for (const protocol of projection.collectionProtocols) {
+      lines.push("    - protocol_id: " + yamlPlainOrQuoted(protocol.protocol_id));
+      yamlKeyValue(lines, 6, "process_id", protocol.process_id);
+      yamlKeyValue(lines, 6, "flow_role", protocol.flow_role);
+      yamlKeyValue(lines, 6, "record_type", protocol.record_type);
+      yamlKeyValue(lines, 6, "raw_fields", protocol.raw_fields);
+      yamlKeyValue(lines, 6, "collection_method", protocol.collection_method);
+      yamlKeyValue(lines, 6, "unit", protocol.unit);
+      yamlKeyValue(lines, 6, "frequency", protocol.frequency);
+      yamlKeyValue(lines, 6, "temporal_coverage", protocol.temporal_coverage);
+      yamlKeyValue(lines, 6, "site_scope", protocol.site_scope);
+      yamlKeyValue(lines, 6, "aggregation_rule", protocol.aggregation_rule);
+      yamlKeyValue(lines, 6, "quality_evidence", protocol.quality_evidence);
+    }
+  }
+  lines.push("  calculation_rules:");
+  if (projection.calculationRules.length === 0) {
+    lines.push("    []");
+  } else {
+    for (const rule of projection.calculationRules) {
+      lines.push("    - id: " + yamlPlainOrQuoted(rule.id));
+      yamlKeyValue(lines, 6, "applies_to", rule.applies_to);
+      yamlKeyValue(lines, 6, "rule", rule.rule);
+      yamlStringArray(lines, 6, "inputs", rule.inputs);
+      yamlKeyValue(lines, 6, "output", rule.output);
+      yamlStringArray(lines, 6, "source_ids", rule.source_ids);
+    }
+  }
+  lines.push("  data_quality_requirements:");
+  if (projection.dataQualityRequirements.length === 0) {
+    lines.push("    []");
+  } else {
+    for (const requirement of projection.dataQualityRequirements) {
+      lines.push("    - id: " + yamlPlainOrQuoted(requirement.id));
+      yamlKeyValue(lines, 6, "applies_to", requirement.applies_to);
+      yamlKeyValue(lines, 6, "requirement", requirement.requirement);
+      yamlKeyValue(lines, 6, "evidence", requirement.evidence);
+    }
+  }
+
+  lines.push("published_dataset_profile:");
+  yamlFlatObject(lines, 2, projection.publishedDatasetProfile);
 
   lines.push("data_sources:");
   if (projection.dataSources.length === 0) {
@@ -1427,7 +1824,16 @@ function inventoryRows(processInventory) {
   return rows;
 }
 
-function validatePcrProjection(markdownPath, projection, problems, root) {
+function isMaterialManifest(text) {
+  const status = topLevelValue(text, "status");
+  const maturity = topLevelValue(text, "content_maturity");
+  return (
+    ["candidate", "active", "published"].includes(status) ||
+    ["authored_methodology", "reviewed_methodology"].includes(maturity)
+  );
+}
+
+function validatePcrProjection(markdownPath, projection, problems, root, material = false, markdown = "") {
   const relativePath = toRepoRelative(root, markdownPath);
   const rows = inventoryRows(projection.processInventory);
   if (rows.length === 0 && projection.processMap.length === 0) {
@@ -1463,6 +1869,9 @@ function validatePcrProjection(markdownPath, projection, problems, root) {
   }
 
   const sourceIds = new Set(projection.dataSources.map((source) => source.id));
+  const collectionProtocolIds = new Set(
+    projection.collectionProtocols.map((protocol) => protocol.protocol_id).filter(Boolean),
+  );
   for (const { processEntry, row } of rows) {
     const context = `${relativePath}: process ${processEntry.id} flow "${row.role || row.name}"`;
     if (!AMOUNT_KIND_VALUES.has(row.amount_kind)) {
@@ -1477,10 +1886,72 @@ function validatePcrProjection(markdownPath, projection, problems, root) {
     if ((row.evidence_kind === "external_source" || row.evidence_kind === "method_formula") && row.source_ids.length === 0) {
       problems.push(`${context} requires source_ids for evidence_kind ${row.evidence_kind}`);
     }
+    if (
+      material &&
+      ["foreground_data", "collected_record", "calculated_from_collection"].includes(row.evidence_kind) &&
+      row.amount_kind !== "not_applicable"
+    ) {
+      if (!row.collection_protocol_id) {
+        problems.push(`${context} requires collection_protocol_id for evidence_kind ${row.evidence_kind}`);
+      } else if (!collectionProtocolIds.has(row.collection_protocol_id)) {
+        problems.push(`${context} references unknown collection_protocol_id ${row.collection_protocol_id}`);
+      }
+    }
     for (const sourceId of row.source_ids) {
       if (!sourceIds.has(sourceId)) {
         problems.push(`${context} references unknown source_id ${sourceId}`);
       }
+    }
+  }
+
+  if (!material) {
+    return;
+  }
+
+  for (const match of String(markdown).matchAll(RECURSIVE_ORIGIN_TERM_PATTERN)) {
+    problems.push(`${relativePath}: contains prohibited recursive-origin term "${match[0]}"`);
+  }
+
+  const boundaryAbstraction = projection.boundaryAbstraction ?? {};
+  for (const key of BOUNDARY_ABSTRACTION_REQUIRED_FIELDS) {
+    if (!boundaryAbstraction[key]) {
+      problems.push(`${relativePath}: Boundary Abstraction is missing ${key}`);
+    }
+  }
+
+  for (const protocol of projection.collectionProtocols) {
+    const context = `${relativePath}: collection protocol ${protocol.protocol_id}`;
+    for (const key of [
+      "process_id",
+      "flow_role",
+      "record_type",
+      "raw_fields",
+      "collection_method",
+      "unit",
+      "frequency",
+      "temporal_coverage",
+      "site_scope",
+      "aggregation_rule",
+      "quality_evidence",
+    ]) {
+      if (!protocol[key]) {
+        problems.push(`${context} is missing ${key}`);
+      }
+    }
+  }
+
+  const profile = projection.publishedDatasetProfile ?? {};
+  for (const key of [
+    "dataset_role",
+    "downstream_use",
+    "allowed_use",
+    "excluded_use",
+    "required_metadata",
+    "required_quality_disclosure",
+    "update_trigger",
+  ]) {
+    if (!profile[key]) {
+      problems.push(`${relativePath}: Published Dataset Profile is missing ${key}`);
     }
   }
 }
@@ -1509,11 +1980,15 @@ function lint(options) {
     }
     const canonicalMarkdown = path.join(directory, PCR_EN_FILE);
     if (existsSync(canonicalMarkdown)) {
+      const manifestText = readFileSync(manifest, "utf8");
+      const markdownText = readFileSync(canonicalMarkdown, "utf8");
       validatePcrProjection(
         canonicalMarkdown,
-        parsePcrMarkdownToStructured(readFileSync(canonicalMarkdown, "utf8")),
+        parsePcrMarkdownToStructured(markdownText),
         problems,
         root,
+        isMaterialManifest(manifestText),
+        markdownText,
       );
     }
   }

@@ -4,10 +4,18 @@ values:
   external_source:
     description: Evidence comes from literature, official guidance, standards, or comparable source material.
   observed_dataset:
-    description: Evidence comes from an explicit dataset or observed row.
+    description: Legacy value. Prefer collected_record for new foreground data production PCRs.
   method_formula:
     description: Evidence comes from a calculation rule or method formula.
   foreground_data:
-    description: Evidence must be supplied by the foreground model.
+    description: Legacy value. Prefer collected_record or calculated_from_collection for new foreground data production PCRs.
   tiangong_default:
-    description: Tiangong database row is used for default UUID identity.
+    description: Legacy value. Prefer identity_reference for new UUID identity references.
+  collected_record:
+    description: Evidence comes from real foreground records, measurements, logs, invoices, tests, or supplier primary activity records.
+  calculated_from_collection:
+    description: Value is calculated from one or more collected foreground records according to a PCR calculation rule.
+  identity_reference:
+    description: Tiangong database row is used only for flow, flow property, unit group, process, or lifecyclemodel identity.
+  source_rule:
+    description: External source defines a boundary, method, quality, or reporting rule rather than a flow amount.

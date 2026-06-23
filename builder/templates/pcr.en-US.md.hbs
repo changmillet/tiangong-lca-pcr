@@ -17,7 +17,7 @@ modules:
 target_entities:
   - flow
   - process
-  - lifecyclemodel
+  - dataset
 content_maturity: empty_scaffold
 ---
 
@@ -27,7 +27,25 @@ content_maturity: empty_scaffold
 
 ## 2. Product Category Identity
 
+| Field | Value |
+| --- | --- |
+| canonical_pcr_id |  |
+| classification_refs |  |
+| covered_products |  |
+| excluded_products |  |
+| representative_product |  |
+| production_route |  |
+| market_state |  |
+
 ## 3. Reference Flow
+
+| Field | Value |
+| --- | --- |
+| What |  |
+| How much |  |
+| How well |  |
+| How long or cycle |  |
+| reference_flow_link |  |
 
 | Field | Value |
 | --- | --- |
@@ -38,7 +56,7 @@ content_maturity: empty_scaffold
 | Reference unit |  |
 | Required qualifiers |  |
 
-When constructing a `process` or `lifecyclemodel`, the items listed in `Required qualifiers` must be declared in the process description, lifecycle model metadata, reference flow comment, product description, or an equivalent model field. If an item is not applicable, state why; if it is missing, treat the reference flow definition as incomplete.
+When constructing a foreground data package, the items listed in `Required qualifiers` must be declared in dataset metadata, process notes, reference flow comment, product description, or an equivalent data package field. Missing required qualifiers make the reference flow definition incomplete for that data package.
 
 ## 4. Measurement and Unit Rules
 
@@ -46,6 +64,17 @@ When constructing a `process` or `lifecyclemodel`, the items listed in `Required
 | --- | --- | --- | --- | --- |
 
 ## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition |  |
+| starting_condition_role |  |
+| product_classification_scope |  |
+| recursive_input_rule |  |
+| upstream_dataset_requirement |  |
+| disclosure |  |
 
 ## 6. Process Inventory Structure
 
@@ -59,6 +88,9 @@ When constructing a `process` or `lifecyclemodel`, the items listed in `Required
 #### Inputs
 
 ##### Product flows
+
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ##### Waste flows
 
@@ -74,8 +106,35 @@ When constructing a `process` or `lifecyclemodel`, the items listed in `Required
 
 ## 7. Allocation and Co-product Handling
 
-## 8. Data Quality and Evidence Rules
+## 8. Foreground Data Collection, Calculation, and Quality Rules
+
+### Data Collection Protocols
+
+| protocol_id | process_id | flow_role | record_type | raw_fields | collection_method | unit | frequency | temporal_coverage | site_scope | aggregation_rule | quality_evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+### Calculation Rules
+
+| rule_id | Applies to | Formula or rule | Inputs | Output | source_ids |
+| --- | --- | --- | --- | --- | --- |
+
+### Data Quality Requirements
+
+| requirement_id | Applies to | Requirement | Evidence |
+| --- | --- | --- | --- |
 
 ## 9. Validation Rules
 
-## 10. Data Sources
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role |  |
+| downstream_use |  |
+| allowed_use |  |
+| excluded_use |  |
+| required_metadata |  |
+| required_quality_disclosure |  |
+| update_trigger |  |
+
+## 11. Data Sources

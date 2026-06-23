@@ -8,9 +8,19 @@
     "guidance_kind": { "const": "tiangong-pcr-agent-guidance" },
     "pcr": { "type": "object" },
     "reference_flow": { "type": "object" },
+    "boundary_abstraction": { "type": "object" },
     "measurement_rules": { "type": "array" },
     "process_map": { "type": "array" },
     "process_inventory": { "type": "array" },
+    "production_guidance": {
+      "type": "object",
+      "properties": {
+        "collection_protocols": { "type": "array" },
+        "calculation_rules": { "type": "array" },
+        "data_quality_requirements": { "type": "array" }
+      }
+    },
+    "published_dataset_profile": { "type": "object" },
     "data_sources": { "type": "array" },
     "validation_notes": {
       "type": "array",

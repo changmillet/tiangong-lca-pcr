@@ -31,20 +31,20 @@ lastReviewedCommit: 4b4fb01e69672a05ce3e63d7c8a31a263551a353
 
 # TianGong LCA PCR Library
 
-This repository stores TianGong LCA product category rules and modelling methodology assets.
+This repository stores TianGong LCA product category rules and data production methodology assets.
 
 PCR records are canonical methodology documents. Classification systems such as CPC, HS, ISIC, and NAICS are entry points that map to canonical PCR records; they do not own the PCR directory structure.
 
 ## Repository Shape
 
 - `library/pcrs/`: canonical PCR markdown records grouped by TianGong methodology domains.
-- `library/modules/`: reusable modelling method modules referenced by PCR records.
+- `library/modules/`: reusable data production method modules referenced by PCR records.
 - `library/indexes/`: generated and maintained PCR indexes.
 - `classifications/systems/`: source and normalized classification-system data.
 - `classifications/mappings/`: mappings from external classification codes to canonical PCR ids.
 - `builder/`: CLI, scripts, schemas, templates, controlled vocabularies, and builder documentation for constructing and validating the PCR library.
 - `packages/pcr-core/`: shared library for reading PCR catalog, mapping, guidance, validation, and feedback draft data.
-- `packages/tiangong-pcr-cli/`: public Agent-facing CLI for consuming PCR guidance during LCA model construction.
+- `packages/tiangong-pcr-cli/`: public Agent-facing CLI for consuming PCR guidance during foreground data package construction.
 - `skills/tiangong-pcr/`: thin Agent skill for selecting PCRs, using guidance, validating drafts, and creating feedback.
 - `.github/ISSUE_TEMPLATE/`: structured PCR feedback and missing-PCR issue forms.
 - `docs/`: project-level architecture and authoring notes.
@@ -65,9 +65,11 @@ Material PCR content should use this authoring shape:
 
 - reference flow definition with UUID-bearing product flow and category-specific required qualifiers
 - measurement and unit rules for modelling consistency, conversion, and validation
-- system boundary and allocation rules
+- system boundary, boundary abstraction, and allocation rules
 - process inventory organized by process, then inputs/outputs, then product/waste/elementary flows
-- data quality and validation rules
+- foreground data collection protocols, calculation rules, and data quality requirements
+- published dataset profile for downstream `secondary_dataset` and `background_dataset` use
+- validation rules
 - selected Tiangong UUIDs without dataset versions
 - external data sources for ranges, factors, official guidance, and non-default evidence
 
@@ -87,13 +89,13 @@ npm run validate
 
 `pcr:sync-structured` regenerates `structured.yaml` from canonical Markdown. `pcr:bump` updates the manifest version lifecycle. `pcr:publish` syncs `structured.yaml` and marks the manifest publication state.
 
-PCR authors may use `tiangong-lca-cli` to search Tiangong database flow/process/lifecyclemodel records and copy selected UUID references into PCR content. The CLI is an authoring evidence tool, not a runtime dependency of this repository.
+PCR production agents may use `tiangong-lca-cli` to search Tiangong database flow, process, and dataset identity records and copy selected UUID references into PCR content. The CLI is an evidence tool for identity selection.
 
-Builder authoring docs live under `builder/docs/`. Start with `builder/AGENTS.md` for task routing and `builder/docs/index.md` for the compact documentation map.
+Builder docs live under `builder/docs/`. Start with `builder/AGENTS.md` for task routing and `builder/docs/index.md` for the compact documentation map. AI PCR production always synthesizes the current best PCR for the target product category; existing PCR content is prior evidence and a canonical write target.
 
 ## Public PCR CLI
 
-Use `tiangong-pcr` when consuming PCRs to guide LCA `process` or `lifecyclemodel` construction:
+Use `tiangong-pcr` when consuming PCRs to guide foreground data package construction:
 
 ```bash
 npm --silent run tiangong-pcr -- tree --depth 3 --format markdown
@@ -102,11 +104,11 @@ npm --silent run tiangong-pcr -- list --page 2 --page-size 10
 npm --silent run tiangong-pcr -- resolve --classification cpc:3.0:01111 --format json
 npm --silent run tiangong-pcr -- show --pcr <pcr-id> --lang zh-CN
 npm --silent run tiangong-pcr -- guidance --pcr <pcr-id> --format json
-npm --silent run tiangong-pcr -- validate-model --pcr <pcr-id> --input <model-file> --format json
+npm --silent run tiangong-pcr -- validate-dataset --pcr <pcr-id> --input <dataset-file> --format json
 npm --silent run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
 ```
 
-The public CLI intentionally does not provide fuzzy search in the first version. Agents should use deterministic classification `resolve` when a code is available, otherwise use `tree` and paginated `list` output to inspect PCR hierarchy and choose a candidate from product meaning and modelling boundary. `list` defaults to 10 records per page and prints next-page guidance in human-readable output.
+The public CLI provides deterministic classification `resolve`, explicit `tree` and `list` catalog browsing, structured `guidance`, foreground data package coverage checks through `validate-dataset`, and issue-ready feedback drafting. `list` defaults to 10 records per page and prints next-page guidance in human-readable output.
 
 ## Initial Status
 

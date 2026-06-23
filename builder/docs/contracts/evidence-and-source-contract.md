@@ -13,8 +13,10 @@ Record a source when it supports:
 - allocation decisions
 - official product specifications
 - method formulas
+- data collection protocol rules
+- data quality requirements
 
-Do not record a source when it is only:
+Keep these authoring artifacts outside `Data Sources`:
 
 - a Tiangong UUID lookup
 - a CLI command trace
@@ -32,7 +34,7 @@ ipcc-2019-managed-soils-n2o
 usda-seed-cleaning-handling
 ```
 
-Do not use timestamps, local file names, or agent names in source ids.
+Use source ids based on publisher, topic, and publication year when available.
 
 ## Source Types
 

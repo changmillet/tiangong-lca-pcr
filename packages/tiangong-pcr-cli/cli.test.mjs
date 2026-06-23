@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
@@ -40,6 +42,7 @@ test("help explains the Agent selection workflow", () => {
   assert.match(output, /resolve --classification/);
   assert.match(output, /tree\/list/);
   assert.match(output, /guidance --pcr/);
+  assert.match(output, /validate-dataset/);
 });
 
 test("resolve prints deterministic classification mapping as JSON", () => {
@@ -50,12 +53,31 @@ test("resolve prints deterministic classification mapping as JSON", () => {
   assert.equal(result.mapping.mapping_type, "exact");
 });
 
-test("guidance prints Agent-facing structured PCR rules", () => {
+test("guidance prints Agent-facing data-production PCR rules", () => {
   const output = runCli(["guidance", "--pcr", wheatSeedPcrId, "--format", "json"]);
   const guidance = JSON.parse(output);
 
   assert.equal(guidance.reference_flow.reference_unit, "kg");
+  assert.equal(guidance.boundary_abstraction.declared_starting_condition, "source_seed_lot");
   assert.ok(guidance.process_map.length > 0);
+  assert.ok(guidance.production_guidance.collection_protocols.length > 0);
+  assert.equal(guidance.published_dataset_profile.downstream_use.includes("secondary_dataset"), true);
+});
+
+test("validate-dataset reports missing collection protocol records", () => {
+  const tempDir = mkdtempSync(path.join(tmpdir(), "tiangong-pcr-dataset-"));
+  try {
+    const inputPath = path.join(tempDir, "dataset.json");
+    writeFileSync(inputPath, JSON.stringify({ collection_records: [{ protocol_id: "cp_source_seed_lot_mass" }] }));
+
+    const output = runCli(["validate-dataset", "--pcr", wheatSeedPcrId, "--input", inputPath, "--format", "json"]);
+    const result = JSON.parse(output);
+
+    assert.ok(result.findings.some((finding) => finding.code === "missing_collection_protocol_record"));
+    assert.ok(result.findings.some((finding) => finding.message.includes("cp_harvested_seed_mass")));
+  } finally {
+    rmSync(tempDir, { recursive: true, force: true });
+  }
 });
 
 test("feedback draft prints issue-ready Markdown", () => {

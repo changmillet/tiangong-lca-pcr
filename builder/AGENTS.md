@@ -13,8 +13,8 @@ This directory defines how agents construct, update, validate, and publish PCR r
 - Do not list Tiangong database rows in `Data Sources` when they only support UUID identity. Tiangong is the default source for UUID-bearing rows.
 - List external literature, official guidance, standards, methods, and non-default quantitative evidence in `Data Sources`.
 - Keep classification codes in `classifications/mappings/**` and `classification_refs`, not in canonical PCR directory names.
-- During create workflows, common sense may initialize candidate processes, qualifiers, and likely flows, but UUIDs and quantitative ranges must be evidence-backed before they are treated as final PCR content.
-- During update workflows, identify the driving input first, such as a user requirement, source document, data file, reviewer request, or Tiangong database alignment change.
+- PCR production always synthesizes the current best PCR for the target product category from available evidence. Existing PCR content is prior evidence and a canonical write target, not a separate reasoning mode.
+- Use public evidence and domain common sense to initialize candidate processes, qualifiers, and likely flows; UUIDs and quantitative ranges must be evidence-backed before they are treated as final PCR content.
 
 ## Context Routing
 
