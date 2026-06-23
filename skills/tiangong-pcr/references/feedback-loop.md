@@ -10,7 +10,7 @@ Feedback should include:
 - current PCR excerpt
 - proposed change
 - evidence sources
-- impact on process or lifecyclemodel construction
+- impact on foreground data package construction
 - confidence
 
 Submit feedback through the GitHub issue templates or by drafting issue-ready Markdown with `tiangong-pcr feedback draft`.

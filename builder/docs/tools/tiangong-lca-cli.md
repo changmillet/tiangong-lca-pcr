@@ -1,8 +1,8 @@
-# Tiangong LCA CLI Authoring Tool
+# Tiangong LCA CLI Identity Tool
 
-Use the Tiangong LCA CLI to look up database-backed identity references while authoring PCR records.
+Use the Tiangong LCA CLI to look up database-backed identity references during PCR production.
 
-The CLI is an authoring tool. PCR Markdown and `structured.yaml` store selected UUIDs, not command traces, query logs, dataset versions, API keys, or private runtime paths.
+The CLI is an identity evidence tool. PCR Markdown and `structured.yaml` store selected UUIDs. Command traces, query logs, dataset versions, API keys, and private runtime paths stay outside PCR content.
 
 ## Availability
 
@@ -19,7 +19,7 @@ cd ../tiangong-lca-cli
 node ./bin/tiangong-lca.js --help
 ```
 
-If neither entry point is available, continue authoring semantic candidates but do not invent UUIDs. Leave UUID-backed rows blank or mark the gap in `manifest.yaml` review metadata according to the manifest contract.
+If no entry point is available, continue with semantic candidates using blank UUID cells and record the identity gap in `manifest.yaml` review metadata according to the manifest contract.
 
 ## PCR Lookup Use
 
@@ -28,7 +28,7 @@ Use CLI lookup for:
 - product, waste, and elementary flow UUIDs
 - flow property UUIDs
 - unit or unit group UUIDs when the CLI exposes them
-- process or lifecyclemodel references when a PCR needs database-backed process identity
+- process or dataset references when a PCR needs database-backed identity
 
 Typical lookup shape:
 
@@ -49,7 +49,7 @@ PCR content may store:
 - selected unit or unit group UUID
 - modelling role of the reference
 
-PCR content must not store:
+Authoring artifacts stored outside PCR content:
 
 - Tiangong dataset version
 - CLI command output blocks
@@ -57,14 +57,13 @@ PCR content must not store:
 - local request file paths
 - credentials, tokens, or private endpoints
 
-Tiangong is the default source for UUID-bearing identity references. Do not list Tiangong database rows in `Data Sources` unless a specific row is being used as non-default quantitative evidence for a range, factor, or method rule.
+Tiangong is the identity source for UUID-bearing references. `Data Sources` records external sources and non-default quantitative or method evidence.
 
 ## Fallback Behavior
 
 When the CLI cannot resolve a UUID:
 
 1. Keep the human-readable flow candidate if it is useful for PCR drafting.
-2. Do not fabricate UUIDs or unit support rows.
-3. Prefer leaving the UUID cell empty over writing a weak substitute.
-4. Record the unresolved identity issue in `manifest.yaml` review metadata, not in the PCR Markdown body.
-5. Re-run lookup before publish.
+2. Leave the UUID or unit support cell empty.
+3. Record the unresolved identity issue in `manifest.yaml` review metadata.
+4. Re-run lookup before publish.

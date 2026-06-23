@@ -7,6 +7,7 @@ import {
   createFeedbackDraft,
   listPcrs,
   resolveClassification,
+  validateDatasetAgainstGuidance,
 } from "./src/index.mjs";
 
 const repoRoot = path.resolve(".");
@@ -37,14 +38,17 @@ test("resolveClassification uses deterministic mapping files", () => {
   assert.equal(result.pcr.title["en-US"], "Wheat seed for sowing");
 });
 
-test("buildGuidance returns structured rules for Agent model construction", () => {
+test("buildGuidance returns structured rules for Agent data package construction", () => {
   const guidance = buildGuidance({ root: repoRoot, pcrId: wheatSeedPcrId });
 
   assert.equal(guidance.pcr.id, wheatSeedPcrId);
   assert.equal(guidance.reference_flow.reference_unit, "kg");
   assert.equal(guidance.reference_flow.product_flow_ref.uuid, "12da5e7d-9b93-4404-8c7d-08f98bec6238");
+  assert.equal(guidance.boundary_abstraction.declared_starting_condition, "source_seed_lot");
   assert.ok(guidance.process_map.some((entry) => entry.id === "field_seed_multiplication"));
-  assert.ok(guidance.validation_notes.some((note) => note.includes("validate-model")));
+  assert.ok(guidance.production_guidance.collection_protocols.length > 0);
+  assert.equal(guidance.published_dataset_profile.dataset_role, "unit_process");
+  assert.ok(guidance.validation_notes.some((note) => note.includes("validate-dataset")));
 });
 
 test("createFeedbackDraft produces issue-ready PCR feedback content", () => {
@@ -61,4 +65,15 @@ test("createFeedbackDraft produces issue-ready PCR feedback content", () => {
   assert.match(draft.body, new RegExp(wheatSeedPcrId));
   assert.match(draft.body, /field_seed_multiplication/);
   assert.match(draft.body, /Observed a narrower seeding-rate range/);
+});
+
+test("validateDatasetAgainstGuidance reports missing collection protocol records", () => {
+  const result = validateDatasetAgainstGuidance({
+    root: repoRoot,
+    pcrId: wheatSeedPcrId,
+    dataset: { collection_records: [{ protocol_id: "cp_source_seed_lot_mass" }] },
+  });
+
+  assert.ok(result.findings.some((finding) => finding.code === "missing_collection_protocol_record"));
+  assert.ok(result.findings.some((finding) => finding.message.includes("cp_harvested_seed_mass")));
 });

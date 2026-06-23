@@ -1,6 +1,6 @@
 # Claude Code Prompt: Create or Update PCR
 
-Author or update the target TianGong LCA PCR according to repository contracts.
+Produce the target TianGong LCA PCR according to repository contracts.
 
 Read first:
 
@@ -16,7 +16,8 @@ Required behavior:
 - Preserve bilingual alignment.
 - Use UUID-only Tiangong references.
 - Keep external evidence in `Data Sources`.
-- Use common sense only for create-time initialization, not as final evidence for UUIDs or ranges.
-- Treat update work as input-driven and preserve unaffected PCR content.
+- Synthesize the current best PCR for the target product category from all available evidence. Existing PCR content is prior evidence and a canonical write target, not a separate reasoning mode.
+- Build PCR content from public evidence, domain common sense, Tiangong lookup, user-provided source material, and declared foreground collection protocols.
+- Decide boundary abstraction before writing PCR facts.
 - Regenerate `structured.yaml` with the builder CLI.
 - Validate before reporting completion.

@@ -34,11 +34,13 @@ Author PCR content in canonical PCR files under `library/pcrs/`.
 
 Agents should start from `builder/AGENTS.md`, then use `builder/docs/index.md` to choose the smallest relevant workflow, tool note, contract, or method note.
 
-When the trigger is external PCR feedback, start with `builder/docs/workflows/intake-feedback-issue.md`. Treat the issue as candidate evidence until sources, UUIDs, and modelling impact are verified. If accepted, continue with `builder/docs/workflows/update-pcr-from-feedback.md`.
+PCR production always synthesizes the current best PCR for the target product category from available evidence. Existing PCR content is prior evidence and a canonical write target, not a separate reasoning mode.
+
+When the trigger is external PCR feedback, start with `builder/docs/workflows/intake-feedback-issue.md`. Treat the issue as candidate evidence until sources, UUIDs, and data production impact are verified. If accepted, continue with `builder/docs/workflows/update-pcr-from-feedback.md`.
 
 Use mapping files under `classifications/mappings/` to connect external classification codes to canonical PCR ids.
 
-Do not create duplicate PCR files only because two classification systems describe the same product category.
+One semantic product category uses one canonical PCR record. Additional classification systems add mapping entries to that PCR id.
 
 Each material PCR should be a directory:
 
@@ -52,7 +54,7 @@ library/pcrs/<domain>/<subdomain>/<pcr-slug>/
 
 Keep language-independent identity and lifecycle state in `manifest.yaml`. Keep machine-oriented rules in `structured.yaml`. Keep human-readable English and Chinese text in `pcr.en-US.md` and `pcr.zh-CN.md`.
 
-Use semantic PCR slugs. Do not prefix or suffix PCR directories with CPC, HS, ISIC, NAICS, or other external classification codes. Classification codes belong in mapping files and `classification_refs`.
+Use semantic PCR slugs. Classification codes belong in mapping files and `classification_refs`.
 
 ## Content Structure
 
@@ -65,27 +67,34 @@ Author material PCRs with this default Markdown structure:
 5. system boundary
 6. process inventory structure
 7. allocation and co-product handling
-8. data quality and evidence rules
+8. foreground data collection, calculation, and quality rules
 9. validation rules
-10. data sources
+10. published dataset profile
+11. data sources
 
-The process inventory section should decompose the category into common modelling processes. For each process, split rows by `inputs` and `outputs`, then by flow type:
+The process inventory section should decompose the category into common data production processes. For each process, split rows by `inputs` and `outputs`, then by flow type:
 
 - product flows
 - waste flows
 - elementary flows
 
-The reference flow section should define one declared reference object. Use a `Field` / `Value` table with `Reference amount`, `Reference product flow`, `Reference flow property`, `Reference unit group`, `Reference unit`, and category-specific `Required qualifiers`. Do not add a second free-text "preferred reference flow" that repeats the same information.
+The reference flow section should define the functional unit and one declared reference object. Use `Field` / `Value` tables for `What`, `How much`, `How well`, `How long or cycle`, `reference_flow_link`, `Reference amount`, `Reference product flow`, `Reference flow property`, `Reference unit group`, `Reference unit`, and category-specific `Required qualifiers`.
 
-When constructing a `process` or `lifecyclemodel`, the items listed in `Required qualifiers` must be declared in the process description, lifecycle model metadata, reference flow comment, product description, or an equivalent model field. If an item is not applicable, state why; if it is missing, treat the reference flow definition as incomplete.
+When constructing a foreground data package, the items listed in `Required qualifiers` must be declared in dataset metadata, process notes, reference flow comment, product description, or an equivalent data package field. Missing required qualifiers make the reference flow definition incomplete for that data package.
 
-The measurement and unit rules section is not a catalog of every flow property or unit that may appear later. It should contain only rules that affect modelling consistency, conversion, or validation, such as reference mass basis, seed-count conversion, nitrogen fertilizer product/N basis, energy unit handling, or count-to-mass packaging conversion.
+The measurement and unit rules section contains rules that affect data consistency, conversion, or validation, such as reference mass basis, seed-count conversion, nitrogen fertilizer product/N basis, energy unit handling, or count-to-mass packaging conversion.
 
-Each inventory flow row should carry the selected flow UUID when available, the flow property/unit used in that row, `Amount`, `amount_kind`, `Basis`, `basis_kind`, `evidence_kind`, and `source_ids`.
+The system boundary section stores `Boundary Abstraction` facts: `declared_starting_condition`, `starting_condition_role`, `product_classification_scope`, `recursive_input_rule`, `upstream_dataset_requirement`, and `disclosure`. The declared starting condition is backed by foreground collection records and dataset disclosure.
+
+Each inventory flow row should carry the selected flow UUID when available, the flow property/unit used in that row, `Amount`, `amount_kind`, `Basis`, `basis_kind`, `evidence_kind`, `collection_protocol_id`, and `source_ids`.
+
+The foreground data collection section defines the raw fields, collection method, unit, frequency, temporal coverage, site scope, aggregation rule, calculation rules, and quality evidence that produce the first dataset values.
+
+The published dataset profile defines how the completed dataset can be used downstream as `secondary_dataset` or `background_dataset`, including required metadata, quality disclosure, allowed use, excluded use, and update triggers.
 
 ## Tiangong CLI Evidence
 
-Use `tiangong-lca-cli` as the preferred authoring evidence tool when PCR content refers to Tiangong database rows. See `builder/docs/tools/tiangong-lca-cli.md` for the compact operational contract. From the workspace, either use an installed `tiangong-lca` binary or the sibling CLI repo:
+Use `tiangong-lca-cli` as the preferred identity evidence tool when PCR content refers to Tiangong database rows. See `builder/docs/tools/tiangong-lca-cli.md` for the compact operational contract. From the workspace, either use an installed `tiangong-lca` binary or the sibling CLI repo:
 
 ```bash
 cd ../tiangong-lca-cli
@@ -94,18 +103,18 @@ node ./bin/tiangong-lca.js search process --input ./search-process.request.json 
 node ./bin/tiangong-lca.js flow get --id <flow-id> --json
 ```
 
-`search flow` should be used for product, waste, and elementary flow candidates. `flow get` should be used to confirm the selected row and copy its referenced flow property UUID. Unit group UUIDs are resolved from the referenced flow property support row. Until the CLI exposes direct support-row search, do not invent unit group UUIDs.
+`search flow` should be used for product, waste, and elementary flow candidates. `flow get` should be used to confirm the selected row and copy its referenced flow property UUID. Unit group UUIDs are resolved from the referenced flow property support row. Unresolved unit group UUIDs stay blank and are tracked in review metadata.
 
 Every database-backed selection should record in the PCR content:
 
 - selected row UUID without dataset version
 - selected flow property UUID and unit group UUID when applicable
-- modelling role and whether the selected record supports flow identity, process decomposition, range evidence, or validation
+- data role and whether the selected record supports flow identity, process decomposition, range evidence, or validation
 - external source ids when the quantity range, factor, or boundary rule comes from literature, official guidance, standards, or another non-default source
 
-Do not write CLI lookup traces, command history, API keys, access tokens, session paths, or other private runtime details into PCR files. The Tiangong database is the default source for UUID-bearing rows and does not need to be repeated in `Data Sources`.
+CLI lookup traces, command history, API keys, access tokens, session paths, and other private runtime details stay outside PCR files. The Tiangong database is the identity source for UUID-bearing rows and is represented by UUIDs in PCR tables.
 
-If the CLI is unavailable during create work, draft semantic candidates without UUIDs and record unresolved identity gaps in `manifest.yaml` review metadata. Do not invent UUIDs or support rows.
+If the CLI is unavailable during create work, draft semantic candidates without UUIDs and record unresolved identity gaps in `manifest.yaml` review metadata.
 
 ## Data Sources and Ranges
 
@@ -113,16 +122,17 @@ Every material PCR should include `Data Sources`. Use stable source ids and refe
 
 For ranges, distinguish:
 
-- `observed_dataset`: range derived from an explicit dataset row
+- `collected_record`: value from real foreground records, measurements, logs, invoices, tests, or supplier primary activity records
+- `calculated_from_collection`: value calculated from one or more collected foreground records according to a PCR calculation rule
 - `external_source`: range derived from literature, official guidance, standards, or comparable source material
 - `method_formula`: range or factor calculated by a PCR method rule
-- `site_specific`: value must be provided by the foreground model
+- `site_specific`: value must be provided by the foreground data package
 
 Flow identity sources and range sources can differ. A flow UUID may come from a CLI flow search while its amount range comes from a process row, literature source, method formula, or foreground site data.
 
-Create workflows may use common sense to initialize candidate processes, likely input/output flows, and search terms. Update workflows are input-driven: begin from the specific user request, document, file, dataset, reviewer feedback, or database alignment change, then update only the affected PCR sections and lifecycle metadata.
+AI PCR production uses public evidence and domain common sense to initialize candidate processes, likely input/output flows, and search terms. Existing PCR records are read as prior evidence, then the current best PCR is written to the appropriate canonical record.
 
-Public `tiangong-pcr` guidance is a consumption view over PCR content. If Agent use of `guidance` reveals missing or ambiguous instructions, capture that through feedback issue templates or `npm --silent run tiangong-pcr -- feedback draft` rather than adding ad-hoc local modelling rules.
+Public `tiangong-pcr` guidance is a consumption view over PCR content. Use `validate-dataset` to check foreground collection package coverage. If Agent use of `guidance` reveals missing or ambiguous instructions, capture that through feedback issue templates or `npm --silent run tiangong-pcr -- feedback draft`.
 
 ## CPC Scaffolded PCRs
 

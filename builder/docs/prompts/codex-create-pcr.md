@@ -1,6 +1,6 @@
 # Codex Prompt: Create or Update PCR
 
-You are authoring a TianGong LCA PCR.
+You are producing a TianGong LCA PCR.
 
 Before editing, read:
 
@@ -14,8 +14,9 @@ Work rules:
 
 - Edit canonical `pcr.en-US.md` first.
 - Keep `pcr.zh-CN.md` aligned.
-- Do not hand-edit `structured.yaml`; regenerate it.
-- Do not include Tiangong dataset versions or CLI traces.
-- For create work, common sense may initialize candidates but must not finalize UUIDs or quantitative constraints.
-- For update work, identify the driving input before editing and update only affected PCR surfaces.
+- Regenerate `structured.yaml` through the builder CLI.
+- Keep Tiangong references UUID-only and keep CLI traces outside PCR content.
+- Synthesize the current best PCR for the target product category from all available evidence. Existing PCR content is prior evidence and a canonical write target, not a separate reasoning mode.
+- Build PCR content from public evidence, domain common sense, Tiangong lookup, user-provided source material, and declared foreground collection protocols.
+- Decide boundary abstraction before writing PCR facts.
 - Run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>` and `npm run validate`.

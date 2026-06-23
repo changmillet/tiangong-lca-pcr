@@ -17,7 +17,7 @@ modules:
 target_entities:
   - flow
   - process
-  - lifecyclemodel
+  - dataset
 content_maturity: empty_scaffold
 ---
 
@@ -27,7 +27,25 @@ content_maturity: empty_scaffold
 
 ## 2. 产品类别识别
 
+| 字段 | 值 |
+| --- | --- |
+| canonical_pcr_id |  |
+| classification_refs |  |
+| covered_products |  |
+| excluded_products |  |
+| representative_product |  |
+| production_route |  |
+| market_state |  |
+
 ## 3. 参考流
+
+| 字段 | 值 |
+| --- | --- |
+| What |  |
+| How much |  |
+| How well |  |
+| How long or cycle |  |
+| reference_flow_link |  |
 
 | 字段 | 值 |
 | --- | --- |
@@ -38,7 +56,7 @@ content_maturity: empty_scaffold
 | 参考单位 |  |
 | 必需限定信息 |  |
 
-建模时，`必需限定信息` 中列出的信息应在 `process` 说明、`lifecyclemodel` 元数据、参考流备注、产品说明或等效模型字段中明确声明。若某一项不适用，应说明原因；若缺失，应视为参考流定义不完整。
+构建前景数据包时，`必需限定信息` 中列出的信息应在数据集元数据、过程说明、参考流备注、产品说明或等效数据包字段中明确声明。缺失必需限定信息的数据包视为参考流定义不完整。
 
 ## 4. 计量与单位规则
 
@@ -46,6 +64,17 @@ content_maturity: empty_scaffold
 | --- | --- | --- | --- | --- |
 
 ## 5. 系统边界
+
+### 边界概化
+
+| 字段 | 值 |
+| --- | --- |
+| declared_starting_condition |  |
+| starting_condition_role |  |
+| product_classification_scope |  |
+| recursive_input_rule |  |
+| upstream_dataset_requirement |  |
+| disclosure |  |
 
 ## 6. 过程清单结构
 
@@ -59,6 +88,9 @@ content_maturity: empty_scaffold
 #### 输入
 
 ##### 产品流
+
+| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ##### 废物流
 
@@ -74,8 +106,35 @@ content_maturity: empty_scaffold
 
 ## 7. 分配与共产品处理
 
-## 8. 数据质量与证据规则
+## 8. 前景数据采集、计算与质量规则
+
+### 数据采集协议
+
+| protocol_id | process_id | flow_role | record_type | raw_fields | collection_method | unit | frequency | temporal_coverage | site_scope | aggregation_rule | quality_evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+### 计算规则
+
+| rule_id | Applies to | Formula or rule | Inputs | Output | source_ids |
+| --- | --- | --- | --- | --- | --- |
+
+### 数据质量要求
+
+| requirement_id | Applies to | Requirement | Evidence |
+| --- | --- | --- | --- |
 
 ## 9. 校验规则
 
-## 10. 数据源
+## 10. 发布数据集画像
+
+| 字段 | 值 |
+| --- | --- |
+| dataset_role |  |
+| downstream_use |  |
+| allowed_use |  |
+| excluded_use |  |
+| required_metadata |  |
+| required_quality_disclosure |  |
+| update_trigger |  |
+
+## 11. 数据源

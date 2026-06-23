@@ -1,8 +1,8 @@
 # Update PCR Workflow
 
-Use this workflow when changing an existing material PCR.
+Use this workflow when the current best PCR for a target product category should be written into an existing canonical PCR record.
 
-Update is an input-driven workflow. Do not start by rewriting the PCR from general knowledge. First identify the change driver, then update only the affected PCR surfaces.
+Existing PCR content is prior evidence and the canonical write target. Direct user instructions, source files, reviewer notes, datasets, and database alignments can narrow the changed surface, but the AI still synthesizes the current best PCR before editing.
 
 ## Inputs
 
@@ -19,17 +19,18 @@ An update may be driven by:
 
 1. Read `builder/AGENTS.md`, `builder/docs/tools/tiangong-lca-cli.md`, `builder/docs/tools/data-sources-and-tools.md`, and the relevant contracts.
 2. Read the target PCR's `manifest.yaml`, `pcr.en-US.md`, `pcr.zh-CN.md`, and `structured.yaml`.
-3. Identify the driving input and whether it changes identity, reference flow, measurement rules, process inventory, evidence, translation, classification refs, or lifecycle status.
-4. If the input is a document, file, or dataset, extract only the PCR-relevant claims and create or update stable source ids.
-5. If the input is a Tiangong alignment change, update UUID-bearing references without adding Tiangong rows to `Data Sources` unless they provide non-default quantitative evidence.
-6. Update canonical `pcr.en-US.md` first.
-7. Update `pcr.zh-CN.md` so it remains aligned with the English rule.
-8. Add or update external data sources when a new range, factor, method, or boundary rule depends on non-default evidence.
-9. Remove stale source ids and inventory rows that no longer support the PCR.
-10. Update `manifest.yaml` review metadata when the input creates unresolved identity, evidence, or translation gaps.
-11. Run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>`.
-12. Run `npm run validate`.
-13. Use `npm run pcr:bump -- --pcr <library/pcrs/...> --level <patch|minor|major>` when the rule semantics or published lifecycle changes.
+3. Compare the current PCR synthesis with the existing record.
+4. Identify whether the synthesis or driving input changes identity, reference flow, measurement rules, boundary abstraction, process inventory, evidence, translation, classification refs, or lifecycle status.
+5. If the input is a document, file, or dataset, extract only the PCR-relevant claims and create or update stable source ids.
+6. If the input is a Tiangong alignment change, update UUID-bearing references without adding Tiangong rows to `Data Sources` unless they provide non-default quantitative evidence.
+7. Update canonical `pcr.en-US.md` first.
+8. Update `pcr.zh-CN.md` so it remains aligned with the English rule.
+9. Add or update external data sources when a new range, factor, method, or boundary rule depends on non-default evidence.
+10. Remove stale source ids and inventory rows that no longer support the PCR.
+11. Update `manifest.yaml` review metadata when the input creates unresolved identity, evidence, or translation gaps.
+12. Run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>`.
+13. Run `npm run validate`.
+14. Use `npm run pcr:bump -- --pcr <library/pcrs/...> --level <patch|minor|major>` when the rule semantics or published lifecycle changes.
 
 ## Version Guidance
 

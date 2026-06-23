@@ -1,6 +1,27 @@
 schema_version: 1
 generated_from: markdown
 source_markdown: pcr.en-US.md
+product_category_identity:
+  canonical_pcr_id: "pcr.agriculture-forestry-and-fishery-products.products-of-agriculture-horticulture-and-market-gardening.wheat-seed"
+  classification_refs: "CPC 3.0 01111, Wheat, seed"
+  covered_products: "cleaned wheat seed intended for sowing, including certified, foundation, registered, or comparable seed classes"
+  excluded_products: "commodity wheat grain for food, feed, starch, ethanol, or trading"
+  representative_product: "cleaned and graded wheat sowing seed at declared moisture basis"
+  production_route: "seed multiplication field plus post-harvest seed conditioning"
+  market_state: "cleaned, graded, packaged, and optionally treated wheat seed at seed plant gate or regional delivery point"
+functional_unit:
+  what: "cleaned wheat seed for sowing"
+  how_much: "1 kg"
+  how_well: "declared seed class, treatment status, moisture basis, physical purity, and germination rate"
+  how_long_or_cycle: "one seed production crop cycle; storage duration declared separately when included"
+  reference_flow_link: "Reference amount and product flow below"
+boundary_abstraction:
+  declared_starting_condition: "source_seed_lot"
+  starting_condition_role: "identity_and_reproduction_condition"
+  product_classification_scope: "current CPC 3.0 product category 01111, Wheat, seed"
+  recursive_input_rule: "input flow in the same product category that causes recursive tracing is recorded as declared starting condition"
+  upstream_dataset_requirement: "source seed lot disclosure and collection protocol record"
+  disclosure: "record source seed lot identity, propagation class, mass, moisture basis, treatment status, supplier or source field, and evidence"
 reference_flow_definition:
   reference_amount: "1 kg"
   product_flow_ref:
@@ -42,7 +63,7 @@ measurement_rules:
       name: "Mass"
       uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
     required_unit: "kg"
-    rule: "Record nitrogen fertilizer as kg product and kg N when nitrogen emissions are modelled."
+    rule: "Record nitrogen fertilizer as kg product and kg N when nitrogen emissions are calculated."
   - id: energy_inventory
     applies_to: "electricity, fuel, and drying energy"
     required_property_ref:
@@ -56,7 +77,7 @@ measurement_rules:
       name: "Number of items"
       uuid: "01846770-4cfe-4a25-8ad9-919d8d378345"
     required_unit: "item"
-    rule: "Count-based packaging data must also state bag capacity or mass when packaging material burdens are modelled by mass."
+    rule: "Count-based packaging data must also state bag capacity or mass when packaging material quantities are calculated by mass."
 process_map:
   - id: field_seed_multiplication
     name: "Field Seed Multiplication"
@@ -81,17 +102,18 @@ process_inventory:
     label: "Field Seed Multiplication"
     inputs:
       product:
-        - role: "Previous-generation wheat seed"
+        - role: "Source seed lot used for multiplication"
           name: "Wheat"
           flow_type: "product"
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "25-70 kg"
-          amount_kind: "range"
+          amount: "site-specific measured mass"
+          amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "external_source"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_source_seed_lot_mass
           source_ids:
             - unl-wheat-seeding-rate
             - umn-small-grain-seeding-rate
@@ -101,11 +123,12 @@ process_inventory:
           flow_ref:
             uuid: "3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e"
           property_unit: "Mass / kg"
-          amount: "site-specific; record both kg product and kg N"
+          amount: "measured product mass and kg N"
           amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_fertilizer_input_records
           source_ids:
             - ipcc-2019-managed-soils-n2o
         - role: "Phosphate fertilizer"
@@ -114,11 +137,12 @@ process_inventory:
           flow_ref:
             uuid: "9c196b01-6aad-4252-a6e8-f853853a830c"
           property_unit: "Mass / kg"
-          amount: "site-specific"
+          amount: "measured product mass"
           amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_fertilizer_input_records
           source_ids: []
         - role: "Potassium fertilizer"
           name: "Potassium fertilizer"
@@ -126,11 +150,12 @@ process_inventory:
           flow_ref:
             uuid: "dd008d87-16e4-4e85-a048-b9949f6fbca6"
           property_unit: "Mass / kg"
-          amount: "site-specific"
+          amount: "measured product mass"
           amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_fertilizer_input_records
           source_ids: []
         - role: "Irrigation water supplied as a product input"
           name: "Irrigation water"
@@ -138,11 +163,12 @@ process_inventory:
           flow_ref:
             uuid: "4ad684b1-8e85-4dee-8d9c-55d1fa2d4432"
           property_unit: "Mass / kg"
-          amount: "0-5,000 kg"
-          amount_kind: "range"
+          amount: "measured irrigation water mass"
+          amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_irrigation_water_records
           source_ids: []
         - role: "Field machinery fuel"
           name: "Diesel, burned in agricultural machinery"
@@ -150,11 +176,12 @@ process_inventory:
           flow_ref:
             uuid: "57e0b1a3-2d05-46b2-b61b-cf7b5b167c6f"
           property_unit: "Mass / kg"
-          amount: "5-40 kg"
-          amount_kind: "range"
+          amount: "measured field fuel use"
+          amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_field_fuel_records
           source_ids: []
         - role: "Crop protection herbicide proxy"
           name: "Herbicide"
@@ -162,11 +189,12 @@ process_inventory:
           flow_ref:
             uuid: "c1370404-9e2b-4ed6-ba96-c094f74e0f2d"
           property_unit: "Mass / kg"
-          amount: "product-specific"
+          amount: "measured active ingredient or formulated product mass"
           amount_kind: "product_specific"
           basis: "per active ingredient or formulated product"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_crop_protection_records
           source_ids: []
         - role: "Crop protection fungicide proxy"
           name: "Azoxystrobin"
@@ -174,11 +202,12 @@ process_inventory:
           flow_ref:
             uuid: "8a1f4968-6428-413f-a50b-b413bf9190cf"
           property_unit: "Mass / kg"
-          amount: "product-specific"
+          amount: "measured active ingredient or formulated product mass"
           amount_kind: "product_specific"
           basis: "per active ingredient or formulated product"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_crop_protection_records
           source_ids: []
         - role: "Crop protection insecticide proxy"
           name: "Insecticide"
@@ -186,11 +215,12 @@ process_inventory:
           flow_ref:
             uuid: "ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b"
           property_unit: "Mass / kg"
-          amount: "product-specific"
+          amount: "measured active ingredient or formulated product mass"
           amount_kind: "product_specific"
           basis: "per active ingredient or formulated product"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_crop_protection_records
           source_ids: []
       waste:
         []
@@ -199,11 +229,12 @@ process_inventory:
           name: "Select applicable elementary flow for land occupation"
           flow_type: "elementary"
           property_unit: "Area-time / ha a"
-          amount: "site-specific"
+          amount: "measured field area and crop duration"
           amount_kind: "site_specific"
           basis: "per crop cycle"
           basis_kind: "crop_cycle"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_land_use_records
           source_ids: []
         - role: "Water withdrawal"
           name: "water"
@@ -211,11 +242,12 @@ process_inventory:
           flow_ref:
             uuid: "419682fe-60fb-4b43-be89-bf2824b51104"
           property_unit: "Mass / kg"
-          amount: "align with irrigation water input"
-          amount_kind: "exact"
+          amount: "calculated from irrigation water record"
+          amount_kind: "formula"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "calculated_from_collection"
+          collection_protocol_id: cp_irrigation_water_records
           source_ids: []
     outputs:
       product:
@@ -225,11 +257,12 @@ process_inventory:
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "1,000 kg"
-          amount_kind: "exact"
+          amount: "measured harvested mass"
+          amount_kind: "site_specific"
           basis: "field subprocess quantitative reference"
           basis_kind: "process_output"
-          evidence_kind: "observed_dataset"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_harvested_seed_mass
           source_ids: []
         - role: "Straw or field residue"
           name: "Wheat straw"
@@ -237,11 +270,12 @@ process_inventory:
           flow_ref:
             uuid: "bcaf0254-cdd3-43d1-823a-2f69df3801d8"
           property_unit: "Mass / kg"
-          amount: "0-2,000 kg"
-          amount_kind: "range"
+          amount: "measured residue mass when it crosses the boundary"
+          amount_kind: "site_specific"
           basis: "per 1,000 kg harvested seed crop"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_field_residue_records
           source_ids: []
       waste:
         []
@@ -265,7 +299,7 @@ process_inventory:
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-a2a9-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "site-specific or regional model"
+          amount: "site-specific or regional emission method"
           amount_kind: "site_specific"
           basis: "per N input"
           basis_kind: "n_input"
@@ -278,7 +312,7 @@ process_inventory:
           flow_ref:
             uuid: "4d9a8790-3ddd-11dd-8d68-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "site-specific or regional model"
+          amount: "site-specific or regional emission method"
           amount_kind: "site_specific"
           basis: "per N input"
           basis_kind: "n_input"
@@ -291,11 +325,12 @@ process_inventory:
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "derived from fuel datasets"
+          amount: "calculated from field fuel records and emission factor"
           amount_kind: "formula"
           basis: "per fuel inventory"
           basis_kind: "fuel_inventory"
-          evidence_kind: "tiangong_default"
+          evidence_kind: "calculated_from_collection"
+          collection_protocol_id: cp_field_fuel_records
           source_ids: []
   - id: seed_conditioning_and_treatment
     label: "Seed Conditioning and Treatment"
@@ -320,11 +355,12 @@ process_inventory:
           flow_ref:
             uuid: "4d0361a3-56cc-45f9-aa42-bb9103285bf9"
           property_unit: "Net calorific value / MJ or kWh"
-          amount: "site-specific"
+          amount: "measured electricity use"
           amount_kind: "site_specific"
           basis: "per 1,000 kg cleaned seed output"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_conditioning_energy_records
           source_ids:
             - usda-seed-cleaning-handling
         - role: "Seed treatment fungicide proxy"
@@ -333,11 +369,12 @@ process_inventory:
           flow_ref:
             uuid: "8a1f4968-6428-413f-a50b-b413bf9190cf"
           property_unit: "Mass / kg"
-          amount: "product-specific"
+          amount: "measured active ingredient or formulated product mass"
           amount_kind: "product_specific"
           basis: "per kg treated seed"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_seed_treatment_records
           source_ids: []
         - role: "Seed treatment insecticide proxy"
           name: "Insecticide"
@@ -345,11 +382,12 @@ process_inventory:
           flow_ref:
             uuid: "ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b"
           property_unit: "Mass / kg"
-          amount: "product-specific"
+          amount: "measured active ingredient or formulated product mass"
           amount_kind: "product_specific"
           basis: "per kg treated seed"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_seed_treatment_records
           source_ids: []
         - role: "Packaging unit"
           name: "Woven polypropylene bag"
@@ -357,11 +395,12 @@ process_inventory:
           flow_ref:
             uuid: "9bfaad07-355e-467a-9bab-f95094e7c869"
           property_unit: "Number of items / item"
-          amount: "20-50 bags"
-          amount_kind: "range"
-          basis: "per 1,000 kg packaged seed, depending on bag size"
+          amount: "measured bag count and capacity"
+          amount_kind: "site_specific"
+          basis: "per 1,000 kg packaged seed"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_packaging_input_records
           source_ids: []
       waste:
         []
@@ -375,11 +414,12 @@ process_inventory:
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "1,000 kg"
-          amount_kind: "exact"
+          amount: "measured cleaned seed mass"
+          amount_kind: "site_specific"
           basis: "PCR reference output"
           basis_kind: "reference_flow"
-          evidence_kind: "observed_dataset"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_cleaned_seed_mass
           source_ids: []
         - role: "Marketable straw or residue owned by seed plant"
           name: "Wheat straw"
@@ -391,7 +431,7 @@ process_inventory:
           amount_kind: "not_applicable"
           basis: "only if included in seed plant boundary"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "source_rule"
           source_ids: []
       waste:
         - role: "Screenings, rejected seed, dust, and off-grade material"
@@ -400,33 +440,36 @@ process_inventory:
           flow_ref:
             uuid: "e6d6aa78-105e-4acc-a84b-46f68765a1cc"
           property_unit: "Mass / kg"
-          amount: "10-200 kg"
-          amount_kind: "range"
+          amount: "measured reject mass"
+          amount_kind: "site_specific"
           basis: "per 1,000 kg cleaned seed output"
           basis_kind: "process_output"
-          evidence_kind: "external_source"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_reject_mass
           source_ids:
             - usda-seed-cleaning-handling
         - role: "Packaging waste"
           name: "Select applicable packaging waste flow"
           flow_type: "waste"
           property_unit: "Mass / kg"
-          amount: "site-specific"
+          amount: "measured packaging waste mass"
           amount_kind: "site_specific"
           basis: "per 1,000 kg packaged seed"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_packaging_waste_records
           source_ids: []
       elementary:
         - role: "Cleaning dust emitted to air"
           name: "Select applicable particulate flow"
           flow_type: "elementary"
           property_unit: "Mass / kg"
-          amount: "site-specific"
+          amount: "measured or calculated cleaning dust mass"
           amount_kind: "site_specific"
           basis: "per 1,000 kg cleaned seed output"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_cleaning_dust_records
           source_ids:
             - usda-seed-cleaning-handling
         - role: "Fossil carbon dioxide from conditioning energy"
@@ -435,11 +478,12 @@ process_inventory:
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "derived from energy datasets"
+          amount: "calculated from conditioning energy records and emission factor"
           amount_kind: "formula"
           basis: "per process inventory"
           basis_kind: "fuel_inventory"
-          evidence_kind: "tiangong_default"
+          evidence_kind: "calculated_from_collection"
+          collection_protocol_id: cp_conditioning_energy_records
           source_ids: []
   - id: storage_and_delivery
     label: "Storage and Delivery"
@@ -451,11 +495,12 @@ process_inventory:
           flow_ref:
             uuid: "4d0361a3-56cc-45f9-aa42-bb9103285bf9"
           property_unit: "Net calorific value / MJ or kWh"
-          amount: "site-specific"
+          amount: "measured storage electricity use"
           amount_kind: "site_specific"
           basis: "per storage duration"
           basis_kind: "storage_duration"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_storage_energy_records
           source_ids: []
         - role: "Delivery transport fuel"
           name: "Diesel oil"
@@ -463,11 +508,12 @@ process_inventory:
           flow_ref:
             uuid: "9d258d75-6792-4f1c-9856-81602ed8f816"
           property_unit: "Mass / kg"
-          amount: "route-specific"
+          amount: "measured delivery fuel or route fuel estimate"
           amount_kind: "route_specific"
           basis: "per tonne-km"
           basis_kind: "transport_service"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_delivery_transport_records
           source_ids: []
       waste:
         []
@@ -481,11 +527,12 @@ process_inventory:
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "1,000 kg"
-          amount_kind: "exact"
+          amount: "measured delivered seed mass"
+          amount_kind: "site_specific"
           basis: "if reference flow is delivered seed"
           basis_kind: "reference_flow"
-          evidence_kind: "observed_dataset"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_delivered_seed_mass
           source_ids: []
       waste:
         - role: "Storage loss or damaged seed"
@@ -494,11 +541,12 @@ process_inventory:
           flow_ref:
             uuid: "e6d6aa78-105e-4acc-a84b-46f68765a1cc"
           property_unit: "Mass / kg"
-          amount: "0-20 kg"
-          amount_kind: "range"
+          amount: "measured storage loss or damaged seed mass"
+          amount_kind: "site_specific"
           basis: "per 1,000 kg stored seed"
           basis_kind: "process_output"
-          evidence_kind: "foreground_data"
+          evidence_kind: "collected_record"
+          collection_protocol_id: cp_storage_loss_records
           source_ids: []
       elementary:
         - role: "Fossil carbon dioxide from storage or transport energy"
@@ -507,12 +555,314 @@ process_inventory:
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "derived from fuel and energy datasets"
+          amount: "calculated from storage energy and delivery transport records"
           amount_kind: "formula"
           basis: "per process inventory"
           basis_kind: "fuel_inventory"
-          evidence_kind: "tiangong_default"
+          evidence_kind: "calculated_from_collection"
+          collection_protocol_id: cp_delivery_transport_records
           source_ids: []
+dataset_production:
+  collection_protocols:
+    - protocol_id: cp_source_seed_lot_mass
+      process_id: "field_seed_multiplication"
+      flow_role: "Source seed lot used for multiplication"
+      record_type: "seed lot receiving record"
+      raw_fields: "lot id; supplier or source field; propagation class; mass; moisture basis; seed class"
+      collection_method: "weighbridge, calibrated scale, or supplier primary activity record"
+      unit: "kg"
+      frequency: "per seed lot"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "sum seed lot mass and normalize to harvested seed output"
+      quality_evidence: "scale calibration, receiving record, and seed lot certificate"
+    - protocol_id: cp_harvested_seed_mass
+      process_id: "field_seed_multiplication"
+      flow_role: "Harvested wheat seed crop"
+      record_type: "harvest and field receiving record"
+      raw_fields: "field id; harvest date; harvested mass; moisture basis"
+      collection_method: "weighbridge or calibrated scale"
+      unit: "kg"
+      frequency: "per harvest event"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "sum harvested mass at declared moisture basis"
+      quality_evidence: "scale calibration and harvest record"
+    - protocol_id: cp_fertilizer_input_records
+      process_id: "field_seed_multiplication"
+      flow_role: "fertilizer inputs"
+      record_type: "input application record"
+      raw_fields: "product name; nutrient content; product mass; application date; field id"
+      collection_method: "farm operation log, invoice, or applicator record"
+      unit: "kg product and kg nutrient"
+      frequency: "per application"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "sum product and nutrient mass and normalize to harvested seed output"
+      quality_evidence: "invoice, field log, applicator record"
+    - protocol_id: cp_irrigation_water_records
+      process_id: "field_seed_multiplication"
+      flow_role: "irrigation water"
+      record_type: "irrigation record"
+      raw_fields: "water source; volume or mass; pumping period; field id"
+      collection_method: "meter reading, pumping log, or water invoice"
+      unit: "kg or m3 converted to kg"
+      frequency: "per irrigation event"
+      temporal_coverage: "crop cycle"
+      site_scope: "irrigated seed multiplication field"
+      aggregation_rule: "sum irrigation water and convert to mass where needed"
+      quality_evidence: "meter record, pumping log, or water invoice"
+    - protocol_id: cp_field_fuel_records
+      process_id: "field_seed_multiplication"
+      flow_role: "field machinery fuel"
+      record_type: "field operation fuel record"
+      raw_fields: "operation; machine; fuel type; fuel quantity; field id"
+      collection_method: "fuel log, invoice, or machine telematics"
+      unit: "kg or L converted to kg"
+      frequency: "per field operation"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "sum fuel by operation and normalize to harvested seed output"
+      quality_evidence: "fuel log, invoice, or telematics record"
+    - protocol_id: cp_crop_protection_records
+      process_id: "field_seed_multiplication"
+      flow_role: "crop protection products"
+      record_type: "crop protection application record"
+      raw_fields: "product name; active ingredient; formulated product mass; application date; field id"
+      collection_method: "farm spray log or applicator record"
+      unit: "kg active ingredient or kg product"
+      frequency: "per application"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "sum active ingredient or product mass and normalize to harvested seed output"
+      quality_evidence: "spray log, product label, or applicator record"
+    - protocol_id: cp_land_use_records
+      process_id: "field_seed_multiplication"
+      flow_role: "land occupation"
+      record_type: "field area record"
+      raw_fields: "field id; planted area; crop duration"
+      collection_method: "farm field record or GIS area record"
+      unit: "ha and crop duration"
+      frequency: "per crop cycle"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "multiply area by crop duration where area-time is required"
+      quality_evidence: "field map, GIS record, or farm record"
+    - protocol_id: cp_field_residue_records
+      process_id: "field_seed_multiplication"
+      flow_role: "straw or field residue"
+      record_type: "residue handling record"
+      raw_fields: "field id; residue stream; mass; fate"
+      collection_method: "baling ticket, scale record, or field residue management log"
+      unit: "kg"
+      frequency: "per residue handling event"
+      temporal_coverage: "crop cycle"
+      site_scope: "seed multiplication site"
+      aggregation_rule: "sum residue mass crossing the boundary and declare fate"
+      quality_evidence: "scale record, baling ticket, or field log"
+    - protocol_id: cp_cleaned_seed_mass
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "Cleaned wheat seed for sowing"
+      record_type: "conditioning output record"
+      raw_fields: "batch id; cleaned seed mass; moisture basis; physical purity; germination rate"
+      collection_method: "calibrated scale plus quality test record"
+      unit: "kg"
+      frequency: "per cleaned seed batch"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "sum accepted cleaned seed batches at declared moisture basis"
+      quality_evidence: "scale calibration and seed quality test"
+    - protocol_id: cp_reject_mass
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "Screenings, rejected seed, dust, and off-grade material"
+      record_type: "conditioning reject record"
+      raw_fields: "batch id; reject stream; mass; fate"
+      collection_method: "calibrated scale or container mass balance"
+      unit: "kg"
+      frequency: "per conditioning batch"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "sum reject streams and declare fate"
+      quality_evidence: "scale record, reject log, and fate record"
+    - protocol_id: cp_conditioning_energy_records
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "conditioning energy"
+      record_type: "facility energy record"
+      raw_fields: "meter id; energy type; quantity; period; process line"
+      collection_method: "meter reading, utility bill, or equipment log"
+      unit: "kWh, MJ, or fuel kg"
+      frequency: "per conditioning campaign"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "allocate and normalize energy to cleaned seed output"
+      quality_evidence: "meter record, utility bill, or equipment log"
+    - protocol_id: cp_seed_treatment_records
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "seed treatment chemicals"
+      record_type: "seed treatment application record"
+      raw_fields: "treatment product; active ingredient; dose; treated seed mass; batch id"
+      collection_method: "treatment log or supplier treatment certificate"
+      unit: "kg active ingredient or kg product"
+      frequency: "per treated batch"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "sum treatment chemical mass and normalize to treated seed mass"
+      quality_evidence: "treatment log, product label, or supplier certificate"
+    - protocol_id: cp_packaging_input_records
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "packaging units"
+      record_type: "packaging use record"
+      raw_fields: "packaging type; item count; capacity; mass when available; batch id"
+      collection_method: "packaging inventory issue record or packing line log"
+      unit: "item and kg where available"
+      frequency: "per packaged batch"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "sum packaging items and convert to mass when required"
+      quality_evidence: "packing log or packaging inventory record"
+    - protocol_id: cp_packaging_waste_records
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "packaging waste"
+      record_type: "packaging waste record"
+      raw_fields: "waste type; mass; fate; batch or period"
+      collection_method: "scale record or waste contractor record"
+      unit: "kg"
+      frequency: "per waste shipment or campaign"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "sum packaging waste by fate"
+      quality_evidence: "scale ticket or waste contractor record"
+    - protocol_id: cp_cleaning_dust_records
+      process_id: "seed_conditioning_and_treatment"
+      flow_role: "cleaning dust emitted to air"
+      record_type: "dust collection or emission record"
+      raw_fields: "dust collector mass; emission estimate; operating period"
+      collection_method: "dust collector log, maintenance record, or emission calculation"
+      unit: "kg"
+      frequency: "per campaign or operating period"
+      temporal_coverage: "conditioning campaign"
+      site_scope: "seed conditioning facility"
+      aggregation_rule: "sum collected or emitted dust and normalize to cleaned seed output"
+      quality_evidence: "dust collector log or emission calculation"
+    - protocol_id: cp_storage_energy_records
+      process_id: "storage_and_delivery"
+      flow_role: "storage electricity"
+      record_type: "storage energy record"
+      raw_fields: "meter id; energy quantity; storage period; stored mass"
+      collection_method: "meter reading or utility bill"
+      unit: "kWh or MJ"
+      frequency: "per storage period"
+      temporal_coverage: "declared storage duration"
+      site_scope: "storage site"
+      aggregation_rule: "allocate storage energy by stored mass and duration"
+      quality_evidence: "meter record or utility bill"
+    - protocol_id: cp_delivery_transport_records
+      process_id: "storage_and_delivery"
+      flow_role: "delivery transport fuel"
+      record_type: "transport service record"
+      raw_fields: "route; distance; vehicle; fuel quantity or tonne-km; delivered mass"
+      collection_method: "fuel log, carrier invoice, or transport dispatch record"
+      unit: "kg fuel or tonne-km"
+      frequency: "per shipment"
+      temporal_coverage: "delivery period"
+      site_scope: "declared delivery route"
+      aggregation_rule: "sum route-specific transport service and normalize to delivered seed"
+      quality_evidence: "carrier invoice, dispatch record, or fuel log"
+    - protocol_id: cp_delivered_seed_mass
+      process_id: "storage_and_delivery"
+      flow_role: "declared delivered product"
+      record_type: "delivery or dispatch record"
+      raw_fields: "lot id; delivered mass; delivery date; receiver or gate; moisture basis"
+      collection_method: "weighbridge, calibrated scale, or dispatch record"
+      unit: "kg"
+      frequency: "per shipment"
+      temporal_coverage: "delivery period"
+      site_scope: "declared delivery route"
+      aggregation_rule: "sum delivered seed mass at declared moisture basis"
+      quality_evidence: "dispatch record, scale ticket, or delivery note"
+    - protocol_id: cp_storage_loss_records
+      process_id: "storage_and_delivery"
+      flow_role: "storage loss or damaged seed"
+      record_type: "storage loss record"
+      raw_fields: "lot id; loss mass; damage category; fate"
+      collection_method: "inventory reconciliation, scale record, or disposal record"
+      unit: "kg"
+      frequency: "per storage period or lot"
+      temporal_coverage: "declared storage duration"
+      site_scope: "storage site"
+      aggregation_rule: "sum storage loss and declare fate"
+      quality_evidence: "inventory reconciliation, scale record, or disposal record"
+  calculation_rules:
+    - id: normalize_source_seed_lot_input
+      applies_to: "source seed lot input"
+      rule: "source seed lot kg / harvested seed kg * reference output"
+      inputs:
+        - cp_source_seed_lot_mass
+        - cp_harvested_seed_mass
+      output: "kg source seed lot per reference output"
+      source_ids: []
+    - id: normalize_cleaning_yield
+      applies_to: "seed conditioning yield"
+      rule: "cleaned seed kg / harvested seed crop input kg"
+      inputs:
+        - cp_cleaned_seed_mass
+        - "harvested seed crop input record"
+      output: "cleaning yield and reject rate"
+      source_ids:
+        - usda-seed-cleaning-handling
+    - id: calculate_water_withdrawal
+      applies_to: "irrigation water withdrawal"
+      rule: "convert metered irrigation volume to mass and normalize to harvested seed output"
+      inputs:
+        - cp_irrigation_water_records
+        - cp_harvested_seed_mass
+      output: "kg water withdrawal per reference output"
+      source_ids: []
+    - id: calculate_field_energy_co2
+      applies_to: "field energy fossil CO2"
+      rule: "fuel quantity * declared fuel emission factor, normalized to harvested seed output"
+      inputs:
+        - cp_field_fuel_records
+        - cp_harvested_seed_mass
+      output: "kg fossil CO2 from field energy per reference output"
+      source_ids: []
+    - id: calculate_conditioning_energy_co2
+      applies_to: "conditioning energy fossil CO2"
+      rule: "conditioning energy quantity * declared energy emission factor, normalized to cleaned seed output"
+      inputs:
+        - cp_conditioning_energy_records
+        - cp_cleaned_seed_mass
+      output: "kg fossil CO2 from conditioning energy per reference output"
+      source_ids: []
+    - id: calculate_storage_delivery_energy_co2
+      applies_to: "storage and delivery fossil CO2"
+      rule: "storage energy and delivery transport energy * declared emission factors, normalized to delivered or stored seed"
+      inputs:
+        - cp_storage_energy_records
+        - cp_delivery_transport_records
+      output: "kg fossil CO2 from storage and delivery energy per reference output"
+      source_ids: []
+  data_quality_requirements:
+    - id: dq_seed_identity
+      applies_to: "seed lot and cleaned seed identity"
+      requirement: "Seed class, propagation class, treatment status, moisture basis, physical purity, and germination rate must be declared for the reference flow and source seed lots."
+      evidence: "seed certificate, quality test, or receiving record"
+    - id: dq_mass_records
+      applies_to: "mass records"
+      requirement: "Mass values must identify record date, site or batch, unit, moisture basis where relevant, and measurement device or source record."
+      evidence: "calibration record, weighbridge ticket, scale log, or supplier primary activity record"
+    - id: dq_temporal_coverage
+      applies_to: "crop-cycle data"
+      requirement: "Field production data should cover the declared crop cycle; weather-sensitive comparative work should disclose whether one-year or multi-year average data are used."
+      evidence: "crop-year production records"
+published_dataset_profile:
+  dataset_role: "unit_process"
+  downstream_use: "secondary_dataset; background_dataset"
+  allowed_use: "downstream wheat seed or wheat cultivation data construction where seed class, treatment status, geography, moisture basis, and declared gate match the dataset metadata"
+  excluded_use: "commodity wheat grain, seed production outside the declared route, and studies requiring omitted breeding research or capital goods burdens"
+  required_metadata: "reference flow; geography; crop cycle; seed class; treatment status; moisture basis; physical purity; germination rate; declared gate; collection protocol coverage; DQR"
+  required_quality_disclosure: "record coverage, calculation rules, measurement devices or primary records, unresolved omissions, and data quality scores"
+  update_trigger: "material change in production route, geography, seed treatment, conditioning technology, reference flow qualifiers, collection protocol coverage, or data quality score"
 data_sources:
   - id: "fao-wheat-seed-production"
     type: "official guidance"
@@ -521,11 +871,11 @@ data_sources:
   - id: "unl-wheat-seeding-rate"
     type: "extension guidance"
     reference: "<https://cropwatch.unl.edu/determining-seeding-rate-your-winter-wheat/>"
-    used_for: "seeding rate and thousand-kernel weight background"
+    used_for: "seeding rate and thousand-kernel weight method context"
   - id: "umn-small-grain-seeding-rate"
     type: "extension guidance"
     reference: "<https://extension.umn.edu/planting-small-grains/seeding-rate-small-grains>"
-    used_for: "seeding rate formula, stand loss, and germination background"
+    used_for: "seeding rate formula, stand loss, and germination method context"
   - id: "usda-seed-cleaning-handling"
     type: "official handbook"
     reference: "<https://www.govinfo.gov/content/pkg/GOVPUB-A-PURL-gpo20323/pdf/GOVPUB-A-PURL-gpo20323.pdf>"
@@ -533,4 +883,4 @@ data_sources:
   - id: "ipcc-2019-managed-soils-n2o"
     type: "official method guidance"
     reference: "<https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf>"
-    used_for: "N2O direct emission factor and nitrogen emission modelling"
+    used_for: "N2O direct emission factor and nitrogen emission calculation"

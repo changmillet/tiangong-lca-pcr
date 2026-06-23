@@ -123,8 +123,14 @@ test("optional PCR scaffold uses process inventory without construction trace se
 
     const enMarkdown = readFileSync(path.join(pcrDir, "pcr.en-US.md"), "utf8");
     const zhMarkdown = readFileSync(path.join(pcrDir, "pcr.zh-CN.md"), "utf8");
+    const manifest = readFileSync(path.join(pcrDir, "manifest.yaml"), "utf8");
     const structured = readFileSync(path.join(pcrDir, "structured.yaml"), "utf8");
 
+    assert.match(manifest, /target_entities:\n  - flow\n  - process\n  - dataset/);
+    assert.match(enMarkdown, /canonical_pcr_id/);
+    assert.match(enMarkdown, /How much/);
+    assert.match(enMarkdown, /### Boundary Abstraction/);
+    assert.match(enMarkdown, /declared_starting_condition/);
     assert.match(enMarkdown, /## 6\. Process Inventory Structure/);
     assert.match(enMarkdown, /### Process Map/);
     assert.match(enMarkdown, /process_id/);
@@ -134,11 +140,19 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.match(enMarkdown, /##### Waste flows/);
     assert.match(enMarkdown, /##### Elementary flows/);
     assert.match(enMarkdown, /#### Outputs/);
-    assert.match(enMarkdown, /## 10\. Data Sources/);
+    assert.match(enMarkdown, /collection_protocol_id/);
+    assert.match(enMarkdown, /## 8\. Foreground Data Collection, Calculation, and Quality Rules/);
+    assert.match(enMarkdown, /### Data Collection Protocols/);
+    assert.match(enMarkdown, /### Calculation Rules/);
+    assert.match(enMarkdown, /### Data Quality Requirements/);
+    assert.match(enMarkdown, /## 10\. Published Dataset Profile/);
+    assert.match(enMarkdown, /## 11\. Data Sources/);
     assert.doesNotMatch(enMarkdown, /CLI Lookup Trace|Agent Modelling Instructions|Open Questions|Review Status/);
 
     assert.match(zhMarkdown, /## 6\. 过程清单结构/);
     assert.match(zhMarkdown, /\| 字段 \| 值 \|/);
+    assert.match(zhMarkdown, /### 边界概化/);
+    assert.match(zhMarkdown, /declared_starting_condition/);
     assert.match(zhMarkdown, /\| rule_id \| 适用对象 \| 必需流属性 \| 必需单位 \| 规则 \|/);
     assert.match(zhMarkdown, /### 过程图/);
     assert.match(zhMarkdown, /process_id/);
@@ -149,7 +163,13 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.match(zhMarkdown, /##### 废物流/);
     assert.match(zhMarkdown, /##### 基本流/);
     assert.match(zhMarkdown, /#### 输出/);
-    assert.match(zhMarkdown, /## 10\. 数据源/);
+    assert.match(zhMarkdown, /collection_protocol_id/);
+    assert.match(zhMarkdown, /## 8\. 前景数据采集、计算与质量规则/);
+    assert.match(zhMarkdown, /### 数据采集协议/);
+    assert.match(zhMarkdown, /### 计算规则/);
+    assert.match(zhMarkdown, /### 数据质量要求/);
+    assert.match(zhMarkdown, /## 10\. 发布数据集画像/);
+    assert.match(zhMarkdown, /## 11\. 数据源/);
     assert.doesNotMatch(
       zhMarkdown,
       /\| Field \| Value \||\| Reference amount|### Process Map|\| process_id \| process_name/,
@@ -157,6 +177,7 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.doesNotMatch(zhMarkdown, /CLI 查询记录|Agent 建模指令|待复核问题|审核状态/);
 
     assert.match(structured, /process_inventory: \[\]/);
+    assert.match(structured, /boundary_abstraction: \{\}/);
     assert.match(structured, /data_sources: \[\]/);
     assert.doesNotMatch(structured, /cli_lookup_trace/);
   } finally {
@@ -211,6 +232,19 @@ sync_with: pcr.zh-CN.md
 | \`reference_mass\` | reference product | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` | kg | Reference flow must be expressed as kg cleaned wheat seed. |
 | \`seed_count_conversion\` | optional seed-count data | Mass \`93a60a56-a3c8-11da-a746-0800200b9a66\` | kg | Seed count data must include thousand-kernel weight for conversion to mass. |
 
+## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition | source_seed_lot |
+| starting_condition_role | identity_and_reproduction_condition |
+| product_classification_scope | current CPC product category \`01111\`, \`Wheat, seed\` |
+| recursive_input_rule | input flow in same product category is recorded as declared starting condition |
+| upstream_dataset_requirement | declared starting condition disclosure and collection record |
+| disclosure | record source seed lot identity, propagation class, mass, moisture basis, treatment status, and evidence |
+
 ## 6. Process Inventory Structure
 
 ### Process Map
@@ -225,23 +259,56 @@ sync_with: pcr.zh-CN.md
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Previous-generation wheat seed | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | 25-70 kg | range | per 1,000 kg harvested seed crop | process_output | external_source | \`unl-wheat-seeding-rate\` |
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Source seed lot used for multiplication | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | site-specific measured mass | site_specific | per 1,000 kg harvested seed crop | process_output | collected_record | cp_source_seed_lot_mass | \`unl-wheat-seeding-rate\` |
 
 #### Outputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Harvested wheat seed crop | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | 1,000 kg | exact | process reference | process_output | observed_dataset |  |
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Harvested wheat seed crop | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | measured harvested mass | site_specific | process reference | process_output | collected_record | cp_harvested_seed_mass |  |
 
-## 10. Data Sources
+## 8. Foreground Data Collection, Calculation, and Quality Rules
+
+### Data Collection Protocols
+
+| protocol_id | process_id | flow_role | record_type | raw_fields | collection_method | unit | frequency | temporal_coverage | site_scope | aggregation_rule | quality_evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| cp_source_seed_lot_mass | field_seed_multiplication | Source seed lot used for multiplication | seed lot receiving record | lot id; mass; moisture basis | weighbridge or calibrated scale | kg | per seed lot | crop cycle | seed multiplication site | sum lots and normalize to harvested seed output | scale calibration and lot record |
+| cp_harvested_seed_mass | field_seed_multiplication | Harvested wheat seed crop | harvest record | field id; harvested mass; moisture basis | weighbridge or calibrated scale | kg | per harvest event | crop cycle | seed multiplication site | sum harvest records at declared moisture basis | scale calibration and harvest record |
+
+### Calculation Rules
+
+| rule_id | Applies to | Formula or rule | Inputs | Output | source_ids |
+| --- | --- | --- | --- | --- | --- |
+| normalize_source_seed_lot_input | source seed lot input | source seed lot kg / harvested seed kg * reference output | cp_source_seed_lot_mass; cp_harvested_seed_mass | kg source seed lot per reference output |  |
+
+### Data Quality Requirements
+
+| requirement_id | Applies to | Requirement | Evidence |
+| --- | --- | --- | --- |
+| dq_seed_mass | seed mass records | Weighing records must identify lot, mass, date, and moisture basis. | scale calibration and lot records |
+
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role | unit_process |
+| downstream_use | secondary_dataset; background_dataset |
+| allowed_use | wheat seed production datasets with matching seed class, treatment status, geography, and declared gate |
+| excluded_use | commodity wheat grain and seed production routes outside the declared boundary |
+| required_metadata | reference flow; geography; crop cycle; moisture basis; seed class; treatment status; DQR |
+| required_quality_disclosure | collected record coverage, calculation rules, and data quality scores |
+| update_trigger | material process, geography, seed treatment, or data quality change |
+
+## 11. Data Sources
 
 | Source id | Type | Reference | Used for |
 | --- | --- | --- | --- |
-| \`unl-wheat-seeding-rate\` | extension-guidance | https://cropwatch.unl.edu/determining-seeding-rate-your-winter-wheat/ | seeding rate background |
+| \`unl-wheat-seeding-rate\` | extension-guidance | https://cropwatch.unl.edu/determining-seeding-rate-your-winter-wheat/ | source seed lot context |
 `,
     );
 
@@ -264,16 +331,220 @@ sync_with: pcr.zh-CN.md
     assert.match(structured, /measurement_rules:/);
     assert.match(structured, /id: reference_mass/);
     assert.match(structured, /required_unit: "kg"/);
+    assert.match(structured, /boundary_abstraction:/);
+    assert.match(structured, /declared_starting_condition: "source_seed_lot"/);
+    assert.match(
+      structured,
+      /recursive_input_rule: "input flow in same product category is recorded as declared starting condition"/,
+    );
     assert.match(structured, /process_map:/);
     assert.match(structured, /inclusion: "required"/);
     assert.match(structured, /process_inventory:/);
     assert.match(structured, /id: field_seed_multiplication/);
-    assert.match(structured, /amount_kind: "range"/);
+    assert.match(structured, /amount_kind: "site_specific"/);
     assert.match(structured, /basis_kind: "process_output"/);
-    assert.match(structured, /evidence_kind: "external_source"/);
+    assert.match(structured, /evidence_kind: "collected_record"/);
+    assert.match(structured, /collection_protocol_id: cp_source_seed_lot_mass/);
+    assert.match(structured, /dataset_production:/);
+    assert.match(structured, /collection_protocols:/);
+    assert.match(structured, /protocol_id: cp_source_seed_lot_mass/);
+    assert.match(structured, /calculation_rules:/);
+    assert.match(structured, /id: normalize_source_seed_lot_input/);
+    assert.match(structured, /data_quality_requirements:/);
+    assert.match(structured, /id: dq_seed_mass/);
+    assert.match(structured, /published_dataset_profile:/);
+    assert.match(structured, /dataset_role: "unit_process"/);
     assert.match(structured, /source_ids:/);
     assert.match(structured, /- unl-wheat-seeding-rate/);
     assert.doesNotMatch(structured, /01\.01\.002|@01|version: "01|cli_lookup_trace|review_status/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint requires collection protocols for authored foreground flow rows", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "manifest.yaml"),
+      `schema_version: 1
+id: pcr.agriculture.crops.wheat-seed
+title:
+  en-US: "Wheat seed production"
+  zh-CN: "小麦种子生产"
+status: candidate
+pcr_kind: product_category_rule
+content_maturity: authored_methodology
+languages:
+  canonical: en-US
+  available:
+    - en-US
+    - zh-CN
+`,
+    );
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `---
+pcr_id: pcr.agriculture.crops.wheat-seed
+language: en-US
+status: candidate
+sync_with: pcr.zh-CN.md
+---
+
+# Wheat Seed Production
+
+## 6. Process Inventory Structure
+
+### Process Map
+
+| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| --- | --- | --- | --- | --- | --- |
+| field_seed_multiplication | Field Seed Multiplication | required |  | foreground | harvested seed crop |
+
+### Process: field_seed_multiplication
+
+#### Inputs
+
+##### Product flows
+
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Source seed lot used for multiplication | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | site-specific measured mass | site_specific | per 1,000 kg harvested seed crop | process_output | collected_record | cp_missing |  |
+| Fertilizer input | Urea | \`3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e\` | Mass / kg | site-specific | site_specific | per output | process_output | foreground_data |  |  |
+`,
+    );
+
+    assert.throws(
+      () => runCli(["lint", "--root", root]),
+      (error) =>
+        String(error.stderr).includes("references unknown collection_protocol_id cp_missing") &&
+        String(error.stderr).includes("requires collection_protocol_id for evidence_kind foreground_data"),
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint rejects recursive origin wording in material PCR markdown", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "manifest.yaml"),
+      `schema_version: 1
+id: pcr.agriculture.crops.wheat-seed
+title:
+  en-US: "Wheat seed production"
+  zh-CN: "小麦种子生产"
+status: candidate
+pcr_kind: product_category_rule
+content_maturity: authored_methodology
+languages:
+  canonical: en-US
+  available:
+    - en-US
+    - zh-CN
+`,
+    );
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `---
+pcr_id: pcr.agriculture.crops.wheat-seed
+language: en-US
+status: candidate
+sync_with: pcr.zh-CN.md
+---
+
+# Wheat Seed Production
+
+## 5. System Boundary
+
+Previous-generation wheat seed is the starting point.
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition | source_seed_lot |
+| starting_condition_role | identity_and_reproduction_condition |
+| product_classification_scope | current CPC product category \`01111\`, \`Wheat, seed\` |
+| recursive_input_rule | input flow in same product category is recorded as declared starting condition |
+| upstream_dataset_requirement | declared starting condition disclosure and collection record |
+| disclosure | record source seed lot identity, propagation class, mass, moisture basis, treatment status, and evidence |
+
+## 6. Process Inventory Structure
+
+### Process Map
+
+| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| --- | --- | --- | --- | --- | --- |
+| field_seed_multiplication | Field Seed Multiplication | required |  | foreground | harvested seed crop |
+
+### Process: field_seed_multiplication
+
+#### Inputs
+
+##### Product flows
+
+| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Source seed lot used for multiplication | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | site-specific measured mass | site_specific | per 1,000 kg harvested seed crop | process_output | collected_record | cp_source_seed_lot_mass |  |
+
+## 8. Foreground Data Collection, Calculation, and Quality Rules
+
+### Data Collection Protocols
+
+| protocol_id | process_id | flow_role | record_type | raw_fields | collection_method | unit | frequency | temporal_coverage | site_scope | aggregation_rule | quality_evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| cp_source_seed_lot_mass | field_seed_multiplication | Source seed lot used for multiplication | seed lot receiving record | lot id; mass; moisture basis | weighbridge or calibrated scale | kg | per seed lot | crop cycle | seed multiplication site | sum lots and normalize to harvested seed output | scale calibration and lot record |
+
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role | unit_process |
+| downstream_use | secondary_dataset; background_dataset |
+| allowed_use | wheat seed production datasets with matching seed class, treatment status, geography, and declared gate |
+| excluded_use | commodity wheat grain and seed production routes outside the declared boundary |
+| required_metadata | reference flow; geography; crop cycle; moisture basis; seed class; treatment status; DQR |
+| required_quality_disclosure | collected record coverage, calculation rules, and data quality scores |
+| update_trigger | material process, geography, seed treatment, or data quality change |
+`,
+    );
+
+    assert.throws(
+      () => runCli(["lint", "--root", root]),
+      (error) => String(error.stderr).includes('contains prohibited recursive-origin term "Previous-generation"'),
+    );
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

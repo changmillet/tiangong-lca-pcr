@@ -111,16 +111,23 @@ export function buildGuidance({ root, pcrId }) {
     pcr,
     source_structured: toPosix(path.relative(root, structuredPath)),
     reference_flow: structured.reference_flow_definition ?? {},
+    boundary_abstraction: structured.boundary_abstraction ?? {},
     measurement_rules: structured.measurement_rules ?? structured.unit_conventions ?? [],
     process_map: structured.process_map ?? [],
     process_inventory: structured.process_inventory ?? [],
+    production_guidance: {
+      collection_protocols: structured.dataset_production?.collection_protocols ?? [],
+      calculation_rules: structured.dataset_production?.calculation_rules ?? [],
+      data_quality_requirements: structured.dataset_production?.data_quality_requirements ?? [],
+    },
+    published_dataset_profile: structured.published_dataset_profile ?? {},
     data_quality_rules: structured.data_quality_rules ?? [],
     validation_rules: structured.validation_rules ?? [],
     data_sources: structured.data_sources ?? [],
     validation_notes: [
-      "Use this guidance to construct process and lifecyclemodel records; do not invent PCR rules from memory.",
-      "Preserve Tiangong UUIDs exactly and do not add dataset versions to PCR-derived UUID references.",
-      "Run tiangong-pcr validate-model after constructing a model and draft feedback if PCR guidance is missing or ambiguous.",
+      "Use this guidance as the source of Tiangong foreground data collection package requirements.",
+      "Preserve Tiangong UUIDs exactly and keep PCR-derived UUID references version-free.",
+      "Run tiangong-pcr validate-dataset after constructing a foreground data package and draft feedback if PCR guidance is missing or ambiguous.",
     ],
   };
 }
@@ -169,7 +176,7 @@ ${proposedChange}
 
 ${evidence}
 
-## Impact on LCA model construction
+## Impact on foreground data package construction
 
 
 ## Maintainer intake checklist
@@ -201,6 +208,57 @@ export function validateModelAgainstGuidance({ root, pcrId, model }) {
   }
 
   return { pcr: guidance.pcr, finding_count: findings.length, findings };
+}
+
+export function validateDatasetAgainstGuidance({ root, pcrId, dataset }) {
+  const guidance = buildGuidance({ root, pcrId });
+  const findings = [];
+  const requiredProtocolIds = (guidance.production_guidance.collection_protocols ?? [])
+    .map((protocol) => protocol.protocol_id)
+    .filter(Boolean);
+  const presentProtocolIds = collectCollectionRecordProtocolIds(dataset);
+
+  for (const protocolId of requiredProtocolIds) {
+    if (!presentProtocolIds.has(protocolId)) {
+      findings.push({
+        severity: "error",
+        code: "missing_collection_protocol_record",
+        message: `Foreground data package is missing collection record for protocol_id ${protocolId}`,
+      });
+    }
+  }
+
+  return { pcr: guidance.pcr, finding_count: findings.length, findings };
+}
+
+function collectCollectionRecordProtocolIds(dataset) {
+  if (typeof dataset === "string") {
+    return new Set();
+  }
+  const ids = new Set();
+  for (const record of collectionRecordArrays(dataset)) {
+    const protocolId = record?.protocol_id ?? record?.collection_protocol_id;
+    if (protocolId) {
+      ids.add(String(protocolId));
+    }
+  }
+  return ids;
+}
+
+function collectionRecordArrays(value) {
+  if (!value || typeof value !== "object") {
+    return [];
+  }
+  const records = [];
+  for (const key of ["collection_records", "foreground_records", "measurement_records"]) {
+    if (Array.isArray(value[key])) {
+      records.push(...value[key]);
+    }
+  }
+  if (value.data && typeof value.data === "object") {
+    records.push(...collectionRecordArrays(value.data));
+  }
+  return records;
 }
 
 function findManifestFiles(directory) {
