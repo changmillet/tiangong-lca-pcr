@@ -20,6 +20,68 @@ This repository owns canonical PCR and modelling methodology assets for TianGong
 - Keep reusable method rules in `library/modules/` and category-specific rules in `library/pcrs/`.
 - Builder scripts must not depend on private workspace state.
 
+## PCR Directory Contract
+
+Canonical PCR identity is directory-based. Each PCR record must use one directory with shared metadata, structured rules, and bilingual Markdown:
+
+```text
+library/pcrs/<domain>/<subdomain>/<pcr-slug>/
+  manifest.yaml
+  pcr.en.md
+  pcr.zh-CN.md
+  structured.yaml
+```
+
+Rules:
+
+- `manifest.yaml` owns language-independent PCR identity, title map, lifecycle status, content maturity, target entities, module references, and available languages.
+- `pcr.en.md` and `pcr.zh-CN.md` are two language renderings of the same PCR record, not separate PCR records.
+- `structured.yaml` owns machine-oriented PCR rules such as reference flow patterns, inventory flow patterns, and QA rules.
+- Do not create parallel `pcrs/en/` and `pcrs/zh-CN/` directory trees.
+- Do not use CPC, HS, ISIC, NAICS, or another external classification system as the canonical PCR directory tree.
+- If a classification leaf maps to an existing PCR, update the mapping file instead of duplicating the PCR.
+
+Reusable modules may use the same localized directory pattern:
+
+```text
+library/modules/<group>/<module-slug>/
+  manifest.yaml
+  module.en.md
+  module.zh-CN.md
+  structured.yaml
+```
+
+Legacy single-file module stubs under `library/modules/core/*.md` are scaffold placeholders and should be migrated to the directory pattern when their content becomes material.
+
+## Classification Mapping Contract
+
+Classification data and mappings live outside canonical PCR records:
+
+```text
+classifications/systems/<system>/<version>/
+classifications/mappings/<system>-<version>-to-pcr.yaml
+```
+
+Mapping files are the authoritative link from external classification codes to canonical PCR ids. Mapping relation types should include `exact`, `broader`, `narrower`, `proxy`, and `manual_review`.
+
+## Builder CLI
+
+The builder CLI lives under `builder/cli/`.
+
+Use:
+
+```bash
+npm run init
+npm run lint
+npm run validate
+```
+
+Command meanings:
+
+- `init`: create required scaffold directories and repository guide files. It can also create a sample PCR directory with `node builder/cli/index.mjs init --sample-pcr <domain/path/slug> --pcr-id <id>`.
+- `lint`: validate required directories and enforce that every PCR directory with `manifest.yaml` also has `pcr.en.md`, `pcr.zh-CN.md`, and `structured.yaml`.
+- `validate`: run `lint` and the builder CLI tests.
+
 ## Default Load Order
 
 1. `AGENTS.md`
@@ -35,4 +97,3 @@ Run the local validation entry point before handoff when files in this repo chan
 ```bash
 npm run validate
 ```
-

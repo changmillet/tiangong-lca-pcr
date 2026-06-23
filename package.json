@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "node builder/scripts/validate-pcr-library.mjs",
+    "init": "node builder/cli/index.mjs init",
+    "lint": "node builder/cli/index.mjs lint",
+    "test": "node --test builder/cli/*.test.mjs",
+    "validate": "npm run lint && npm test",
     "catalog:build": "node builder/scripts/build-catalog.mjs",
     "pcr:scaffold:cpc": "node builder/scripts/scaffold-leaf-pcrs.mjs"
   }
 }
-

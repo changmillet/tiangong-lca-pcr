@@ -14,7 +14,26 @@ PCR records are canonical methodology documents. Classification systems such as 
 - `builder/`: templates, schemas, scripts, and construction method documents for building the PCR library.
 - `docs/`: project-level architecture and authoring notes.
 
+## PCR Record Shape
+
+Each material PCR should use one directory with shared metadata, bilingual Markdown, and machine-readable rules:
+
+```text
+library/pcrs/<domain>/<subdomain>/<pcr-slug>/
+  manifest.yaml
+  pcr.en.md
+  pcr.zh-CN.md
+  structured.yaml
+```
+
+## Builder CLI
+
+```bash
+npm run init
+npm run lint
+npm run validate
+```
+
 ## Initial Status
 
 This repository is intentionally scaffold-only. It establishes the layout and contracts for later CPC-backed PCR scaffold generation without committing to a completed PCR content set.
-
