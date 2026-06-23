@@ -1,0 +1,23 @@
+schema_version: 1
+vocab: flow_row_fields
+required_columns:
+  - Flow role
+  - Selected flow
+  - Tiangong UUID
+  - Flow property / unit
+  - Typical range
+  - Range basis
+  - Range sources
+  - Range type
+flow_types:
+  product:
+    description: Product or technosphere flow.
+  waste:
+    description: Waste flow crossing the process boundary.
+  elementary:
+    description: Elementary flow crossing the environment boundary.
+directions:
+  inputs:
+    description: Flow entering the process.
+  outputs:
+    description: Flow leaving the process.

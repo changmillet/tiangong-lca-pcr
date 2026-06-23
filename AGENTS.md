@@ -23,7 +23,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: e432aaf9394e89251a62dfd654d36c3d39edd3c0
+lastReviewedCommit: 510aa027c6a7a35e84d26d640186338f2f291fc1
 ---
 
 # AGENTS.md - TianGong LCA PCR Library
@@ -86,6 +86,8 @@ Mapping files are the authoritative link from external classification codes to c
 ## Builder CLI
 
 The builder CLI lives under `builder/cli/`.
+
+Agent-facing PCR production guidance lives under `builder/`. Read `builder/AGENTS.md` before using `builder/agent-workflows/**`, `builder/contracts/**`, `builder/vocab/**`, or `builder/prompts/**`.
 
 Use:
 

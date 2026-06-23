@@ -21,12 +21,14 @@ checkPaths:
   - library/pcrs/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: e432aaf9394e89251a62dfd654d36c3d39edd3c0
+lastReviewedCommit: 510aa027c6a7a35e84d26d640186338f2f291fc1
 ---
 
 # Authoring Guide
 
 Author PCR content in canonical PCR files under `library/pcrs/`.
+
+Agents should start from `builder/AGENTS.md`, then follow the appropriate runbook under `builder/agent-workflows/` and the contracts under `builder/contracts/`.
 
 Use mapping files under `classifications/mappings/` to connect external classification codes to canonical PCR ids.
 

@@ -22,7 +22,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: e432aaf9394e89251a62dfd654d36c3d39edd3c0
+lastReviewedCommit: 510aa027c6a7a35e84d26d640186338f2f291fc1
 ---
 
 # TianGong LCA PCR Library
@@ -38,7 +38,7 @@ PCR records are canonical methodology documents. Classification systems such as 
 - `library/indexes/`: generated and maintained PCR indexes.
 - `classifications/systems/`: source and normalized classification-system data.
 - `classifications/mappings/`: mappings from external classification codes to canonical PCR ids.
-- `builder/`: templates, schemas, scripts, and construction method documents for building the PCR library.
+- `builder/`: agent workflows, authoring contracts, controlled vocabularies, prompts, templates, schemas, scripts, and construction method documents for building the PCR library.
 - `docs/`: project-level architecture and authoring notes.
 
 ## PCR Record Shape

@@ -4,6 +4,26 @@ This directory contains construction methods, templates, schemas, fixtures, and 
 
 The builder treats classification systems as inputs and mappings. It does not make PCR records subordinate to any one classification system.
 
+## Agent Authoring System
+
+Agent-facing PCR production assets are organized as:
+
+```text
+builder/AGENTS.md
+builder/agent-workflows/
+builder/contracts/
+builder/vocab/
+builder/method/
+builder/prompts/
+```
+
+- `builder/AGENTS.md` is the local agent entrypoint and hard-rule layer.
+- `agent-workflows/` contains task runbooks for creating, updating, translating, reviewing, and publishing PCRs.
+- `contracts/` defines durable authoring contracts for Markdown, manifest, structured projection, evidence, and UUID references.
+- `vocab/` contains controlled vocabularies intended for future lint enforcement.
+- `method/` contains reusable modelling method notes that support the contracts.
+- `prompts/` contains thin entry prompts for Codex, Claude Code, and PCR reviewers.
+
 ## Builder CLI
 
 ```bash

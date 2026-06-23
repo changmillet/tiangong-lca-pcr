@@ -1,0 +1,11 @@
+schema_version: 1
+vocab: process_inclusion
+values:
+  required:
+    description: Process is normally required for the product category.
+  conditional:
+    description: Process is included when the declared condition applies.
+  optional:
+    description: Process may be included when relevant to the study goal and scope.
+  excluded_by_default:
+    description: Process is normally outside the PCR boundary unless explicitly brought into scope.

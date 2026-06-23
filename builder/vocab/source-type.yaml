@@ -1,0 +1,17 @@
+schema_version: 1
+vocab: source_type
+values:
+  official_guidance:
+    description: Guidance from a government, intergovernmental, or official standards body.
+  literature:
+    description: Peer-reviewed or technical literature.
+  standard:
+    description: Formal standard, rule, or specification.
+  dataset:
+    description: Published dataset used as non-default quantitative evidence.
+  method_factor:
+    description: Method document or factor source used for calculations.
+  extension_guidance:
+    description: Agricultural, industrial, or technical extension guidance.
+  handbook:
+    description: Technical handbook or manual.

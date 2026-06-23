@@ -1,0 +1,17 @@
+schema_version: 1
+vocab: basis_kind
+values:
+  reference_flow:
+    description: Quantity is normalized to the PCR reference flow.
+  process_output:
+    description: Quantity is normalized to a process output amount.
+  n_input:
+    description: Quantity is normalized to nitrogen input.
+  fuel_inventory:
+    description: Quantity is derived from fuel inventory.
+  transport_service:
+    description: Quantity is normalized to tonne-kilometre or another transport service basis.
+  storage_duration:
+    description: Quantity depends on storage time.
+  crop_cycle:
+    description: Quantity is normalized to one crop cycle.

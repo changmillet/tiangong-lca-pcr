@@ -1,0 +1,13 @@
+schema_version: 1
+vocab: evidence_kind
+values:
+  external_source:
+    description: Evidence comes from literature, official guidance, standards, or comparable source material.
+  observed_dataset:
+    description: Evidence comes from an explicit dataset or observed row.
+  method_formula:
+    description: Evidence comes from a calculation rule or method formula.
+  foreground_data:
+    description: Evidence must be supplied by the foreground model.
+  tiangong_default:
+    description: Tiangong database row is used for default UUID identity.

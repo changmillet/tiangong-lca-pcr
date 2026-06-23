@@ -22,7 +22,7 @@ checkPaths:
   - classifications/**
   - library/modules/**
 lastReviewedAt: 2026-06-23
-lastReviewedCommit: e432aaf9394e89251a62dfd654d36c3d39edd3c0
+lastReviewedCommit: 510aa027c6a7a35e84d26d640186338f2f291fc1
 ---
 
 # Architecture
@@ -34,6 +34,8 @@ classification code -> mapping -> canonical PCR -> modules -> rendered PCR
 ```
 
 Canonical PCR records live under `library/pcrs/`. Classification source data and mappings live under `classifications/`.
+
+Builder assets under `builder/` define the agent authoring system: workflows describe PCR production steps, contracts define required artifact shapes, vocabularies provide controlled values for future linting, and prompts provide thin entrypoints for agent tools.
 
 For CPC-backed bootstrapping, the builder stores the official source file and normalized hierarchy under `classifications/systems/cpc/<version>/`, then writes an explicit mapping file under `classifications/mappings/`. The CPC hierarchy seeds the initial PCR scaffold, but the generated PCR directory remains the canonical PCR identity.
 
