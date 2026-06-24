@@ -6,7 +6,7 @@
   "scripts": {
     "init": "node builder/cli/index.mjs init",
     "lint": "node builder/cli/index.mjs lint",
-    "test": "node --test builder/cli/*.test.mjs packages/pcr-core/*.test.mjs packages/tiangong-pcr-cli/*.test.mjs",
+    "test": "node --test builder/cli/*.test.mjs builder/lib/*.test.mjs packages/pcr-core/*.test.mjs packages/tiangong-pcr-cli/*.test.mjs",
     "validate": "npm run lint && npm test",
     "catalog:build": "node builder/scripts/build-catalog.mjs",
     "pcr:scaffold:cpc": "node builder/cli/index.mjs scaffold-cpc",
