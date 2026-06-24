@@ -155,6 +155,7 @@ translation_status:
 target_entities:
   - flow
   - process
+  - lifecyclemodel
   - dataset
 `;
 }
@@ -654,6 +655,7 @@ modules:
 target_entities:
   - flow
   - process
+  - lifecyclemodel
   - dataset
 languages:
   canonical: en-US

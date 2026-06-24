@@ -43,6 +43,8 @@ Builder assets under `builder/` separate implementation from documentation. CLI,
 
 Public PCR consumption is a separate layer. `packages/pcr-core/` reads the library, classification mappings, Markdown, and generated `structured.yaml`. `packages/tiangong-pcr-cli/` exposes catalog browsing, deterministic classification resolution, PCR display, Agent guidance, model validation, and feedback drafting. `skills/tiangong-pcr/` teaches agents how to use the CLI without copying PCR rules.
 
+PCR guidance is now foreground-data-package first. `process` and `lifecyclemodel` remain target entities as publication, validation, and downstream-use projections of the foreground data package; they do not own separate PCR methodology.
+
 For CPC-backed bootstrapping, the builder stores the official source file and normalized hierarchy under `classifications/systems/cpc/<version>/`, then writes an explicit mapping file under `classifications/mappings/`. The CPC hierarchy seeds the initial PCR scaffold, but the generated PCR directory remains the canonical PCR identity.
 
 PCR directory slugs must not embed external classification codes. A CPC leaf such as `01111 Wheat, seed` maps to a semantic PCR directory such as `wheat-seed`; `01111` stays in `classifications/mappings/` and `classification_refs`.

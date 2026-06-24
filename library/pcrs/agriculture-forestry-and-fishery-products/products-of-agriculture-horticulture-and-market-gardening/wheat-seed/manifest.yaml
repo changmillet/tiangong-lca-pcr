@@ -23,6 +23,7 @@ modules:
 target_entities:
   - flow
   - process
+  - lifecyclemodel
   - dataset
 languages:
   canonical: en-US

@@ -108,7 +108,9 @@ npm --silent run tiangong-pcr -- validate-dataset --pcr <pcr-id> --input <datase
 npm --silent run tiangong-pcr -- feedback draft --pcr <pcr-id> --type range_evidence_update --summary "<finding>"
 ```
 
-The public CLI provides deterministic classification `resolve`, explicit `tree` and `list` catalog browsing, structured `guidance`, foreground data package coverage checks through `validate-dataset`, and issue-ready feedback drafting. `list` defaults to 10 records per page and prints next-page guidance in human-readable output.
+The public CLI provides deterministic classification `resolve`, explicit `tree` and `list` catalog browsing, structured `guidance`, foreground data package coverage checks through `validate-dataset`, process/lifecyclemodel draft checks through `validate-model`, and issue-ready feedback drafting. `list` defaults to 10 records per page and prints next-page guidance in human-readable output.
+
+PCR guidance is dataset-production first. `process` and `lifecyclemodel` remain target entities as publication, validation, and downstream-use projections of the foreground data package rather than separate sources of methodology truth.
 
 Use `npm --silent run tiangong-pcr -- --help` for the global Agent workflow and `npm --silent run tiangong-pcr -- <command> --help` for command-specific options, output shape, and next-step guidance.
 

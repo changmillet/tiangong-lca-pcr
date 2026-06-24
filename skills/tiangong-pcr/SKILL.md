@@ -57,6 +57,7 @@ npm --silent run tiangong-pcr -- guidance --help
 
 - `pcr.en-US.md` remains the canonical authored PCR source.
 - `structured.yaml` is generated and consumed by `tiangong-pcr guidance`.
+- PCR guidance is foreground-data-package first; process and lifecyclemodel outputs are projections of that package.
 - Tiangong UUIDs from PCR guidance must be copied without dataset versions.
 - Feedback issues are candidate evidence for maintainers before review and merge.
 - Use `missing_pcr` feedback only after checking `tree`, `list`, and any relevant classification mapping.

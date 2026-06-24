@@ -126,7 +126,7 @@ test("optional PCR scaffold uses process inventory without construction trace se
     const manifest = readFileSync(path.join(pcrDir, "manifest.yaml"), "utf8");
     const structured = readFileSync(path.join(pcrDir, "structured.yaml"), "utf8");
 
-    assert.match(manifest, /target_entities:\n  - flow\n  - process\n  - dataset/);
+    assert.match(manifest, /target_entities:\n  - flow\n  - process\n  - lifecyclemodel\n  - dataset/);
     assert.match(enMarkdown, /canonical_pcr_id/);
     assert.match(enMarkdown, /How much/);
     assert.match(enMarkdown, /### Boundary Abstraction/);
