@@ -6,7 +6,7 @@
   "scripts": {
     "init": "node builder/cli/index.mjs init",
     "lint": "node builder/cli/index.mjs lint",
-    "test": "node --test builder/cli/*.test.mjs builder/lib/*.test.mjs packages/pcr-core/*.test.mjs packages/tiangong-pcr-cli/*.test.mjs",
+    "test": "node --test builder/cli/*.test.mjs builder/lib/*.test.mjs packages/pcr-core/*.test.mjs packages/tiangong-pcr-cli/*.test.mjs packages/pcr-viewer/*.test.mjs",
     "validate": "npm run lint && npm test",
     "catalog:build": "node builder/scripts/build-catalog.mjs",
     "pcr:scaffold:cpc": "node builder/cli/index.mjs scaffold-cpc",
@@ -14,6 +14,8 @@
     "pcr:lifecycle": "node builder/cli/index.mjs lifecycle",
     "pcr:bump": "node builder/cli/index.mjs bump",
     "pcr:publish": "node builder/cli/index.mjs publish",
-    "tiangong-pcr": "node packages/tiangong-pcr-cli/bin/tiangong-pcr.mjs"
+    "tiangong-pcr": "node packages/tiangong-pcr-cli/bin/tiangong-pcr.mjs",
+    "viewer:build": "node packages/pcr-viewer/scripts/build-viewer-data.mjs",
+    "viewer:serve": "node packages/pcr-viewer/scripts/serve-viewer.mjs"
   }
 }

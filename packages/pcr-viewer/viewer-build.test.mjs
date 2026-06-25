@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { execFileSync, spawn } from "node:child_process";
 import { existsSync, readFileSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -105,3 +106,59 @@ test("viewer-core summarizes guidance counts", () => {
     data_source_count: 2,
   });
 });
+
+test("root viewer scripts can build and serve the static viewer", async () => {
+  const outDir = mkdtempSync(path.join(tmpdir(), "tiangong-pcr-viewer-cli-"));
+  try {
+    const buildOutput = execFileSync(process.execPath, [
+      "packages/pcr-viewer/scripts/build-viewer-data.mjs",
+      "--root",
+      repoRoot,
+      "--out-dir",
+      outDir,
+    ], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    });
+
+    assert.match(buildOutput, /Built PCR viewer data for \d+ PCR records/);
+
+    const server = spawn(process.execPath, [
+      "packages/pcr-viewer/scripts/serve-viewer.mjs",
+      "--root",
+      outDir,
+      "--port",
+      "0",
+    ], {
+      cwd: repoRoot,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+
+    try {
+      const ready = await readUntil(server.stdout, /PCR viewer available at http:\/\/127\.0\.0\.1:\d+/u);
+      assert.match(ready, /PCR viewer available/);
+    } finally {
+      server.kill("SIGTERM");
+    }
+  } finally {
+    rmSync(outDir, { recursive: true, force: true });
+  }
+});
+
+function readUntil(stream, pattern) {
+  return new Promise((resolve, reject) => {
+    let text = "";
+    const timer = setTimeout(() => reject(new Error(`Timed out waiting for ${pattern}`)), 3000);
+    stream.on("data", (chunk) => {
+      text += chunk.toString("utf8");
+      if (pattern.test(text)) {
+        clearTimeout(timer);
+        resolve(text);
+      }
+    });
+    stream.on("error", (error) => {
+      clearTimeout(timer);
+      reject(error);
+    });
+  });
+}
