@@ -34,7 +34,17 @@ export function serveViewer({ root = defaultRoot, port = 4173, host = "127.0.0.1
 
   const server = createServer((request, response) => {
     const requestUrl = new URL(request.url ?? "/", `http://${request.headers.host ?? host}`);
-    const relativePath = requestUrl.pathname === "/" ? "index.html" : decodeURIComponent(requestUrl.pathname.slice(1));
+    let relativePath;
+    try {
+      relativePath = requestUrl.pathname === "/" ? "index.html" : decodeURIComponent(requestUrl.pathname.slice(1));
+    } catch (error) {
+      if (error instanceof URIError) {
+        response.writeHead(400);
+        response.end("Bad request");
+        return;
+      }
+      throw error;
+    }
     const filePath = path.resolve(resolvedRoot, relativePath);
 
     if (!filePath.startsWith(`${resolvedRoot}${path.sep}`) && filePath !== resolvedRoot) {

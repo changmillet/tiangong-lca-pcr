@@ -134,9 +134,25 @@ test("root viewer scripts can build and serve the static viewer", async () => {
       stdio: ["ignore", "pipe", "pipe"],
     });
 
+    let stderr = "";
+    server.stderr.on("data", (chunk) => {
+      stderr += chunk.toString("utf8");
+    });
+
     try {
-      const ready = await readUntil(server.stdout, /PCR viewer available at http:\/\/127\.0\.0\.1:\d+/u);
+      const ready = await readUntil(server, server.stdout, /PCR viewer available at http:\/\/127\.0\.0\.1:\d+/u, {
+        getStderr: () => stderr,
+      });
       assert.match(ready, /PCR viewer available/);
+      const port = ready.match(/http:\/\/127\.0\.0\.1:(\d+)/u)?.[1];
+      assert.ok(port);
+      const baseUrl = `http://127.0.0.1:${port}`;
+
+      await assertResponse(baseUrl, "/", 200, /^text\/html/u);
+      await assertResponse(baseUrl, "/data/pcr-viewer-data.json", 200, /^application\/json/u);
+      await assertResponse(baseUrl, "/%2e%2e%2fpackage.json", 403);
+      await assertResponse(baseUrl, "/%E0%A4%A", 400);
+      await assertResponse(baseUrl, "/", 200, /^text\/html/u);
     } finally {
       server.kill("SIGTERM");
     }
@@ -145,20 +161,55 @@ test("root viewer scripts can build and serve the static viewer", async () => {
   }
 });
 
-function readUntil(stream, pattern) {
+async function assertResponse(baseUrl, route, status, contentTypePattern) {
+  const response = await fetch(`${baseUrl}${route}`);
+  assert.equal(response.status, status);
+  if (contentTypePattern) {
+    assert.match(response.headers.get("content-type") ?? "", contentTypePattern);
+  }
+}
+
+function readUntil(child, stream, pattern, { getStderr = () => "", timeoutMs = 3000 } = {}) {
   return new Promise((resolve, reject) => {
     let text = "";
-    const timer = setTimeout(() => reject(new Error(`Timed out waiting for ${pattern}`)), 3000);
-    stream.on("data", (chunk) => {
+    let settled = false;
+    const cleanup = () => {
+      clearTimeout(timer);
+      child.off("exit", onExit);
+      stream.off("data", onData);
+      stream.off("error", onError);
+    };
+    const fail = (error) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      cleanup();
+      reject(error);
+    };
+    const timer = setTimeout(() => {
+      fail(new Error(`Timed out waiting for ${pattern}.\nstdout:\n${text}\nstderr:\n${getStderr()}`));
+    }, timeoutMs);
+    const onExit = (code, signal) => {
+      fail(
+        new Error(
+          `Server exited before ready (code ${code ?? "none"}, signal ${signal ?? "none"}).\nstdout:\n${text}\nstderr:\n${getStderr()}`,
+        ),
+      );
+    };
+    const onData = (chunk) => {
       text += chunk.toString("utf8");
       if (pattern.test(text)) {
-        clearTimeout(timer);
+        settled = true;
+        cleanup();
         resolve(text);
       }
-    });
-    stream.on("error", (error) => {
-      clearTimeout(timer);
-      reject(error);
-    });
+    };
+    const onError = (error) => {
+      fail(new Error(`Error reading server output: ${error.message}.\nstdout:\n${text}\nstderr:\n${getStderr()}`));
+    };
+    child.once("exit", onExit);
+    stream.on("data", onData);
+    stream.on("error", onError);
   });
 }
