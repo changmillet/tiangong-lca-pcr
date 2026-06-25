@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
+import { buildGuidance } from "../pcr-core/src/index.mjs";
 import { buildViewer } from "./scripts/build-viewer-data.mjs";
 import { filterPcrs, renderMarkdown, summarizeGuidance } from "./static/viewer-core.js";
 
@@ -34,6 +35,7 @@ test("buildViewer writes viewer data and static assets", () => {
     assert.equal(abalone.title["en-US"], "Farmed abalone, live, fresh or chilled");
     assert.equal(abalone.markdown["en-US"].includes("# Farmed abalone"), true);
     assert.equal(abalone.markdown["zh-CN"].includes("# 养殖鲍鱼"), true);
+    assert.deepEqual(abalone.guidance, buildGuidance({ root: repoRoot, pcrId: abalonePcrId }));
     assert.equal(abalone.guidance.reference_flow.reference_unit, "kg");
     assert.ok(abalone.guidance.data_sources.length > 0);
     assert.match(abalone.search_text, /abalone/i);

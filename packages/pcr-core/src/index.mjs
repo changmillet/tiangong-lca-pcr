@@ -17,7 +17,21 @@ export const FEEDBACK_TYPES = [
   "source_update",
 ];
 
-export function listPcrs({ root }) {
+const pcrCatalogCache = new Map();
+
+export function listPcrs({ root, refresh = false }) {
+  return getPcrCatalog({ root, refresh }).map(clonePcrEntry);
+}
+
+function getPcrCatalog({ root, refresh = false }) {
+  const normalizedRoot = path.resolve(root);
+  if (refresh || !pcrCatalogCache.has(normalizedRoot)) {
+    pcrCatalogCache.set(normalizedRoot, readPcrCatalog(normalizedRoot));
+  }
+  return pcrCatalogCache.get(normalizedRoot);
+}
+
+function readPcrCatalog(root) {
   const pcrRoot = path.join(root, "library/pcrs");
   return findManifestFiles(pcrRoot)
     .map((manifestPath) => {
@@ -81,12 +95,12 @@ export function resolveClassification({ root, system, version, code }) {
   };
 }
 
-export function getPcrById({ root, pcrId }) {
-  const pcr = listPcrs({ root }).find((entry) => entry.id === pcrId);
+export function getPcrById({ root, pcrId, refresh = false }) {
+  const pcr = getPcrCatalog({ root, refresh }).find((entry) => entry.id === pcrId);
   if (!pcr) {
     throw new Error(`PCR not found: ${pcrId}`);
   }
-  return pcr;
+  return clonePcrEntry(pcr);
 }
 
 export function readPcrMarkdown({ root, pcrId, language = "en-US" }) {
@@ -282,4 +296,8 @@ function findManifestFiles(directory) {
 
 function toPosix(value) {
   return value.split(path.sep).join("/");
+}
+
+function clonePcrEntry(entry) {
+  return structuredClone(entry);
 }

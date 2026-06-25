@@ -26,7 +26,7 @@ checkPaths:
   - classifications/**
   - library/modules/**
 lastReviewedAt: 2026-06-25
-lastReviewedCommit: 2160906b844092bf2bfc38978ffe655dcb37ee6a
+lastReviewedCommit: 579fa91195f696e87a8773d5328cdccca2b69866
 ---
 
 # Architecture
