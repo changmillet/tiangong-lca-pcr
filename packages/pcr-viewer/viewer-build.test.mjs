@@ -84,6 +84,30 @@ test("viewer-core filters PCRs and renders safe Markdown", () => {
   assert.match(html, /<table>/);
 });
 
+test("viewer-core renders deep headings, inline code, and indented lists", () => {
+  const html = renderMarkdown(
+    [
+      "###### 产品流",
+      "",
+      "####### 繁殖用来源种批 (`source_seed_lot_used_for_multiplication`)",
+      "",
+      "  - 范围角色：默认估算 (`default_estimate`)",
+      "  - 证据类型：采集记录 (`collected_record`)",
+      "",
+      "普通段落含有 `inline_code` 和 <unsafe>。",
+    ].join("\n"),
+  );
+
+  assert.match(html, /<h6>产品流<\/h6>/);
+  assert.match(
+    html,
+    /<h6>繁殖用来源种批 \(<code>source_seed_lot_used_for_multiplication<\/code>\)<\/h6>/,
+  );
+  assert.match(html, /<ul><li>范围角色：默认估算 \(<code>default_estimate<\/code>\)<\/li>/);
+  assert.match(html, /<li>证据类型：采集记录 \(<code>collected_record<\/code>\)<\/li><\/ul>/);
+  assert.match(html, /<p>普通段落含有 <code>inline_code<\/code> 和 &lt;unsafe&gt;。<\/p>/);
+});
+
 test("viewer-core summarizes guidance counts", () => {
   const summary = summarizeGuidance({
     reference_flow: { reference_unit: "kg", required_qualifiers: ["species", "gate"] },

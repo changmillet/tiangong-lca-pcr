@@ -38,13 +38,13 @@ export function renderMarkdown(markdown = "") {
 
   const flushParagraph = () => {
     if (paragraph.length > 0) {
-      html.push(`<p>${paragraph.map(escapeHtml).join(" ")}</p>`);
+      html.push(`<p>${paragraph.map(renderInlineMarkdown).join(" ")}</p>`);
       paragraph = [];
     }
   };
   const flushList = () => {
     if (listItems.length > 0) {
-      html.push(`<ul>${listItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`);
+      html.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
       listItems = [];
     }
   };
@@ -92,15 +92,15 @@ export function renderMarkdown(markdown = "") {
       continue;
     }
     flushTable();
-    const heading = /^(#{1,4})\s+(.+)$/u.exec(line);
+    const heading = /^(#{1,})\s+(.+)$/u.exec(line);
     if (heading) {
       flushParagraph();
       flushList();
-      const level = heading[1].length;
-      html.push(`<h${level}>${escapeHtml(heading[2])}</h${level}>`);
+      const level = Math.min(heading[1].length, 6);
+      html.push(`<h${level}>${renderInlineMarkdown(stripClosingHeadingMarkers(heading[2]))}</h${level}>`);
       continue;
     }
-    const list = /^-\s+(.+)$/u.exec(line);
+    const list = /^\s*[-*+]\s+(.+)$/u.exec(line);
     if (list) {
       flushParagraph();
       listItems.push(list[1]);
@@ -124,6 +124,22 @@ export function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function renderInlineMarkdown(value = "") {
+  const parts = String(value).split(/(`[^`]+`)/u);
+  return parts
+    .map((part) => {
+      if (/^`[^`]+`$/u.test(part)) {
+        return `<code>${escapeHtml(part.slice(1, -1))}</code>`;
+      }
+      return escapeHtml(part);
+    })
+    .join("");
+}
+
+function stripClosingHeadingMarkers(value) {
+  return String(value).replace(/\s+#+\s*$/u, "").trim();
+}
+
 function renderTable(rows) {
   const parsed = rows
     .filter((row) => !/^\|\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/u.test(row))
@@ -132,8 +148,8 @@ function renderTable(rows) {
     return "";
   }
   const [header, ...body] = parsed;
-  return `<table><thead><tr>${header.map((cell) => `<th>${escapeHtml(cell)}</th>`).join("")}</tr></thead><tbody>${body
-    .map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`)
+  return `<table><thead><tr>${header.map((cell) => `<th>${renderInlineMarkdown(cell)}</th>`).join("")}</tr></thead><tbody>${body
+    .map((row) => `<tr>${row.map((cell) => `<td>${renderInlineMarkdown(cell)}</td>`).join("")}</tr>`)
     .join("")}</tbody></table>`;
 }
 

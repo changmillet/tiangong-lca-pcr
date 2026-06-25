@@ -238,9 +238,24 @@ select {
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
-.markdown-body h4 {
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
   margin-top: 1.2em;
   letter-spacing: 0;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  font-size: 15px;
+}
+
+.markdown-body ul {
+  padding-left: 24px;
+}
+
+.markdown-body li + li {
+  margin-top: 4px;
 }
 
 .markdown-body table {
@@ -273,6 +288,15 @@ pre {
 code {
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   font-size: 13px;
+}
+
+.markdown-body :not(pre) > code {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: var(--code);
+  background: var(--panel-soft);
+  overflow-wrap: anywhere;
 }
 
 .summary-grid {
