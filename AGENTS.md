@@ -27,7 +27,7 @@ checkPaths:
   - library/modules/**
   - docs/**
 lastReviewedAt: 2026-06-25
-lastReviewedCommit: 2160906b844092bf2bfc38978ffe655dcb37ee6a
+lastReviewedCommit: 42e29bf30896da081ebee5ec49af65be65a262f1
 ---
 
 # AGENTS.md - TianGong LCA PCR Library

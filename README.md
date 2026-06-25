@@ -114,6 +114,19 @@ PCR guidance is dataset-production first. `process` and `lifecyclemodel` remain 
 
 Use `npm --silent run tiangong-pcr -- --help` for the global Agent workflow and `npm --silent run tiangong-pcr -- <command> --help` for command-specific options, output shape, and next-step guidance.
 
+## Local PCR Viewer
+
+Use the static PCR viewer when you want to browse PCR records in a browser:
+
+```bash
+npm run viewer:build
+npm run viewer:serve
+```
+
+The build step reads canonical PCR records through `packages/pcr-core`, writes generated data under `packages/pcr-viewer/dist/data/`, and copies the read-only browser assets into `packages/pcr-viewer/dist/`.
+
+The viewer is a consumption surface only. It does not edit PCR Markdown, manifests, mappings, or `structured.yaml`.
+
 ## Initial Status
 
 This repository is intentionally scaffold-first. It establishes the layout and contracts for CPC-backed PCR scaffold generation without treating the generated empty PCR files as reviewed PCR content.
