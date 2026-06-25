@@ -1,10 +1,1040 @@
 schema_version: 1
-status: scaffold
-classification_seed:
-  system: CPC
-  version: "3.0"
-  code: "04412"
-  title: "Farmed abalone, live, fresh or chilled"
-reference_flows: []
-inventory_patterns: []
-qa_rules: []
+generated_from: markdown
+source_markdown: pcr.en-US.md
+product_category_identity:
+  canonical_pcr_id: "pcr.agriculture-forestry-and-fishery-products.fish-crustaceans-molluscs-and-other-aquatic-invertebrates-products.farmed-abalone-live-fresh-or-chilled"
+  classification_refs: "CPC 3.0 04412, Farmed abalone, live, fresh or chilled"
+  covered_products: "farmed Haliotis spp. sold live, fresh, or chilled, shell-on or declared shucked form, from aquaculture production systems"
+  excluded_products: "wild abalone; frozen, smoked, dried, salted, brined, cooked, canned, prepared, or preserved abalone; aquaculture seed sold as seed; shell waste or shell products; non-abalone molluscs"
+  representative_product: "live or chilled farmed abalone at declared market size and declared product form"
+  production_route: "hatchery or purchased juvenile input, nursery where relevant, grow-out husbandry, harvest, grading, live holding or chilling, packaging, and declared gate release"
+  market_state: "live, fresh, or chilled abalone with declared species, product form, culture system, size grade, shell-on or shucked state, and gate"
+functional_unit:
+  what: "farmed abalone as live, fresh, or chilled market product"
+  how_much: "1 kg"
+  how_well: "declared species or hybrid, product form, live/fresh/chilled state, shell-on or shucked basis, size grade, harvest and holding condition, and culture system"
+  how_long_or_cycle: "one production batch, harvest lot, or reporting period normalized to marketable product output"
+  reference_flow_link: "Reference amount and product flow below"
+boundary_abstraction:
+  declared_starting_condition: "declared_seed_or_juvenile_stocking_event"
+  starting_condition_role: "aquaculture_stock_identity_and_biological_starting_condition"
+  product_classification_scope: "current CPC 3.0 product category 04412, Farmed abalone, live, fresh or chilled"
+  recursive_input_rule: "farmed abalone seed or juveniles used to produce market abalone are recorded as declared seed or juvenile starting condition with supplier or hatchery disclosure, not recursively as finished reference product output"
+  upstream_dataset_requirement: "seed or juvenile supplier dataset, on-site hatchery records, or documented source, species, batch, mass or count, size, health status, and certification or permit evidence"
+  disclosure: "disclose species or hybrid, culture system, stocking batch, feed regime, water source and discharge route, grow-out duration, mortalities, harvest and holding conditions, product form, packaging state, and unresolved Tiangong UUID substitutions"
+reference_flow_definition:
+  reference_amount: "1 kg"
+  product_flow_ref:
+    name: "Abalone"
+    uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+  flow_property_ref:
+    uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+  unit_group_ref:
+    uuid: "93a60a57-a4c8-11da-a746-0800200c9a66"
+  reference_unit: "kg"
+  required_qualifiers:
+    - "species or hybrid"
+    - "culture system"
+    - "seed or juvenile source"
+    - "product state"
+    - "shell-on or shucked basis"
+    - "size grade"
+    - "moisture or drainage basis"
+    - "geography and declared gate"
+    - "holding or chilling duration"
+    - "feed regime"
+    - "permit or certification status"
+reference_flows:
+  []
+measurement_rules:
+  - id: reference_mass
+    applies_to: "reference product"
+    required_property_ref:
+      name: "Mass"
+      uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+    required_unit: "kg"
+    rule: "The reference flow must be expressed as kg farmed abalone in the declared live, fresh, or chilled product form."
+  - id: product_form_mass_basis
+    applies_to: "shell-on, shucked, drained, or chilled product records"
+    required_property_ref:
+      name: "Mass"
+      uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+    required_unit: "kg"
+    rule: "Product mass must state whether it is shell-on live weight, shell-on chilled weight, shucked meat mass, drained mass, or another contract-declared basis. Convert only with measured yield evidence."
+  - id: count_to_mass_conversion
+    applies_to: "stocking, mortality, grading, and sales count records"
+    required_property_ref:
+      name: "Mass"
+      uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+    required_unit: "kg"
+    rule: "Count-based records must include mean individual mass, size grade, and sampling method before normalization to kg reference product."
+  - id: water_volume_or_mass
+    applies_to: "seawater intake, process water, live holding water, and wastewater"
+    required_property_ref:
+      name: "Mass or volume"
+      uuid: ""
+    required_unit: "kg or m3"
+    rule: "Preserve the original measured unit and conversion basis. For flow-through or open-water systems, distinguish pumped water from ambient water passing through the culture site."
+  - id: feed_mass_basis
+    applies_to: "macroalgae, seaweed, formulated feed, and mixed feed"
+    required_property_ref:
+      name: "Mass"
+      uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+    required_unit: "kg"
+    rule: "Feed inputs must state wet mass, dry mass, or as-fed mass. Convert between wet and dry basis only when measured moisture or supplier data are available."
+  - id: energy_inventory
+    applies_to: "pumping, aeration, filtration, lighting, chilling, live holding, and delivery energy"
+    required_property_ref:
+      name: "Energy or fuel quantity"
+      uuid: ""
+    required_unit: "kWh, MJ, L, or kg"
+    rule: "Record original electricity, fuel, or energy carrier units before normalizing to the reference flow."
+  - id: feed_marine_fraction
+    applies_to: "formulated feed containing fishmeal, fish oil, or other marine ingredients"
+    required_property_ref:
+      name: "Mass fraction"
+      uuid: ""
+    required_unit: "kg/kg feed"
+    rule: "Declare feed composition or supplier formulation when marine ingredient dependency or ASC feed-efficiency indicators are used."
+process_map:
+  - id: seed_supply_hatchery_and_nursery
+    name: "Seed Supply, Hatchery, and Nursery"
+    inclusion: "required"
+    inclusion_condition: "purchased seed or on-site hatchery path must be declared"
+    role: "foreground/upstream bridge"
+    quantitative_reference: "stocked juvenile abalone entering grow-out"
+  - id: growout_husbandry
+    name: "Grow-out Husbandry"
+    inclusion: "required"
+    inclusion_condition: ""
+    role: "foreground production"
+    quantitative_reference: "harvest-size abalone before pack-out"
+  - id: harvest_grading_and_live_holding
+    name: "Harvest, Grading, and Live Holding"
+    inclusion: "required"
+    inclusion_condition: ""
+    role: "foreground conditioning and gate release"
+    quantitative_reference: "declared marketable live, fresh, or chilled abalone"
+  - id: delivery_to_declared_gate
+    name: "Delivery to Declared Gate"
+    inclusion: "conditional"
+    inclusion_condition: "include when the reference flow is delivered product beyond the farm or packhouse gate"
+    role: "foreground transport"
+    quantitative_reference: "delivered product at declared gate"
+process_inventory:
+  - id: seed_supply_hatchery_and_nursery
+    label: "Seed Supply, Hatchery, and Nursery"
+    inputs:
+      product:
+        - row_id: seed_or_juvenile_abalone_input
+          role: "Broodstock, seed, or juvenile abalone input"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass or count with mean mass / kg or item"
+          description: "This row records purchased juveniles, transferred nursery stock, or broodstock-derived seed entering the foreground production route."
+          amount:
+            expression: "measured seed or juvenile count and mass entering the declared grow-out batch"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg marketable abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_seed_stocking_records
+              source_ids:
+                - fao-abalone-breeding-1990
+                - ca-dfg-culture-of-abalone
+            ranges:
+              - role: default_estimate
+                lower: "0.01"
+                upper: "2"
+                unit: "kg seed or juvenile live mass/kg marketable abalone"
+                basis: "broad first-pass seed or juvenile mass input relative to marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: hatchery_nursery_water
+          role: "Hatchery and nursery water"
+          name: "Process water"
+          flow_type: "product"
+          flow_ref:
+            uuid: "ec205030-248c-496f-9cf2-06d9d26dc6ff"
+          property_unit: "Mass or volume / kg or m3"
+          description: "This row covers metered process water, seawater, or recirculation make-up water used in on-site hatchery and nursery operations."
+          amount:
+            expression: "measured water intake, make-up water, or recirculation replacement volume"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg marketable abalone output or per stocking batch before normalization"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_water_intake_and_discharge_records
+              source_ids:
+                - fao-abalone-breeding-1990
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "1000"
+                unit: "m3/1,000 kg marketable abalone"
+                basis: "broad first-pass pumped or supplied water for seed production relative to marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: hatchery_nursery_electricity
+          role: "Hatchery and nursery electricity"
+          name: "Electricity"
+          flow_type: "product"
+          flow_ref:
+            uuid: "f872677d-2f66-428a-a94e-f0fba61231df"
+          property_unit: "Energy / kWh"
+          description: "This row covers electricity for pumps, aeration, filtration, lighting, algal feed culture, temperature control, and water treatment in on-site hatchery or nursery operations."
+          amount:
+            expression: "metered electricity or allocated electricity records"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg marketable abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_energy_records
+              source_ids:
+                - asc-farm-standard-2025
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5000"
+                unit: "kWh/1,000 kg marketable abalone"
+                basis: "broad first-pass on-site hatchery and nursery electricity relative to marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      waste:
+        - row_id: hatchery_mortalities_and_biofouling_residue
+          role: "Hatchery mortalities and biofouling residue"
+          name: "Select route-specific organic aquaculture residue or mortality waste flow"
+          flow_type: "waste"
+          property_unit: "Mass / kg"
+          description: "This row records eggs, larvae, juveniles, biofouling, algal residue, shell fragments, or other organic residue removed from on-site hatchery and nursery systems."
+          amount:
+            expression: "measured or estimated residue and mortality mass with declared fate"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per stocked juvenile batch and per 1,000 kg marketable output after normalization"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_mortality_and_residue_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "1"
+                unit: "kg residue/kg stocked juvenile live mass"
+                basis: "broad first-pass residue or mortality mass relative to stocked juvenile live mass"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      elementary:
+        []
+    outputs:
+      product:
+        - row_id: stocked_juvenile_abalone
+          role: "Stocked juvenile abalone"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass or count with mean mass / kg or item"
+          description: "This output carries the declared seed or juvenile stock into grow-out."
+          amount:
+            expression: "calculated stocked mass or count after nursery transfer losses"
+            value_mode: "calculated_value"
+            specificity: "site_specific"
+            basis:
+              text: "stocked juvenile batch entering grow-out"
+              kind: "process_output"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_seed_stocking_records
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "0"
+                upper: "1"
+                unit: "kg/kg seed or juvenile input"
+                basis: "stocked juvenile fraction after seed receipt, sorting, and nursery transfer"
+                basis_kind: "process_output"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+      waste:
+        []
+      elementary:
+        []
+  - id: growout_husbandry
+    label: "Grow-out Husbandry"
+    inputs:
+      product:
+        - row_id: stocked_juvenile_transfer_to_growout
+          role: "Stocked juvenile transfer to grow-out"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass or count with mean mass / kg or item"
+          description: "This row transfers stocked juveniles into the declared grow-out culture system."
+          amount:
+            expression: "stocked juvenile mass or count by grow-out unit"
+            value_mode: "calculated_value"
+            specificity: "site_specific"
+            basis:
+              text: "per grow-out batch before harvest normalization"
+              kind: "process_output"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_seed_stocking_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0.01"
+                upper: "2"
+                unit: "kg stocked juveniles/kg marketable abalone"
+                basis: "broad first-pass stocked juvenile mass per marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: macroalgae_or_seaweed_feed
+          role: "Macroalgae or seaweed feed"
+          name: "Laminaria"
+          flow_type: "product"
+          flow_ref:
+            uuid: "a79a3a63-1c4a-4cd4-83cc-5f3bc3cb70af"
+          property_unit: "Mass / kg wet or dry basis declared"
+          description: "This row records kelp, Laminaria, Gracilaria, or other macroalgae feed supplied to the abalone culture units."
+          amount:
+            expression: "measured feed issued to culture units, with wet or dry basis and leftovers recorded where material"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_feed_records
+              source_ids:
+                - seafood-watch-abalone-worldwide-2022
+                - fao-abalone-breeding-1990
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "30000"
+                unit: "kg wet macroalgae/1,000 kg marketable abalone"
+                basis: "broad first-pass wet macroalgae feed issued per marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: formulated_aquaculture_feed
+          role: "Formulated aquaculture feed"
+          name: "Fry feed"
+          flow_type: "product"
+          flow_ref:
+            uuid: "3b09065d-9675-4dad-8d0e-1035b5cca324"
+          property_unit: "Mass / kg as-fed or dry basis declared"
+          description: "This row is used when formulated pellets or mixed feed supplement or replace macroalgae feed."
+          amount:
+            expression: "measured feed issued by product and batch, with supplier formulation or feed class retained"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_feed_records
+              source_ids:
+                - asc-farm-standard-2025
+                - seafood-watch-abalone-worldwide-2022
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5000"
+                unit: "kg formulated feed/1,000 kg marketable abalone"
+                basis: "broad first-pass formulated feed issued per marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: growout_water_movement_or_makeup
+          role: "Grow-out water movement or make-up water"
+          name: "Process water"
+          flow_type: "product"
+          flow_ref:
+            uuid: "ec205030-248c-496f-9cf2-06d9d26dc6ff"
+          property_unit: "Mass or volume / kg or m3"
+          description: "This row records pumped seawater, make-up water, or supplied water for land-based or recirculating grow-out systems. For open sea-ranch or cage systems, record only foreground-controlled pumping, flushing, or supplied water."
+          amount:
+            expression: "metered intake, pumped volume, or make-up water volume with system type declared"
+            value_mode: "foreground_record"
+            specificity: "technology_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_water_intake_and_discharge_records
+              source_ids:
+                - asc-farm-standard-2025
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "100000"
+                unit: "m3/1,000 kg marketable abalone"
+                basis: "broad first-pass pumped or supplied water use across RAS, raceway, and flow-through systems"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: growout_electricity
+          role: "Grow-out electricity"
+          name: "Electricity"
+          flow_type: "product"
+          flow_ref:
+            uuid: "f872677d-2f66-428a-a94e-f0fba61231df"
+          property_unit: "Energy / kWh"
+          description: "This row covers electricity for pumping, aeration, filtration, lighting, sensors, automatic feeding, and culture-unit operation."
+          amount:
+            expression: "metered electricity or allocated electricity records for grow-out operations"
+            value_mode: "foreground_record"
+            specificity: "technology_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_energy_records
+              source_ids:
+                - asc-abalone-standard-2012
+                - asc-farm-standard-2025
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "50000"
+                unit: "kWh/1,000 kg marketable abalone"
+                basis: "broad first-pass electricity demand across low-energy sea-ranch and energy-intensive land-based systems"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: growout_fuel_and_workboat_energy
+          role: "Grow-out fuel and workboat energy"
+          name: "Diesel oil"
+          flow_type: "product"
+          flow_ref:
+            uuid: "9d258d75-6792-4f1c-9856-81602ed8f816"
+          property_unit: "Fuel quantity / L, kg, or MJ"
+          description: "This row covers diesel or other fuel for workboats, forklifts, generators, farm vehicles, or directly controlled maintenance activity."
+          amount:
+            expression: "measured fuel purchase, tank records, vessel logs, or allocated farm-vehicle fuel"
+            value_mode: "foreground_record"
+            specificity: "route_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "fuel_inventory"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_fuel_and_transport_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "1000"
+                unit: "L diesel-equivalent/1,000 kg marketable abalone"
+                basis: "broad first-pass directly controlled fuel use per marketable output"
+                basis_kind: "fuel_inventory"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      waste:
+        - row_id: growout_mortalities_and_shell_residue
+          role: "Grow-out mortalities and shell residue"
+          name: "Abalone shells"
+          flow_type: "waste"
+          flow_ref:
+            uuid: "8caae24b-92f0-4ece-b1de-730bfbe4d9da"
+          property_unit: "Mass / kg"
+          description: "This row records mortalities, shells, broken product, predator-damaged animals, and organic residues removed during grow-out."
+          amount:
+            expression: "measured mortality count, mortality mass, shell residue, and disposal or recovery route"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per grow-out batch and per 1,000 kg marketable output after normalization"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_mortality_and_residue_records
+              source_ids:
+                - asc-farm-standard-2025
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "2"
+                unit: "kg mortality or residue/kg marketable abalone"
+                basis: "broad first-pass mortality and residue mass relative to marketable output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: growout_wastewater_or_discharge
+          role: "Grow-out wastewater or discharged culture water"
+          name: "Wastewater"
+          flow_type: "waste"
+          flow_ref:
+            uuid: "bc2cd1d5-69d5-42d7-818f-38a69ebb18ef"
+          property_unit: "Volume or mass / m3 or kg"
+          description: "This row records discharged water, sludge, settled solids, or wastewater treatment outputs when the farm has a point-source discharge or controlled water treatment process."
+          amount:
+            expression: "measured discharge volume or calculated from intake minus recirculation and retained water"
+            value_mode: "calculated_value"
+            specificity: "technology_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "process_output"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_water_intake_and_discharge_records
+              source_ids:
+                - asc-farm-standard-2025
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "100000"
+                unit: "m3/1,000 kg marketable abalone"
+                basis: "broad first-pass controlled discharge across RAS, raceway, and flow-through systems"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      elementary:
+        - row_id: direct_carbon_dioxide_from_fuel_combustion
+          role: "Direct carbon dioxide from on-site fuel combustion"
+          name: "carbon dioxide (fossil)"
+          flow_type: "elementary"
+          flow_ref:
+            uuid: "041f5d0e-6556-11dd-ad8b-0800200c9a66"
+          property_unit: "Mass / kg"
+          description: "This row is included only when the foreground farm directly burns fuel and the process dataset does not already carry combustion emissions."
+          amount:
+            expression: "calculated from metered fuel records and selected emission factor when direct combustion is modelled in the foreground process"
+            value_mode: "calculated_value"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvest-size abalone output"
+              kind: "fuel_inventory"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_fuel_and_transport_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "3000"
+                unit: "kg CO2/1,000 kg marketable abalone"
+                basis: "broad first-pass direct fuel combustion CO2 per marketable output"
+                basis_kind: "fuel_inventory"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+    outputs:
+      product:
+        - row_id: harvest_size_farmed_abalone
+          role: "Harvest-size farmed abalone"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass / kg"
+          description: "This row records the grow-out output before final grading, live holding, chilling, or pack-out losses."
+          amount:
+            expression: "measured harvested live mass by batch, grade, and product form before pack-out"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "grow-out process quantitative reference"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_harvest_and_product_records
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "0"
+                upper: "1"
+                unit: "kg/kg total live abalone biomass before harvest adjustment"
+                basis: "harvested market-size fraction of available biomass in the declared batch"
+                basis_kind: "process_output"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+      waste:
+        []
+      elementary:
+        []
+  - id: harvest_grading_and_live_holding
+    label: "Harvest, Grading, and Live Holding"
+    inputs:
+      product:
+        - row_id: harvested_abalone_input_to_packout
+          role: "Harvested abalone input to pack-out"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass / kg"
+          description: "This row transfers harvest-size abalone into grading, purging, live holding, chilling, and pack-out."
+          amount:
+            expression: "measured harvested mass entering pack-out"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per pack-out batch"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_harvest_and_product_records
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "0"
+                upper: "2"
+                unit: "kg/kg reference product"
+                basis: "harvested abalone input relative to declared marketable reference product"
+                basis_kind: "reference_flow"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+        - row_id: live_holding_and_chilling_water
+          role: "Live holding and chilling water"
+          name: "Process water"
+          flow_type: "product"
+          flow_ref:
+            uuid: "ec205030-248c-496f-9cf2-06d9d26dc6ff"
+          property_unit: "Mass or volume / kg or m3"
+          description: "This row records water, seawater, ice melt, or live holding system water used after harvest."
+          amount:
+            expression: "measured water or ice use for purging, depuration, live holding, chilling, and cleaning"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg reference product"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_water_intake_and_discharge_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "2000"
+                unit: "m3/1,000 kg reference product"
+                basis: "broad first-pass live holding, purging, and chilling water per reference product"
+                basis_kind: "reference_flow"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: packout_electricity
+          role: "Pack-out electricity"
+          name: "Electricity"
+          flow_type: "product"
+          flow_ref:
+            uuid: "f872677d-2f66-428a-a94e-f0fba61231df"
+          property_unit: "Energy / kWh"
+          description: "This row covers electricity for live holding, chilling, pumps, aeration, grading equipment, weighing, and packing."
+          amount:
+            expression: "metered or allocated electricity for harvest, grading, live holding, chilling, and pack-out"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg reference product"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_energy_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5000"
+                unit: "kWh/1,000 kg reference product"
+                basis: "broad first-pass harvest, holding, chilling, and pack-out electricity per reference product"
+                basis_kind: "reference_flow"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: packaging_materials
+          role: "Packaging materials"
+          name: "Plastic Packaging Box and Container"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7eb7726d-f3e5-4d23-b24d-dde3f34ff35a"
+          property_unit: "Mass or item count / kg or item"
+          description: "This row records bags, boxes, liners, insulated containers, gel ice packs, labels, and pallets that cross the foreground boundary with the product."
+          amount:
+            expression: "measured packaging item count and material mass; include capacity or tare mass for count records"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per 1,000 kg reference product"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_packaging_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "500"
+                unit: "kg packaging/1,000 kg reference product"
+                basis: "broad first-pass packaging material mass per reference product"
+                basis_kind: "reference_flow"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      waste:
+        - row_id: offgrade_damaged_or_dead_product_packout
+          role: "Off-grade, damaged, or dead product at pack-out"
+          name: "Abalone shells"
+          flow_type: "waste"
+          flow_ref:
+            uuid: "8caae24b-92f0-4ece-b1de-730bfbe4d9da"
+          property_unit: "Mass / kg"
+          description: "This row records non-marketable product, pack-out mortalities, broken shells, shucking residues when applicable, and rejected animals."
+          amount:
+            expression: "measured reject mass by fate and reason"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg reference product"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_mortality_and_residue_records
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "0"
+                upper: "1"
+                unit: "kg/kg harvested abalone input"
+                basis: "rejected or residue fraction of harvested abalone entering pack-out"
+                basis_kind: "process_output"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+        - row_id: packout_wastewater
+          role: "Pack-out wastewater"
+          name: "Wastewater"
+          flow_type: "waste"
+          flow_ref:
+            uuid: "bc2cd1d5-69d5-42d7-818f-38a69ebb18ef"
+          property_unit: "Volume or mass / m3 or kg"
+          description: "This row records cleaning, purging, depuration, chilling, or holding water discharged from pack-out operations."
+          amount:
+            expression: "measured or calculated discharge volume and treatment route"
+            value_mode: "calculated_value"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg reference product"
+              kind: "reference_flow"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_water_intake_and_discharge_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "2000"
+                unit: "m3/1,000 kg reference product"
+                basis: "broad first-pass wastewater from live holding, purging, cleaning, and chilling per reference product"
+                basis_kind: "reference_flow"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      elementary:
+        []
+    outputs:
+      product:
+        - row_id: marketable_farmed_abalone_reference_product
+          role: "Marketable farmed abalone reference product"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass / kg"
+          description: "This row is the declared reference product output."
+          amount:
+            expression: "measured marketable live, fresh, or chilled product mass after grading and pack-out"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "reference flow"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_harvest_and_product_records
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "1"
+                upper: "1"
+                unit: "kg/kg reference product"
+                basis: "normalized reference product output"
+                basis_kind: "reference_flow"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+        - row_id: saleable_offgrade_abalone_coproduct
+          role: "Saleable off-grade abalone co-product"
+          name: "Abalone"
+          flow_type: "product"
+          flow_ref:
+            uuid: "7b973a02-b45b-4f5a-a640-a9b5ae65584b"
+          property_unit: "Mass / kg"
+          description: "Use this row only when off-grade live, fresh, or chilled abalone remains saleable as a separate grade within the same product family."
+          amount:
+            expression: "measured saleable off-grade mass by grade and destination"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per pack-out batch and per reference product after allocation or partitioning"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_harvest_and_product_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "1"
+                unit: "kg off-grade saleable product/kg reference product"
+                basis: "broad first-pass off-grade saleable abalone mass relative to reference product"
+                basis_kind: "reference_flow"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+      waste:
+        []
+      elementary:
+        []
+dataset_production:
+  collection_protocols:
+    - protocol_id: cp_seed_stocking_records
+      process_id: "seed_supply_hatchery_and_nursery"
+      flow_role: "seed or juvenile abalone input and stocked juvenile output"
+      record_type: "hatchery transfer, supplier invoice, stocking log, health certificate"
+      raw_fields: "species; batch id; supplier or hatchery; count; mean mass; total mass; size grade; health status; transfer date"
+      collection_method: "supplier records, hatchery logs, stocking count, sampling and weighing"
+      unit: "item and kg"
+      frequency: "each stocking event"
+      temporal_coverage: "complete production batch or reporting year"
+      site_scope: "supplier, hatchery, nursery, and grow-out unit"
+      aggregation_rule: "sum stocked counts and masses by batch; calculate mean mass and survival to grow-out transfer"
+      quality_evidence: "signed transfer records, sampling sheet, weighing record, health or permit evidence"
+    - protocol_id: cp_feed_records
+      process_id: "growout_husbandry"
+      flow_role: "macroalgae, seaweed, and formulated feed"
+      record_type: "feed issue log, supplier invoice, feed formulation, leftover record"
+      raw_fields: "feed product; wet/dry/as-fed basis; moisture; quantity issued; leftovers; feed source; marine ingredient fraction when relevant"
+      collection_method: "feed inventory, supplier declarations, farm feeding logs"
+      unit: "kg"
+      frequency: "each feed issue or batch summary"
+      temporal_coverage: "full grow-out period"
+      site_scope: "grow-out unit or farm"
+      aggregation_rule: "normalize net feed supplied to harvest-size output; retain wet/dry conversion basis"
+      quality_evidence: "feed purchase records, supplier formulation, stock movement logs"
+    - protocol_id: cp_water_intake_and_discharge_records
+      process_id: "seed_supply_hatchery_and_nursery_growout_husbandry_harvest_grading_and_live_holding"
+      flow_role: "water intake, pumped seawater, live holding water, wastewater, and discharge"
+      record_type: "meter readings, pump logs, discharge permits, water-quality records"
+      raw_fields: "intake volume; make-up water; recirculated volume; discharge volume; water source; discharge route; treatment; salinity where relevant"
+      collection_method: "meter, pump runtime calculation, permit report, or water management log"
+      unit: "m3 or kg"
+      frequency: "daily, batch, or reporting period"
+      temporal_coverage: "process-specific operation period"
+      site_scope: "hatchery, grow-out, live holding, packhouse, and discharge point"
+      aggregation_rule: "reconcile intake, recirculation, and discharge; normalize to process output and reference flow"
+      quality_evidence: "meter calibration, permit report, water-quality monitoring record"
+    - protocol_id: cp_energy_records
+      process_id: "seed_supply_hatchery_and_nursery_growout_husbandry_harvest_grading_and_live_holding"
+      flow_role: "electricity and non-fuel energy"
+      record_type: "meter reading, utility bill, submeter, equipment log"
+      raw_fields: "electricity use; meter id; process allocation; operating hours; chilling or pumping service"
+      collection_method: "utility bill, submeter, runtime allocation"
+      unit: "kWh or MJ"
+      frequency: "monthly or batch"
+      temporal_coverage: "reporting period and production batch overlap"
+      site_scope: "farm, hatchery, grow-out unit, or packhouse"
+      aggregation_rule: "allocate by metered subprocess first, then operating hours or product mass"
+      quality_evidence: "utility bill, submeter records, allocation worksheet"
+    - protocol_id: cp_fuel_and_transport_records
+      process_id: "growout_husbandry_delivery_to_declared_gate"
+      flow_role: "diesel, vessel fuel, vehicle fuel, and delivery energy"
+      record_type: "fuel purchase, tank drawdown, vessel log, delivery log"
+      raw_fields: "fuel type; quantity; route; vehicle or vessel; distance; load; process purpose"
+      collection_method: "fuel invoice, tank gauge, vehicle or vessel log"
+      unit: "L, kg, MJ, or tonne-km"
+      frequency: "each trip or reporting period"
+      temporal_coverage: "grow-out, harvest, or delivery period"
+      site_scope: "directly controlled routes and equipment"
+      aggregation_rule: "normalize fuel or tonne-km to product mass; avoid double counting supplier-delivered inputs"
+      quality_evidence: "fuel invoice, odometer or vessel log, delivery manifest"
+    - protocol_id: cp_mortality_and_residue_records
+      process_id: "seed_supply_hatchery_and_nursery_growout_husbandry_harvest_grading_and_live_holding"
+      flow_role: "mortalities, shells, residues, rejects, and biofouling"
+      record_type: "mortality log, reject sheet, waste manifest, recovery record"
+      raw_fields: "count; mass; reason; fate; date; culture unit; shell or organic residue category"
+      collection_method: "farm log, weighing, waste contractor record"
+      unit: "item and kg"
+      frequency: "event, batch, or reporting period"
+      temporal_coverage: "full production batch or pack-out period"
+      site_scope: "hatchery, grow-out unit, packhouse, waste handling route"
+      aggregation_rule: "sum by fate and normalize to process output and reference product"
+      quality_evidence: "signed waste record, farm mortality log, mass balance"
+    - protocol_id: cp_harvest_and_product_records
+      process_id: "growout_husbandry_harvest_grading_and_live_holding"
+      flow_role: "harvest-size product, marketable reference product, and off-grade product"
+      record_type: "harvest log, grading sheet, sales invoice, pack-out record"
+      raw_fields: "harvest date; culture unit; product form; live/fresh/chilled state; shell-on or shucked basis; grade; count; mass; destination"
+      collection_method: "harvest weighing, grader records, packhouse records, invoice"
+      unit: "kg and item"
+      frequency: "each harvest or pack-out batch"
+      temporal_coverage: "declared production batch or reporting period"
+      site_scope: "harvest area, packhouse, and declared gate"
+      aggregation_rule: "reconcile harvested input, marketable output, off-grade product, rejects, and reference product"
+      quality_evidence: "calibrated scale record, sales invoice, batch reconciliation"
+    - protocol_id: cp_packaging_records
+      process_id: "harvest_grading_and_live_holding"
+      flow_role: "boxes, liners, bags, labels, ice packs, and pallets"
+      record_type: "packaging issue log, purchase invoice, bill of materials"
+      raw_fields: "packaging item; material; item count; tare mass; capacity; reuse rate; destination"
+      collection_method: "warehouse issue record, bill of materials, supplier invoice"
+      unit: "kg and item"
+      frequency: "each pack-out batch or reporting period"
+      temporal_coverage: "pack-out period"
+      site_scope: "packhouse and delivery preparation"
+      aggregation_rule: "convert count to mass using tare or supplier data; normalize to reference product"
+      quality_evidence: "supplier specification, packaging issue sheet, scale record"
+  calculation_rules:
+    - id: normalize_to_reference_flow
+      applies_to: "all foreground rows"
+      rule: "normalized_amount = measured_or_calculated_amount / marketable_reference_product_mass. Preserve raw records and product-form basis."
+      inputs:
+        - "measured amount"
+        - marketable_reference_product_mass
+      output: "amount per 1 kg reference product"
+      source_ids:
+        - mass-balance-identity
+    - id: calculate_stocking_survival
+      applies_to: "seed_supply_hatchery_and_nursery and growout_husbandry"
+      rule: "survival_to_harvest = harvested_count / stocked_count, with count-to-mass conversion retained separately."
+      inputs:
+        - stocked_count
+        - harvested_count
+        - mortality_count
+      output: "survival indicator and QA check"
+      source_ids:
+        - mass-balance-identity
+    - id: calculate_feed_conversion_indicator
+      applies_to: "growout_husbandry"
+      rule: "feed_conversion_indicator = net_feed_mass / harvest_size_abalone_mass on the declared feed mass basis. Do not compare wet and dry feed without conversion evidence."
+      inputs:
+        - feed_mass
+        - "moisture basis"
+        - harvest_size_abalone_mass
+      output: "feed mass per kg harvest-size abalone"
+      source_ids:
+        - asc-farm-standard-2025
+    - id: reconcile_packout_mass
+      applies_to: "harvest_grading_and_live_holding"
+      rule: "harvested_input_mass = reference_product_mass + offgrade_saleable_mass + reject_mass + measured holding loss on the same product-form basis."
+      inputs:
+        - harvested_input_mass
+        - reference_product_mass
+        - offgrade_mass
+        - reject_mass
+        - holding_loss
+      output: "pack-out mass balance"
+      source_ids:
+        - mass-balance-identity
+    - id: calculate_controlled_discharge
+      applies_to: "water intake and discharge rows"
+      rule: "controlled_discharge = measured_discharge or intake - retained_product_water - recirculated_volume adjustment when meters are incomplete."
+      inputs:
+        - intake
+        - discharge
+        - "recirculated volume"
+        - "retained water"
+      output: "discharge volume by process"
+      source_ids:
+        - mass-balance-identity
+    - id: calculate_delivery_transport_service
+      applies_to: "delivery_to_declared_gate"
+      rule: "transport_service = delivered_product_mass_tonnes * one-way controlled delivery distance."
+      inputs:
+        - "delivered mass"
+        - "controlled distance"
+      output: "tonne-kilometres"
+      source_ids:
+        - mass-balance-identity
+  data_quality_requirements:
+    - id: identity_and_scope
+      applies_to: "all datasets"
+      requirement: "Declare CPC code, species or hybrid, culture system, seed source, product form, geography, and declared gate."
+      evidence: "dataset metadata, stocking records, product description, permit or certification evidence"
+    - id: mass_basis_consistency
+      applies_to: "reference product, seed, harvest, pack-out, and rejects"
+      requirement: "Keep shell-on, shucked, live, fresh, chilled, drained, wet, and dry bases separate unless measured conversion evidence exists."
+      evidence: "scale records, product specifications, moisture or drainage evidence"
+    - id: feed_and_water_disclosure
+      applies_to: "grow-out and hatchery rows"
+      requirement: "Retain feed type, feed basis, water source, water discharge route, and water quality monitoring where applicable."
+      evidence: "feed logs, supplier data, water meter, discharge permit, monitoring report"
+    - id: mortality_and_residue_completeness
+      applies_to: "seed, grow-out, and pack-out rows"
+      requirement: "Record mortalities, rejects, shell residue, biofouling residue, and fate by batch or reporting period."
+      evidence: "mortality log, reject sheet, waste manifest, recovery record"
+    - id: allocation_transparency
+      applies_to: "multi-grade or multi-species systems"
+      requirement: "State the partitioning or allocation basis before publishing a secondary or background dataset."
+      evidence: "allocation worksheet, grade mass records, culture-unit records"
+    - id: temporal_representativeness
+      applies_to: "all foreground rows"
+      requirement: "Cover a complete production batch, harvest lot, or representative reporting period; disclose partial-cycle datasets."
+      evidence: "production calendar, stocking and harvest dates, reporting-period records"
+published_dataset_profile:
+  dataset_role: "foreground production package that may be published as a secondary_dataset or background_dataset after review"
+  downstream_use: "use as farmed abalone input to seafood processing, food service, retail, cold-chain, or regional food-product lifecycle models"
+  allowed_use: "farmed abalone live, fresh, or chilled datasets with declared species, culture system, product form, gate, feed regime, and quality disclosures"
+  excluded_use: "wild abalone, frozen/smoked/dried/salted/brined/prepared abalone, generic mollusc datasets, and datasets lacking product-form or culture-system disclosure"
+  required_metadata: "canonical PCR id; CPC code; species or hybrid; culture system; seed source; product form; shell-on or shucked basis; size grade; geography; declared gate; holding or chilling duration; feed regime; data period; allocation basis"
+  required_quality_disclosure: "missing UUIDs; unresolved seawater or habitat flow identities; feed wet/dry conversion; water discharge route; mortality completeness; pack-out mass balance; partial-cycle or proxy data use"
+  update_trigger: "revise when CPC mapping changes, Tiangong abalone, seawater, feed, discharge, or habitat flow identities are updated, ASC or equivalent aquaculture standards change, or reviewed foreground abalone datasets provide better ranges"
+data_sources:
+  - id: "fao-abalone-breeding-1990"
+    type: "handbook"
+    reference: "<https://www.fao.org/4/ab731e/ab731e00.htm>"
+    used_for: "abalone biology, hatchery, nursery, grow-out stages, feeding, water quality, and production-cycle context"
+  - id: "ca-dfg-culture-of-abalone"
+    type: "official_guidance"
+    reference: "<https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=34422>"
+    used_for: "hatchery, nursery, grow-out system options, transfer timing, and market-size process decomposition"
+  - id: "asc-abalone-standard-2012"
+    type: "standard"
+    reference: "<https://asc-aqua.org/wp-content/uploads/2023/07/ASC-Abalone-Standard_v1.0.pdf>"
+    used_for: "abalone aquaculture issue areas, energy, feed, biosecurity, ecosystem effects, waste management, and scope context"
+  - id: "asc-farm-standard-2025"
+    type: "standard"
+    reference: "<https://programme-centre.asc-aqua.org/app/uploads/2025/08/ASC-STD-001-ASC-Farm-Standard-V1.0.1-Aug-2025.pdf>"
+    used_for: "current ASC grow-out scope, eligible Haliotis species, water quality, feed efficiency, traceability, animal health, and data requirements"
+  - id: "seafood-watch-abalone-worldwide-2022"
+    type: "official_guidance"
+    reference: "<https://www.seafoodwatch.org/globalassets/sfw-data-blocks/reports/a/seafood-watch-abalone-worldwide-27815.pdf>"
+    used_for: "abalone production phases, culture systems, feed patterns, chemical use context, source-of-stock, disease, and data-quality gaps"
+  - id: "mass-balance-identity"
+    type: "method_factor"
+    reference: "Conservation of mass applied as a PCR calculation identity for stocking, grow-out, pack-out, discharge, transport-service, and reference-flow normalization."
+    used_for: "QA guardrails, survival, yield, pack-out reconciliation, and normalization rules"

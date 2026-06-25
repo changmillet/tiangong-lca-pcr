@@ -1,11 +1,13 @@
 schema_version: 1
 id: pcr.agriculture-forestry-and-fishery-products.fish-crustaceans-molluscs-and-other-aquatic-invertebrates-products.farmed-abalone-live-fresh-or-chilled
+version: "0.1.0"
+updated_at_utc: "2026-06-25T00:00:00Z"
 title:
   en-US: "Farmed abalone, live, fresh or chilled"
-  zh-CN: null
-status: scaffold
+  zh-CN: "养殖鲍鱼，活、鲜或冷藏"
+status: candidate
 pcr_kind: product_category_rule
-content_maturity: empty_scaffold
+content_maturity: authored_methodology
 domains:
   - "agriculture-forestry-and-fishery-products"
 modules:
@@ -22,16 +24,21 @@ target_entities:
   - flow
   - process
   - lifecyclemodel
+  - dataset
 languages:
   canonical: en-US
   available:
     - en-US
     - zh-CN
 translation_status:
-  zh-CN: scaffold_pending_translation
+  zh-CN: aligned
 classification_refs:
   - system: CPC
     version: "3.0"
     code: "04412"
     title: "Farmed abalone, live, fresh or chilled"
     mapping_type: exact
+review_metadata:
+  unresolved_identity:
+    - "Seawater intake and discharge flow identity needs species- and region-specific Tiangong selection before reviewed use."
+    - "Culture-system-specific habitat, area occupation, and marine discharge elementary flows remain unresolved until site scope is known."
