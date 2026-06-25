@@ -25,8 +25,8 @@ checkPaths:
   - .github/ISSUE_TEMPLATE/**
   - classifications/**
   - library/modules/**
-lastReviewedAt: 2026-06-24
-lastReviewedCommit: 0f94dd7002e3fe78591624446099457987cf5c5a
+lastReviewedAt: 2026-06-25
+lastReviewedCommit: 98eba2643a017f96196c8e4db60fd1b4d5d74052
 ---
 
 # Architecture
