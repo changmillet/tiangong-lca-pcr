@@ -13,7 +13,7 @@ Each PCR directory must contain:
 
 `pcr.en-US.md` is the canonical authored source. `pcr.zh-CN.md` is an aligned rendering of the same rule. New scaffolds should use the language-specific templates `builder/templates/pcr.en-US.md.hbs` and `builder/templates/pcr.zh-CN.md.hbs`.
 
-Chinese Markdown should translate human-facing headings, table labels, process names, explanatory notes, and ordinary prose. Stable machine-facing identifiers and controlled vocabulary values, such as `process_id`, `amount_kind`, `basis_kind`, `evidence_kind`, `source_ids`, Tiangong UUIDs, and source ids, should remain unchanged unless the parser and vocabulary contract explicitly support a localized equivalent.
+Chinese Markdown should translate human-facing headings, table labels, process names, explanatory notes, and ordinary prose. Stable machine-facing identifiers and controlled vocabulary values, such as `process_id`, `row_id`, `direction`, `flow_type`, `value_mode`, `specificity`, `basis_kind`, `evidence_kind`, `source_ids`, Tiangong UUIDs, and source ids, should remain unchanged unless the parser and vocabulary contract explicitly support a localized equivalent.
 
 ## Required Sections
 
@@ -117,7 +117,7 @@ Process inventory must be organized as:
 | process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
 | --- | --- | --- | --- | --- | --- |
 
-### Process: <process_id>
+### Process: <process name> (`<process_id>`)
 
 #### Inputs
 
@@ -132,13 +132,86 @@ Process inventory must be organized as:
 ##### Elementary flows
 ```
 
-Inventory row tables must keep stable columns:
+Inventory flow rows are authored as flow cards under their process, direction, and flow-type headings. Each card heading uses a human-readable role followed by a stable `row_id` in backticks. Direction and flow type are inherited from the surrounding headings, so they should not be repeated inside the card.
 
 ```markdown
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
+###### Washing or de-salting water supplied as product input (`washing_water`)
+
+Washing or de-salting water is recorded when it crosses the foreground process boundary as a product input.
+
+- Selected flow: Process water `<uuid>`
+- Flow property / unit: Mass / kg
+- Amount rule: measured water use
+- Value mode: Foreground record (`foreground_record`)
+- Specificity: Site-specific (`site_specific`)
+- Normalization basis: per 1,000 kg cleaned product output
+- Basis kind: Process output (`process_output`)
+- Evidence kind: Collected record (`collected_record`)
+- Collection protocol: `cp_washing_water_records`
+- Sources: `source-id`
 ```
 
 `collection_protocol_id` links a foreground collected or calculated inventory row to a protocol in section 8.
+
+Chinese Markdown should localize human-facing flow card labels:
+
+```markdown
+###### 作为产品投入的清洗或脱盐水（`washing_water`）
+
+清洗或脱盐水作为产品输入跨越前景过程边界时记录。
+
+- 选定流：Process water `<uuid>`
+- 流属性/单位：Mass / kg
+- 数量规则：计量用水量
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：每 1,000 kg 清洁产品输出
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_washing_water_records`
+- 来源：`source-id`
+```
+
+When a quantity range is needed, keep it attached to the flow card as a separate range bullet. The range role identifies how the range is used; it is not the amount value mode. Prefer source-backed ranges, but broad provisional ranges may use `reasoned_estimate` when important flows need initial AI or author guidance and stronger evidence is not yet available:
+
+```markdown
+- Range: Water-use QA guardrail
+  - Range role: QA guardrail (`qa_guardrail`)
+  - Lower: 0.5
+  - Upper: 3.0
+  - Unit: m3
+  - Basis: per 1,000 kg cleaned product output
+  - Basis kind: Process output (`process_output`)
+  - Evidence kind: External source (`external_source`)
+  - Sources: `source-id`
+```
+
+Use the same nested shape in Chinese Markdown:
+
+```markdown
+- 数量范围：用水 QA 校验范围
+  - 范围角色：QA 校验（`qa_guardrail`）
+  - 下限：0.5
+  - 上限：3.0
+  - 单位：m3
+  - 基准：每 1,000 kg 清洁产品输出
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：外部来源（`external_source`）
+  - 来源：`source-id`
+```
+
+For provisional AI or author ranges without strong evidence, omit `Sources` and mark the evidence kind explicitly:
+
+```markdown
+- 数量范围：暂定筛选估算
+  - 范围角色：默认估计（`default_estimate`）
+  - 下限：0.01
+  - 上限：10
+  - 单位：kWh/kg 干燥产品
+  - 基准：每 kg 干燥产品的宽泛首轮干燥能耗估计
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+```
 
 ## Foreground Data Collection, Calculation, and Quality Rules
 

@@ -30,7 +30,8 @@ An update may be driven by:
 11. Update `manifest.yaml` review metadata when the input creates unresolved identity, evidence, or translation gaps.
 12. Run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>`.
 13. Run `npm run validate`.
-14. Use `npm run pcr:bump -- --pcr <library/pcrs/...> --level <patch|minor|major>` when the rule semantics or published lifecycle changes.
+14. Use `npm run pcr:lifecycle -- --pcr <library/pcrs/...> --status <status> --content-maturity <state> --translation <lang=status>` when review, maturity, or translation state changes.
+15. Use `npm run pcr:bump -- --pcr <library/pcrs/...> --level <patch|minor|major>` when the rule semantics or published lifecycle changes.
 
 ## Version Guidance
 

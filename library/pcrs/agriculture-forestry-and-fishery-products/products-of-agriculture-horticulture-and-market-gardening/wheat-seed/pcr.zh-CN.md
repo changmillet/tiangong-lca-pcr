@@ -102,23 +102,211 @@ sync_with: pcr.en-US.md
 | seed_conditioning_and_treatment | 种子加工与处理 | required |  | 前景 | 清选后种子输出 |
 | storage_and_delivery | 储存与交付 | conditional | 当声明边界为送达种子或储存对参考流有显著影响时纳入 | 前景/下游 | 已交付种子 |
 
-### 过程：field_seed_multiplication
+### 过程：田间繁种（`field_seed_multiplication`）
 
 #### 输入
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 繁殖用来源种批 | Wheat | `12da5e7d-9b93-4404-8c7d-08f98bec6238` | Mass / kg | 按现场记录实测质量 | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_source_seed_lot_mass | `unl-wheat-seeding-rate`, `umn-small-grain-seeding-rate` |
-| 氮肥载体 | Urea | `3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e` | Mass / kg | 计量产品质量和 kg N | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_fertilizer_input_records | `ipcc-2019-managed-soils-n2o` |
-| 磷肥 | Phosphate fertilizer | `9c196b01-6aad-4252-a6e8-f853853a830c` | Mass / kg | 计量产品质量 | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_fertilizer_input_records |  |
-| 钾肥 | Potassium fertilizer | `dd008d87-16e4-4e85-a048-b9949f6fbca6` | Mass / kg | 计量产品质量 | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_fertilizer_input_records |  |
-| 作为产品投入的灌溉水 | Irrigation water | `4ad684b1-8e85-4dee-8d9c-55d1fa2d4432` | Mass / kg | 计量灌溉水质量 | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_irrigation_water_records |  |
-| 田间机械燃料 | Diesel, burned in agricultural machinery | `57e0b1a3-2d05-46b2-b61b-cf7b5b167c6f` | Mass / kg | 计量田间燃料用量 | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_field_fuel_records |  |
-| 植保产品，除草剂代理流 | Herbicide | `c1370404-9e2b-4ed6-ba96-c094f74e0f2d` | Mass / kg | 计量有效成分或制剂产品质量 | product_specific | 按有效成分或制剂产品 | process_output | collected_record | cp_crop_protection_records |  |
-| 植保产品，杀菌剂代理流 | Azoxystrobin | `8a1f4968-6428-413f-a50b-b413bf9190cf` | Mass / kg | 计量有效成分或制剂产品质量 | product_specific | 按有效成分或制剂产品 | process_output | collected_record | cp_crop_protection_records |  |
-| 植保产品，杀虫剂代理流 | Insecticide | `ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b` | Mass / kg | 计量有效成分或制剂产品质量 | product_specific | 按有效成分或制剂产品 | process_output | collected_record | cp_crop_protection_records |  |
+###### 繁殖用来源种批（`source_seed_lot_used_for_multiplication`）
+
+繁殖用来源种批作为输入产品流记录。数量规则：site-specific measured mass；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Wheat `12da5e7d-9b93-4404-8c7d-08f98bec6238`
+- 流属性/单位：Mass / kg
+- 数量规则：site-specific measured mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_source_seed_lot_mass`
+- 来源：`unl-wheat-seeding-rate`, `umn-small-grain-seeding-rate`
+- 数量范围：暂定来源种批筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0.001
+  - 上限：0.2
+  - 单位：kg/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的来源种批质量宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 肥料投入（`nitrogen_fertilizer_carrier`）
+
+肥料投入作为输入产品流记录。数量规则：measured product mass and kg N；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Urea `3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e`
+- 流属性/单位：Mass / kg
+- 数量规则：measured product mass and kg N
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_fertilizer_input_records`
+- 来源：`ipcc-2019-managed-soils-n2o`
+- 数量范围：暂定氮肥筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.5
+  - 单位：kg fertilizer product/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的氮肥载体质量宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 肥料投入（`phosphate_fertilizer`）
+
+肥料投入作为输入产品流记录。数量规则：measured product mass；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Phosphate fertilizer `9c196b01-6aad-4252-a6e8-f853853a830c`
+- 流属性/单位：Mass / kg
+- 数量规则：measured product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_fertilizer_input_records`
+- 数量范围：暂定磷肥筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.3
+  - 单位：kg fertilizer product/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的磷肥质量宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 肥料投入（`potassium_fertilizer`）
+
+肥料投入作为输入产品流记录。数量规则：measured product mass；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Potassium fertilizer `dd008d87-16e4-4e85-a048-b9949f6fbca6`
+- 流属性/单位：Mass / kg
+- 数量规则：measured product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_fertilizer_input_records`
+- 数量范围：暂定钾肥筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.3
+  - 单位：kg fertilizer product/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的钾肥质量宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 灌溉水（`irrigation_water_supplied_as_a_product_input`）
+
+灌溉水作为输入产品流记录。数量规则：measured irrigation water mass；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Irrigation water `4ad684b1-8e85-4dee-8d9c-55d1fa2d4432`
+- 流属性/单位：Mass / kg
+- 数量规则：measured irrigation water mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_irrigation_water_records`
+- 数量范围：暂定灌溉水筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：5
+  - 单位：m3/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的灌溉供水宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 田间机械燃料（`field_machinery_fuel`）
+
+田间机械燃料作为输入产品流记录。数量规则：measured field fuel use；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Diesel, burned in agricultural machinery `57e0b1a3-2d05-46b2-b61b-cf7b5b167c6f`
+- 流属性/单位：Mass / kg
+- 数量规则：measured field fuel use
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_field_fuel_records`
+- 数量范围：暂定田间燃料筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.2
+  - 单位：L diesel-equivalent/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的田间机械燃料宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 植保产品（`crop_protection_herbicide_proxy`）
+
+植保产品作为输入产品流记录。数量规则：measured active ingredient or formulated product mass；归一化基准：per active ingredient or formulated product。
+
+- 选定流：Herbicide `c1370404-9e2b-4ed6-ba96-c094f74e0f2d`
+- 流属性/单位：Mass / kg
+- 数量规则：measured active ingredient or formulated product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：产品特定（`product_specific`）
+- 归一化基准：per active ingredient or formulated product
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_crop_protection_records`
+- 数量范围：暂定除草剂筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.02
+  - 单位：kg active substance or product/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的除草剂有效成分或制剂产品宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 植保产品（`crop_protection_fungicide_proxy`）
+
+植保产品作为输入产品流记录。数量规则：measured active ingredient or formulated product mass；归一化基准：per active ingredient or formulated product。
+
+- 选定流：Azoxystrobin `8a1f4968-6428-413f-a50b-b413bf9190cf`
+- 流属性/单位：Mass / kg
+- 数量规则：measured active ingredient or formulated product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：产品特定（`product_specific`）
+- 归一化基准：per active ingredient or formulated product
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_crop_protection_records`
+- 数量范围：暂定杀菌剂筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.02
+  - 单位：kg active substance or product/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的杀菌剂有效成分或制剂产品宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 植保产品（`crop_protection_insecticide_proxy`）
+
+植保产品作为输入产品流记录。数量规则：measured active ingredient or formulated product mass；归一化基准：per active ingredient or formulated product。
+
+- 选定流：Insecticide `ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b`
+- 流属性/单位：Mass / kg
+- 数量规则：measured active ingredient or formulated product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：产品特定（`product_specific`）
+- 归一化基准：per active ingredient or formulated product
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_crop_protection_records`
+- 数量范围：暂定杀虫剂筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.01
+  - 单位：kg active substance or product/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的杀虫剂有效成分或制剂产品宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ##### 废物流
 
@@ -126,19 +314,90 @@ sync_with: pcr.en-US.md
 
 ##### 基本流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 土地占用 | 选择适用的土地占用基本流 |  | Area-time / ha a | 计量田块面积和作物周期 | site_specific | 每个作物周期 | crop_cycle | collected_record | cp_land_use_records |  |
-| 取水 | water | `419682fe-60fb-4b43-be89-bf2824b51104` | Mass / kg | 由灌溉水记录计算 | formula | 每 1,000 kg 收获种子作物 | process_output | calculated_from_collection | cp_irrigation_water_records |  |
+###### 土地占用（`land_occupation`）
+
+土地占用作为输入基本流记录。数量规则：measured field area and crop duration；归一化基准：per crop cycle。
+
+- 选定流：Select applicable elementary flow for land occupation
+- 流属性/单位：Area-time / ha a
+- 数量规则：measured field area and crop duration
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per crop cycle
+- 基准类型：作物周期（`crop_cycle`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_land_use_records`
+
+###### 灌溉水（`water_withdrawal`）
+
+灌溉水作为输入基本流记录。数量规则：calculated from irrigation water record；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：water `419682fe-60fb-4b43-be89-bf2824b51104`
+- 流属性/单位：Mass / kg
+- 数量规则：calculated from irrigation water record
+- 数值来源模式：计算值（`calculated_value`）
+- 适用范围：通用（`generic`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：基于采集记录计算（`calculated_from_collection`）
+- 采集协议：`cp_irrigation_water_records`
+- 数量范围：暂定取水筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：5
+  - 单位：m3/kg harvested seed crop
+  - 基准：每 kg 收获种子作物的取水量宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 #### 输出
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 收获小麦种子作物 | Wheat | `12da5e7d-9b93-4404-8c7d-08f98bec6238` | Mass / kg | 实测收获质量 | site_specific | 田间子过程定量参考 | process_output | collected_record | cp_harvested_seed_mass |  |
-| 秸秆或田间残余 | Wheat straw | `bcaf0254-cdd3-43d1-823a-2f69df3801d8` | Mass / kg | 跨越边界时计量残余物质量 | site_specific | 每 1,000 kg 收获种子作物 | process_output | collected_record | cp_field_residue_records |  |
+###### 收获小麦种子作物（`harvested_wheat_seed_crop`）
+
+收获小麦种子作物作为输出产品流记录。数量规则：measured harvested mass；归一化基准：field subprocess quantitative reference。
+
+- 选定流：Wheat `12da5e7d-9b93-4404-8c7d-08f98bec6238`
+- 流属性/单位：Mass / kg
+- 数量规则：measured harvested mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：field subprocess quantitative reference
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_harvested_seed_mass`
+- 数量范围：收获种子输出恒等式
+  - 范围角色：QA 校验范围（`qa_guardrail`）
+  - 下限：1
+  - 上限：1
+  - 单位：kg/kg field process reference output
+  - 基准：田间子过程定量参考输出
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：方法公式（`method_formula`）
+  - 来源：`mass-balance-identity`
+
+###### 秸秆或田间残余（`straw_or_field_residue`）
+
+秸秆或田间残余作为输出产品流记录。数量规则：measured residue mass when it crosses the boundary；归一化基准：per 1,000 kg harvested seed crop。
+
+- 选定流：Wheat straw `bcaf0254-cdd3-43d1-823a-2f69df3801d8`
+- 流属性/单位：Mass / kg
+- 数量规则：measured residue mass when it crosses the boundary
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg harvested seed crop
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_field_residue_records`
+- 数量范围：暂定秸秆或残留筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：2
+  - 单位：kg/kg harvested seed crop
+  - 基准：每 kg 收获种子作物中离开边界的秸秆或田间残留宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ##### 废物流
 
@@ -146,26 +405,211 @@ sync_with: pcr.en-US.md
 
 ##### 基本流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 土壤直接 N2O，以空气排放记录 | nitrous oxide, emissions to air unspecified | `08a91e70-3ddc-11dd-94c3-0050c2490048` | Mass / kg | 根据 N 投入计算；IPCC EF1 默认值为施用 N 的 1 percent，以 N2O-N 计 | formula | 按 N 投入 | n_input | method_formula | | `ipcc-2019-managed-soils-n2o` |
-| 氨挥发 | ammonia, emissions to air unspecified | `08a91e70-3ddc-11dd-a2a9-0050c2490048` | Mass / kg | 按地点或区域排放方法确定 | site_specific | 按 N 投入 | n_input | method_formula | | `ipcc-2019-managed-soils-n2o` |
-| 硝酸盐淋失 | nitrate, emissions to fresh water | `4d9a8790-3ddd-11dd-8d68-0050c2490048` | Mass / kg | 按地点或区域排放方法确定 | site_specific | 按 N 投入 | n_input | method_formula | | `ipcc-2019-managed-soils-n2o` |
-| 田间能源导致的化石二氧化碳 | carbon dioxide (fossil), emissions to air unspecified | `08a91e70-3ddc-11dd-923d-0050c2490048` | Mass / kg | 由田间燃料记录和排放因子计算 | formula | 按燃料清单 | fuel_inventory | calculated_from_collection | cp_field_fuel_records |  |
+###### Direct soil N2O emission to air（`direct_soil_n2o_emission_to_air`）
 
-### 过程：seed_conditioning_and_treatment
+Direct soil N2O emission to air作为输出基本流记录。数量规则：calculate from N inputs; IPCC EF1 default is 1 percent of applied N as N2O-N；归一化基准：per N input。
+
+- 选定流：nitrous oxide, emissions to air unspecified `08a91e70-3ddc-11dd-94c3-0050c2490048`
+- 流属性/单位：Mass / kg
+- 数量规则：calculate from N inputs; IPCC EF1 default is 1 percent of applied N as N2O-N
+- 数值来源模式：计算值（`calculated_value`）
+- 适用范围：通用（`generic`）
+- 归一化基准：per N input
+- 基准类型：氮投入（`n_input`）
+- 证据类型：method_formula（`method_formula`）
+- 来源：`ipcc-2019-managed-soils-n2o`
+- 数量范围：暂定土壤 N2O 筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.02
+  - 单位：kg N2O/kg harvested seed crop
+  - 基准：应用氮排放方法后，每 kg 收获种子作物的直接土壤 N2O 宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### Ammonia volatilization to air（`ammonia_volatilization_to_air`）
+
+Ammonia volatilization to air作为输出基本流记录。数量规则：site-specific or regional emission method；归一化基准：per N input。
+
+- 选定流：ammonia, emissions to air unspecified `08a91e70-3ddc-11dd-a2a9-0050c2490048`
+- 流属性/单位：Mass / kg
+- 数量规则：site-specific or regional emission method
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per N input
+- 基准类型：氮投入（`n_input`）
+- 证据类型：method_formula（`method_formula`）
+- 来源：`ipcc-2019-managed-soils-n2o`
+- 数量范围：暂定氨挥发筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.1
+  - 单位：kg NH3/kg harvested seed crop
+  - 基准：应用氮排放方法后，每 kg 收获种子作物的氨挥发宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### Nitrate leaching to water（`nitrate_leaching_to_water`）
+
+Nitrate leaching to water作为输出基本流记录。数量规则：site-specific or regional emission method；归一化基准：per N input。
+
+- 选定流：nitrate, emissions to fresh water `4d9a8790-3ddd-11dd-8d68-0050c2490048`
+- 流属性/单位：Mass / kg
+- 数量规则：site-specific or regional emission method
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per N input
+- 基准类型：氮投入（`n_input`）
+- 证据类型：method_formula（`method_formula`）
+- 来源：`ipcc-2019-managed-soils-n2o`
+- 数量范围：暂定硝酸盐淋失筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.5
+  - 单位：kg nitrate/kg harvested seed crop
+  - 基准：应用氮淋失方法后，每 kg 收获种子作物的硝酸盐淋失宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 田间机械燃料（`fossil_carbon_dioxide_from_field_energy`）
+
+田间机械燃料作为输出基本流记录。数量规则：calculated from field fuel records and emission factor；归一化基准：per fuel inventory。
+
+- 选定流：carbon dioxide (fossil), emissions to air unspecified `08a91e70-3ddc-11dd-923d-0050c2490048`
+- 流属性/单位：Mass / kg
+- 数量规则：calculated from field fuel records and emission factor
+- 数值来源模式：计算值（`calculated_value`）
+- 适用范围：通用（`generic`）
+- 归一化基准：per fuel inventory
+- 基准类型：燃料清单（`fuel_inventory`）
+- 证据类型：基于采集记录计算（`calculated_from_collection`）
+- 采集协议：`cp_field_fuel_records`
+- 数量范围：暂定田间能源化石 CO2 筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：2
+  - 单位：kg CO2/kg harvested seed crop
+  - 基准：每 kg 收获种子作物中来自田间燃料和能源的化石二氧化碳宽范围初筛估算
+  - 基准类型：燃料清单（`fuel_inventory`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+### 过程：种子加工与处理（`seed_conditioning_and_treatment`）
 
 #### 输入
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 收获种子作物输入 | Wheat | `12da5e7d-9b93-4404-8c7d-08f98bec6238` | Mass / kg | 1,000-1,250 kg | range | 每 1,000 kg 清选种子输出 | process_output | external_source | | `usda-seed-cleaning-handling` |
-| 干燥、清选、分级、药剂处理和包装用电 | alternating current | `4d0361a3-56cc-45f9-aa42-bb9103285bf9` | Net calorific value / MJ or kWh | 计量用电量 | site_specific | 每 1,000 kg 清选种子输出 | process_output | collected_record | cp_conditioning_energy_records | `usda-seed-cleaning-handling` |
-| 种子处理杀菌剂代理流 | Azoxystrobin | `8a1f4968-6428-413f-a50b-b413bf9190cf` | Mass / kg | 计量有效成分或制剂产品质量 | product_specific | 每 kg 处理种子 | process_output | collected_record | cp_seed_treatment_records |  |
-| 种子处理杀虫剂代理流 | Insecticide | `ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b` | Mass / kg | 计量有效成分或制剂产品质量 | product_specific | 每 kg 处理种子 | process_output | collected_record | cp_seed_treatment_records |  |
-| 包装单元 | Woven polypropylene bag | `9bfaad07-355e-467a-9bab-f95094e7c869` | Number of items / item | 计量包装袋数量和容量 | site_specific | 每 1,000 kg 包装种子 | process_output | collected_record | cp_packaging_input_records |  |
+###### Harvested seed crop input（`harvested_seed_crop_input`）
+
+Harvested seed crop input作为输入产品流记录。数量规则：1,000-1,250 kg；归一化基准：per 1,000 kg cleaned seed output。
+
+- 选定流：Wheat `12da5e7d-9b93-4404-8c7d-08f98bec6238`
+- 流属性/单位：Mass / kg
+- 数量规则：1,000-1,250 kg
+- 数值来源模式：模型估计（`modelled_estimate`）
+- 适用范围：通用（`generic`）
+- 归一化基准：per 1,000 kg cleaned seed output
+- 基准类型：过程输出（`process_output`）
+- 证据类型：外部来源（`external_source`）
+- 来源：`usda-seed-cleaning-handling`
+- 数量范围：种子清选输入得率范围
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：1
+  - 上限：1.25
+  - 单位：kg harvested seed crop/kg cleaned seed output
+  - 基准：每 kg 清选种子输出所需的收获种子作物输入
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：外部来源（`external_source`）
+  - 来源：`usda-seed-cleaning-handling`
+
+###### 加工能源（`electricity_for_drying_cleaning_grading_treatment_and_packaging`）
+
+加工能源作为输入产品流记录。数量规则：measured electricity use；归一化基准：per 1,000 kg cleaned seed output。
+
+- 选定流：alternating current `4d0361a3-56cc-45f9-aa42-bb9103285bf9`
+- 流属性/单位：Net calorific value / MJ or kWh
+- 数量规则：measured electricity use
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg cleaned seed output
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_conditioning_energy_records`
+- 来源：`usda-seed-cleaning-handling`
+- 数量范围：暂定加工用电筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：5
+  - 单位：kWh/kg cleaned seed output
+  - 基准：每 kg 清选种子输出的干燥、清选、分级、处理和包装用电宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 种子处理药剂（`seed_treatment_fungicide_proxy`）
+
+种子处理药剂作为输入产品流记录。数量规则：measured active ingredient or formulated product mass；归一化基准：per kg treated seed。
+
+- 选定流：Azoxystrobin `8a1f4968-6428-413f-a50b-b413bf9190cf`
+- 流属性/单位：Mass / kg
+- 数量规则：measured active ingredient or formulated product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：产品特定（`product_specific`）
+- 归一化基准：per kg treated seed
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_seed_treatment_records`
+- 数量范围：暂定种子处理杀菌剂筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.01
+  - 单位：kg active substance or product/kg cleaned seed output
+  - 基准：每 kg 清选种子输出的种子处理杀菌剂宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 种子处理药剂（`seed_treatment_insecticide_proxy`）
+
+种子处理药剂作为输入产品流记录。数量规则：measured active ingredient or formulated product mass；归一化基准：per kg treated seed。
+
+- 选定流：Insecticide `ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b`
+- 流属性/单位：Mass / kg
+- 数量规则：measured active ingredient or formulated product mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：产品特定（`product_specific`）
+- 归一化基准：per kg treated seed
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_seed_treatment_records`
+- 数量范围：暂定种子处理杀虫剂筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.01
+  - 单位：kg active substance or product/kg cleaned seed output
+  - 基准：每 kg 清选种子输出的种子处理杀虫剂宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 包装单元（`packaging_unit`）
+
+包装单元作为输入产品流记录。数量规则：measured bag count and capacity；归一化基准：per 1,000 kg packaged seed。
+
+- 选定流：Woven polypropylene bag `9bfaad07-355e-467a-9bab-f95094e7c869`
+- 流属性/单位：Number of items / item
+- 数量规则：measured bag count and capacity
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg packaged seed
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_packaging_input_records`
+- 数量范围：暂定包装单元筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.5
+  - 单位：kg packaging/kg packaged seed
+  - 基准：每 kg 包装种子的包装材料等价质量宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ##### 废物流
 
@@ -179,35 +623,185 @@ sync_with: pcr.en-US.md
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 清选后小麦播种种子 | Wheat | `12da5e7d-9b93-4404-8c7d-08f98bec6238` | Mass / kg | 实测清选种子质量 | site_specific | PCR 参考输出 | reference_flow | collected_record | cp_cleaned_seed_mass |  |
-| 若种子加工厂拥有残余物，市场化秸秆 | Wheat straw | `bcaf0254-cdd3-43d1-823a-2f69df3801d8` | Mass / kg | 可选 | not_applicable | 仅当纳入种子加工厂边界时 | process_output | source_rule | |  |
+###### 清选后小麦播种种子（`cleaned_wheat_seed_for_sowing`）
+
+清选后小麦播种种子作为输出产品流记录。数量规则：measured cleaned seed mass；归一化基准：PCR reference output。
+
+- 选定流：Wheat `12da5e7d-9b93-4404-8c7d-08f98bec6238`
+- 流属性/单位：Mass / kg
+- 数量规则：measured cleaned seed mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：PCR reference output
+- 基准类型：参考流（`reference_flow`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_cleaned_seed_mass`
+- 数量范围：清选种子参考输出恒等式
+  - 范围角色：QA 校验范围（`qa_guardrail`）
+  - 下限：1
+  - 上限：1
+  - 单位：kg/kg PCR reference output
+  - 基准：清选后小麦播种种子参考输出
+  - 基准类型：参考流（`reference_flow`）
+  - 证据类型：方法公式（`method_formula`）
+  - 来源：`mass-balance-identity`
+
+###### Marketable straw or residue owned by seed plant（`marketable_straw_or_residue_owned_by_seed_plant`）
+
+Marketable straw or residue owned by seed plant作为输出产品流记录。数量规则：optional；归一化基准：only if included in seed plant boundary。
+
+- 选定流：Wheat straw `bcaf0254-cdd3-43d1-823a-2f69df3801d8`
+- 流属性/单位：Mass / kg
+- 数量规则：optional
+- 数值来源模式：不适用（`not_applicable`）
+- 适用范围：不适用（`not_applicable`）
+- 归一化基准：only if included in seed plant boundary
+- 基准类型：过程输出（`process_output`）
+- 证据类型：source_rule（`source_rule`）
 
 ##### 废物流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 筛下物、不合格种子、粉尘和等外物 | Rejects | `e6d6aa78-105e-4acc-a84b-46f68765a1cc` | Mass / kg | 实测不合格物质量 | site_specific | 每 1,000 kg 清选种子输出 | process_output | collected_record | cp_reject_mass | `usda-seed-cleaning-handling` |
-| 包装废弃物 | 选择适用的包装废物流 |  | Mass / kg | 计量包装废弃物质量 | site_specific | 每 1,000 kg 包装种子 | process_output | collected_record | cp_packaging_waste_records |  |
+###### 筛下物、不合格种子、粉尘和等外物（`screenings_rejected_seed_dust_and_off_grade_material`）
+
+筛下物、不合格种子、粉尘和等外物作为输出废物流记录。数量规则：measured reject mass；归一化基准：per 1,000 kg cleaned seed output。
+
+- 选定流：Rejects `e6d6aa78-105e-4acc-a84b-46f68765a1cc`
+- 流属性/单位：Mass / kg
+- 数量规则：measured reject mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg cleaned seed output
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_reject_mass`
+- 来源：`usda-seed-cleaning-handling`
+- 数量范围：暂定加工不合格物筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：1
+  - 单位：kg/kg cleaned seed output
+  - 基准：每 kg 清选种子输出的筛下物、不合格种子、粉尘和等外物宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 包装废弃物（`packaging_waste`）
+
+包装废弃物作为输出废物流记录。数量规则：measured packaging waste mass；归一化基准：per 1,000 kg packaged seed。
+
+- 选定流：Select applicable packaging waste flow
+- 流属性/单位：Mass / kg
+- 数量规则：measured packaging waste mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg packaged seed
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_packaging_waste_records`
+- 数量范围：暂定包装废弃物筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.2
+  - 单位：kg/kg packaged seed
+  - 基准：每 kg 包装种子的包装废弃物宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ##### 基本流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 清选粉尘排入空气 | 选择适用的颗粒物基本流 |  | Mass / kg | 计量或计算清选粉尘质量 | site_specific | 每 1,000 kg 清选种子输出 | process_output | collected_record | cp_cleaning_dust_records | `usda-seed-cleaning-handling` |
-| 加工能源导致的化石二氧化碳 | carbon dioxide (fossil), emissions to air unspecified | `08a91e70-3ddc-11dd-923d-0050c2490048` | Mass / kg | 由加工能源记录和排放因子计算 | formula | 按过程清单 | fuel_inventory | calculated_from_collection | cp_conditioning_energy_records |  |
+###### 清选粉尘排入空气（`cleaning_dust_emitted_to_air`）
 
-### 过程：storage_and_delivery
+清选粉尘排入空气作为输出基本流记录。数量规则：measured or calculated cleaning dust mass；归一化基准：per 1,000 kg cleaned seed output。
+
+- 选定流：Select applicable particulate flow
+- 流属性/单位：Mass / kg
+- 数量规则：measured or calculated cleaning dust mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg cleaned seed output
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_cleaning_dust_records`
+- 来源：`usda-seed-cleaning-handling`
+- 数量范围：暂定清选粉尘筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.1
+  - 单位：kg dust/kg cleaned seed output
+  - 基准：每 kg 清选种子输出的收集或排放清选粉尘宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 加工能源（`fossil_carbon_dioxide_from_conditioning_energy`）
+
+加工能源作为输出基本流记录。数量规则：calculated from conditioning energy records and emission factor；归一化基准：per process inventory。
+
+- 选定流：carbon dioxide (fossil), emissions to air unspecified `08a91e70-3ddc-11dd-923d-0050c2490048`
+- 流属性/单位：Mass / kg
+- 数量规则：calculated from conditioning energy records and emission factor
+- 数值来源模式：计算值（`calculated_value`）
+- 适用范围：通用（`generic`）
+- 归一化基准：per process inventory
+- 基准类型：燃料清单（`fuel_inventory`）
+- 证据类型：基于采集记录计算（`calculated_from_collection`）
+- 采集协议：`cp_conditioning_energy_records`
+- 数量范围：暂定加工能源化石 CO2 筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：5
+  - 单位：kg CO2/kg cleaned seed output
+  - 基准：每 kg 清选种子输出中来自加工能源的化石二氧化碳宽范围初筛估算
+  - 基准类型：燃料清单（`fuel_inventory`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+### 过程：储存与交付（`storage_and_delivery`）
 
 #### 输入
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 储存用电 | alternating current | `4d0361a3-56cc-45f9-aa42-bb9103285bf9` | Net calorific value / MJ or kWh | 计量储存用电量 | site_specific | 按储存时长 | storage_duration | collected_record | cp_storage_energy_records |  |
-| 交付运输燃料 | Diesel oil | `9d258d75-6792-4f1c-9856-81602ed8f816` | Mass / kg | 计量交付燃料或按路线估算燃料 | route_specific | 每 tonne-km | transport_service | collected_record | cp_delivery_transport_records |  |
+###### 储存用电（`storage_electricity`）
+
+储存用电作为输入产品流记录。数量规则：measured storage electricity use；归一化基准：per storage duration。
+
+- 选定流：alternating current `4d0361a3-56cc-45f9-aa42-bb9103285bf9`
+- 流属性/单位：Net calorific value / MJ or kWh
+- 数量规则：measured storage electricity use
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per storage duration
+- 基准类型：储存时长（`storage_duration`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_storage_energy_records`
+- 数量范围：暂定储存用电筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：1
+  - 单位：kWh/kg delivered seed
+  - 基准：在声明储存时长内，每 kg 交付种子的储存用电宽范围初筛估算
+  - 基准类型：储存时长（`storage_duration`）
+  - 证据类型：推理估算（`reasoned_estimate`）
+
+###### 交付运输燃料（`delivery_transport_fuel`）
+
+交付运输燃料作为输入产品流记录。数量规则：measured delivery fuel or route fuel estimate；归一化基准：per tonne-km。
+
+- 选定流：Diesel oil `9d258d75-6792-4f1c-9856-81602ed8f816`
+- 流属性/单位：Mass / kg
+- 数量规则：measured delivery fuel or route fuel estimate
+- 数值来源模式：模型估计（`modelled_estimate`）
+- 适用范围：路线特定（`route_specific`）
+- 归一化基准：per tonne-km
+- 基准类型：运输服务（`transport_service`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_delivery_transport_records`
+- 数量范围：暂定交付燃料筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.5
+  - 单位：L diesel-equivalent/kg delivered seed
+  - 基准：用于路线初筛的每 kg 交付种子运输燃料宽范围估算
+  - 基准类型：运输服务（`transport_service`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ##### 废物流
 
@@ -221,21 +815,67 @@ sync_with: pcr.en-US.md
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 已声明交付边界产品 | Wheat | `12da5e7d-9b93-4404-8c7d-08f98bec6238` | Mass / kg | 计量交付种子质量 | site_specific | 当参考流为送达种子时 | reference_flow | collected_record | cp_delivered_seed_mass |  |
+###### 已声明交付边界产品（`declared_delivered_product`）
+
+已声明交付边界产品作为输出产品流记录。数量规则：measured delivered seed mass；归一化基准：if reference flow is delivered seed。
+
+- 选定流：Wheat `12da5e7d-9b93-4404-8c7d-08f98bec6238`
+- 流属性/单位：Mass / kg
+- 数量规则：measured delivered seed mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：if reference flow is delivered seed
+- 基准类型：参考流（`reference_flow`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_delivered_seed_mass`
 
 ##### 废物流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 储存损耗或受损种子 | Rejects | `e6d6aa78-105e-4acc-a84b-46f68765a1cc` | Mass / kg | 计量储存损耗或受损种子质量 | site_specific | 每 1,000 kg 储存种子 | process_output | collected_record | cp_storage_loss_records |  |
+###### 储存损耗或受损种子（`storage_loss_or_damaged_seed`）
+
+储存损耗或受损种子作为输出废物流记录。数量规则：measured storage loss or damaged seed mass；归一化基准：per 1,000 kg stored seed。
+
+- 选定流：Rejects `e6d6aa78-105e-4acc-a84b-46f68765a1cc`
+- 流属性/单位：Mass / kg
+- 数量规则：measured storage loss or damaged seed mass
+- 数值来源模式：前景记录（`foreground_record`）
+- 适用范围：场址特定（`site_specific`）
+- 归一化基准：per 1,000 kg stored seed
+- 基准类型：过程输出（`process_output`）
+- 证据类型：采集记录（`collected_record`）
+- 采集协议：`cp_storage_loss_records`
+- 数量范围：暂定储存损失筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：0.2
+  - 单位：kg/kg stored seed
+  - 基准：每 kg 储存种子的储存损耗或受损种子宽范围初筛估算
+  - 基准类型：过程输出（`process_output`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ##### 基本流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 储存或运输能源导致的化石二氧化碳 | carbon dioxide (fossil), emissions to air unspecified | `08a91e70-3ddc-11dd-923d-0050c2490048` | Mass / kg | 由储存能源和交付运输记录计算 | formula | 按过程清单 | fuel_inventory | calculated_from_collection | cp_delivery_transport_records |  |
+###### 交付运输燃料（`fossil_carbon_dioxide_from_storage_or_transport_energy`）
+
+交付运输燃料作为输出基本流记录。数量规则：calculated from storage energy and delivery transport records；归一化基准：per process inventory。
+
+- 选定流：carbon dioxide (fossil), emissions to air unspecified `08a91e70-3ddc-11dd-923d-0050c2490048`
+- 流属性/单位：Mass / kg
+- 数量规则：calculated from storage energy and delivery transport records
+- 数值来源模式：计算值（`calculated_value`）
+- 适用范围：通用（`generic`）
+- 归一化基准：per process inventory
+- 基准类型：燃料清单（`fuel_inventory`）
+- 证据类型：基于采集记录计算（`calculated_from_collection`）
+- 采集协议：`cp_delivery_transport_records`
+- 数量范围：暂定储存和运输化石 CO2 筛选估算
+  - 范围角色：默认估算（`default_estimate`）
+  - 下限：0
+  - 上限：2
+  - 单位：kg CO2/kg delivered seed
+  - 基准：每 kg 交付种子中来自储存和交付能源的化石二氧化碳宽范围初筛估算
+  - 基准类型：燃料清单（`fuel_inventory`）
+  - 证据类型：推理估算（`reasoned_estimate`）
 
 ## 7. 分配与共产品处理
 
@@ -327,3 +967,4 @@ sync_with: pcr.en-US.md
 | `umn-small-grain-seeding-rate` | 推广指南 | <https://extension.umn.edu/planting-small-grains/seeding-rate-small-grains> | 播种量公式、成苗损失和发芽率方法语境 |
 | `usda-seed-cleaning-handling` | 官方手册 | <https://www.govinfo.gov/content/pkg/GOVPUB-A-PURL-gpo20323/pdf/GOVPUB-A-PURL-gpo20323.pdf> | 种子清选过程拆分和筛下物或不合格物方法语境 |
 | `ipcc-2019-managed-soils-n2o` | 官方方法指南 | <https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf> | N2O 直接排放因子和氮排放计算 |
+| `mass-balance-identity` | method_factor | Conservation of mass applied as a PCR calculation identity for process reference outputs and batch reconciliation. | 参考输出和质量平衡校验的 QA 校验范围。 |

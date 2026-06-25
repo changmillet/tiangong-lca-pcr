@@ -5,14 +5,51 @@
   "required": ["id", "title", "status", "pcr_kind", "content_maturity"],
   "properties": {
     "id": { "type": "string", "pattern": "^pcr\\." },
-    "title": { "type": "string", "minLength": 1 },
+    "title": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "required": ["en-US"],
+          "properties": {
+            "en-US": { "type": "string", "minLength": 1 },
+            "zh-CN": { "type": ["string", "null"] }
+          },
+          "additionalProperties": { "type": ["string", "null"] }
+        }
+      ]
+    },
     "status": {
       "type": "string",
-      "enum": ["scaffold", "draft", "reviewed", "deprecated"]
+      "enum": ["scaffold", "candidate", "active", "published", "deprecated"]
     },
     "pcr_kind": { "type": "string" },
-    "content_maturity": { "type": "string" }
+    "content_maturity": {
+      "type": "string",
+      "enum": [
+        "empty_scaffold",
+        "draft_methodology",
+        "authored_methodology",
+        "reviewed_methodology",
+        "published_methodology",
+        "deprecated_methodology"
+      ]
+    },
+    "translation_status": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "not_available",
+          "scaffold",
+          "scaffold_pending_translation",
+          "draft_translation",
+          "aligned",
+          "reviewed",
+          "out_of_sync"
+        ]
+      }
+    }
   },
   "additionalProperties": true
 }
-

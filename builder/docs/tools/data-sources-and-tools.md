@@ -37,8 +37,9 @@ Use domain common sense for initialization:
 - likely product state and required qualifiers
 - first-pass boundary hypotheses
 - terms to use in searches
+- broad provisional ranges for important flows when marked as `reasoned_estimate`
 
-Final PCR constraints use Tiangong identity lookup, external evidence, user-provided source material, or declared foreground collection protocols.
+Final PCR constraints use Tiangong identity lookup, external evidence, user-provided source material, or declared foreground collection protocols. Common-sense ranges may remain in candidate PCRs only when explicitly labelled as `reasoned_estimate`; do not record them as `Data Sources`.
 
 ## Preferred Evidence Order
 

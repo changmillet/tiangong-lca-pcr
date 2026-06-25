@@ -86,7 +86,7 @@ The measurement and unit rules section contains rules that affect data consisten
 
 The system boundary section stores `Boundary Abstraction` facts: `declared_starting_condition`, `starting_condition_role`, `product_classification_scope`, `recursive_input_rule`, `upstream_dataset_requirement`, and `disclosure`. The declared starting condition is backed by foreground collection records and dataset disclosure.
 
-Each inventory flow row should carry the selected flow UUID when available, the flow property/unit used in that row, `Amount`, `amount_kind`, `Basis`, `basis_kind`, `evidence_kind`, `collection_protocol_id`, and `source_ids`.
+Each inventory flow card should carry a stable `row_id`, the selected flow UUID when available, the flow property/unit used in that row, `amount`, `value_mode`, `specificity`, `basis`, `basis_kind`, `evidence_kind`, `collection_protocol_id`, and `source_ids`.
 
 The foreground data collection section defines the raw fields, collection method, unit, frequency, temporal coverage, site scope, aggregation rule, calculation rules, and quality evidence that produce the first dataset values.
 
@@ -141,4 +141,4 @@ CPC-generated PCR directories are placeholders until reviewed PCR content is wri
 - keep the existing `classification_refs` and CPC-to-PCR mapping unless the classification match is wrong
 - update both `pcr.en-US.md` and `pcr.zh-CN.md` as paired renderings of the same rule
 - run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>` after editing canonical Markdown so `structured.yaml` stays aligned
-- move `status` and `content_maturity` forward only after the PCR has been reviewed for methodology quality
+- move `status`, `content_maturity`, and `translation_status` forward with `npm run pcr:lifecycle` only after the relevant methodology or translation review has happened

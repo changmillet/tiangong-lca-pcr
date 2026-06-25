@@ -11,6 +11,6 @@ The process map should identify:
 - role in the model, such as foreground production, conditioning, storage, delivery, use, or end-of-life
 - quantitative reference or output basis when relevant
 
-The detailed `### Process: <process_id>` sections should align with the process map. Every `required` process in the Process Map must have a matching detailed inventory section. Every detailed inventory section must match one `process_id` in the Process Map.
+Detailed process headings should use the form `### Process: <process name> (...)`, with the stable `process_id` inside backticks in parentheses. These sections should align with the process map. Every `required` process in the Process Map must have a matching detailed inventory section. Every detailed inventory section must match one `process_id` in the Process Map.
 
 Use process ids that are stable slugs. Do not use classification codes as process ids.

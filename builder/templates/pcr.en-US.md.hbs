@@ -84,14 +84,38 @@ When constructing a foreground data package, the items listed in `Required quali
 | process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
 | --- | --- | --- | --- | --- | --- |
 
-### Process: <process_id>
+### Process: <process name> (`<process_id>`)
 
 #### Inputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+###### <flow role> (`<row_id>`)
+
+Describe the flow in one or two sentences. Include why it crosses this process boundary and how the quantity is obtained.
+
+- Selected flow:
+- Flow property / unit:
+- Amount rule:
+- Value mode: Foreground record (`foreground_record`)
+- Specificity: Site-specific (`site_specific`)
+- Normalization basis:
+- Basis kind: Process output (`process_output`)
+- Evidence kind: Collected record (`collected_record`)
+- Collection protocol:
+- Sources:
+
+Optional quantity range block:
+
+- Range: <range label>
+  - Range role: QA guardrail (`qa_guardrail`)
+  - Lower:
+  - Upper:
+  - Unit:
+  - Basis:
+  - Basis kind: Process output (`process_output`)
+  - Evidence kind: External source (`external_source`)
+  - Sources:
 
 ##### Waste flows
 

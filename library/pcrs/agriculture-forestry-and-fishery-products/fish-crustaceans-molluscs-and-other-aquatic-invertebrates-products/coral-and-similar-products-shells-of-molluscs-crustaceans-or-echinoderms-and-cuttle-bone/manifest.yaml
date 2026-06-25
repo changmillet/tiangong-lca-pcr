@@ -1,37 +1,61 @@
-schema_version: 1
-id: pcr.agriculture-forestry-and-fishery-products.fish-crustaceans-molluscs-and-other-aquatic-invertebrates-products.coral-and-similar-products-shells-of-molluscs-crustaceans-or-echinoderms-and-cuttle-bone
+schema_version: "1"
+id: "pcr.agriculture-forestry-and-fishery-products.fish-crustaceans-molluscs-and-other-aquatic-invertebrates-products.coral-and-similar-products-shells-of-molluscs-crustaceans-or-echinoderms-and-cuttle-bone"
 title:
   en-US: "Coral and similar products, shells of molluscs, crustaceans or echinoderms and cuttle-bone"
-  zh-CN: null
-status: scaffold
-pcr_kind: product_category_rule
-content_maturity: empty_scaffold
+  zh-CN: "珊瑚及类似产品、软体动物、甲壳动物或棘皮动物外壳和乌贼骨"
+version: "0.1.0"
+updated_at_utc: "2026-06-25T04:28:45.978Z"
+status: "candidate"
+pcr_kind: "product_category_rule"
+content_maturity: "authored_methodology"
 domains:
   - "agriculture-forestry-and-fishery-products"
 modules:
   core:
-    - pcr-minimum-content
-    - unit-of-analysis
-    - reference-flow
-    - inventory-flow-taxonomy
-    - system-boundary
-    - allocation
-    - data-quality
-    - validation-rules
+    - "pcr-minimum-content"
+    - "unit-of-analysis"
+    - "reference-flow"
+    - "inventory-flow-taxonomy"
+    - "system-boundary"
+    - "allocation"
+    - "data-quality"
+    - "validation-rules"
 target_entities:
-  - flow
-  - process
-  - lifecyclemodel
+  - "flow"
+  - "process"
+  - "lifecyclemodel"
+  - "dataset"
 languages:
-  canonical: en-US
+  canonical: "en-US"
   available:
-    - en-US
-    - zh-CN
+    - "en-US"
+    - "zh-CN"
 translation_status:
-  zh-CN: scaffold_pending_translation
+  zh-CN: "aligned"
 classification_refs:
-  - system: CPC
+  - system: "CPC"
     version: "3.0"
     code: "04911"
     title: "Coral and similar products, shells of molluscs, crustaceans or echinoderms and cuttle-bone"
-    mapping_type: exact
+    mapping_type: "exact"
+review_metadata:
+  rewrite:
+    rewritten_at_utc: "2026-06-25T00:00:00Z"
+    workflow: "create-pcr"
+    notes:
+      - "Existing draft content was cleared and rewritten with paragraph flow-card Markdown."
+      - "structured.yaml is generated from pcr.en-US.md by the builder sync tool."
+  tiangong_lookup:
+    resolved_refs:
+      reference_product_flow_uuid: "9d3c928f-f381-4d92-8452-944adaf37906"
+      mass_flow_property_uuid: "93a60a56-a3c8-11da-a746-0800200b9a66"
+      mass_unit_group_uuid: "93a60a57-a4c8-11da-a746-0800200c9a66"
+      process_water_product_flow_uuid: "ec205030-248c-496f-9cf2-06d9d26dc6ff"
+      diesel_oil_product_flow_uuid: "9d258d75-6792-4f1c-9856-81602ed8f816"
+      fossil_carbon_dioxide_air_uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
+    unresolved_identity_refs:
+      - "route_specific_collection_area_or_habitat_interaction_flow_uuid"
+      - "route_specific_reject_or_residue_waste_flow_uuid"
+      - "route_specific_wastewater_or_brine_waste_flow_uuid"
+      - "route_specific_packaging_material_and_waste_flow_uuid"
+      - "route_specific_dust_or_particulate_flow_uuid"

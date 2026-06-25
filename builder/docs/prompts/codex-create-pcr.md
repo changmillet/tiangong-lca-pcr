@@ -18,5 +18,6 @@ Work rules:
 - Keep Tiangong references UUID-only and keep CLI traces outside PCR content.
 - Synthesize the current best PCR for the target product category from all available evidence. Existing PCR content is prior evidence and a canonical write target, not a separate reasoning mode.
 - Build PCR content from public evidence, domain common sense, Tiangong lookup, user-provided source material, and declared foreground collection protocols.
+- For important flows, add evidence-backed ranges when available; otherwise add broad provisional ranges only when clearly marked with `reasoned_estimate`.
 - Decide boundary abstraction before writing PCR facts.
 - Run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>` and `npm run validate`.

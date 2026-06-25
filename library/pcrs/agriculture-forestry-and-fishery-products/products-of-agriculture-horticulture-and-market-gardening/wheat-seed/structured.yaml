@@ -102,466 +102,940 @@ process_inventory:
     label: "Field Seed Multiplication"
     inputs:
       product:
-        - role: "Source seed lot used for multiplication"
+        - row_id: source_seed_lot_used_for_multiplication
+          role: "Source seed lot used for multiplication"
           name: "Wheat"
           flow_type: "product"
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "site-specific measured mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_source_seed_lot_mass
-          source_ids:
-            - unl-wheat-seeding-rate
-            - umn-small-grain-seeding-rate
-        - role: "Nitrogen fertilizer carrier"
+          description: "Source seed lot used for multiplication is recorded as an input product flow. Amount rule: site-specific measured mass; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "site-specific measured mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_source_seed_lot_mass
+              source_ids:
+                - unl-wheat-seeding-rate
+                - umn-small-grain-seeding-rate
+            ranges:
+              - role: default_estimate
+                lower: "0.001"
+                upper: "0.2"
+                unit: "kg/kg harvested seed crop"
+                basis: "broad first-pass source seed lot mass per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: nitrogen_fertilizer_carrier
+          role: "Nitrogen fertilizer carrier"
           name: "Urea"
           flow_type: "product"
           flow_ref:
             uuid: "3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e"
           property_unit: "Mass / kg"
-          amount: "measured product mass and kg N"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_fertilizer_input_records
-          source_ids:
-            - ipcc-2019-managed-soils-n2o
-        - role: "Phosphate fertilizer"
+          description: "Nitrogen fertilizer carrier is recorded as an input product flow. Amount rule: measured product mass and kg N; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "measured product mass and kg N"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_fertilizer_input_records
+              source_ids:
+                - ipcc-2019-managed-soils-n2o
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.5"
+                unit: "kg fertilizer product/kg harvested seed crop"
+                basis: "broad first-pass nitrogen fertilizer carrier mass per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: phosphate_fertilizer
+          role: "Phosphate fertilizer"
           name: "Phosphate fertilizer"
           flow_type: "product"
           flow_ref:
             uuid: "9c196b01-6aad-4252-a6e8-f853853a830c"
           property_unit: "Mass / kg"
-          amount: "measured product mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_fertilizer_input_records
-          source_ids: []
-        - role: "Potassium fertilizer"
+          description: "Phosphate fertilizer is recorded as an input product flow. Amount rule: measured product mass; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "measured product mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_fertilizer_input_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.3"
+                unit: "kg fertilizer product/kg harvested seed crop"
+                basis: "broad first-pass phosphate fertilizer mass per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: potassium_fertilizer
+          role: "Potassium fertilizer"
           name: "Potassium fertilizer"
           flow_type: "product"
           flow_ref:
             uuid: "dd008d87-16e4-4e85-a048-b9949f6fbca6"
           property_unit: "Mass / kg"
-          amount: "measured product mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_fertilizer_input_records
-          source_ids: []
-        - role: "Irrigation water supplied as a product input"
+          description: "Potassium fertilizer is recorded as an input product flow. Amount rule: measured product mass; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "measured product mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_fertilizer_input_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.3"
+                unit: "kg fertilizer product/kg harvested seed crop"
+                basis: "broad first-pass potassium fertilizer mass per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: irrigation_water_supplied_as_a_product_input
+          role: "Irrigation water supplied as a product input"
           name: "Irrigation water"
           flow_type: "product"
           flow_ref:
             uuid: "4ad684b1-8e85-4dee-8d9c-55d1fa2d4432"
           property_unit: "Mass / kg"
-          amount: "measured irrigation water mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_irrigation_water_records
-          source_ids: []
-        - role: "Field machinery fuel"
+          description: "Irrigation water supplied as a product input is recorded as an input product flow. Amount rule: measured irrigation water mass; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "measured irrigation water mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_irrigation_water_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5"
+                unit: "m3/kg harvested seed crop"
+                basis: "broad first-pass irrigation water supplied per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: field_machinery_fuel
+          role: "Field machinery fuel"
           name: "Diesel, burned in agricultural machinery"
           flow_type: "product"
           flow_ref:
             uuid: "57e0b1a3-2d05-46b2-b61b-cf7b5b167c6f"
           property_unit: "Mass / kg"
-          amount: "measured field fuel use"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_field_fuel_records
-          source_ids: []
-        - role: "Crop protection herbicide proxy"
+          description: "Field machinery fuel is recorded as an input product flow. Amount rule: measured field fuel use; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "measured field fuel use"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_field_fuel_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.2"
+                unit: "L diesel-equivalent/kg harvested seed crop"
+                basis: "broad first-pass field machinery fuel per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: crop_protection_herbicide_proxy
+          role: "Crop protection herbicide proxy"
           name: "Herbicide"
           flow_type: "product"
           flow_ref:
             uuid: "c1370404-9e2b-4ed6-ba96-c094f74e0f2d"
           property_unit: "Mass / kg"
-          amount: "measured active ingredient or formulated product mass"
-          amount_kind: "product_specific"
-          basis: "per active ingredient or formulated product"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_crop_protection_records
-          source_ids: []
-        - role: "Crop protection fungicide proxy"
+          description: "Crop protection herbicide proxy is recorded as an input product flow. Amount rule: measured active ingredient or formulated product mass; normalization basis: per active ingredient or formulated product."
+          amount:
+            expression: "measured active ingredient or formulated product mass"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per active ingredient or formulated product"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_crop_protection_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.02"
+                unit: "kg active substance or product/kg harvested seed crop"
+                basis: "broad first-pass herbicide active substance or formulated product per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: crop_protection_fungicide_proxy
+          role: "Crop protection fungicide proxy"
           name: "Azoxystrobin"
           flow_type: "product"
           flow_ref:
             uuid: "8a1f4968-6428-413f-a50b-b413bf9190cf"
           property_unit: "Mass / kg"
-          amount: "measured active ingredient or formulated product mass"
-          amount_kind: "product_specific"
-          basis: "per active ingredient or formulated product"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_crop_protection_records
-          source_ids: []
-        - role: "Crop protection insecticide proxy"
+          description: "Crop protection fungicide proxy is recorded as an input product flow. Amount rule: measured active ingredient or formulated product mass; normalization basis: per active ingredient or formulated product."
+          amount:
+            expression: "measured active ingredient or formulated product mass"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per active ingredient or formulated product"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_crop_protection_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.02"
+                unit: "kg active substance or product/kg harvested seed crop"
+                basis: "broad first-pass fungicide active substance or formulated product per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: crop_protection_insecticide_proxy
+          role: "Crop protection insecticide proxy"
           name: "Insecticide"
           flow_type: "product"
           flow_ref:
             uuid: "ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b"
           property_unit: "Mass / kg"
-          amount: "measured active ingredient or formulated product mass"
-          amount_kind: "product_specific"
-          basis: "per active ingredient or formulated product"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_crop_protection_records
-          source_ids: []
+          description: "Crop protection insecticide proxy is recorded as an input product flow. Amount rule: measured active ingredient or formulated product mass; normalization basis: per active ingredient or formulated product."
+          amount:
+            expression: "measured active ingredient or formulated product mass"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per active ingredient or formulated product"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_crop_protection_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.01"
+                unit: "kg active substance or product/kg harvested seed crop"
+                basis: "broad first-pass insecticide active substance or formulated product per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
       waste:
         []
       elementary:
-        - role: "Land occupation"
+        - row_id: land_occupation
+          role: "Land occupation"
           name: "Select applicable elementary flow for land occupation"
           flow_type: "elementary"
           property_unit: "Area-time / ha a"
-          amount: "measured field area and crop duration"
-          amount_kind: "site_specific"
-          basis: "per crop cycle"
-          basis_kind: "crop_cycle"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_land_use_records
-          source_ids: []
-        - role: "Water withdrawal"
+          description: "Land occupation is recorded as an input elementary flow. Amount rule: measured field area and crop duration; normalization basis: per crop cycle."
+          amount:
+            expression: "measured field area and crop duration"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per crop cycle"
+              kind: "crop_cycle"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_land_use_records
+              source_ids: []
+            ranges: []
+        - row_id: water_withdrawal
+          role: "Water withdrawal"
           name: "water"
           flow_type: "elementary"
           flow_ref:
             uuid: "419682fe-60fb-4b43-be89-bf2824b51104"
           property_unit: "Mass / kg"
-          amount: "calculated from irrigation water record"
-          amount_kind: "formula"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "calculated_from_collection"
-          collection_protocol_id: cp_irrigation_water_records
-          source_ids: []
+          description: "Water withdrawal is recorded as an input elementary flow. Amount rule: calculated from irrigation water record; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "calculated from irrigation water record"
+            value_mode: "calculated_value"
+            specificity: "generic"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_irrigation_water_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5"
+                unit: "m3/kg harvested seed crop"
+                basis: "broad first-pass water withdrawal per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
     outputs:
       product:
-        - role: "Harvested wheat seed crop"
+        - row_id: harvested_wheat_seed_crop
+          role: "Harvested wheat seed crop"
           name: "Wheat"
           flow_type: "product"
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "measured harvested mass"
-          amount_kind: "site_specific"
-          basis: "field subprocess quantitative reference"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_harvested_seed_mass
-          source_ids: []
-        - role: "Straw or field residue"
+          description: "Harvested wheat seed crop is recorded as an output product flow. Amount rule: measured harvested mass; normalization basis: field subprocess quantitative reference."
+          amount:
+            expression: "measured harvested mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "field subprocess quantitative reference"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_harvested_seed_mass
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "1"
+                upper: "1"
+                unit: "kg/kg field process reference output"
+                basis: "field subprocess quantitative reference output"
+                basis_kind: "process_output"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+        - row_id: straw_or_field_residue
+          role: "Straw or field residue"
           name: "Wheat straw"
           flow_type: "product"
           flow_ref:
             uuid: "bcaf0254-cdd3-43d1-823a-2f69df3801d8"
           property_unit: "Mass / kg"
-          amount: "measured residue mass when it crosses the boundary"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg harvested seed crop"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_field_residue_records
-          source_ids: []
+          description: "Straw or field residue is recorded as an output product flow. Amount rule: measured residue mass when it crosses the boundary; normalization basis: per 1,000 kg harvested seed crop."
+          amount:
+            expression: "measured residue mass when it crosses the boundary"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg harvested seed crop"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_field_residue_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "2"
+                unit: "kg/kg harvested seed crop"
+                basis: "broad first-pass straw or field residue leaving the boundary per kg harvested seed crop"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
       waste:
         []
       elementary:
-        - role: "Direct soil N2O emission to air"
+        - row_id: direct_soil_n2o_emission_to_air
+          role: "Direct soil N2O emission to air"
           name: "nitrous oxide, emissions to air unspecified"
           flow_type: "elementary"
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-94c3-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "calculate from N inputs; IPCC EF1 default is 1 percent of applied N as N2O-N"
-          amount_kind: "formula"
-          basis: "per N input"
-          basis_kind: "n_input"
-          evidence_kind: "method_formula"
-          source_ids:
-            - ipcc-2019-managed-soils-n2o
-        - role: "Ammonia volatilization to air"
+          description: "Direct soil N2O emission to air is recorded as an output elementary flow. Amount rule: calculate from N inputs; IPCC EF1 default is 1 percent of applied N as N2O-N; normalization basis: per N input."
+          amount:
+            expression: "calculate from N inputs; IPCC EF1 default is 1 percent of applied N as N2O-N"
+            value_mode: "calculated_value"
+            specificity: "generic"
+            basis:
+              text: "per N input"
+              kind: "n_input"
+            evidence:
+              kind: "method_formula"
+              source_ids:
+                - ipcc-2019-managed-soils-n2o
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.02"
+                unit: "kg N2O/kg harvested seed crop"
+                basis: "broad first-pass direct soil N2O per kg harvested seed crop after applying nitrogen emission methods"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: ammonia_volatilization_to_air
+          role: "Ammonia volatilization to air"
           name: "ammonia, emissions to air unspecified"
           flow_type: "elementary"
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-a2a9-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "site-specific or regional emission method"
-          amount_kind: "site_specific"
-          basis: "per N input"
-          basis_kind: "n_input"
-          evidence_kind: "method_formula"
-          source_ids:
-            - ipcc-2019-managed-soils-n2o
-        - role: "Nitrate leaching to water"
+          description: "Ammonia volatilization to air is recorded as an output elementary flow. Amount rule: site-specific or regional emission method; normalization basis: per N input."
+          amount:
+            expression: "site-specific or regional emission method"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per N input"
+              kind: "n_input"
+            evidence:
+              kind: "method_formula"
+              source_ids:
+                - ipcc-2019-managed-soils-n2o
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.1"
+                unit: "kg NH3/kg harvested seed crop"
+                basis: "broad first-pass ammonia volatilization per kg harvested seed crop after applying nitrogen emission methods"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: nitrate_leaching_to_water
+          role: "Nitrate leaching to water"
           name: "nitrate, emissions to fresh water"
           flow_type: "elementary"
           flow_ref:
             uuid: "4d9a8790-3ddd-11dd-8d68-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "site-specific or regional emission method"
-          amount_kind: "site_specific"
-          basis: "per N input"
-          basis_kind: "n_input"
-          evidence_kind: "method_formula"
-          source_ids:
-            - ipcc-2019-managed-soils-n2o
-        - role: "Fossil carbon dioxide from field energy"
+          description: "Nitrate leaching to water is recorded as an output elementary flow. Amount rule: site-specific or regional emission method; normalization basis: per N input."
+          amount:
+            expression: "site-specific or regional emission method"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per N input"
+              kind: "n_input"
+            evidence:
+              kind: "method_formula"
+              source_ids:
+                - ipcc-2019-managed-soils-n2o
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.5"
+                unit: "kg nitrate/kg harvested seed crop"
+                basis: "broad first-pass nitrate leaching per kg harvested seed crop after applying nitrogen leaching methods"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: fossil_carbon_dioxide_from_field_energy
+          role: "Fossil carbon dioxide from field energy"
           name: "carbon dioxide (fossil), emissions to air unspecified"
           flow_type: "elementary"
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "calculated from field fuel records and emission factor"
-          amount_kind: "formula"
-          basis: "per fuel inventory"
-          basis_kind: "fuel_inventory"
-          evidence_kind: "calculated_from_collection"
-          collection_protocol_id: cp_field_fuel_records
-          source_ids: []
+          description: "Fossil carbon dioxide from field energy is recorded as an output elementary flow. Amount rule: calculated from field fuel records and emission factor; normalization basis: per fuel inventory."
+          amount:
+            expression: "calculated from field fuel records and emission factor"
+            value_mode: "calculated_value"
+            specificity: "generic"
+            basis:
+              text: "per fuel inventory"
+              kind: "fuel_inventory"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_field_fuel_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "2"
+                unit: "kg CO2/kg harvested seed crop"
+                basis: "broad first-pass fossil carbon dioxide from field fuel and energy per kg harvested seed crop"
+                basis_kind: "fuel_inventory"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
   - id: seed_conditioning_and_treatment
     label: "Seed Conditioning and Treatment"
     inputs:
       product:
-        - role: "Harvested seed crop input"
+        - row_id: harvested_seed_crop_input
+          role: "Harvested seed crop input"
           name: "Wheat"
           flow_type: "product"
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "1,000-1,250 kg"
-          amount_kind: "range"
-          basis: "per 1,000 kg cleaned seed output"
-          basis_kind: "process_output"
-          evidence_kind: "external_source"
-          source_ids:
-            - usda-seed-cleaning-handling
-        - role: "Electricity for drying, cleaning, grading, treatment, and packaging"
+          description: "Harvested seed crop input is recorded as an input product flow. Amount rule: 1,000-1,250 kg; normalization basis: per 1,000 kg cleaned seed output."
+          amount:
+            expression: "1,000-1,250 kg"
+            value_mode: "modelled_estimate"
+            specificity: "generic"
+            basis:
+              text: "per 1,000 kg cleaned seed output"
+              kind: "process_output"
+            evidence:
+              kind: "external_source"
+              source_ids:
+                - usda-seed-cleaning-handling
+            ranges:
+              - role: default_estimate
+                lower: "1"
+                upper: "1.25"
+                unit: "kg harvested seed crop/kg cleaned seed output"
+                basis: "harvested seed crop input required per kg cleaned seed output"
+                basis_kind: "process_output"
+                evidence_kind: "external_source"
+                source_ids:
+                  - usda-seed-cleaning-handling
+        - row_id: electricity_for_drying_cleaning_grading_treatment_and_packaging
+          role: "Electricity for drying, cleaning, grading, treatment, and packaging"
           name: "alternating current"
           flow_type: "product"
           flow_ref:
             uuid: "4d0361a3-56cc-45f9-aa42-bb9103285bf9"
           property_unit: "Net calorific value / MJ or kWh"
-          amount: "measured electricity use"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg cleaned seed output"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_conditioning_energy_records
-          source_ids:
-            - usda-seed-cleaning-handling
-        - role: "Seed treatment fungicide proxy"
+          description: "Electricity for drying, cleaning, grading, treatment, and packaging is recorded as an input product flow. Amount rule: measured electricity use; normalization basis: per 1,000 kg cleaned seed output."
+          amount:
+            expression: "measured electricity use"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg cleaned seed output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_conditioning_energy_records
+              source_ids:
+                - usda-seed-cleaning-handling
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5"
+                unit: "kWh/kg cleaned seed output"
+                basis: "broad first-pass electricity for drying, cleaning, grading, treatment, and packaging per kg cleaned seed output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: seed_treatment_fungicide_proxy
+          role: "Seed treatment fungicide proxy"
           name: "Azoxystrobin"
           flow_type: "product"
           flow_ref:
             uuid: "8a1f4968-6428-413f-a50b-b413bf9190cf"
           property_unit: "Mass / kg"
-          amount: "measured active ingredient or formulated product mass"
-          amount_kind: "product_specific"
-          basis: "per kg treated seed"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_seed_treatment_records
-          source_ids: []
-        - role: "Seed treatment insecticide proxy"
+          description: "Seed treatment fungicide proxy is recorded as an input product flow. Amount rule: measured active ingredient or formulated product mass; normalization basis: per kg treated seed."
+          amount:
+            expression: "measured active ingredient or formulated product mass"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per kg treated seed"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_seed_treatment_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.01"
+                unit: "kg active substance or product/kg cleaned seed output"
+                basis: "broad first-pass seed treatment fungicide per kg cleaned seed output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: seed_treatment_insecticide_proxy
+          role: "Seed treatment insecticide proxy"
           name: "Insecticide"
           flow_type: "product"
           flow_ref:
             uuid: "ba2ec0c8-d5da-4ca8-bf9f-317478a1ce1b"
           property_unit: "Mass / kg"
-          amount: "measured active ingredient or formulated product mass"
-          amount_kind: "product_specific"
-          basis: "per kg treated seed"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_seed_treatment_records
-          source_ids: []
-        - role: "Packaging unit"
+          description: "Seed treatment insecticide proxy is recorded as an input product flow. Amount rule: measured active ingredient or formulated product mass; normalization basis: per kg treated seed."
+          amount:
+            expression: "measured active ingredient or formulated product mass"
+            value_mode: "foreground_record"
+            specificity: "product_specific"
+            basis:
+              text: "per kg treated seed"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_seed_treatment_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.01"
+                unit: "kg active substance or product/kg cleaned seed output"
+                basis: "broad first-pass seed treatment insecticide per kg cleaned seed output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: packaging_unit
+          role: "Packaging unit"
           name: "Woven polypropylene bag"
           flow_type: "product"
           flow_ref:
             uuid: "9bfaad07-355e-467a-9bab-f95094e7c869"
           property_unit: "Number of items / item"
-          amount: "measured bag count and capacity"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg packaged seed"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_packaging_input_records
-          source_ids: []
+          description: "Packaging unit is recorded as an input product flow. Amount rule: measured bag count and capacity; normalization basis: per 1,000 kg packaged seed."
+          amount:
+            expression: "measured bag count and capacity"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg packaged seed"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_packaging_input_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.5"
+                unit: "kg packaging/kg packaged seed"
+                basis: "broad first-pass packaging material equivalent per kg packaged seed"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
       waste:
         []
       elementary:
         []
     outputs:
       product:
-        - role: "Cleaned wheat seed for sowing"
+        - row_id: cleaned_wheat_seed_for_sowing
+          role: "Cleaned wheat seed for sowing"
           name: "Wheat"
           flow_type: "product"
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "measured cleaned seed mass"
-          amount_kind: "site_specific"
-          basis: "PCR reference output"
-          basis_kind: "reference_flow"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_cleaned_seed_mass
-          source_ids: []
-        - role: "Marketable straw or residue owned by seed plant"
+          description: "Cleaned wheat seed for sowing is recorded as an output product flow. Amount rule: measured cleaned seed mass; normalization basis: PCR reference output."
+          amount:
+            expression: "measured cleaned seed mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "PCR reference output"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_cleaned_seed_mass
+              source_ids: []
+            ranges:
+              - role: qa_guardrail
+                lower: "1"
+                upper: "1"
+                unit: "kg/kg PCR reference output"
+                basis: "cleaned wheat seed reference output"
+                basis_kind: "reference_flow"
+                evidence_kind: "method_formula"
+                source_ids:
+                  - mass-balance-identity
+        - row_id: marketable_straw_or_residue_owned_by_seed_plant
+          role: "Marketable straw or residue owned by seed plant"
           name: "Wheat straw"
           flow_type: "product"
           flow_ref:
             uuid: "bcaf0254-cdd3-43d1-823a-2f69df3801d8"
           property_unit: "Mass / kg"
-          amount: "optional"
-          amount_kind: "not_applicable"
-          basis: "only if included in seed plant boundary"
-          basis_kind: "process_output"
-          evidence_kind: "source_rule"
-          source_ids: []
+          description: "Marketable straw or residue owned by seed plant is recorded as an output product flow. Amount rule: optional; normalization basis: only if included in seed plant boundary."
+          amount:
+            expression: "optional"
+            value_mode: "not_applicable"
+            specificity: "not_applicable"
+            basis:
+              text: "only if included in seed plant boundary"
+              kind: "process_output"
+            evidence:
+              kind: "source_rule"
+              source_ids: []
+            ranges: []
       waste:
-        - role: "Screenings, rejected seed, dust, and off-grade material"
+        - row_id: screenings_rejected_seed_dust_and_off_grade_material
+          role: "Screenings, rejected seed, dust, and off-grade material"
           name: "Rejects"
           flow_type: "waste"
           flow_ref:
             uuid: "e6d6aa78-105e-4acc-a84b-46f68765a1cc"
           property_unit: "Mass / kg"
-          amount: "measured reject mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg cleaned seed output"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_reject_mass
-          source_ids:
-            - usda-seed-cleaning-handling
-        - role: "Packaging waste"
+          description: "Screenings, rejected seed, dust, and off-grade material is recorded as an output waste flow. Amount rule: measured reject mass; normalization basis: per 1,000 kg cleaned seed output."
+          amount:
+            expression: "measured reject mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg cleaned seed output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_reject_mass
+              source_ids:
+                - usda-seed-cleaning-handling
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "1"
+                unit: "kg/kg cleaned seed output"
+                basis: "broad first-pass screenings, rejected seed, dust, and off-grade material per kg cleaned seed output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: packaging_waste
+          role: "Packaging waste"
           name: "Select applicable packaging waste flow"
           flow_type: "waste"
           property_unit: "Mass / kg"
-          amount: "measured packaging waste mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg packaged seed"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_packaging_waste_records
-          source_ids: []
+          description: "Packaging waste is recorded as an output waste flow. Amount rule: measured packaging waste mass; normalization basis: per 1,000 kg packaged seed."
+          amount:
+            expression: "measured packaging waste mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg packaged seed"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_packaging_waste_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.2"
+                unit: "kg/kg packaged seed"
+                basis: "broad first-pass packaging waste per kg packaged seed"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
       elementary:
-        - role: "Cleaning dust emitted to air"
+        - row_id: cleaning_dust_emitted_to_air
+          role: "Cleaning dust emitted to air"
           name: "Select applicable particulate flow"
           flow_type: "elementary"
           property_unit: "Mass / kg"
-          amount: "measured or calculated cleaning dust mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg cleaned seed output"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_cleaning_dust_records
-          source_ids:
-            - usda-seed-cleaning-handling
-        - role: "Fossil carbon dioxide from conditioning energy"
+          description: "Cleaning dust emitted to air is recorded as an output elementary flow. Amount rule: measured or calculated cleaning dust mass; normalization basis: per 1,000 kg cleaned seed output."
+          amount:
+            expression: "measured or calculated cleaning dust mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg cleaned seed output"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_cleaning_dust_records
+              source_ids:
+                - usda-seed-cleaning-handling
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.1"
+                unit: "kg dust/kg cleaned seed output"
+                basis: "broad first-pass cleaning dust emitted or collected per kg cleaned seed output"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: fossil_carbon_dioxide_from_conditioning_energy
+          role: "Fossil carbon dioxide from conditioning energy"
           name: "carbon dioxide (fossil), emissions to air unspecified"
           flow_type: "elementary"
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "calculated from conditioning energy records and emission factor"
-          amount_kind: "formula"
-          basis: "per process inventory"
-          basis_kind: "fuel_inventory"
-          evidence_kind: "calculated_from_collection"
-          collection_protocol_id: cp_conditioning_energy_records
-          source_ids: []
+          description: "Fossil carbon dioxide from conditioning energy is recorded as an output elementary flow. Amount rule: calculated from conditioning energy records and emission factor; normalization basis: per process inventory."
+          amount:
+            expression: "calculated from conditioning energy records and emission factor"
+            value_mode: "calculated_value"
+            specificity: "generic"
+            basis:
+              text: "per process inventory"
+              kind: "fuel_inventory"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_conditioning_energy_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "5"
+                unit: "kg CO2/kg cleaned seed output"
+                basis: "broad first-pass fossil carbon dioxide from conditioning energy per kg cleaned seed output"
+                basis_kind: "fuel_inventory"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
   - id: storage_and_delivery
     label: "Storage and Delivery"
     inputs:
       product:
-        - role: "Storage electricity"
+        - row_id: storage_electricity
+          role: "Storage electricity"
           name: "alternating current"
           flow_type: "product"
           flow_ref:
             uuid: "4d0361a3-56cc-45f9-aa42-bb9103285bf9"
           property_unit: "Net calorific value / MJ or kWh"
-          amount: "measured storage electricity use"
-          amount_kind: "site_specific"
-          basis: "per storage duration"
-          basis_kind: "storage_duration"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_storage_energy_records
-          source_ids: []
-        - role: "Delivery transport fuel"
+          description: "Storage electricity is recorded as an input product flow. Amount rule: measured storage electricity use; normalization basis: per storage duration."
+          amount:
+            expression: "measured storage electricity use"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per storage duration"
+              kind: "storage_duration"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_storage_energy_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "1"
+                unit: "kWh/kg delivered seed"
+                basis: "broad first-pass storage electricity per kg delivered seed over the declared storage duration"
+                basis_kind: "storage_duration"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
+        - row_id: delivery_transport_fuel
+          role: "Delivery transport fuel"
           name: "Diesel oil"
           flow_type: "product"
           flow_ref:
             uuid: "9d258d75-6792-4f1c-9856-81602ed8f816"
           property_unit: "Mass / kg"
-          amount: "measured delivery fuel or route fuel estimate"
-          amount_kind: "route_specific"
-          basis: "per tonne-km"
-          basis_kind: "transport_service"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_delivery_transport_records
-          source_ids: []
+          description: "Delivery transport fuel is recorded as an input product flow. Amount rule: measured delivery fuel or route fuel estimate; normalization basis: per tonne-km."
+          amount:
+            expression: "measured delivery fuel or route fuel estimate"
+            value_mode: "modelled_estimate"
+            specificity: "route_specific"
+            basis:
+              text: "per tonne-km"
+              kind: "transport_service"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_delivery_transport_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.5"
+                unit: "L diesel-equivalent/kg delivered seed"
+                basis: "broad first-pass delivery transport fuel per kg delivered seed for route-screening"
+                basis_kind: "transport_service"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
       waste:
         []
       elementary:
         []
     outputs:
       product:
-        - role: "Declared delivered product"
+        - row_id: declared_delivered_product
+          role: "Declared delivered product"
           name: "Wheat"
           flow_type: "product"
           flow_ref:
             uuid: "12da5e7d-9b93-4404-8c7d-08f98bec6238"
           property_unit: "Mass / kg"
-          amount: "measured delivered seed mass"
-          amount_kind: "site_specific"
-          basis: "if reference flow is delivered seed"
-          basis_kind: "reference_flow"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_delivered_seed_mass
-          source_ids: []
+          description: "Declared delivered product is recorded as an output product flow. Amount rule: measured delivered seed mass; normalization basis: if reference flow is delivered seed."
+          amount:
+            expression: "measured delivered seed mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "if reference flow is delivered seed"
+              kind: "reference_flow"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_delivered_seed_mass
+              source_ids: []
+            ranges: []
       waste:
-        - role: "Storage loss or damaged seed"
+        - row_id: storage_loss_or_damaged_seed
+          role: "Storage loss or damaged seed"
           name: "Rejects"
           flow_type: "waste"
           flow_ref:
             uuid: "e6d6aa78-105e-4acc-a84b-46f68765a1cc"
           property_unit: "Mass / kg"
-          amount: "measured storage loss or damaged seed mass"
-          amount_kind: "site_specific"
-          basis: "per 1,000 kg stored seed"
-          basis_kind: "process_output"
-          evidence_kind: "collected_record"
-          collection_protocol_id: cp_storage_loss_records
-          source_ids: []
+          description: "Storage loss or damaged seed is recorded as an output waste flow. Amount rule: measured storage loss or damaged seed mass; normalization basis: per 1,000 kg stored seed."
+          amount:
+            expression: "measured storage loss or damaged seed mass"
+            value_mode: "foreground_record"
+            specificity: "site_specific"
+            basis:
+              text: "per 1,000 kg stored seed"
+              kind: "process_output"
+            evidence:
+              kind: "collected_record"
+              collection_protocol_id: cp_storage_loss_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "0.2"
+                unit: "kg/kg stored seed"
+                basis: "broad first-pass storage loss or damaged seed per kg stored seed"
+                basis_kind: "process_output"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
       elementary:
-        - role: "Fossil carbon dioxide from storage or transport energy"
+        - row_id: fossil_carbon_dioxide_from_storage_or_transport_energy
+          role: "Fossil carbon dioxide from storage or transport energy"
           name: "carbon dioxide (fossil), emissions to air unspecified"
           flow_type: "elementary"
           flow_ref:
             uuid: "08a91e70-3ddc-11dd-923d-0050c2490048"
           property_unit: "Mass / kg"
-          amount: "calculated from storage energy and delivery transport records"
-          amount_kind: "formula"
-          basis: "per process inventory"
-          basis_kind: "fuel_inventory"
-          evidence_kind: "calculated_from_collection"
-          collection_protocol_id: cp_delivery_transport_records
-          source_ids: []
+          description: "Fossil carbon dioxide from storage or transport energy is recorded as an output elementary flow. Amount rule: calculated from storage energy and delivery transport records; normalization basis: per process inventory."
+          amount:
+            expression: "calculated from storage energy and delivery transport records"
+            value_mode: "calculated_value"
+            specificity: "generic"
+            basis:
+              text: "per process inventory"
+              kind: "fuel_inventory"
+            evidence:
+              kind: "calculated_from_collection"
+              collection_protocol_id: cp_delivery_transport_records
+              source_ids: []
+            ranges:
+              - role: default_estimate
+                lower: "0"
+                upper: "2"
+                unit: "kg CO2/kg delivered seed"
+                basis: "broad first-pass fossil carbon dioxide from storage and delivery energy per kg delivered seed"
+                basis_kind: "fuel_inventory"
+                evidence_kind: "reasoned_estimate"
+                source_ids: []
 dataset_production:
   collection_protocols:
     - protocol_id: cp_source_seed_lot_mass
@@ -884,3 +1358,7 @@ data_sources:
     type: "official method guidance"
     reference: "<https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf>"
     used_for: "N2O direct emission factor and nitrogen emission calculation"
+  - id: "mass-balance-identity"
+    type: "method_factor"
+    reference: "Conservation of mass applied as a PCR calculation identity for process reference outputs and batch reconciliation."
+    used_for: "QA guardrails for reference outputs and mass-balance checks."

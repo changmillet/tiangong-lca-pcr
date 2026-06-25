@@ -145,13 +145,13 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.match(enMarkdown, /## 6\. Process Inventory Structure/);
     assert.match(enMarkdown, /### Process Map/);
     assert.match(enMarkdown, /process_id/);
-    assert.match(enMarkdown, /### Process: <process_id>/);
+    assert.match(enMarkdown, /### Process: <process name> \(`<process_id>`\)/);
     assert.match(enMarkdown, /#### Inputs/);
     assert.match(enMarkdown, /##### Product flows/);
     assert.match(enMarkdown, /##### Waste flows/);
     assert.match(enMarkdown, /##### Elementary flows/);
     assert.match(enMarkdown, /#### Outputs/);
-    assert.match(enMarkdown, /collection_protocol_id/);
+    assert.match(enMarkdown, /Collection protocol/);
     assert.match(enMarkdown, /## 8\. Foreground Data Collection, Calculation, and Quality Rules/);
     assert.match(enMarkdown, /### Data Collection Protocols/);
     assert.match(enMarkdown, /### Calculation Rules/);
@@ -168,13 +168,13 @@ test("optional PCR scaffold uses process inventory without construction trace se
     assert.match(zhMarkdown, /### 过程图/);
     assert.match(zhMarkdown, /process_id/);
     assert.match(zhMarkdown, /过程名称/);
-    assert.match(zhMarkdown, /### 过程：<process_id>/);
+    assert.match(zhMarkdown, /### 过程：<过程名称>（`<process_id>`）/);
     assert.match(zhMarkdown, /#### 输入/);
     assert.match(zhMarkdown, /##### 产品流/);
     assert.match(zhMarkdown, /##### 废物流/);
     assert.match(zhMarkdown, /##### 基本流/);
     assert.match(zhMarkdown, /#### 输出/);
-    assert.match(zhMarkdown, /collection_protocol_id/);
+    assert.match(zhMarkdown, /采集协议/);
     assert.match(zhMarkdown, /## 8\. 前景数据采集、计算与质量规则/);
     assert.match(zhMarkdown, /### 数据采集协议/);
     assert.match(zhMarkdown, /### 计算规则/);
@@ -196,7 +196,7 @@ test("optional PCR scaffold uses process inventory without construction trace se
   }
 });
 
-test("sync-structured projects normative markdown tables to UUID-only structured YAML", () => {
+test("sync-structured projects markdown flow cards to UUID-only structured YAML", () => {
   const root = makeTempRoot();
   try {
     runCli(["init", "--root", root]);
@@ -264,23 +264,47 @@ sync_with: pcr.zh-CN.md
 | --- | --- | --- | --- | --- | --- |
 | field_seed_multiplication | Field Seed Multiplication | required |  | foreground | harvested seed crop |
 
-### Process: field_seed_multiplication
+### Process: Field Seed Multiplication (\`field_seed_multiplication\`)
 
 #### Inputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Source seed lot used for multiplication | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | site-specific measured mass | site_specific | per 1,000 kg harvested seed crop | process_output | collected_record | cp_source_seed_lot_mass | \`unl-wheat-seeding-rate\` |
+###### Source seed lot used for multiplication (\`source_seed_lot_used_for_multiplication\`)
+
+Source seed lot used for multiplication is recorded as an input product flow. The amount requirement is site-specific measured mass, normalized on per 1,000 kg harvested seed crop.
+
+- Selected flow: Wheat \`12da5e7d-9b93-4404-8c7d-08f98bec6238\`
+- Flow property / unit: Mass / kg
+- Amount rule: site-specific measured mass
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Site-specific (\`site_specific\`)
+- Normalization basis: per 1,000 kg harvested seed crop
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Collected record (\`collected_record\`)
+- Collection protocol: cp_source_seed_lot_mass
+- Sources: \`unl-wheat-seeding-rate\`
+
 
 #### Outputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Harvested wheat seed crop | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | measured harvested mass | site_specific | process reference | process_output | collected_record | cp_harvested_seed_mass |  |
+###### Harvested wheat seed crop (\`harvested_wheat_seed_crop\`)
+
+Harvested wheat seed crop is recorded as an output product flow. The amount requirement is measured harvested mass, normalized on process reference.
+
+- Selected flow: Wheat \`12da5e7d-9b93-4404-8c7d-08f98bec6238\`
+- Flow property / unit: Mass / kg
+- Amount rule: measured harvested mass
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Site-specific (\`site_specific\`)
+- Normalization basis: process reference
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Collected record (\`collected_record\`)
+- Collection protocol: cp_harvested_seed_mass
+- Sources:
+
 
 ## 8. Foreground Data Collection, Calculation, and Quality Rules
 
@@ -352,9 +376,12 @@ sync_with: pcr.zh-CN.md
     assert.match(structured, /inclusion: "required"/);
     assert.match(structured, /process_inventory:/);
     assert.match(structured, /id: field_seed_multiplication/);
-    assert.match(structured, /amount_kind: "site_specific"/);
-    assert.match(structured, /basis_kind: "process_output"/);
-    assert.match(structured, /evidence_kind: "collected_record"/);
+    assert.match(structured, /row_id: source_seed_lot_used_for_multiplication/);
+    assert.match(structured, /amount:/);
+    assert.match(structured, /value_mode: "foreground_record"/);
+    assert.match(structured, /specificity: "site_specific"/);
+    assert.match(structured, /kind: "process_output"/);
+    assert.match(structured, /kind: "collected_record"/);
     assert.match(structured, /collection_protocol_id: cp_source_seed_lot_mass/);
     assert.match(structured, /dataset_production:/);
     assert.match(structured, /collection_protocols:/);
@@ -427,16 +454,42 @@ sync_with: pcr.zh-CN.md
 | --- | --- | --- | --- | --- | --- |
 | field_seed_multiplication | Field Seed Multiplication | required |  | foreground | harvested seed crop |
 
-### Process: field_seed_multiplication
+### Process: Field Seed Multiplication (\`field_seed_multiplication\`)
 
 #### Inputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Source seed lot used for multiplication | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | site-specific measured mass | site_specific | per 1,000 kg harvested seed crop | process_output | collected_record | cp_missing |  |
-| Fertilizer input | Urea | \`3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e\` | Mass / kg | site-specific | site_specific | per output | process_output | foreground_data |  |  |
+###### Source seed lot used for multiplication (\`source_seed_lot_used_for_multiplication\`)
+
+Source seed lot used for multiplication is recorded as an input product flow. The amount requirement is site-specific measured mass, normalized on per 1,000 kg harvested seed crop.
+
+- Selected flow: Wheat \`12da5e7d-9b93-4404-8c7d-08f98bec6238\`
+- Flow property / unit: Mass / kg
+- Amount rule: site-specific measured mass
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Site-specific (\`site_specific\`)
+- Normalization basis: per 1,000 kg harvested seed crop
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Collected record (\`collected_record\`)
+- Collection protocol: cp_missing
+- Sources:
+
+###### Fertilizer input (\`fertilizer_input\`)
+
+Fertilizer input is recorded as an input product flow. The amount requirement is site-specific, normalized on per output.
+
+- Selected flow: Urea \`3f8850c0-f718-4c4b-8fcb-8fd42e03aa8e\`
+- Flow property / unit: Mass / kg
+- Amount rule: site-specific
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Site-specific (\`site_specific\`)
+- Normalization basis: per output
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Collected record (\`collected_record\`)
+- Collection protocol:
+- Sources:
+
 `,
     );
 
@@ -444,7 +497,390 @@ sync_with: pcr.zh-CN.md
       () => runCli(["lint", "--root", root]),
       (error) =>
         String(error.stderr).includes("references unknown collection_protocol_id cp_missing") &&
-        String(error.stderr).includes("requires collection_protocol_id for evidence_kind foreground_data"),
+        String(error.stderr).includes("requires collection_protocol_id for evidence_kind collected_record"),
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint accepts reasoned estimate ranges without source ids", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `# Wheat Seed Production
+
+## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition | source material provenance |
+| starting_condition_role | route disclosure |
+| product_classification_scope | wheat seed |
+| recursive_input_rule | same-category seed input remains explicit |
+| upstream_dataset_requirement | source material disclosure |
+| disclosure | collection area or permit disclosure |
+
+## 6. Process Inventory Structure
+
+### Process Map
+
+| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| --- | --- | --- | --- | --- | --- |
+| drying | Drying | optional |  | foreground estimate | dried product |
+
+### Process: Drying (\`drying\`)
+
+#### Inputs
+
+##### Product flows
+
+###### Drying energy (\`drying_energy\`)
+
+Drying energy is estimated when no source-backed range is available yet.
+
+- Selected flow: Select electricity or fuel flow
+- Flow property / unit: Energy; kWh
+- Amount rule: reasoned screening estimate until source-backed evidence is available
+- Value mode: Modelled estimate (\`modelled_estimate\`)
+- Specificity: Generic (\`generic\`)
+- Normalization basis: per kg dried product
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Reasoned estimate (\`reasoned_estimate\`)
+- Range: Common-sense screening estimate
+  - Range role: Default estimate (\`default_estimate\`)
+  - Lower: 0.01
+  - Upper: 10
+  - Unit: kWh/kg dried product
+  - Basis: per kg dried product
+  - Basis kind: Process output (\`process_output\`)
+  - Evidence kind: Reasoned estimate (\`reasoned_estimate\`)
+`,
+    );
+    const output = runCli(["lint", "--root", root]);
+
+    assert.match(output, /PCR library lint passed/i);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint does not require ranges for non-quantity disclosure rows", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "manifest.yaml"),
+      `schema_version: 1
+id: pcr.agriculture.crops.wheat-seed
+title:
+  en-US: "Wheat seed production"
+  zh-CN: "小麦种子生产"
+status: candidate
+pcr_kind: product_category_rule
+content_maturity: authored_methodology
+languages:
+  canonical: en-US
+  available:
+    - en-US
+    - zh-CN
+`,
+    );
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `# Wheat Seed Production
+
+## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition | source material provenance |
+| starting_condition_role | route disclosure |
+| product_classification_scope | wheat seed |
+| recursive_input_rule | same-category seed input remains explicit |
+| upstream_dataset_requirement | source material disclosure |
+| disclosure | collection area or permit disclosure |
+
+## 6. Process Inventory Structure
+
+### Process Map
+
+| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| --- | --- | --- | --- | --- | --- |
+| provenance | Provenance | optional |  | foreground disclosure | source material |
+
+### Process: Provenance (\`provenance\`)
+
+#### Inputs
+
+##### Elementary flows
+
+###### Collection area or permit disclosure (\`collection_area_or_permit_disclosure\`)
+
+This row records route-specific provenance disclosures that are not numeric material or energy quantities.
+
+- Selected flow: Select route-specific collection area, habitat interaction, or legal harvest disclosure flow
+- Flow property / unit: Area, count, permit descriptor, or narrative record
+- Amount rule: Record collection area, permit identifier, salvage source, aquaculture source, or processing-residue source.
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Route-specific (\`route_specific\`)
+- Normalization basis: Source route disclosure associated with accepted source material.
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Source rule (\`source_rule\`)
+
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role | unit_process |
+| downstream_use | secondary_dataset |
+| allowed_use | candidate provenance guidance |
+| excluded_use | reviewed use without provenance review |
+| required_metadata | source route disclosure |
+| required_quality_disclosure | disclosure row is non-quantity and does not require range |
+| update_trigger | provenance rule change |
+`,
+    );
+    const output = runCli(["lint", "--root", root]);
+
+    assert.match(output, /PCR library lint passed/i);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint warns when candidate PCR important flow has no range", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "manifest.yaml"),
+      `schema_version: 1
+id: pcr.agriculture.crops.wheat-seed
+title:
+  en-US: "Wheat seed production"
+  zh-CN: "小麦种子生产"
+status: candidate
+pcr_kind: product_category_rule
+content_maturity: authored_methodology
+languages:
+  canonical: en-US
+  available:
+    - en-US
+    - zh-CN
+`,
+    );
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `# Wheat Seed Production
+
+## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition | source_seed_lot |
+| starting_condition_role | identity and reproduction condition |
+| product_classification_scope | wheat seed |
+| recursive_input_rule | same-category seed input remains explicit |
+| upstream_dataset_requirement | source seed lot disclosure |
+| disclosure | source seed lot and energy records |
+
+## 6. Process Inventory Structure
+
+### Process Map
+
+| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| --- | --- | --- | --- | --- | --- |
+| drying | Drying | optional |  | foreground estimate | dried product |
+
+### Process: Drying (\`drying\`)
+
+#### Inputs
+
+##### Product flows
+
+###### Drying energy (\`drying_energy\`)
+
+Drying energy is estimated before source-backed ranges are available.
+
+- Selected flow: Select electricity or fuel flow
+- Flow property / unit: Energy; kWh
+- Amount rule: reasoned screening estimate until source-backed evidence is available
+- Value mode: Modelled estimate (\`modelled_estimate\`)
+- Specificity: Generic (\`generic\`)
+- Normalization basis: per kg dried product
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Reasoned estimate (\`reasoned_estimate\`)
+
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role | unit_process |
+| downstream_use | secondary_dataset |
+| allowed_use | candidate drying guidance |
+| excluded_use | reviewed use without range replacement |
+| required_metadata | drying energy basis |
+| required_quality_disclosure | missing range warning |
+| update_trigger | source-backed range evidence |
+`,
+    );
+    const output = runCli(["lint", "--root", root]);
+
+    assert.match(output, /PCR library lint passed with warnings/i);
+    assert.match(output, /flow "Drying energy" is an important flow .* has no amount range/);
+    assert.match(output, /reasoned_estimate/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint fails when reviewed PCR important flow has no range", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    writeFileSync(
+      path.join(pcrDir, "manifest.yaml"),
+      `schema_version: 1
+id: pcr.agriculture.crops.wheat-seed
+title:
+  en-US: "Wheat seed production"
+  zh-CN: "小麦种子生产"
+status: active
+pcr_kind: product_category_rule
+content_maturity: reviewed_methodology
+languages:
+  canonical: en-US
+  available:
+    - en-US
+    - zh-CN
+`,
+    );
+    writeFileSync(
+      path.join(pcrDir, "pcr.en-US.md"),
+      `# Wheat Seed Production
+
+## 5. System Boundary
+
+### Boundary Abstraction
+
+| Field | Value |
+| --- | --- |
+| declared_starting_condition | source_seed_lot |
+| starting_condition_role | identity and reproduction condition |
+| product_classification_scope | wheat seed |
+| recursive_input_rule | same-category seed input remains explicit |
+| upstream_dataset_requirement | source seed lot disclosure |
+| disclosure | source seed lot and energy records |
+
+## 6. Process Inventory Structure
+
+### Process Map
+
+| process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
+| --- | --- | --- | --- | --- | --- |
+| drying | Drying | optional |  | foreground estimate | dried product |
+
+### Process: Drying (\`drying\`)
+
+#### Inputs
+
+##### Product flows
+
+###### Drying energy (\`drying_energy\`)
+
+Drying energy is estimated before source-backed ranges are available.
+
+- Selected flow: Select electricity or fuel flow
+- Flow property / unit: Energy; kWh
+- Amount rule: reasoned screening estimate until source-backed evidence is available
+- Value mode: Modelled estimate (\`modelled_estimate\`)
+- Specificity: Generic (\`generic\`)
+- Normalization basis: per kg dried product
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Reasoned estimate (\`reasoned_estimate\`)
+
+## 10. Published Dataset Profile
+
+| Field | Value |
+| --- | --- |
+| dataset_role | unit_process |
+| downstream_use | secondary_dataset |
+| allowed_use | reviewed drying guidance |
+| excluded_use | unreviewed range-free use |
+| required_metadata | drying energy basis |
+| required_quality_disclosure | reviewed range evidence |
+| update_trigger | source-backed range evidence |
+`,
+    );
+
+    assert.throws(
+      () => runCli(["lint", "--root", root]),
+      (error) => /flow "Drying energy" is an important flow .* has no amount range/u.test(String(error.stderr)),
     );
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -520,15 +956,27 @@ Previous-generation wheat seed is the starting point.
 | --- | --- | --- | --- | --- | --- |
 | field_seed_multiplication | Field Seed Multiplication | required |  | foreground | harvested seed crop |
 
-### Process: field_seed_multiplication
+### Process: Field Seed Multiplication (\`field_seed_multiplication\`)
 
 #### Inputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Source seed lot used for multiplication | Wheat | \`12da5e7d-9b93-4404-8c7d-08f98bec6238\` | Mass / kg | site-specific measured mass | site_specific | per 1,000 kg harvested seed crop | process_output | collected_record | cp_source_seed_lot_mass |  |
+###### Source seed lot used for multiplication (\`source_seed_lot_used_for_multiplication\`)
+
+Source seed lot used for multiplication is recorded as an input product flow. The amount requirement is site-specific measured mass, normalized on per 1,000 kg harvested seed crop.
+
+- Selected flow: Wheat \`12da5e7d-9b93-4404-8c7d-08f98bec6238\`
+- Flow property / unit: Mass / kg
+- Amount rule: site-specific measured mass
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Site-specific (\`site_specific\`)
+- Normalization basis: per 1,000 kg harvested seed crop
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Collected record (\`collected_record\`)
+- Collection protocol: cp_source_seed_lot_mass
+- Sources:
+
 
 ## 8. Foreground Data Collection, Calculation, and Quality Rules
 
@@ -614,6 +1062,132 @@ test("bump and publish update PCR manifest lifecycle fields", () => {
     assert.equal(parsedManifest.version, "1.0.0");
     assert.ok(parsedManifest.published_at_utc);
     assert.equal(parsedManifest.title["zh-CN"], "小麦种子生产");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lifecycle updates PCR manifest review and translation state", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+
+    const output = runCli([
+      "lifecycle",
+      "--root",
+      root,
+      "--pcr",
+      "library/pcrs/agriculture/crops/wheat-seed",
+      "--status",
+      "active",
+      "--content-maturity",
+      "reviewed_methodology",
+      "--translation",
+      "zh-CN=reviewed",
+    ]);
+
+    assert.match(output, /Updated PCR lifecycle at library\/pcrs\/agriculture\/crops\/wheat-seed\/manifest.yaml/);
+    assert.match(output, /status: active/);
+    assert.match(output, /content_maturity: reviewed_methodology/);
+    assert.match(output, /translation_status.zh-CN: reviewed/);
+    assert.match(output, /Next:/);
+
+    const parsedManifest = parseYaml(readFileSync(path.join(pcrDir, "manifest.yaml"), "utf8"));
+    assert.equal(parsedManifest.status, "active");
+    assert.equal(parsedManifest.content_maturity, "reviewed_methodology");
+    assert.equal(parsedManifest.translation_status["zh-CN"], "reviewed");
+    assert.ok(parsedManifest.updated_at_utc);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lifecycle rejects invalid controlled vocabulary values", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+
+    assert.throws(
+      () =>
+        runCliFailure([
+          "lifecycle",
+          "--root",
+          root,
+          "--pcr",
+          "library/pcrs/agriculture/crops/wheat-seed",
+          "--status",
+          "reviewed",
+        ]),
+      (error) => {
+        assert.notEqual(error.status, 0);
+        assert.match(String(error.stderr), /--status must be one of scaffold, candidate, active, published, or deprecated/);
+        return true;
+      },
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("lint rejects invalid manifest lifecycle values", () => {
+  const root = makeTempRoot();
+  try {
+    runCli(["init", "--root", root]);
+    const pcrDir = path.join(root, "library/pcrs/agriculture/crops/wheat-seed");
+    runCli([
+      "init",
+      "--root",
+      root,
+      "--sample-pcr",
+      "agriculture/crops/wheat-seed",
+      "--pcr-id",
+      "pcr.agriculture.crops.wheat-seed",
+      "--title-en",
+      "Wheat seed production",
+      "--title-zh-CN",
+      "小麦种子生产",
+    ]);
+    const manifestPath = path.join(pcrDir, "manifest.yaml");
+    writeFileSync(
+      manifestPath,
+      readFileSync(manifestPath, "utf8").replace("status: scaffold", "status: reviewed"),
+    );
+
+    assert.throws(
+      () => runCliFailure(["lint", "--root", root]),
+      (error) => {
+        assert.notEqual(error.status, 0);
+        assert.match(String(error.stderr), /invalid manifest status "reviewed"/);
+        return true;
+      },
+    );
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

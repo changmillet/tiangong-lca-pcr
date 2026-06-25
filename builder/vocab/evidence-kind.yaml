@@ -19,3 +19,5 @@ values:
     description: Tiangong database row is used only for flow, flow property, unit group, process, or lifecyclemodel identity.
   source_rule:
     description: External source defines a boundary, method, quality, or reporting rule rather than a flow amount.
+  reasoned_estimate:
+    description: Provisional author or AI estimate based on domain reasoning when stronger source-backed evidence is unavailable; must be labelled as replaceable by reviewed evidence.

@@ -23,6 +23,9 @@ Keep these authoring artifacts outside `Data Sources`:
 - a local search session
 - a private note
 - a review checklist
+- an AI or author common-sense estimate marked as `reasoned_estimate`
+
+Reasoned estimates may appear in flow amount ranges when a broad provisional range is useful and stronger evidence is unavailable. They are not external sources. Do not create fake source ids for them; instead label the range as provisional and replace it with source-backed evidence when available.
 
 ## Source Ids
 

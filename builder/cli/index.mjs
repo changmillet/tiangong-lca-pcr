@@ -2,7 +2,7 @@
 import { init } from "../lib/builder-operations.mjs";
 import { scaffoldCpc } from "../lib/cpc-scaffold.mjs";
 import { lint } from "../lib/lint-rules.mjs";
-import { bump, publish, syncStructured } from "../lib/manifest-lifecycle.mjs";
+import { bump, lifecycle, publish, syncStructured } from "../lib/manifest-lifecycle.mjs";
 
 function parseArgs(argv) {
   const [command, ...rest] = argv;
@@ -35,6 +35,7 @@ Usage:
   node builder/cli/index.mjs lint [--root <path>]
   node builder/cli/index.mjs scaffold-cpc --source <csv> [--classification-version 3.0]
   node builder/cli/index.mjs sync-structured --pcr <library/pcrs/...> [--root <path>]
+  node builder/cli/index.mjs lifecycle --pcr <library/pcrs/...> [--status <status>] [--content-maturity <state>] [--translation <lang=status>] [--root <path>]
   node builder/cli/index.mjs bump --pcr <library/pcrs/...> [--level patch|minor|major] [--root <path>]
   node builder/cli/index.mjs publish --pcr <library/pcrs/...> [--version <semver>] [--root <path>]
 `;
@@ -58,6 +59,9 @@ function runCommand(command, options) {
   }
   if (command === "bump") {
     return { messages: bump(options), exitCode: 0 };
+  }
+  if (command === "lifecycle") {
+    return { messages: lifecycle(options), exitCode: 0 };
   }
   if (command === "publish") {
     return { messages: publish(options), exitCode: 0 };

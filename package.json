@@ -11,6 +11,7 @@
     "catalog:build": "node builder/scripts/build-catalog.mjs",
     "pcr:scaffold:cpc": "node builder/cli/index.mjs scaffold-cpc",
     "pcr:sync-structured": "node builder/cli/index.mjs sync-structured",
+    "pcr:lifecycle": "node builder/cli/index.mjs lifecycle",
     "pcr:bump": "node builder/cli/index.mjs bump",
     "pcr:publish": "node builder/cli/index.mjs publish",
     "tiangong-pcr": "node packages/tiangong-pcr-cli/bin/tiangong-pcr.mjs"

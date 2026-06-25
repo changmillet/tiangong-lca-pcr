@@ -1,0 +1,13 @@
+schema_version: 1
+vocab: pcr_status
+values:
+  scaffold:
+    description: Generated or empty PCR scaffold; not yet authored as methodology.
+  candidate:
+    description: Authored PCR content exists and is ready for methodology review.
+  active:
+    description: Reviewed PCR methodology is active for normal guidance use.
+  published:
+    description: PCR has been explicitly published with a version and publication timestamp.
+  deprecated:
+    description: PCR should no longer be selected for new data package work.

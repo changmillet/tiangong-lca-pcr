@@ -1,17 +1,18 @@
 schema_version: 1
 vocab: flow_row_fields
 required_columns:
-  - Flow role
-  - Selected flow
-  - Tiangong UUID
-  - Flow property / unit
-  - Amount
-  - amount_kind
-  - Basis
+  - row_id
+  - direction
+  - flow_type
+  - role
+  - selected_flow
+  - flow_property_unit
+  - amount
+  - value_mode
+  - specificity
+  - basis
   - basis_kind
   - evidence_kind
-  - collection_protocol_id
-  - source_ids
 flow_types:
   product:
     description: Product or technosphere flow.

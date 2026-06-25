@@ -1,0 +1,13 @@
+schema_version: 1
+vocab: amount_value_mode
+values:
+  fixed_value:
+    description: The PCR specifies a fixed inventory amount.
+  foreground_record:
+    description: The amount must be provided by foreground records or measurements.
+  calculated_value:
+    description: The amount is calculated from collected records using a PCR calculation rule.
+  modelled_estimate:
+    description: The amount is estimated from a model, route, or scenario when direct records are unavailable.
+  not_applicable:
+    description: A quantity is not applicable for this flow row.

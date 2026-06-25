@@ -25,7 +25,7 @@ The AI produces the current best PCR from available evidence. This workflow writ
 9. Populate `Boundary Abstraction` with the resulting declared starting condition, role, classification scope, recursive input rule, upstream dataset requirement, and disclosure.
 10. Define common data production processes before writing detailed inventory rows.
 11. For each process, write inventory rows by direction and flow type: product, waste, elementary.
-12. Record amounts, exact values, ranges, formulas, or foreground collection requirements with controlled `amount_kind`, `basis_kind`, and `evidence_kind`.
+12. Record amounts, exact values, formulas, foreground collection requirements, evidence-backed ranges, and clearly labelled provisional reasoned ranges with controlled `value_mode`, `specificity`, `basis_kind`, `evidence_kind`, and `range` metadata.
 13. Link collected foreground rows and calculated foreground rows to `collection_protocol_id`.
 14. Define data collection protocols with raw fields, collection method, unit, frequency, coverage, scope, aggregation rule, and quality evidence.
 15. Define calculation rules from collected fields to normalized PCR values.
@@ -37,7 +37,7 @@ The AI produces the current best PCR from available evidence. This workflow writ
 21. Write `pcr.zh-CN.md` as an aligned rendering of the same rule.
 22. Run `npm run pcr:sync-structured -- --pcr <library/pcrs/...>`.
 23. Run `npm run validate`.
-24. Update `manifest.yaml` lifecycle fields when content maturity changes.
+24. Update `manifest.yaml` lifecycle fields with `npm run pcr:lifecycle -- --pcr <library/pcrs/...> ...` when content maturity or translation state changes.
 
 ## Required PCR Facts
 

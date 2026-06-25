@@ -44,14 +44,16 @@ builder/docs/
 npm run init
 npm run lint
 npm run pcr:sync-structured -- --pcr <library/pcrs/...>
+npm run pcr:lifecycle -- --pcr <library/pcrs/...> --status active --content-maturity reviewed_methodology --translation zh-CN=reviewed
 npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
 npm run pcr:publish -- --pcr <library/pcrs/...> --version <semver>
 npm run validate
 ```
 
 - `init` creates required scaffold directories and guide files.
-- `lint` checks required repository paths and bilingual PCR directory completeness.
-- `pcr:sync-structured` regenerates `structured.yaml` from canonical PCR Markdown tables.
+- `lint` checks required repository paths, bilingual PCR directory completeness, lifecycle values, process inventory structure, and range coverage for important flows. Candidate PCRs may pass with range warnings; reviewed or published PCRs fail when important flows lack ranges.
+- `pcr:sync-structured` regenerates `structured.yaml` from canonical PCR Markdown, including process inventory flow cards.
+- `pcr:lifecycle` updates manifest lifecycle state using controlled vocabularies for PCR status, content maturity, and translation status.
 - `pcr:bump` updates manifest version lifecycle fields.
 - `pcr:publish` syncs structured output and marks the manifest publication state.
 - `validate` runs lint plus tests.

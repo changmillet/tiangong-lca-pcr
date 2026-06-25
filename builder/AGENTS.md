@@ -80,9 +80,10 @@ For builder CLI, schema, template, vocab, docs, classification, or mapping chang
 npm run validate
 ```
 
-For publication or version lifecycle updates, run the relevant lifecycle command:
+For review, translation, publication, or version lifecycle updates, run the relevant lifecycle command:
 
 ```bash
+npm run pcr:lifecycle -- --pcr <library/pcrs/...> --status active --content-maturity reviewed_methodology --translation zh-CN=reviewed
 npm run pcr:bump -- --pcr <library/pcrs/...> --level patch
 npm run pcr:publish -- --pcr <library/pcrs/...> --version <semver>
 ```

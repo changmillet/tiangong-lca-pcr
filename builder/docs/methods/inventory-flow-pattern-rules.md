@@ -10,14 +10,17 @@ Each material PCR should break the product category into common modelling proces
 
 Each flow row should record:
 
+- stable `row_id`
 - modelling role
 - flow type
 - Tiangong flow UUID when a database flow exists
 - flow property UUID
 - unit group UUID
 - preferred reference unit
-- amount or expected range, when useful
-- `amount_kind`, using `builder/vocab/amount-kind.yaml`
+- amount expression or foreground collection requirement
+- `value_mode`, using `builder/vocab/amount-value-mode.yaml`
+- `specificity`, using `builder/vocab/amount-specificity.yaml`
+- optional evidence-backed or provisional reasoned ranges with `role`, using `builder/vocab/amount-range-role.yaml`
 - basis, such as `per 1,000 kg reference product`
 - `basis_kind`, using `builder/vocab/basis-kind.yaml`
 - `evidence_kind`, using `builder/vocab/evidence-kind.yaml`

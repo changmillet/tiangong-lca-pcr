@@ -1,0 +1,17 @@
+schema_version: 1
+vocab: amount_specificity
+values:
+  generic:
+    description: The amount rule applies generically across the product category.
+  site_specific:
+    description: The amount depends on the foreground site, facility, lot, or campaign.
+  product_specific:
+    description: The amount depends on the selected product, material state, or formulation.
+  route_specific:
+    description: The amount depends on a transport, delivery, or collection route.
+  scenario_specific:
+    description: The amount depends on the declared study scenario.
+  technology_specific:
+    description: The amount depends on the selected process technology or equipment.
+  not_applicable:
+    description: Specificity is not applicable for this flow row.

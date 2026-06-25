@@ -1,0 +1,13 @@
+schema_version: 1
+vocab: amount_range_role
+values:
+  qa_guardrail:
+    description: Range is used as a quality-control screen for foreground values.
+  typical_range:
+    description: Range describes typical observed or source-supported values.
+  allowed_range:
+    description: Range defines an allowed value interval for conforming datasets.
+  default_estimate:
+    description: Range supports a default estimate when foreground data are unavailable.
+  uncertainty_range:
+    description: Range describes quantitative uncertainty around an amount.

@@ -18,14 +18,15 @@ Use this workflow after a PCR feedback issue has passed intake.
    npm run pcr:sync-structured -- --pcr <library/pcrs/...>
    ```
 
-5. If lifecycle status or version changes, run `pcr:bump` or `pcr:publish`.
-6. Run:
+5. If review, maturity, or translation state changes, run `pcr:lifecycle`.
+6. If version changes, run `pcr:bump`; if publication state changes, run `pcr:publish`.
+7. Run:
 
    ```bash
    npm run validate
    ```
 
-7. Record the resolution in the issue: accepted change, evidence used, files changed, version impact, and remaining follow-up.
+8. Record the resolution in the issue: accepted change, evidence used, files changed, version impact, and remaining follow-up.
 
 ## Acceptance
 

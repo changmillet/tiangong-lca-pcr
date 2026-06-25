@@ -5,4 +5,5 @@ coverage/
 .docpact/runs/
 .env
 .env.*
+!.env.example
 *.log

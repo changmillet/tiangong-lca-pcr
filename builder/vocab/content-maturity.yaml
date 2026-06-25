@@ -1,0 +1,15 @@
+schema_version: 1
+vocab: content_maturity
+values:
+  empty_scaffold:
+    description: PCR has generated placeholder structure only.
+  draft_methodology:
+    description: Methodology content is being drafted and may be incomplete.
+  authored_methodology:
+    description: Methodology content has been authored from available evidence but is not yet reviewed.
+  reviewed_methodology:
+    description: Methodology content has completed review for normal active use.
+  published_methodology:
+    description: Methodology content has been included in a published PCR version.
+  deprecated_methodology:
+    description: Methodology content is retained for history but should not guide new work.

@@ -42,3 +42,17 @@ Use top-level lifecycle fields for version state:
 - `translation_status`
 
 Review or publication state belongs here or in GitHub issue/PR records, not in PCR Markdown sections.
+
+Controlled lifecycle values are defined in `builder/vocab/`:
+
+- `status`: `scaffold`, `candidate`, `active`, `published`, `deprecated`
+- `content_maturity`: `empty_scaffold`, `draft_methodology`, `authored_methodology`, `reviewed_methodology`, `published_methodology`, `deprecated_methodology`
+- `translation_status.<language>`: `not_available`, `scaffold`, `scaffold_pending_translation`, `draft_translation`, `aligned`, `reviewed`, `out_of_sync`
+
+Use the lifecycle CLI to update review and translation state:
+
+```bash
+npm run pcr:lifecycle -- --pcr <library/pcrs/...> --status active --content-maturity reviewed_methodology --translation zh-CN=reviewed
+```
+
+`pcr:lifecycle` updates `updated_at_utc` but does not regenerate `structured.yaml` and does not publish a PCR. Use `pcr:publish` only when assigning a published version and `published_at_utc`.

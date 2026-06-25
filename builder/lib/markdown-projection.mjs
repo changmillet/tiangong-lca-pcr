@@ -49,6 +49,269 @@ function normalizeStructuredId(value) {
   return normalizeAsciiSlug(value).replaceAll("-", "_");
 }
 
+function inlineCodeValues(value) {
+  return [...String(value ?? "").matchAll(/`([^`]+)`/gu)].map((match) => match[1].trim()).filter(Boolean);
+}
+
+function controlledValue(value) {
+  const codes = inlineCodeValues(value);
+  if (codes.length > 0) {
+    return codes[0];
+  }
+  return stripInlineCode(value);
+}
+
+function normalizeDirection(value) {
+  const raw = controlledValue(value).trim().toLowerCase();
+  const normalized = normalizeStructuredId(raw);
+  if (
+    ["input", "inputs"].includes(raw) ||
+    raw === "输入" ||
+    ["input", "inputs"].includes(normalized)
+  ) {
+    return "inputs";
+  }
+  if (
+    ["output", "outputs"].includes(raw) ||
+    raw === "输出" ||
+    ["output", "outputs"].includes(normalized)
+  ) {
+    return "outputs";
+  }
+  return normalized;
+}
+
+function normalizeFlowType(value) {
+  const raw = controlledValue(value).trim().toLowerCase();
+  const normalized = normalizeStructuredId(raw);
+  if (["product", "product_flow", "product_flows"].includes(normalized)) {
+    return "product";
+  }
+  if (["产品流", "产品"].includes(raw)) {
+    return "product";
+  }
+  if (["waste", "waste_flow", "waste_flows"].includes(normalized)) {
+    return "waste";
+  }
+  if (["废物流", "废物"].includes(raw)) {
+    return "waste";
+  }
+  if (["elementary", "elementary_flow", "elementary_flows"].includes(normalized)) {
+    return "elementary";
+  }
+  if (["基本流", "环境流"].includes(raw)) {
+    return "elementary";
+  }
+  return normalized;
+}
+
+function normalizeFlowCardKey(value) {
+  const raw = String(value ?? "").trim().replace(/\s+/gu, " ");
+  const localizedKeyMap = new Map([
+    ["选定流", "selected_flow"],
+    ["流属性/单位", "flow_property_unit"],
+    ["流属性 / 单位", "flow_property_unit"],
+    ["数量规则", "amount"],
+    ["数值来源模式", "value_mode"],
+    ["适用范围", "specificity"],
+    ["归一化基准", "basis"],
+    ["基准类型", "basis_kind"],
+    ["证据类型", "evidence_kind"],
+    ["采集协议", "collection_protocol_id"],
+    ["来源", "source_ids"],
+    ["数量范围", "range"],
+  ]);
+  const localizedKey = localizedKeyMap.get(raw);
+  if (localizedKey) {
+    return localizedKey;
+  }
+  const normalized = normalizeStructuredId(raw);
+  const keyMap = new Map([
+    ["selected_flow", "selected_flow"],
+    ["flow", "selected_flow"],
+    ["flow_property_unit", "flow_property_unit"],
+    ["property_unit", "flow_property_unit"],
+    ["amount", "amount"],
+    ["amount_rule", "amount"],
+    ["value_mode", "value_mode"],
+    ["specificity", "specificity"],
+    ["basis", "basis"],
+    ["normalization_basis", "basis"],
+    ["basis_kind", "basis_kind"],
+    ["evidence_kind", "evidence_kind"],
+    ["collection_protocol", "collection_protocol_id"],
+    ["collection_protocol_id", "collection_protocol_id"],
+    ["source_ids", "source_ids"],
+    ["sources", "source_ids"],
+    ["range", "range"],
+  ]);
+  return keyMap.get(normalized) ?? normalized;
+}
+
+function normalizeRangeFieldKey(value) {
+  const raw = String(value ?? "").trim().replace(/\s+/gu, " ");
+  const localizedKeyMap = new Map([
+    ["范围角色", "role"],
+    ["角色", "role"],
+    ["下限", "lower"],
+    ["上限", "upper"],
+    ["单位", "unit"],
+    ["基准", "basis"],
+    ["基准类型", "basis_kind"],
+    ["证据类型", "evidence_kind"],
+    ["来源", "source_ids"],
+  ]);
+  const localizedKey = localizedKeyMap.get(raw);
+  if (localizedKey) {
+    return localizedKey;
+  }
+  const normalized = normalizeStructuredId(raw);
+  const keyMap = new Map([
+    ["range_role", "role"],
+    ["role", "role"],
+    ["lower", "lower"],
+    ["lower_bound", "lower"],
+    ["upper", "upper"],
+    ["upper_bound", "upper"],
+    ["unit", "unit"],
+    ["basis", "basis"],
+    ["basis_kind", "basis_kind"],
+    ["evidence_kind", "evidence_kind"],
+    ["source_ids", "source_ids"],
+    ["sources", "source_ids"],
+  ]);
+  return keyMap.get(normalized) ?? normalized;
+}
+
+function parseTitledId(value) {
+  const codes = inlineCodeValues(value);
+  const rowId = codes.length > 0 ? normalizeStructuredId(codes[codes.length - 1]) : "";
+  const labelSource = rowId
+    ? String(value ?? "").replace(/\s*[（(]\s*`[^`]+`\s*[)）]\s*$/u, "")
+    : String(value ?? "");
+  const label = stripInlineCode(labelSource)
+    .replace(/[（(]\s*[)）]/gu, "")
+    .replace(/\s{2,}/gu, " ")
+    .trim();
+  return {
+    id: rowId || normalizeStructuredId(label),
+    label,
+  };
+}
+
+function parseBullet(rawLine) {
+  const match = rawLine.match(/^(\s*)[-*]\s+([^:：]+)[:：]\s*(.*)$/u);
+  if (!match) {
+    return null;
+  }
+  return {
+    indent: match[1].length,
+    key: match[2],
+    value: match[3].trim(),
+  };
+}
+
+function parseNestedRange(lines, startIndex, parentIndent) {
+  const range = {};
+  let index = startIndex;
+  for (; index < lines.length; index += 1) {
+    const rawLine = lines[index];
+    const line = rawLine.trim();
+    if (!line) {
+      continue;
+    }
+    if (/^#{1,6}\s+/u.test(line)) {
+      break;
+    }
+    const bullet = parseBullet(rawLine);
+    if (!bullet || bullet.indent <= parentIndent) {
+      break;
+    }
+    const key = normalizeRangeFieldKey(bullet.key);
+    range[key] = bullet.value;
+  }
+  return { range, nextIndex: index };
+}
+
+function parseFlowCardFields(lines, startIndex) {
+  const fields = {};
+  const descriptions = [];
+  let rangeIndex = 0;
+  let index = startIndex;
+  for (; index < lines.length; index += 1) {
+    const rawLine = lines[index];
+    const line = rawLine.trim();
+    if (/^#{1,6}\s+/u.test(line)) {
+      break;
+    }
+    const bullet = parseBullet(rawLine);
+    if (bullet) {
+      const key = normalizeFlowCardKey(bullet.key);
+      if (key === "range") {
+        const nested = parseNestedRange(lines, index + 1, bullet.indent);
+        if (Object.keys(nested.range).length > 0) {
+          fields[`range_${rangeIndex}`] = nested.range;
+          rangeIndex += 1;
+          index = nested.nextIndex - 1;
+          continue;
+        }
+        fields[`range_${rangeIndex}`] = bullet.value;
+        rangeIndex += 1;
+        continue;
+      }
+      fields[key] = bullet.value;
+      continue;
+    }
+    if (line) {
+      descriptions.push(stripInlineCode(line));
+    }
+  }
+  return { fields, description: descriptions.join(" ").trim(), nextIndex: index };
+}
+
+function parseRangeEntry(value) {
+  const fields = {};
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    Object.assign(fields, value);
+  } else {
+    for (const entry of String(value ?? "").split(";")) {
+      const [rawKey, ...rawValueParts] = entry.split("=");
+      const key = normalizeRangeFieldKey(rawKey ?? "");
+      const fieldValue = rawValueParts.join("=").trim();
+      if (key && fieldValue) {
+        fields[key] = fieldValue;
+      }
+    }
+  }
+  const role = fields.role ?? fields.range_role ?? fields.kind ?? "";
+  if (!role) {
+    return null;
+  }
+  return {
+    role: normalizeStructuredId(controlledValue(role)),
+    lower: stripInlineCode(fields.lower ?? ""),
+    upper: stripInlineCode(fields.upper ?? ""),
+    unit: stripInlineCode(fields.unit ?? ""),
+    basis: stripInlineCode(fields.basis ?? ""),
+    basis_kind: normalizeStructuredId(controlledValue(fields.basis_kind ?? "")),
+    evidence_kind: normalizeStructuredId(controlledValue(fields.evidence_kind ?? "")),
+    source_ids: extractSourceIds(fields.source_ids ?? fields.sources ?? ""),
+  };
+}
+
+function parseRangeEntries(fields) {
+  const ranges = [];
+  for (const [key, value] of Object.entries(fields)) {
+    if (key === "range" || key.startsWith("range_")) {
+      const range = parseRangeEntry(value);
+      if (range) {
+        ranges.push(range);
+      }
+    }
+  }
+  return ranges;
+}
+
 function parseReferenceFlowTable(table) {
   const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
   return table.rows
@@ -156,31 +419,6 @@ function parseMeasurementRuleRows(table) {
       };
     })
     .filter((row) => row.id || row.applies_to || row.rule);
-}
-
-function parseInventoryRows(table, flowType) {
-  const headerIndex = new Map(table.headers.map((header, index) => [normalizeHeader(header), index]));
-  return table.rows
-    .map((row) => {
-      const uuid = extractFirstUuid(tableCell(row, headerIndex, ["tiangong_uuid", "uuid"]));
-      return {
-        role: stripInlineCode(tableCell(row, headerIndex, ["flow_role", "role"])),
-        name: stripInlineCode(tableCell(row, headerIndex, ["selected_flow", "flow"])),
-        flow_type: flowType,
-        uuid,
-        property_unit: stripInlineCode(tableCell(row, headerIndex, ["flow_property_unit"])),
-        amount: stripInlineCode(tableCell(row, headerIndex, ["amount", "typical_range", "range"])),
-        amount_kind: stripInlineCode(tableCell(row, headerIndex, ["amount_kind", "range_kind", "range_type"])),
-        basis: stripInlineCode(tableCell(row, headerIndex, ["basis", "range_basis"])),
-        basis_kind: stripInlineCode(tableCell(row, headerIndex, ["basis_kind"])),
-        evidence_kind: stripInlineCode(tableCell(row, headerIndex, ["evidence_kind", "range_type"])),
-        collection_protocol_id: normalizeStructuredId(
-          tableCell(row, headerIndex, ["collection_protocol_id", "protocol_id"]),
-        ),
-        source_ids: extractSourceIds(tableCell(row, headerIndex, ["source_ids", "range_sources", "sources"])),
-      };
-    })
-    .filter((row) => row.role || row.name || row.uuid);
 }
 
 function parseProcessMapRows(table) {
@@ -358,9 +596,10 @@ export function parsePcrMarkdownToStructured(markdown) {
 
     const h3Process = line.match(/^###\s+(?:Process:\s*|过程：)(.+)$/u);
     if (h3Process && section === "process_inventory") {
+      const processTitle = parseTitledId(h3Process[1]);
       currentProcess = {
-        id: normalizeStructuredId(h3Process[1]),
-        label: stripInlineCode(h3Process[1]),
+        id: processTitle.id,
+        label: processTitle.label,
         inputs: { product: [], waste: [], elementary: [] },
         outputs: { product: [], waste: [], elementary: [] },
       };
@@ -394,6 +633,47 @@ export function parsePcrMarkdownToStructured(markdown) {
       continue;
     }
 
+    const flowCard = line.match(/^######\s+(?:Flow:\s*|流：)?(.+)$/u);
+    if (flowCard && section === "process_inventory" && currentProcess && direction && flowType) {
+      const { fields, description, nextIndex } = parseFlowCardFields(lines, index + 1);
+      const flowTitle = parseTitledId(flowCard[1]);
+      const rowDirection = normalizeDirection(fields.direction ?? "") || direction;
+      const rowFlowType = normalizeFlowType(fields.flow_type ?? "") || flowType;
+      const row = {
+        row_id: flowTitle.id,
+        role: stripInlineCode(fields.role ?? flowTitle.label),
+        name: labelWithoutUuid(fields.selected_flow ?? fields.flow ?? ""),
+        flow_type: rowFlowType,
+        uuid: extractFirstUuid(fields.selected_flow ?? fields.flow ?? fields.uuid ?? ""),
+        property_unit: stripInlineCode(fields.flow_property_unit ?? fields.property_unit ?? ""),
+        description,
+        amount: {
+          expression: stripInlineCode(fields.amount ?? fields.amount_expression ?? ""),
+          value_mode: normalizeStructuredId(controlledValue(fields.value_mode ?? "")),
+          specificity: normalizeStructuredId(controlledValue(fields.specificity ?? "")),
+          basis: {
+            text: stripInlineCode(fields.basis ?? ""),
+            kind: normalizeStructuredId(controlledValue(fields.basis_kind ?? "")),
+          },
+          evidence: {
+            kind: normalizeStructuredId(controlledValue(fields.evidence_kind ?? "")),
+            collection_protocol_id: normalizeStructuredId(
+              fields.collection_protocol_id ?? fields.protocol_id ?? "",
+            ),
+            source_ids: extractSourceIds(fields.source_ids ?? fields.sources ?? ""),
+          },
+          ranges: parseRangeEntries(fields),
+        },
+      };
+      if (["inputs", "outputs"].includes(rowDirection) && ["product", "waste", "elementary"].includes(rowFlowType)) {
+        currentProcess[rowDirection][rowFlowType].push(row);
+      } else {
+        currentProcess.inputs.product.push(row);
+      }
+      index = nextIndex - 1;
+      continue;
+    }
+
     if (isTableLine(line)) {
       const { table, nextIndex } = parseTable(lines, index);
       if (table) {
@@ -423,8 +703,6 @@ export function parsePcrMarkdownToStructured(markdown) {
           }
         } else if (section === "process_inventory" && !currentProcess) {
           processMap.push(...parseProcessMapRows(table));
-        } else if (section === "process_inventory" && currentProcess && direction && flowType) {
-          currentProcess[direction][flowType].push(...parseInventoryRows(table, flowType));
         } else if (section === "dataset_production" && subSection === "collection_protocols") {
           collectionProtocols.push(...parseCollectionProtocolRows(table));
         } else if (section === "dataset_production" && subSection === "calculation_rules") {

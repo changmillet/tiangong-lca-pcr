@@ -30,6 +30,24 @@ function yamlStringArray(lines, indent, key, values) {
   }
 }
 
+function yamlRangeArray(lines, indent, ranges) {
+  if (!ranges || ranges.length === 0) {
+    lines.push(`${" ".repeat(indent)}ranges: []`);
+    return;
+  }
+  lines.push(`${" ".repeat(indent)}ranges:`);
+  for (const range of ranges) {
+    lines.push(`${" ".repeat(indent + 2)}- role: ${yamlPlainOrQuoted(range.role)}`);
+    yamlKeyValue(lines, indent + 4, "lower", range.lower);
+    yamlKeyValue(lines, indent + 4, "upper", range.upper);
+    yamlKeyValue(lines, indent + 4, "unit", range.unit);
+    yamlKeyValue(lines, indent + 4, "basis", range.basis);
+    yamlKeyValue(lines, indent + 4, "basis_kind", range.basis_kind);
+    yamlKeyValue(lines, indent + 4, "evidence_kind", range.evidence_kind);
+    yamlStringArray(lines, indent + 4, "source_ids", range.source_ids);
+  }
+}
+
 function yamlFlatObject(lines, indent, object) {
   const entries = Object.entries(object ?? {}).filter(([, value]) => value !== "");
   if (entries.length === 0) {
@@ -138,7 +156,8 @@ export function structuredProjectionYaml(projection) {
             continue;
           }
           for (const row of rows) {
-            lines.push("        - role: " + yamlScalar(row.role));
+            lines.push("        - row_id: " + yamlPlainOrQuoted(row.row_id));
+            yamlKeyValue(lines, 10, "role", row.role);
             yamlKeyValue(lines, 10, "name", row.name);
             yamlKeyValue(lines, 10, "flow_type", row.flow_type);
             if (row.uuid) {
@@ -146,15 +165,26 @@ export function structuredProjectionYaml(projection) {
               yamlKeyValue(lines, 12, "uuid", row.uuid);
             }
             yamlKeyValue(lines, 10, "property_unit", row.property_unit);
-            yamlKeyValue(lines, 10, "amount", row.amount);
-            yamlKeyValue(lines, 10, "amount_kind", row.amount_kind);
-            yamlKeyValue(lines, 10, "basis", row.basis);
-            yamlKeyValue(lines, 10, "basis_kind", row.basis_kind);
-            yamlKeyValue(lines, 10, "evidence_kind", row.evidence_kind);
-            if (row.collection_protocol_id) {
-              lines.push("          collection_protocol_id: " + yamlPlainOrQuoted(row.collection_protocol_id));
+            if (row.description) {
+              yamlKeyValue(lines, 10, "description", row.description);
             }
-            yamlStringArray(lines, 10, "source_ids", row.source_ids);
+            lines.push("          amount:");
+            yamlKeyValue(lines, 12, "expression", row.amount?.expression);
+            yamlKeyValue(lines, 12, "value_mode", row.amount?.value_mode);
+            yamlKeyValue(lines, 12, "specificity", row.amount?.specificity);
+            lines.push("            basis:");
+            yamlKeyValue(lines, 14, "text", row.amount?.basis?.text);
+            yamlKeyValue(lines, 14, "kind", row.amount?.basis?.kind);
+            lines.push("            evidence:");
+            yamlKeyValue(lines, 14, "kind", row.amount?.evidence?.kind);
+            if (row.amount?.evidence?.collection_protocol_id) {
+              lines.push(
+                "              collection_protocol_id: " +
+                  yamlPlainOrQuoted(row.amount.evidence.collection_protocol_id),
+              );
+            }
+            yamlStringArray(lines, 14, "source_ids", row.amount?.evidence?.source_ids);
+            yamlRangeArray(lines, 12, row.amount?.ranges);
           }
         }
       }

@@ -1,0 +1,17 @@
+schema_version: 1
+vocab: translation_status
+values:
+  not_available:
+    description: Translation is intentionally not available for the language.
+  scaffold:
+    description: Translation file exists as an empty scaffold.
+  scaffold_pending_translation:
+    description: Translation file was generated from classification scaffold and still needs authoring.
+  draft_translation:
+    description: Translation is being drafted and may not be aligned with canonical content.
+  aligned:
+    description: Translation is aligned with canonical PCR content.
+  reviewed:
+    description: Translation alignment has been reviewed.
+  out_of_sync:
+    description: Translation exists but is known to lag behind canonical PCR content.

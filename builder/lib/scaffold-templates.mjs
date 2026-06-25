@@ -135,14 +135,26 @@ When constructing a foreground data package, the items listed in \`Required qual
 | process_id | process_name | inclusion | inclusion_condition | role | quantitative_reference |
 | --- | --- | --- | --- | --- | --- |
 
-### Process: <process_id>
+### Process: <process name> (\`<process_id>\`)
 
 #### Inputs
 
 ##### Product flows
 
-| Flow role | Selected flow | Tiangong UUID | Flow property / unit | Amount | amount_kind | Basis | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+###### <flow role> (\`<row_id>\`)
+
+Describe the flow in one or two sentences. Include why it crosses this process boundary and how the quantity is obtained.
+
+- Selected flow:
+- Flow property / unit:
+- Amount rule:
+- Value mode: Foreground record (\`foreground_record\`)
+- Specificity: Site-specific (\`site_specific\`)
+- Normalization basis:
+- Basis kind: Process output (\`process_output\`)
+- Evidence kind: Collected record (\`collected_record\`)
+- Collection protocol:
+- Sources:
 
 ##### Waste flows
 
@@ -254,14 +266,26 @@ export function zhPcrBody() {
 | process_id | 过程名称 | 纳入状态 | 纳入条件 | 建模角色 | 定量参考 |
 | --- | --- | --- | --- | --- | --- |
 
-### 过程：<process_id>
+### 过程：<过程名称>（\`<process_id>\`）
 
 #### 输入
 
 ##### 产品流
 
-| 流角色 | 选定流 | 天工 UUID | 流属性/单位 | 数量 | amount_kind | 基准 | basis_kind | evidence_kind | collection_protocol_id | source_ids |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+###### <流角色>（\`<row_id>\`）
+
+用一到两句话描述该流。说明它为什么跨越本过程边界，以及数量如何获得。
+
+- 选定流：
+- 流属性/单位：
+- 数量规则：
+- 数值来源模式：前景记录（\`foreground_record\`）
+- 适用范围：场址特定（\`site_specific\`）
+- 归一化基准：
+- 基准类型：过程输出（\`process_output\`）
+- 证据类型：采集记录（\`collected_record\`）
+- 采集协议：
+- 来源：
 
 ##### 废物流
 

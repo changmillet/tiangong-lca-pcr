@@ -3,6 +3,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { parseYaml, renderYaml } from "../../packages/pcr-core/src/yaml-lite.mjs";
+import {
+  CONTENT_MATURITY_VALUES,
+  PCR_STATUS_VALUES,
+  TRANSLATION_STATUS_VALUES,
+  formatOneOf,
+} from "./lifecycle-vocab.mjs";
 import { parsePcrMarkdownToStructured, structuredProjectionYaml } from "./markdown-projection.mjs";
 import { PCR_EN_FILE } from "./scaffold-templates.mjs";
 
@@ -73,6 +79,38 @@ function setTopLevelPlainValue(text, key, value) {
   return setTopLevelValue(text, key, value);
 }
 
+function requireAllowedOption(options, key, values) {
+  const value = options[key];
+  if (value === undefined) {
+    return null;
+  }
+  const normalized = String(value);
+  if (!values.includes(normalized)) {
+    throw new Error(`--${key} must be one of ${formatOneOf(values)}.`);
+  }
+  return normalized;
+}
+
+function parseTranslationOption(value) {
+  if (value === undefined) {
+    return null;
+  }
+  const raw = String(value);
+  const separatorIndex = raw.indexOf("=");
+  if (separatorIndex <= 0 || separatorIndex === raw.length - 1) {
+    throw new Error("--translation must use <language>=<status>, for example zh-CN=aligned.");
+  }
+  const language = raw.slice(0, separatorIndex).trim();
+  const status = raw.slice(separatorIndex + 1).trim();
+  if (!language) {
+    throw new Error("--translation language must not be empty.");
+  }
+  if (!TRANSLATION_STATUS_VALUES.includes(status)) {
+    throw new Error(`--translation status must be one of ${formatOneOf(TRANSLATION_STATUS_VALUES)}.`);
+  }
+  return { language, status };
+}
+
 function incrementVersion(current, level) {
   const match = String(current ?? "0.0.0").match(/^(\d+)\.(\d+)\.(\d+)$/u);
   let [major, minor, patch] = match ? match.slice(1).map(Number) : [0, 0, 0];
@@ -125,4 +163,50 @@ export function publish(options) {
   updated = setTopLevelValue(updated, "updated_at_utc", now);
   writeFileSync(manifestPath, updated);
   return [...messages, `Published PCR manifest at ${toRepoRelative(root, manifestPath)}.`];
+}
+
+export function lifecycle(options) {
+  const status = requireAllowedOption(options, "status", PCR_STATUS_VALUES);
+  const contentMaturity = requireAllowedOption(options, "content-maturity", CONTENT_MATURITY_VALUES);
+  const translation = parseTranslationOption(options.translation);
+  if (!status && !contentMaturity && !translation) {
+    throw new Error("Provide at least one lifecycle change: --status, --content-maturity, or --translation.");
+  }
+
+  const now = new Date().toISOString();
+  const root = rootFromOptions(options);
+  const pcrDir = pcrDirectoryFromOptions(root, options);
+  const { manifestPath, text } = readManifest(root, pcrDir);
+  const manifest = parseYaml(text);
+  const changed = [];
+
+  if (status) {
+    manifest.status = status;
+    changed.push(`status: ${status}`);
+  }
+  if (contentMaturity) {
+    manifest.content_maturity = contentMaturity;
+    changed.push(`content_maturity: ${contentMaturity}`);
+  }
+  if (translation) {
+    manifest.translation_status = manifest.translation_status && typeof manifest.translation_status === "object"
+      ? manifest.translation_status
+      : {};
+    manifest.translation_status[translation.language] = translation.status;
+    changed.push(`translation_status.${translation.language}: ${translation.status}`);
+  }
+  manifest.updated_at_utc = now;
+
+  writeFileSync(manifestPath, renderYaml(manifest));
+  return [
+    `Updated PCR lifecycle at ${toRepoRelative(root, manifestPath)}.`,
+    "",
+    "Summary:",
+    ...changed.map((entry) => `- ${entry}`),
+    `- updated_at_utc: ${now}`,
+    "",
+    "Next:",
+    "- Run `npm run validate` before committing lifecycle changes.",
+    `- If publication-ready, run \`npm run pcr:publish -- --pcr ${toRepoRelative(root, pcrDir)} --version <semver>\`.`,
+  ];
 }
