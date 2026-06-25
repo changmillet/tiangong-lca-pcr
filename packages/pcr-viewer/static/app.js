@@ -1,5 +1,7 @@
 import { escapeHtml, filterPcrs, renderMarkdown, summarizeGuidance } from "./viewer-core.js";
 
+const TABS = ["markdown", "guidance", "sources"];
+
 const state = {
   data: null,
   selectedId: "",
@@ -146,12 +148,28 @@ function renderSelectedPcr(pcr) {
       <div><span>Content maturity</span><strong>${escapeHtml(pcr.content_maturity ?? "")}</strong></div>
       <div><span>Classification refs</span><strong>${escapeHtml(formatClassificationRefs(pcr.classification_refs))}</strong></div>
     </section>
-    <div class="tabs" role="tablist">
-      ${["markdown", "guidance", "sources"].map((tab) => `<button class="tab${state.tab === tab ? " active" : ""}" data-tab="${tab}">${tabLabel(tab)}</button>`).join("")}
+    <div class="tabs" role="tablist" aria-label="PCR content views">
+      ${TABS.map((tab) => renderTabButton(tab)).join("")}
     </div>
-    <article class="content-panel">
+    <article class="content-panel" id="pcr-content-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${state.tab}">
       ${renderTabContent(pcr)}
     </article>
+  `;
+}
+
+function renderTabButton(tab) {
+  const selected = state.tab === tab;
+  return `
+    <button
+      class="tab${selected ? " active" : ""}"
+      data-tab="${tab}"
+      id="tab-${tab}"
+      role="tab"
+      type="button"
+      aria-controls="pcr-content-panel"
+      aria-selected="${selected ? "true" : "false"}"
+      tabindex="${selected ? "0" : "-1"}"
+    >${tabLabel(tab)}</button>
   `;
 }
 
@@ -225,12 +243,51 @@ function bindEvents() {
       render();
     });
   }
-  for (const tab of document.querySelectorAll("[data-tab]")) {
+  const tabs = [...document.querySelectorAll("[role=\"tab\"][data-tab]")];
+  for (const tab of tabs) {
     tab.addEventListener("click", () => {
-      state.tab = tab.dataset.tab;
-      render();
+      activateTab(tab.dataset.tab);
+    });
+    tab.addEventListener("keydown", (event) => {
+      const nextTab = nextKeyboardTab(tabs, tab, event.key);
+      if (!nextTab) {
+        return;
+      }
+      event.preventDefault();
+      activateTab(nextTab.dataset.tab, { focus: true });
     });
   }
+}
+
+function activateTab(tab, { focus = false } = {}) {
+  if (!TABS.includes(tab)) {
+    return;
+  }
+  state.tab = tab;
+  render();
+  if (focus) {
+    document.querySelector(`[data-tab="${tab}"]`)?.focus({ preventScroll: true });
+  }
+}
+
+function nextKeyboardTab(tabs, currentTab, key) {
+  const currentIndex = tabs.indexOf(currentTab);
+  if (currentIndex === -1) {
+    return null;
+  }
+  if (key === "ArrowRight" || key === "ArrowDown") {
+    return tabs[(currentIndex + 1) % tabs.length];
+  }
+  if (key === "ArrowLeft" || key === "ArrowUp") {
+    return tabs[(currentIndex - 1 + tabs.length) % tabs.length];
+  }
+  if (key === "Home") {
+    return tabs[0];
+  }
+  if (key === "End") {
+    return tabs[tabs.length - 1];
+  }
+  return null;
 }
 
 function unique(values) {
