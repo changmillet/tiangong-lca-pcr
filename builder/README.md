@@ -13,6 +13,7 @@ Machine-facing and execution-facing assets stay directly under `builder/`. Human
 ```text
 builder/AGENTS.md
 builder/cli/
+builder/lib/
 builder/scripts/
 builder/schemas/
 builder/templates/
@@ -28,6 +29,7 @@ builder/docs/
 ```
 
 - `builder/AGENTS.md` is the local agent routing and hard-rule entrypoint.
+- `builder/lib/` contains builder implementation modules behind the CLI, including scaffold, lint, lifecycle, Markdown table parsing, and structured projection logic.
 - `builder/docs/index.md` is the human-readable builder documentation map.
 - `builder/docs/workflows/` contains task runbooks for creating, updating, translating, reviewing, and publishing PCRs.
 - `builder/docs/contracts/` defines durable authoring contracts for Markdown, manifest, structured projection, evidence, and UUID references.

@@ -39,7 +39,7 @@ classification code -> mapping -> canonical PCR -> modules -> rendered PCR
 
 Canonical PCR records live under `library/pcrs/`. Classification source data and mappings live under `classifications/`.
 
-Builder assets under `builder/` separate implementation from documentation. CLI, scripts, schemas, templates, fixtures, and vocabularies stay directly under `builder/`; human and agent documentation lives under `builder/docs/`. `builder/AGENTS.md` provides task routing, while `builder/docs/index.md` maps workflows, contracts, methods, tools, and prompts.
+Builder assets under `builder/` separate implementation from documentation. CLI adapters, implementation modules, scripts, schemas, templates, fixtures, and vocabularies stay directly under `builder/`; human and agent documentation lives under `builder/docs/`. `builder/lib/` contains the reusable builder implementation behind the CLI. `builder/AGENTS.md` provides task routing, while `builder/docs/index.md` maps workflows, contracts, methods, tools, and prompts.
 
 Public PCR consumption is a separate layer. `packages/pcr-core/` reads the library, classification mappings, Markdown, and generated `structured.yaml`. `packages/tiangong-pcr-cli/` exposes catalog browsing, deterministic classification resolution, PCR display, Agent guidance, model validation, and feedback drafting. `skills/tiangong-pcr/` teaches agents how to use the CLI without copying PCR rules.
 

@@ -42,7 +42,7 @@ PCR records are canonical methodology documents. Classification systems such as 
 - `library/indexes/`: generated and maintained PCR indexes.
 - `classifications/systems/`: source and normalized classification-system data.
 - `classifications/mappings/`: mappings from external classification codes to canonical PCR ids.
-- `builder/`: CLI, scripts, schemas, templates, controlled vocabularies, and builder documentation for constructing and validating the PCR library.
+- `builder/`: CLI, implementation modules, scripts, schemas, templates, controlled vocabularies, and builder documentation for constructing and validating the PCR library.
 - `packages/pcr-core/`: shared library for reading PCR catalog, mapping, guidance, validation, and feedback draft data.
 - `packages/tiangong-pcr-cli/`: public Agent-facing CLI for consuming PCR guidance during foreground data package construction.
 - `skills/tiangong-pcr/`: thin Agent skill for selecting PCRs, using guidance, validating drafts, and creating feedback.
