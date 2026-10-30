@@ -1,7 +1,7 @@
 ---
-lastReviewedAt: 2026-10-24
-lastReviewedCommit: 6883ac60fba9106de1532c153241fb0076423a07
-lastReviewedNote: "PCR #148: reviewed provider-capacity repair after the immutable 0.4.8 export failed actual destination staging. Product 0.4.9 preserves canonical content, classification, reader compatibility, methodology and translation states, dependency resolutions and runtime pins. New builds store original downloads physically, bind exact Next navigation aliases and enforce destination allocation plus the existing reserve; native/browser and live alias acceptance remain mandatory. Existing ownership, routing, scientific approval and full qualification requirements are unchanged. Focused integrity tests and bounded browser diagnostics are evidence only for their scope; complete new-source qualification, independent review, provider admission, stable publication and exact workspace integration remain required."
+lastReviewedAt: 2026-10-30
+lastReviewedCommit: 56e912858aa769ff13075fa852a344d0b730a3b9
+lastReviewedNote: "PCR #159: reviewed stable product 0.4.10 preparation at 56e91285. Authority, three package mirrors and docs lock root metadata advance together; dependency resolutions, canonical content, methodology/translation state, reader minimum and runtime pins remain unchanged. Current preparation notes distinguish verified public 0.4.9 from pending new tag qualification, coordinated npm/site publication and exact workspace integration."
 title: Offline PCR distribution contract
 docType: contract
 scope: repo
