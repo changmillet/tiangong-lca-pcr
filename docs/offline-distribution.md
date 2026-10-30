@@ -86,6 +86,23 @@ and the dependency-free provider importer retains Node 24.18.0. This patch makes
 no dependency or runtime upgrade, raises no resource limit and permits no retry
 of unchanged failed artifacts.
 
+## Product 0.4.10 preparation
+
+Product 0.4.10 prepares the reviewed dependency updates on Main: fast-uri 3.1.9,
+paired site React/react-dom 19.3.1 and mdast-util-to-markdown 2.2.0, together with
+Node-type monitoring and corrected documentation source locators. At preparation
+on 2026-10-30, GitHub stable/latest, both npm latest channels and the verified
+production website remain at 0.4.9. Version metadata alone does not establish
+0.4.10 publication; the immutable tag still requires fresh full qualification,
+coordinated npm/web acceptance and exact workspace integration under PCR #159.
+
+The source authority and three package mirrors advance together. The site lockfile
+changes only its two root version fields; dependency resolutions are preserved.
+Canonical PCR/classification bytes, methodology and translation states, reader
+compatibility minimum 0.4.1, Node 24.19.0/npm 12.2.0 construction pins and provider
+Node 24.18.0 remain unchanged. Existing immutable release assets and receipts stay
+intact. Publish only the tag's sealed bundle through the existing unified workflow.
+
 ## Build and transport
 
 The release-preparation examples below target product 0.4.6. At preparation on

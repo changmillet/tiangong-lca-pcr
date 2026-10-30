@@ -1,6 +1,6 @@
 {
   "name": "@tiangong-lca/pcr-library",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "private": true,
   "description": "Release version source only; publish the generated offline snapshot",
   "license": "MIT"
